@@ -1,9 +1,9 @@
 ---
-date: 2020-01-01 05:54:23
 title: Lorem
 description: And I'm lorem sure lorem
-category: JS
-background: "yellow"
+date: 2020-01-01T05:54:23.000Z
+category: linux
+background: '#EE0000'
 ---
 
 # Lorem ipsum
