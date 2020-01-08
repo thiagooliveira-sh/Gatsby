@@ -2,7 +2,7 @@ backend:
   name: github
   repo: thiagoalexandria/Gatsby
   branch: master
-  site_domain: https://thiagoalexandria.com.br/
+  site_domain: http://thiagoalexandria.com.br/
 
 publish_mode: editorial_workflow
 media_folder: "static/assets/img"
