@@ -121,6 +121,12 @@ systemctl restart nmb.service
 
 Agora, através do seu computador, basta acessar a máquina através da descoberta de rede do seu computador, note que o compartilhamento já está ativo:
 
+![Rede](/assets/img/rede.png)
+----
+
+![Srv](/assets/img/srv.png)
+----
+
 Agora com o compartilhamento público realizado, seguiremos com a realização do compartilhamento privado, seguiremos com a criação da entrada no arquivo de configuração do samba, seguindo o padrão abaixo:
 
 ```bash
