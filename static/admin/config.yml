@@ -1,0 +1,43 @@
+backend:
+  name: github
+  repo: thiagoalexandria/Gatsby
+  branch: master
+  site_domain: https://thiagoalexandria.netlify.com/
+
+publish_mode: editorial_workflow
+media_folder: "static/assets/img"
+public_folder: "assets/img"
+
+collections:
+  - name: "posts" # Used in routes, e.g., /admin/collections/blog
+    label: "Posts" # Used in the UI
+    folder: "posts" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - {
+          label: "Date",
+          name: "date",
+          widget: "datetime",
+          format: "YYYY-MM-DD hh:mm:ss",
+        }
+      - {
+        label: "Category",
+        name: "category",
+        widget: "select",
+        options: ["mcsa", "linux", "ansible", "bash", "dev"]
+      }
+      - {
+        label: "Background",
+        name: "background",
+        widget: "select",
+        options: [
+          { label: "MCSA", value: "#00A82D" },
+          { label: 'LINUX', value: '#EE0000' },
+          { label: 'ANSIBLE', value: '#191816' },
+          { label: 'DEV', value: '#EB7728' },
+        ]
+      }
+      - { label: "Body", name: "body", widget: "markdown" }
