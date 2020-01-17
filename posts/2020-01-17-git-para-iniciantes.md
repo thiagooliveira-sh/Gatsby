@@ -7,7 +7,7 @@ date: '2020-01-16 10:50:33'
 category: dev
 background: '#EB7728'
 ---
-Esse artigo é algo introdutório, o básico para começar a operar com git e repositórios remotos, nesse exemplo será utilizado o GitHub porém sinta-se livre para utilizar a plataforma que tiver mais vivência.
+Nesse exemplo será utilizado o GitHub porém sinta-se livre para utilizar a plataforma que tiver mais vivência.
 
 Primeiramente realize o download e a instalação do git em sua estação de trabalho, após a instalação, inicie o “git bash” se for windows ou o seu terminal, se for linux, partiremos então para configuração inicial, inserindo seu nome e e-mail (email do github)
 
