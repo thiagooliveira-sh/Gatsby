@@ -50,17 +50,15 @@ const AboutPage = () => (
         <li>Linux</li>
         <li>Windows Server</li>
         <li>Monitoramento com Zabbix</li>
-        <li>DNS</li>
-        <li>Apache</li>
-        <li>Nginx</li>
+        <li>Nginx/Apache</li>
+        <li>cPanel/Plesk</li>
         <li>IPTables</li>
         <li>DHCP</li>
         <li>Squid</li>
         <li>Openvpn</li>
         <li>Samba</li>
-        <li>cPanel</li>
-        <li>Plesk</li>
-        <li>Buscando sempre coisas novas.</li>
+        <li>DNS</li>
+        <li>O que ainda não sei busco aprender.</li>
       </ul>
 
       <h2>Contato</h2>
