@@ -20,19 +20,23 @@ const AboutPage = () => (
         <a href="https://www.hostdime.com.br" target="_blank" rel="noopener noreferrer">
           HostDime
         </a>
-        , tenho bacharel em Ciencias da Computação pelo Centro Universitário de 
-        João Pessoa no ano de 2019 e sempre curti tecnologia, durante minha formação
+        , tenho bacharel em Ciências da Computação pelo Centro Universitário de 
+        João Pessoa no ano de 2019 e sempre curti tecnologia. Durante minha formação
         me apaixonei pela área de infraestrutura, mais especificamente para área
-        de sistemas. Tendo sempre utilizar meu conhecimento de formação com desenvolvimento
-        para automatização de processos dentro da minha área.
+        de administração de sistemas.
       </p>
 
       <p>
-        O linux esta bastante presente no meu dia a dia, por isso acho que teremos maior parte 
-        dos artigos voltado a esse SO, mas ainda esse ano vou estar me preparando para MCSA da Miscrosoft, então pode-se dizer que para os que interessa, teremos um pouco de Windows e meus relatos referente aos estudos.
-        Além disso possuo uma certa experiencia em administração
-        de servidores voltados a hospedagem e revenda de sites, tendo acumulado algumas certificações voltadas
-        as principais plataformas de gerenciamento, como o cPanel e Plesk.  
+        Por se tratar em administração de sistemas, a maior parte do parque de servidores 
+        que tenho vivência são linux, então estou sempre buscando aprender coisas novas 
+        referente a serviços e tecnologias. Apesar de estar diretamente ligado a administração 
+        de servidoes Linux, CentOs para ser mais específico, sempre tive vontade de aprender 
+        mais sobre administração de servidoes Windows, acho que pelo desafio de ser um ambiente 
+        menos gerenciável, comparado ao linux. Então esse ano irei me preparar para a certificação 
+        MCSA em Windows server e vou compartilhar parte do conhecimento que obtiver com esses esudos. 
+        Além disso possuo uma certa experiencia em administração de servidores voltados a hospedagem
+        e revenda de sites, tendo acumulado algumas certificações voltadas as principais plataformas
+        de gerenciamento, como o cPanel e Plesk.  
       </p>
       
       <p>
