@@ -54,7 +54,7 @@ Uma coisa importante para sabermos é que as regras são lidas de cima para baix
 * Determinar quais são os destinos/remetentes confiáveis.
 * Determinar qual politica adotar, Accept ou Drop.
 
-No cenário em questão, supomos que máquina será um servidor web e necessita das portas 80 e 443 liberadas para que o acesso ao serviço seja possível, para isso teremos de executar o seguinte comando:
+No cenário em questão, supomos que a máquina será um servidor web e necessita das portas 80 e 443 liberadas para que o acesso ao serviço seja possível, para isso teremos de executar o seguinte comando:
 
 ```bash
 iptables -I INPUT -p tcp --dport 80 -j ACCEPT
