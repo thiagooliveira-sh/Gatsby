@@ -63,7 +63,7 @@ iptables -I INPUT -p tcp --dport 443 -j ACCEPT
 
 Como não determinamos a tabela, fica implícito ao IPTables que a table utilizada é a filter, o ***\-I*** determina a chain que será utilizada, nesse caso será a INPUT, como a requisição será tratada na máquina, o ***\-p tcp*** determina que o protocolo utilizado será o TCP, podendo ser alterado pada ***\-p udp*** quando UDP. O trecho ***\--dport*** informa a porta que será atingida pelo pacote, nesse caso determinamos as portas 80 e 443, portas padrões para servidores web, o ***\-j*** irá determinar o special value, nesse caso a máquina deverá aceitar.
 
-## Alterando a politica padrão 
+## Alterando a politica padrão
 
 O padrão determinado pelo IPTables é a politica de ***ACCEPT***, na maioria dos casos é necessário o bloqueio total e ir realizando a liberação de acordo com a necessidade de cada serviço ou ambiente. Para mudar a politica padrão de uma tabela, basta seguir da seguinte forma:
 
@@ -93,7 +93,7 @@ Sabendo o funcionamento das tabelas, precisamos também como remover regras, cas
 iptables -L INPUT -n --line-numbers
 ```
 
-Com o numero da linha, basta seguir com a remoção da regra usando o parâmetro ***-D***
+Com o numero da linha, basta seguir com a remoção da regra usando o parâmetro ***\-D***
 
 ```bash
 iptables -D INPUT 5
@@ -102,7 +102,11 @@ iptables -D INPUT 5
 Feito todos os procedimentos, basta salvar, lembrando que sempre que realizar uma edição das regras é necessário salvar para que o firewall da máquina saibas quais regras iniciar em caso de reinicialização da máquina ou do serviço:
 
 ```bash
+/sbin/service iptables save
+#ou
 service iptables save 
+#ou
+iptables-save
 ```
 
 Bom, esse foi um artigo bem curto e direto, o IPTables é um mundo de possibilidade, futuramente voltaremos com mais artigos aprofundando mais nas regras para NAT.
