@@ -32,13 +32,15 @@ const AboutPage = () => (
         referente a serviços e tecnologias. Apesar de estar diretamente ligado a administração 
         de servidoes Linux, CentOs para ser mais específico, sempre tive vontade de aprender 
         mais sobre administração de servidoes Windows, acho que pelo desafio de ser um ambiente 
-        menos gerenciável, comparado ao linux. Então esse ano irei me preparar para a certificação 
-        MCSA em Windows server e vou compartilhar parte do conhecimento que obtiver com esses esudos. 
-        Além disso possuo uma certa experiencia em administração de servidores voltados a hospedagem
-        e revenda de sites, tendo acumulado algumas certificações voltadas as principais plataformas
-        de gerenciamento, como o cPanel e Plesk.  
+        menos gerenciável, comparado ao linux.  
       </p>
-      
+      <p>
+        Então esse ano irei me preparar para a certificação 
+        MCSA em Windows server e vou compartilhar parte do conhecimento que obtiver com esses estudos. 
+        Além disso, possuo uma certa experiencia em administração de servidores voltados a hospedagem
+        e revenda de sites, tendo acumulado algumas certificações voltadas as principais plataformas
+        de gerenciamento, como o cPanel e Plesk. 
+      </p>
       <p>
         Sempre curti compartilhar conhecimento, acho que esse mindset deveria ser global
         para todo profissional de tecnologia, e esse blog não é diferente, pretendo documentar 
