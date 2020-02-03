@@ -1,35 +1,57 @@
-import React from "react"
-import algoliasearch from 'algoliasearch'
-import { InstantSearch, SearchBox, Hits, Stats } from "react-instantsearch-dom"
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import Hit from "./Hit"
-import * as S from "./styled"
+import {
+  InstantSearch,
+  SearchBox,
+  Hits,
+  Stats,
+  Configure
+} from 'react-instantsearch-dom'
 
-const client = algoliasearch(
-  process.env.GATSBY_ALGOLIA_APP_ID,
-  process.env.GATSBY_ALGOLIA_SEARCH_KEY
-)
+import Hit from './Hit'
+import * as S from './styled'
 
-const index = process.env.GATSBY_ALGOLIA_INDEX_NAME
+const Search = props => {
+  const { algolia } = props
 
-const Search = () => (
-  <S.SearchWrapper>
-    <InstantSearch searchClient={client} indexName={index}>
-      <SearchBox autoFocus translations={{ placeholder: "Pesquisar..." }} />
-      <Stats
-        translations={{
-          stats(nbHits, timeSpentMs) {
-            return `${nbHits} resultados encontrados em ${timeSpentMs}ms`
-          },
-        }}
-      />
-      <Hits hitComponent={Hit} />
-    </InstantSearch>
-            <S.SearchTitle>
+  return (
+    <S.SearchWrapper>
+      {algolia && algolia.appId && (
+        <>
+          <InstantSearch
+            appId={algolia.appId}
+            apiKey={algolia.searchOnlyApiKey}
+            indexName={algolia.indexName}
+          >
+            <Configure hitsPerPage={200} distinct />
+            <SearchBox
+              autoFocus
+              translations={{ placeholder: 'Pesquisar...' }}
+            />
+            <Stats
+              translations={{
+                stats(nbHits, timeSpentMS) {
+                  return nbHits === 1
+              ? `${nbHits} resultado encontrado em ${timeSpentMS}ms`
+              : `${nbHits} resultados encontrados em ${timeSpentMS}ms`
+                }
+              }}
+            />
+            <Hits hitComponent={Hit} />
+          </InstantSearch>
+          <S.SearchTitle>
             Powered by Algolia
             <S.AlgoliaIcon />
           </S.SearchTitle>
-  </S.SearchWrapper>
-)
+        </>
+      )}
+    </S.SearchWrapper>
+  )
+}
+
+Search.propTypes = {
+  algolia: PropTypes.object.isRequired
+}
 
 export default Search
