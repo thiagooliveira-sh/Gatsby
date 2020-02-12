@@ -1,4 +1,5 @@
 ---
+image: assets/img/Iptables.png
 title: IPTables compreensão básica
 description: >-
   Será visto o fluxo de funcionamento do IPTables e seus comandos de forma
@@ -6,6 +7,8 @@ description: >-
 date: '2020-01-27 05:16:28'
 category: linux
 background: '#EE0000'
+tags:
+  - iptables
 ---
 Em máquinas Linux, é possível a utilização do IPTables como interface de firewall. Ele esta disponível em praticamente todas (se não todas) as distribuições Linux. O Linux em si possui um módulo que controla esse fluxo de pacotes chamado de Netfilter. O Iptables não é nada mais, nada menos, do que um front-end para o Netfilter.
 
