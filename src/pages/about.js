@@ -67,13 +67,6 @@ const AboutPage = () => (
         <li>O que ainda não sei busco aprender.</li>
       </ul>
 
-      <h2>Contato</h2>
-
-      <p>
-        Você pode entrar em contato comigo através de qualquer uma das minhas
-        redes sociais.
-      </p>
-
       <SocialLinks hideStyle />
     </MainContent>
   </Layout>
