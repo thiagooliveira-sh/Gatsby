@@ -1,5 +1,5 @@
 ---
-image: assets/img/git.png
+image: /assets/img/git.png
 title: Git para iniciantes
 description: >-
   Esse artigo é algo introdutório, o básico para começar a operar com git e
