@@ -1,4 +1,5 @@
 ---
+image: assets/img/git.png
 title: Git para iniciantes
 description: >-
   Esse artigo é algo introdutório, o básico para começar a operar com git e
@@ -6,6 +7,8 @@ description: >-
 date: '2020-01-16 10:50:33'
 category: dev
 background: '#EB7728'
+tags:
+  - Git
 ---
 Nesse exemplo será utilizado o GitHub porém sinta-se livre para utilizar a plataforma que tiver mais vivência.
 
