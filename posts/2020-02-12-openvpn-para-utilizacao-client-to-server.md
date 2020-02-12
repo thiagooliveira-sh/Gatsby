@@ -4,7 +4,7 @@ title: OpenVPN para utilização Client to Server
 description: >-
   O OpenVPN é uma solução VPN Secure Socket Layer (SSL) de recursos completos
   que acomoda uma ampla variedade de configurações.
-date: '2020-01-30 08:56:50'
+date: '2020-02-12 19:28:50'
 category: linux
 background: '#EE0000'
 tags:
