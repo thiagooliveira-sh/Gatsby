@@ -15,29 +15,32 @@ collections:
     create: true # Allow users to create new documents in this collection
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
+      - { label: 'Post Image', name: 'image', widget: 'image' }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
       - {
           label: "Date",
           name: "date",
           widget: "datetime",
-          format: "YYYY-MM-DD hh:mm:ss",
+          format: "YYYY-MM-DD",
         }
       - {
         label: "Category",
         name: "category",
         widget: "select",
-        options: ["mcsa", "linux", "ansible", "bash", "dev"]
+        options: ["windows", "linux", "aws", "dev", "devops"]
       }
       - {
         label: "Background",
         name: "background",
         widget: "select",
         options: [
-          { label: "MCSA", value: "#00A82D" },
+          { label: 'MCSA', value: '#05A6F0' },
           { label: 'LINUX', value: '#EE0000' },
-          { label: 'ANSIBLE', value: '#191816' },
+          { label: 'AWS', value: '#FF9900'},
           { label: 'DEV', value: '#EB7728' },
+          { label: 'DEVOPS', value: '#00A82D' },
         ]
       }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: 'Tags', name: 'tags', widget: 'list', default: [''] }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
