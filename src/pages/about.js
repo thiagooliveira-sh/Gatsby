@@ -67,7 +67,6 @@ const AboutPage = () => (
         <li>O que ainda não sei busco aprender.</li>
       </ul>
 
-      <SocialLinks hideStyle />
     </MainContent>
   </Layout>
 )
