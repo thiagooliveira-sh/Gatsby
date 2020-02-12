@@ -1,5 +1,5 @@
 ---
-thumbnail: /assets/img/openvpn.png
+image: /assets/img/openvpn.png
 title: OpenVPN para utilização Client to Server
 description: >-
   O OpenVPN é uma solução VPN Secure Socket Layer (SSL) de recursos completos
