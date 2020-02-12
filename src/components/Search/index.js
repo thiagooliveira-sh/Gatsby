@@ -25,6 +25,10 @@ const Search = () => (
       />
       <Hits hitComponent={Hit} />
     </InstantSearch>
+    <S.SearchTitle>
+      Powered by Algolia
+      <S.AlgoliaIcon />
+    </S.SearchTitle>
   </S.SearchWrapper>
 )
 
