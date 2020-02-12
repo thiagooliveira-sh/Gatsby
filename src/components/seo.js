@@ -19,6 +19,7 @@ function SEO({ description, lang, meta, title, image }) {
             title
             description
             author
+            siteUrl
           }
         }
       }
@@ -26,8 +27,8 @@ function SEO({ description, lang, meta, title, image }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
-  const ogImage =
-    image || 'https://thiagoalexandria.com.br/assets/img/template.png'
+  const url= site.siteMetadata.siteUrl
+  const ogImage = image || 'https://thiagoalexandria.com.br/assets/img/template.png'
 
   return (
     <Helmet
@@ -59,7 +60,7 @@ function SEO({ description, lang, meta, title, image }) {
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `twitter:image:src`,

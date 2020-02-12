@@ -8,6 +8,7 @@ module.exports = {
     position: `Sysadmin`,
     description: `A blog about Windows and linux administration and all cool stuff from sysads land.`,
     author: `@thiagoalexandria`,
+    siteUrl: `https://thiagoalexandria.com.br`
   },
   plugins: [
     `gatsby-plugin-transition-link`,
