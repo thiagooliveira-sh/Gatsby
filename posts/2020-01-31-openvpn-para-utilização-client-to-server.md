@@ -1,4 +1,5 @@
 ---
+image: assets/img/openvpn.png
 title: OpenVPN para utilização Client to Server
 description: >-
   O OpenVPN é uma solução VPN Secure Socket Layer (SSL) de recursos completos
@@ -6,6 +7,8 @@ description: >-
 date: '2020-01-30 08:56:50'
 category: linux
 background: '#EE0000'
+tags:
+  - vpn
 ---
 Neste tutorial, você configurará o OpenVPN em um servidor CentOS 7 e, em seguida, o configurará para ser acessível a partir de uma máquina cliente.Neste tutorial, você configurará o OpenVPN em um servidor CentOS 7 e, em seguida, o configurará para ser acessível a partir de uma máquina cliente.
 
