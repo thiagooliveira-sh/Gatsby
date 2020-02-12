@@ -35,11 +35,11 @@ const AboutPage = () => (
         menos gerenciável, comparado ao linux.  
       </p>
       <p>
-        Então esse ano irei me preparar para a certificação 
-        MCSA em Windows server e vou compartilhar parte do conhecimento que obtiver com esses estudos. 
-        Além disso, possuo uma certa experiencia em administração de servidores voltados a hospedagem
+        Então, esse ano decidi estudar algumas ferramentas novas e focar na metodologia Devops além de
+        ampliar meu conhecimento sobre Windows Server e vou compartilhar parte do conhecimento que obtiver
+        com esses estudos. Além disso, possuo uma certa experiencia em administração de servidores voltados a hospedagem
         e revenda de sites, tendo acumulado algumas certificações voltadas as principais plataformas
-        de gerenciamento, como o cPanel e Plesk. 
+        de gerenciamento, como o cPanel e Plesk.  
       </p>
       <p>
         Sempre curti compartilhar conhecimento, acho que esse mindset deveria ser global
