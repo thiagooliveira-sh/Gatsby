@@ -45,10 +45,10 @@ export const query = graphql`
         slug
       }
       frontmatter {
-        image
         title
         description
         date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+        image
       }
       html
       timeToRead

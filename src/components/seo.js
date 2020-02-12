@@ -28,7 +28,7 @@ function SEO({ description, lang, meta, title, image }) {
 
   const metaDescription = description || site.siteMetadata.description
   const url= site.siteMetadata.siteUrl
-  const ogImage = image || 'https://thiagoalexandria.com.br/assets/img/template.png'
+  const ogImage = `${url}${image || "/assets/img/template.png"}`
 
   return (
     <Helmet
