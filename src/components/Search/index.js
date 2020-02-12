@@ -15,7 +15,7 @@ const index = process.env.GATSBY_ALGOLIA_INDEX_NAME
 const Search = () => (
   <S.SearchWrapper>
     <InstantSearch searchClient={client} indexName={index}>
-      <SearchBox autoFocus translations={{ placeholder: "Pesquisar..." }} />
+      <SearchBox translations={{ placeholder: "Pesquisar..." }} />
       <Stats
         translations={{
           stats(nbHits, timeSpentMs) {
