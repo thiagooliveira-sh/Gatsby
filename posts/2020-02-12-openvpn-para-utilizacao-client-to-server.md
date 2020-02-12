@@ -239,11 +239,7 @@ Pronto, basta encaminhar os arquivos criados para o cliente e o ca.crt para a pe
 
 #### Configuração Cliente Windows
 
-Baixar e instalar o programa cliente da OpenVPN:
-
-https://openvpn.net/index.php/open-source/downloads.html
-
-Após a instalação do cliente OpenVPN, acessar a aba Compatibilidade e habilitar a opção "Executar este programa como administrador", feito isso acesse a pasta de instalação do OpenVPN e localizar a pasta config.
+Baixar e instalar o programa cliente da [OpenVPN](https://openvpn.net/index.php/open-source/downloads.html). Após a instalação do cliente OpenVPN, acessar a aba Compatibilidade e habilitar a opção "Executar este programa como administrador", feito isso acesse a pasta de instalação do OpenVPN e localizar a pasta config.
 
 ```
 C:\Arquivos de Programas\OpenVPN\config
