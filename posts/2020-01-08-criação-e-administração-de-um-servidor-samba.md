@@ -1,9 +1,12 @@
 ---
+image: assets/img/samba.png
 title: Criação e administração de um servidor Samba!
 description: Aprenda a criar e configurar um servidor com Samba.
 date: '2020-01-07 09:50:00'
 category: linux
 background: '#EE0000'
+tags:
+  - samba
 ---
 Nesse tutorial estarei explicando como configurar o Samba em um servidor com CentOS 7, exemplificarei o compartilhamento público e seguro. O Samba é um software livre gratuito que provem o compartilhamento de arquivos e impressoras de forma semelhante ao windows.
 
