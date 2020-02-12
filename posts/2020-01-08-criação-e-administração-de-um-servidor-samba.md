@@ -1,5 +1,5 @@
 ---
-image: assets/img/samba.png
+image: /assets/img/samba.png
 title: Criação e administração de um servidor Samba!
 description: Aprenda a criar e configurar um servidor com Samba.
 date: '2020-01-07 09:50:00'
