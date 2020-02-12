@@ -1,9 +1,12 @@
 ---
+image: assets/img/Apache.png
 title: Configuração de um servidor Apache
 description: "Nesse tutorial será explicado como configurar o Apache em um servidor com CentOS 7, desde a sua instalação até a configuração de vhosts e instalação de módulos.\_Nesse artigo será utilizado a versão 2.4 do apache em uma instalação Minimal do CentOs 7."
 date: '2020-01-23 05:00:23'
 category: linux
 background: '#EE0000'
+tags:
+  - linux
 ---
 
 Esse artigo será terá a sua leitura mais demorada, ele será mais detalhado voltado ao entendimento da configuração de um servidor Apache e suas principais funcionalidades, com as dicas repassadas poderá ser feito facilmente a configuração de um servidor web para hospedagem de sites e sistemas.
