@@ -5,8 +5,8 @@ backend:
   site_domain: thiagoalexandria.com.br
 
 publish_mode: editorial_workflow
-media_folder: "static/assets/img"
-public_folder: "assets/img"
+media_folder: static/assets/img
+public_folder:  assets/img
 
 collections:
   - name: "posts" # Used in routes, e.g., /admin/collections/blog
@@ -43,4 +43,10 @@ collections:
         ]
       }
       - { label: 'Tags', name: 'tags', widget: 'list', default: [''] }
+      - {
+          label: 'Category',
+          name: 'categories',
+          widget: 'list',
+          required: false,
+        }
       - { label: 'Body', name: 'body', widget: 'markdown' }
