@@ -7,7 +7,6 @@ category: linux
 background: '#EE0000'
 tags:
   - samba
-  - linux
 ---
 Nesse tutorial estarei explicando como configurar o Samba em um servidor com CentOS 7, exemplificarei o compartilhamento público e seguro. O Samba é um software livre gratuito que provem o compartilhamento de arquivos e impressoras de forma semelhante ao windows.
 
