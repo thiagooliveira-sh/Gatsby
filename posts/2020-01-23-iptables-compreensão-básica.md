@@ -1,5 +1,5 @@
 ---
-image: assets/img/Iptables.png
+image: /assets/img/Iptables.png
 title: IPTables compreensão básica
 description: >-
   Será visto o fluxo de funcionamento do IPTables e seus comandos de forma
