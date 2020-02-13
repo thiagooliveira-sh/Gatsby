@@ -1,6 +1,6 @@
 ---
 image: /assets/img/bash.png
-title: Gerenciamento basico de arquivos
+title: Gerenciamento básico de arquivos
 description: >-
   Entender melhor os comandos antes de utiliza-los é muito importante, então
   segue alguns dos mais comuns.
