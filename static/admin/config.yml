@@ -28,7 +28,7 @@ collections:
         label: "Category",
         name: "category",
         widget: "select",
-        options: ["windows", "linux", "aws", "dev", "devops"]
+        options: ["win", "linux", "aws", "dev", "devops"]
       }
       - {
         label: "Background",
