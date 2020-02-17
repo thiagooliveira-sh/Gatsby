@@ -5,7 +5,7 @@ description: >-
   Um guia para instalação do node.js configurado no subsistema do Windows para
   Linux (WSL).
 date: '2020-02-17'
-category: windows
+category: win
 background: '#00A82D'
 tags:
   - wsl
