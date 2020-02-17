@@ -35,11 +35,11 @@ collections:
         name: "background",
         widget: "select",
         options: [
-          { label: 'MCSA', value: '#05A6F0' },
+          { label: 'WINDOWS', value: '#00A82D' },
           { label: 'LINUX', value: '#EE0000' },
           { label: 'AWS', value: '#FF9900'},
           { label: 'DEV', value: '#EB7728' },
-          { label: 'DEVOPS', value: '#00A82D' },
+          { label: 'DEVOPS', value: '#05A6F0' },
         ]
       }
       - { label: 'Tags', name: 'tags', widget: 'list', default: [''] }
