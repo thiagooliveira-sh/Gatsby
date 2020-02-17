@@ -4,7 +4,7 @@ title: Instalar o WSL (Subsistema Windows para Linux) no Windows 10
 description: Instruções de instalação para o Subsistema Windows para Linux no Windows 10.
 date: '2020-02-16'
 category: windows
-background: '#05A6F0'
+background: '#00A82D'
 tags:
   - wsl
   - windows
