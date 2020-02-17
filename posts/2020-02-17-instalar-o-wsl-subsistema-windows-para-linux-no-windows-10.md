@@ -32,4 +32,20 @@ Após habilitar a feature em questão, basta seguir com a instalação através 
 
 ![Ubuntu](/assets/img/ubuntu18lts.PNG)
 
-Assim que iniciado, será solicitado que crie o seu usuário Unix e que aplique uma senha para o mesmo.
+Assim que iniciado, será solicitado que crie o seu usuário Unix e que aplique uma senha para o mesmo. A Microsoft recentemente liberou uma atualização para quem faz parte do Windows Insider, contendo a atualização para o WSL, a sua versão WSL2. Para fazer o upgrade de versão da sua instancia, verifique se o seu sistema encontra-se com a versão do SO acima do build 18917. Estando de acordo, basta seguir os passos abaixo:
+
+```powershell
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+
+Após executar os comandos, será necessário uma reinicialização. Reiniciado o computador basta seguir com o procedimento de upgrade seguindo a instrução abaixo:
+
+```powershell
+wsl --set-version <Distro> 2
+wsl --set-default-version 2
+```
+
+
+
+Pronto, a sua instalação já encontra-se configurada e pronta para uso.
