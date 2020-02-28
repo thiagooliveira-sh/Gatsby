@@ -17,3 +17,18 @@ tags:
 O Zabbix é uma excelente ferramenta de monitoramento que coleta dados de servidores, máquinas virtuais e outros tipos de dispositivos de rede, alertando sempre que um problema for identificado. Possui também notificações ricas em recursos sobre problemas emergentes, apesar de ser uma ferramenta poderosa quando se fala em software de monitoramento de ativos de rede, o mesmo ainda carece de dashboards mais amigáveis e com isso temos o Grafana, que é um plugin que consome a API do Zabbix e realiza a criação de diversos dashboards e gráficos de forma muito mais simplificada.
 
 Nesse artigo iremos configurar e instalar o Zabbix server em um servidor CentOs7 e posteriormente será feito a sua integração com o Grafana, no qual realizaremos algumas configurações com as informações monitoradas a partir do Zabbix server.
+
+Com uma instalação limpa do CentOs iremos seguir primeiro desabilitando o firewalld e o selinux porém sinta-se livre para caso deseje trabalhar com esses serviços ativos.
+
+```bash
+systemctl stop firewalld
+systemctl disable firewalld
+```
+
+Para desativar o selinux basta acessar o arquivo de configuração e mudar para disabled, lembrando que para mudança no selinux é necessário um reinicialização para aplicar as modificações:
+
+```bash
+vi /etc/selinux/config
+SELINUX=disabled
+reboot
+```
