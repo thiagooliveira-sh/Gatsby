@@ -155,7 +155,7 @@ systemctl start nginx
 
 Após iniciar os serviços, basta seguir com a finalização da configuração do Zabbix através do Browser em http://<<server_ou_ip>/zabbix, o processo seguinte é bastante intuitivo, basta completar com as informações de banco de dados e portas.
 
-### Instalação e integração com Grafana 
+### Instalação e integração com Grafana
 
 Nesse passo, será feito a instalação do Grafana em outro servidor, também CentOs 7, e esse será alimentado pela as informações do servidor Zabbix. Nesse cenário o mesmo também pode ser feito através de outro contêiner, o objetivo é apenas evitar a concentração de todos os serviços em um único servidor.
 
@@ -172,7 +172,7 @@ gpgcheck=1
 gpgkey=https://packages.grafana.com/gpg.key
 sslverify=1
 sslcacert=/etc/pki/tls/certs/ca-bundle.crt
-```  
+```
 
 Feito isso, basta seguir com a instalação utilizando o yum:
 
@@ -202,5 +202,29 @@ pass: admin
 
 Em "Configuration > Plugins" busque por Zabbix e clique em "Enable". Agora será possível adicionar uma nova data source. Clique na logo do Grafana e navegue até Data sources. Em seguida, clique no botão Add data source. Você verá a página de configuração da fonte de dados:
 
+![Zabbix-datasource](/assets/img/1.png "Zabbix-datasource")
 
 
+
+Configure da seguinte forma:
+
+```
+Digite um nome para esta data source no campo Name.
+Marque a opção Padrão para que essa data source seja pré-selecionada nos painéis que você criar.
+Selecione Zabbix na lista Type.
+Preencha o campo URL com o caminho completo para a API do Zabbix, que será http: //your_zabbix_server_ip_address/zabbix/api_jsonrpc.php.
+Preencha os campos Username e Password com o nome de usuário e a senha do Zabbix.
+Habilite a opção Trends; aumentará o desempenho da Grafana.
+```
+
+
+
+Pronto, o nosso servidor Grafana já encontra-se integrado com o nosso servidor Zabbix e dessa forma basta seguir com a criação dos dashboards de acordo com a necessidade dos itens a serem monitorados.
+
+
+
+Fontes:
+https://www.zabbix.com/documentation/5.0/manual/installation/install_from_packages/frontend_on_rhel7
+https://www.zabbix.com/documentation/5.0/manual/appendix/install/nginx
+https://grafana.com/docs/grafana/latest/installation/rpm/
+https://grafana.com/docs/grafana/latest/installation/behind_proxy/
