@@ -1,6 +1,6 @@
 ---
 image: /assets/img/Zabbix.png
-title: Configuracao Zabbix Server com Grafana
+title: Configuração Zabbix Server com Grafana
 description: >-
   Aprenda como instalar e configurar um servidor Zabbix e realizar a integração
   com o Grafana
