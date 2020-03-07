@@ -4,7 +4,7 @@ title: Configuração Zabbix Server com Grafana
 description: >-
   Aprenda como instalar e configurar um servidor Zabbix e realizar a integração
   com o Grafana
-date: '2020-02-19'
+date: '2020-03-06'
 category: linux
 background: '#EE0000'
 tags:
