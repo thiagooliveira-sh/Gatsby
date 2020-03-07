@@ -1,6 +1,6 @@
 ---
 image: /assets/img/Hyperv.png
-title: 'Habilitando HyperV Windows 10 Pro '
+title: 'Habilitando Hyper-V Windows 10 Pro '
 description: >-
   Nesse artigo será demonstrado como habilitar o Hyper-V em máquinas que possuem
   o Windows 10 Pro como sistema operacional e uma breve explicação sobre a
