@@ -14,39 +14,38 @@ const AboutPage = () => (
     <MainContent>
       <h1>Sobre mim</h1>
       <p>
-        Meu nome é Thiago Alexandria, sou de João Pessoa na Paraiba e
-        atualmente sou Sysadmin na{' '}
-        <a href="https://www.hostdime.com.br" target="_blank" rel="noopener noreferrer">
-          HostDime
+        Meu nome é Thiago Alexandria, tenho 22 anos e sou de João Pessoa na Paraíba.
+        Trabalho atualmente como Analista de Infraestrutura na{' '}
+        <a href="https://www.conductor.com.br/" target="_blank" rel="noopener noreferrer">
+          Conductor
         </a>
         , tenho bacharel em Ciências da Computação pelo Centro Universitário de 
-        João Pessoa no ano de 2019 e sempre curti tecnologia. Durante minha formação
-        me apaixonei pela área de infraestrutura, mais especificamente para área
-        de administração de sistemas.
+        João Pessoa e sempre fui apaixonado por tecnologia. Durante minha formação
+        me apaixonei pela área de infraestrutura e redes, depois de começar a estagiar me 
+        identifiquei com a área de administração de sistemas.
       </p>
 
       <p>
-        Por se tratar em administração de sistemas, a maior parte do parque de servidores 
-        que tenho vivência são linux, então estou sempre buscando aprender coisas novas 
-        referente a serviços e tecnologias. Apesar de estar diretamente ligado a administração 
-        de servidoes Linux, CentOs para ser mais específico, sempre tive vontade de aprender 
-        mais sobre administração de servidoes Windows, acho que pelo desafio de ser um ambiente 
-        menos gerenciável, comparado ao linux.  
+        Tive a sorte de conseguir meu primeiro estágio como Analista de Suporte e depois disso 
+        meu primeiro emprego também nessa área, tendo atribuições de SysAdmin para resolução de
+        problemas de níveis 1 e 2. A maior parte do parque de servidores que tive contato são Linux,
+        CentOs para ser mais específico, então estou sempre buscando aprender novas tecnologias
+        e serviços.
       </p>
+      
       <p>
-        Então, esse ano decidi estudar algumas ferramentas novas e focar na metodologia Devops além de
-        ampliar meu conhecimento sobre Windows Server e vou compartilhar parte do conhecimento que obtiver
-        com esses estudos. Além disso, possuo uma certa experiencia em administração de servidores voltados a hospedagem
-        e revenda de sites, tendo acumulado algumas certificações voltadas as principais plataformas
-        de gerenciamento, como o cPanel e Plesk.  
-      </p>
-      <p>
-        Sempre curti compartilhar conhecimento, acho que esse mindset deveria ser global
-        para todo profissional de tecnologia, e esse blog não é diferente, pretendo documentar 
-        máximo de procedimentos a nível de gerenciamento e voltado ao meu dia a dia para ajudar
-        o máximo de pessoas que conseguir.
+        Também tenho experiencia com a administração de servidores Windows e também sobre os principais
+        painéis de hospedagem e revenda de sites tendo acumulado algumas certificações voltadas ao cPanel e Plesk.
+        Sempre tive vontade de começar um blog para poder compartilhar parte da minha trajetória dentro do mercado
+        de trabalho e também para ter uma forma de documentar todos os meus estudos, podendo consulta-los futuramente
+        sem maiores problemas.
       </p>
 
+      <p>
+        Para o ano de 2020 tenho como objetivo focar em algumas tecnologias e metodologias DevOps, Ansible, Docket, Terraform
+        e Jenkins, além de que pretendo ainda nesse ano finalizar meus estudos para a prova de certificação para Solutions Architect
+        da Amazon. Irei compartilhar nesse blog um pouco sobre tudo o que já aprendi e também sobre os meus novos estudos e metas.
+      </p>
 
 
       <h2>Habilidades</h2>
@@ -54,17 +53,19 @@ const AboutPage = () => (
       <ul>
         <li>Linux</li>
         <li>Windows Server</li>
-        <li>Monitoramento com Zabbix</li>
+        <li>Zabbix/Grafana</li>
         <li>Nginx/Apache</li>
         <li>cPanel/Plesk</li>
         <li>IPTables</li>
-        <li>DHCP</li>
         <li>Squid</li>
-        <li>Openvpn</li>
         <li>Samba</li>
-        <li>DNS</li>
+        <li>Openvpn</li>
+        <li>Bacula</li>
+        <li>Bash</li>
+        <li>AWS</li>
         <li>O que ainda não sei busco aprender.</li>
       </ul>
+
 
     </MainContent>
   </Layout>
