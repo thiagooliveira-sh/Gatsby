@@ -1,9 +1,9 @@
 ---
 image: /assets/img/Oracle.png
-title: Certificacao Oracle Cloud Infraestructure gratuita
+title: Certificação Oracle Cloud Infraestructure gratuita
 description: >-
   Recentemente a Oracle disponibilizou gratuitamente uma serie de certificações
-  para Oracle Cloud Infraestructure que estão disponíveis até 15 de Mario.
+  para Oracle Cloud Infraestructure que estão disponíveis até 15 de Maio.
 date: '2020-04-23'
 category: news
 background: '#D6BA32'
