@@ -1,6 +1,6 @@
 ---
 image: /assets/img/az900.png
-title: Microsoft disponibiliza certificacao Azure-900 de forma gratuita
+title: Microsoft disponibiliza certificação Azure-900 de forma gratuita
 description: >-
   Em busca de trazer mais profissionais a se capacitarem seu painel de Cloud, a
   Miscosoft lança calendário de cursos preparatórios com Voucher para prova
