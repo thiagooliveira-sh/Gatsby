@@ -1,6 +1,6 @@
 ---
 image: /assets/img/AWS.png
-title: Diminuindo disco EBS em instancia EC2
+title: Diminuindo disco EBS em instância EC2
 description: '  Talvez você esteja se perguntando, podemos diminuir o tamanho do volume do   EBS? A resposta é não. É impossível diminuir o tamanho do volume do EBS.   Quando você tem 100GB de EBS e decide modificá-lo para 30GB, você receberá um   erro. Mas não precisa se preocupar, existe uma forma de contornarmos e   aplicar reduções utilizando um disco menor.'
 date: '2020-04-30'
 category: aws
