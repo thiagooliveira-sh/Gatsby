@@ -12,6 +12,6 @@ Kick off your project with this default boilerplate. This starter ships with the
 
 ## 💫 Deploy
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/562d6f1c-0f2b-446d-af4d-fc1cb276a501/deploy-status)](https://app.netlify.com/sites/thiagoalexandria/deploys)
 
 <!-- AUTO-GENERATED-CONTENT:END -->
