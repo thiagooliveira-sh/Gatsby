@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 
-import { Home } from "styled-icons/boxicons-solid/Home"
-import { SearchAlt2 as Search } from "styled-icons/boxicons-regular/SearchAlt2"
-import { Lightbulb as Light } from "styled-icons/typicons/Lightbulb"
-import { Grid } from "styled-icons/boxicons-solid/Grid"
-import { ListUl as List } from "styled-icons/boxicons-regular/ListUl"
+import { Home } from "@styled-icons/boxicons-solid/Home"
+import { SearchAlt2 as Search } from "@styled-icons/boxicons-regular/SearchAlt2"
+import { Lightbulb as Light } from "@styled-icons/typicons/Lightbulb"
+import { Grid } from "@styled-icons/boxicons-solid/Grid"
+import { ListUl as List } from "@styled-icons/boxicons-regular/ListUl"
 import getThemeColor from "../../utils/getThemeColor"
 
 import * as S from "./styled"
