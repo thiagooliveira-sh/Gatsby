@@ -73,7 +73,7 @@ thiago@THIAGO-PC:~/Exercicios$  tr 'a-z' 'A-z' < teste.txt
 THIAGO ALEXANDRIA
 ```
 
-Outros comandos também realizam redirecionamentos e mudam o fluxo com que o resultado será retornado, para isso utilizamos bastante o pipe "`|`", com ele é possível utilizar a saída de um comando como entrada para outro, um ótimo exemplo para isso é o comando `xargs` e `awk` que iremos vem a seguir.
+Outros comandos também realizam redirecionamentos e mudam o fluxo com que o resultado será retornado, para isso utilizamos bastante o pipe "`|`", com ele é possível utilizar a saída de um comando como entrada para outro, um ótimo exemplo para isso é o comando `xargs` e `awk` que iremos ver a seguir.
 
 O `xargs` é usado ​​para construir e executar comandos a partir da entrada padrão. Converte entrada da entrada padrão em argumentos para um comando:
 
@@ -106,7 +106,6 @@ TESTE
 CONTEUDO
 INTERATIVO
 ```
-
 
 Veja que a string "final" (pode ser qualquer string) vai informar ao shell que a entrada termina naquele ponto, e então ele irá enviar essa entrada ao comando tr.
 
