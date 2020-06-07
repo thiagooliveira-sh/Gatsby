@@ -17,7 +17,7 @@ Pidstat quer dizer PID Statistics, a ferramenta fornece várias informações, o
 
 Para poder executar este comando, você precisa instalar o pacote de ferramentas sysstat. Segue abaixo o processo de instalação:
 
-```
+```bash
 #CentOS/Fedora
 yum install sysstat
 
@@ -27,7 +27,7 @@ sudo apt-get install sysstat
 
 Para obter as estatísticas referentes a todos os processos use a opção`-p ALL`(note as maiúsculas), tal como você pode observar no exemplo abaixo:
 
-```
+```bash
 thiago@DESKTOP-PUAQN5J:~$  pidstat -p ALL
 Linux 3.13.0-39-generic (case-530U3C-530U4C-532U3C)     25-11-2014  _x86_64_    (4 CPU)
  
@@ -48,7 +48,7 @@ Linux 3.13.0-39-generic (case-530U3C-530U4C-532U3C)     25-11-2014  _x86_64_    
 Acima, você pode observar as informações de uso da CPU para todos os processos em execução.\
 Se quiser, pode ver os valores referentes a um processo (PID) em particular:
 
-```
+```bash
 thiago@DESKTOP-PUAQN5J:~$  pidstat -p 29597
 
 Linux 3.13.0-39-generic (case-530U3C-530U4C-532U3C)     25-11-2014  _x86_64_    (4 CPU)
@@ -61,7 +61,7 @@ Linux 3.13.0-39-generic (case-530U3C-530U4C-532U3C)     25-11-2014  _x86_64_    
 
 Para resolver este problema, use a opção do comando`-C`. Para exibir as informações pros processos que cujos nomes contenham a palavra Apache ficará da seguinte forma:
 
-```
+```bash
 thiago@DESKTOP-PUAQN5J:~$  pidstat -C apache
 Linux 3.13.0-39-generic (case-530U3C-530U4C-532U3C)     25-11-2014  _x86_64_    (4 CPU)
  
@@ -72,7 +72,7 @@ Linux 3.13.0-39-generic (case-530U3C-530U4C-532U3C)     25-11-2014  _x86_64_    
 Para repetir um comando, dentro de um intervalo, acrescente um número correspondente às vezes em segundos.\
 Vamos configurar a sua saída para 5 segundos acrescentando o valor 5, ele passará a repetir o comando a cada 5 segundo:
 
-```
+```bash
 thiago@DESKTOP-PUAQN5J:~$  pidstat -C apache 5
 17:10:44      UID       PID    %usr %system  %guest    %CPU   CPU  Command
 17:10:44        0      1342    0,00    0,00    0,00    0,00    2   apache2
@@ -85,7 +85,7 @@ thiago@DESKTOP-PUAQN5J:~$  pidstat -C apache 5
 
 Para exibir o relatório estatístico de Entrada/Saída de um determinado processo, a cada 1 segundo, use a opção `-d`, da seguinte forma:
 
-```
+```bash
 thiago@DESKTOP-PUAQN5J:~$  pidstat -p 10993 -d 1
 Linux 3.13.0-39-generic (case-530U3C-530U4C-532U3C)     25-11-2014  _x86_64_(4 CPU)
  
@@ -108,7 +108,7 @@ Acima é possível verificar as taxas de leitura e gravação no disco em Kb/s.
 
 Aqui, entra em uso a opção -r, conforme o exemplo abaixo, para exibir utilização da memória, referentes a uma determinada tarefa (PID):
 
-```
+```bash
 thiago@DESKTOP-PUAQN5J:~$  pidstat -p 10993 -r 1
 Linux 3.13.0-39-generic (case-530U3C-530U4C-532U3C)     25-11-2014  _x86_64_(4 CPU)
  
@@ -126,7 +126,7 @@ Média:      1000     10993     26,40      0,00 1597642 432730  11,56  firefox
 
 Com a utilização do `-d` teremos acesso a informação completa do comando em execução pelo processo em questão, observe:
 
-```
+```bash
 thiago@DESKTOP-PUAQN5J:~$  pidstat -C chrome -l
  
 Linux 3.13.0-40-generic (case-530U3C-530U4C-532U3C)     26-11-2014  _x86_64_    (4 CPU)
@@ -134,13 +134,9 @@ Linux 3.13.0-40-generic (case-530U3C-530U4C-532U3C)     26-11-2014  _x86_64_    
 15:28:17      UID       PID    %usr %system  %guest    %CPU   CPU  Command
 15:28:17     1000     10651    0,02    0,01    0,00    0,03     2  /opt/google/chrome/chrome --incognito 
 15:28:17     1000     10662    0,00    0,00    0,00    0,00     0  /opt/google/chrome/chrome --type=zygote --enable-crash-reporter=BFA8A187-CB5C-B8FF-FDD3-F84DA1B302F1 
-15:28:17     1000     10672    0,00    0,00    0,00    0,00     3  /opt/google/chrome/chrome --type=zygote --enable-crash-reporter=BFA8A187-CB5C-B8FF-FDD3-F84DA1B302F1 
 15:28:17     1000     10691    0,00    0,00    0,00    0,00     2  /opt/google/chrome/chrome --type=gpu-process --channel=10651.0.2015679771 --enable-crash-reporter=BFA8A187-CB5C-B8FF-FDD3-F84DA
 15:28:17     1000     10710    0,00    0,00    0,00    0,00     1  /opt/google/chrome/chrome --type=renderer --disable-databases --enable-deferred-image-decoding --lang=pt-BR --force-fieldtrials
 15:28:17     1000     10717    0,00    0,00    0,00    0,00     3  /opt/google/chrome/chrome --type=renderer --enable-deferred-image-decoding --lang=pt-BR --force-fieldtrials=AutoReloadExperimen
-15:28:17     1000     10724    0,00    0,00    0,00    0,00     0  /opt/google/chrome/chrome --type=renderer --enable-deferred-image-decoding --lang=pt-BR --force-fieldtrials=AutoReloadExperimen
-15:28:17     1000     10728    0,00    0,00    0,00    0,00     1  /opt/google/chrome/chrome --type=renderer --enable-deferred-image-decoding --lang=pt-BR --force-fieldtrials=AutoReloadExperimen
-15:28:17     1000     10731    0,00    0,00    0,00    0,00     1  /opt/google/chrome/chrome --type=renderer --enable-deferred-image-decoding --lang=pt-BR --force-fieldtrials=AutoReloadExperimen
 ```
 
 O pacote Sysstat possui outras funcionalidades, como o comando `sar`. Ele é usado para coletar, relatar e salvar CPU, memória e uso de E / S no Unix, como o sistema operacional. O comando `sar` produz os relatórios rapidamente e também pode salvar os relatórios nos arquivos de log. 
