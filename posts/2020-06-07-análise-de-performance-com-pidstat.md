@@ -23,10 +23,7 @@ yum install sysstat
 
 #Ubuntu/Debian
 sudo apt-get install sysstat
-
 ```
-
-
 
 Para obter as estatísticas referentes a todos os processos use a opção`-p ALL`(note as maiúsculas), tal como você pode observar no exemplo abaixo:
 
@@ -46,7 +43,6 @@ Linux 3.13.0-39-generic (case-530U3C-530U4C-532U3C)     25-11-2014  _x86_64_    
 16:06:47        0     31144    0,00    0,00    0,00    0,00     2  kworker/u16:1
 16:06:47        0     31290    0,00    0,00    0,00    0,00     2  kworker/u17:1
 16:06:47        0     31448    0,00    0,00    0,00    0,00     2  kworker/2:0
-
 ```
 
 Acima, você pode observar as informações de uso da CPU para todos os processos em execução.\
@@ -59,10 +55,7 @@ Linux 3.13.0-39-generic (case-530U3C-530U4C-532U3C)     25-11-2014  _x86_64_    
  
 16:19:48      UID       PID    %usr %system  %guest    %CPU   CPU  Command
 16:19:48        0     29597    0,00    0,00    0,00    0,00     3  kworker/3:1H
-
 ```
-
-
 
 ## Como listar estatísticas de performance baseado no nome do processo
 
@@ -88,8 +81,6 @@ thiago@DESKTOP-PUAQN5J:~$  pidstat -C apache 5
 17:10:49        0      1342    0,00    1,00    0,00    1,00     2  apache2
 ```
 
-
-
 ## Como exibir estatísticas de Entrada/Saída de processos
 
 Para exibir o relatório estatístico de Entrada/Saída de um determinado processo, a cada 1 segundo, use a opção `-d`, da seguinte forma:
@@ -109,12 +100,9 @@ Linux 3.13.0-39-generic (case-530U3C-530U4C-532U3C)     25-11-2014  _x86_64_(4 C
 19:41:27     1000     10993      0,00    128,00      0,00  firefox
 ^C
 Média:      1000     10993      0,00    136,00      0,00  firefox
-
 ```
 
 Acima é possível verificar as taxas de leitura e gravação no disco em Kb/s.
-
-
 
 ## Como mostrar utilização de memória por processos específicos
 
@@ -132,10 +120,7 @@ Linux 3.13.0-39-generic (case-530U3C-530U4C-532U3C)     25-11-2014  _x86_64_(4 C
 19:58:51     1000     10993     27,00      0,00 1594364 432992  11,57  firefox
 ^C
 Média:      1000     10993     26,40      0,00 1597642 432730  11,56  firefox
-
 ```
-
-
 
 ## Como exibir comandos em execução e seus argumentos
 
@@ -156,10 +141,7 @@ Linux 3.13.0-40-generic (case-530U3C-530U4C-532U3C)     26-11-2014  _x86_64_    
 15:28:17     1000     10724    0,00    0,00    0,00    0,00     0  /opt/google/chrome/chrome --type=renderer --enable-deferred-image-decoding --lang=pt-BR --force-fieldtrials=AutoReloadExperimen
 15:28:17     1000     10728    0,00    0,00    0,00    0,00     1  /opt/google/chrome/chrome --type=renderer --enable-deferred-image-decoding --lang=pt-BR --force-fieldtrials=AutoReloadExperimen
 15:28:17     1000     10731    0,00    0,00    0,00    0,00     1  /opt/google/chrome/chrome --type=renderer --enable-deferred-image-decoding --lang=pt-BR --force-fieldtrials=AutoReloadExperimen
-
 ```
-
-
 
 O pacote Sysstat possui outras funcionalidades, como o comando `sar`. Ele é usado para coletar, relatar e salvar CPU, memória e uso de E / S no Unix, como o sistema operacional. O comando `sar` produz os relatórios rapidamente e também pode salvar os relatórios nos arquivos de log. 
 
