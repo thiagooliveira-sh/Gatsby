@@ -1,6 +1,6 @@
 ---
 image: /assets/img/bash.png
-title: Analise de performance com PIDSTAT
+title: Análise de performance com PIDSTAT
 description: >-
   O pidstat é uma ferramenta de monitoramento, que torna possível acompanhar
   cada processo individualmente no Linux.
