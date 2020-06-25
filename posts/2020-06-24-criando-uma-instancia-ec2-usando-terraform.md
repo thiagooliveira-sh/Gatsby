@@ -2,7 +2,7 @@
 image: /assets/img/HashiCorp-Terraform-logo.png
 title: Criando uma instância EC2 usando Terraform
 description: >-
-  O Terraform é uma das ferramentas de infraestrutura muito populares e um dos
+  O Terraform é uma das ferramentas de infraestrutura muito popular e um dos
   produtos da HashiCorp
 date: '2020-06-24'
 category: devops
