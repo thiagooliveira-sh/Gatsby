@@ -33,6 +33,16 @@ terraform init -backend=false
 terraform validate -json
 ```
 
+Se tudo estiver correto, será retornado algo semelhante a o trecho abaixo:
+```shell
+{
+  "valid": true,
+  "error_count": 0,
+  "warning_count": 0,
+  "diagnostics": []
+}
+```
+
 ## 3. Workspace
 
 O comando `terraform workspace` permite o trabalho em diferentes áreas de trabalho, abrindo a possibilidade de trabalho em ambientes de testes ou produção. 
