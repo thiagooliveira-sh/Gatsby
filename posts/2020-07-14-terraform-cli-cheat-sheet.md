@@ -50,6 +50,16 @@ terraform workspace select dev
 terraform workspace list
 ```
 
+Um exemplo seria a criação de instâncias em regiões diferentes caso o workspace não seja o desejado:
+
+```shell
+provider "aws" {
+  region  = terraform.workspace == "production" ? "us-east-1" : "us-east-2"
+  shared_credentials_file = "/home/thiago/.aws/credentials"
+  profile = "default"
+}
+```
+
 ## 4. Graph
 
 Quando se tem um projeto finalizado é possível criar um grafo de todo o fluxo do projeto:
@@ -57,3 +67,12 @@ Quando se tem um projeto finalizado é possível criar um grafo de todo o fluxo 
 ```shell
 terraform graph | dot –Tpng > graph.png
 ```
+
+## 5. Autocomplete
+É possível também habilitar a opção de autocomplete, pra quem vem do linux é uma mão na roda para evitar repetição de escrita, apenas apertando `Tab`, para habilitar basta rodar o comando de instalação:
+
+```shell
+terraform -install-autocomplete
+```
+
+Espero que gostem, esses são apenas alguns dos comandos e possibilidades para utilizar juntamente ao Terraform, até a próxima!
