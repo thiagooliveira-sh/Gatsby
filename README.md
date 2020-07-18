@@ -7,6 +7,14 @@
 <h1 align="center">
   Gatsby's default starter
 </h1>
+<p align="center">
+  <a href="https://github.com/gatsbyjs/gatsby/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="Gatsby is released under the MIT license." />
+  </a>
+  <a href="https://www.npmjs.org/package/gatsby">
+    <img src="https://img.shields.io/npm/v/gatsby.svg" alt="Current npm package version." />
+  </a>
+</p>
 
 Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
 
