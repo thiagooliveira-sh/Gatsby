@@ -2,6 +2,7 @@ import React from 'react'
 
 import Layout from '../components/Layout/'
 import SEO from '../components/seo'
+import SocialLinks from '../components/SocialLinks'
 
 import { MainContent } from '../styles/base'
 
@@ -63,16 +64,14 @@ const AboutPage = () => (
         <li>O que ainda não sei busco aprender.</li>
       </ul>
 
-  <h3> Minhas conquistas </h3>
-    <ul>
-        <li>Azure Az-900</li>
-        <li>Oracle Cloud Infrastructure Foundations 2020</li>
-        <li>Descomplicando Ansible</li>
-        <li>Descomplicando Docker</li>
-        <li>Descomplicando Terraform</li>
-    </ul>
-  
-  
+     <h2>Contato</h2>
+
+     <p>
+       Você pode entrar em contato comigo através de qualquer uma das minhas
+       redes sociais.
+     </p>
+
+     <SocialLinks hideStyle />
     </MainContent>
   </Layout>
 )
