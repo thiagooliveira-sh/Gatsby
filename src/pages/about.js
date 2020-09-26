@@ -14,7 +14,7 @@ const AboutPage = () => (
     <MainContent>
       <h1>Sobre mim</h1>
       <p>
-        Olá, tudo bem com você? Espero que sim! Me chamo Thiago Alexandria, tenho 22 anos e sou de João Pessoa, na Paraíba.
+        Olá, tudo bem com você? Espero que sim! Me chamo Thiago Alexandria, tenho 23 anos e sou de João Pessoa, na Paraíba.
         Trabalho atualmente como Analista de Infraestrutura na{' '}
         <a href="https://www.conductor.com.br/" target="_blank" rel="noopener noreferrer">
           Conductor
@@ -64,14 +64,13 @@ const AboutPage = () => (
       </ul>
 
   <h3> Minhas conquistas </h3>
-    <div class="box">
-      <img src="https://thiagoalexandria.com.br/assets/img/160113487389.png" width="90"/>
-      <img src="https://thiagoalexandria.com.br/assets/img/160113490834.png" width="90"/>
-      <img src="https://thiagoalexandria.com.br/assets/img/160113497495.png" width="90"/>
-      <img src="https://thiagoalexandria.com.br/assets/img/plesk-onyx-professional-certification.png" width="90"/>
-      <img src="https://thiagoalexandria.com.br/assets/img/oracle-cloud-infrastructure-foundations-2020-certified-associate.png" width="90"/>
-      <img src="https://thiagoalexandria.com.br/assets/img/microsoft-certified-azure-fundamentals.png" width="90"/>
-    </div>
+    <ul>
+        <li>Azure Az-900</li>
+        <li>Oracle Cloud Infrastructure Foundations 2020</li>
+        <li>Descomplicando Ansible</li>
+        <li>Descomplicando Docker</li>
+        <li>Descomplicando Terraform</li>
+    </ul>
   
   
     </MainContent>
