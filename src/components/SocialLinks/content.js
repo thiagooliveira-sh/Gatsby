@@ -12,10 +12,6 @@ const links = [
     label: "Instagram",
     url: `https://www.instagram.com/thiagoalexandria/`,
   },
-  {
-    label: "Acclaim",
-    url: `https://www.youracclaim.com/users/thiago-oliveira-alexandria`,
-  },
 ]
 
 export default links
