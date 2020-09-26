@@ -65,30 +65,14 @@ const AboutPage = () => (
 
   <h3> Minhas conquistas </h3>
     <div class="box">
-      <img src="https://thiagoalexandria.com.br/assets/img/160113487389.png"/>
-    </div>
-    <div class="box">
-      <img src="https://thiagoalexandria.com.br/assets/img/160113490834.png"/>
-    </div>
-    <div class="box">
-      <img src="https://thiagoalexandria.com.br/assets/img/160113497495.png"/>
-    </div>
-    <div class="box">
-      <img src="https://thiagoalexandria.com.br/assets/img/plesk-onyx-professional-certification.png"/>
-    </div>
-    <div class="box">
-      <img src="https://thiagoalexandria.com.br/assets/img/oracle-cloud-infrastructure-foundations-2020-certified-associate.png"/>
-    </div>
-    <div class="box">
-      <img src="https://thiagoalexandria.com.br/assets/img/microsoft-certified-azure-fundamentals.png"/>
+      <img src="https://thiagoalexandria.com.br/assets/img/160113487389.png" width="90"/>
+      <img src="https://thiagoalexandria.com.br/assets/img/160113490834.png" width="90"/>
+      <img src="https://thiagoalexandria.com.br/assets/img/160113497495.png" width="90"/>
+      <img src="https://thiagoalexandria.com.br/assets/img/plesk-onyx-professional-certification.png" width="90"/>
+      <img src="https://thiagoalexandria.com.br/assets/img/oracle-cloud-infrastructure-foundations-2020-certified-associate.png" width="90"/>
+      <img src="https://thiagoalexandria.com.br/assets/img/microsoft-certified-azure-fundamentals.png" width="90"/>
     </div>
   
-    <style>
-    div.box {
-      width: 150px;
-      display: inline-block;
-    }
-    </style>
   
     </MainContent>
   </Layout>
