@@ -1,6 +1,6 @@
 ---
 image: /assets/img/mod_deflate-cpanel-secnet-868x488.jpg
-title: Instalacao do cPanel no CentsOs7
+title: Instalação do cPanel no CentsOs7
 description: >-
   cPanel é o painel de controle mais popular e mais usado para gerenciar e
   automatizar tarefas de hospedagem na web.
