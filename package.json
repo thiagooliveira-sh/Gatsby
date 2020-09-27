@@ -35,7 +35,6 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-disqus-comments": "^1.4.0",
-    "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
     "react-instantsearch-dom": "^6.4.0",
     "styled-components": "^5.1.0",
@@ -44,7 +43,16 @@
     "unist-util-is": "^4.0.2"
   },
   "devDependencies": {
-    "prettier": "^2.0.5"
+    "@mdx-js/react": "^1.6.18",
+    "acorn": "^6.4.1",
+    "codemirror": "^5.58.1",
+    "netlify-cms-lib-widgets": "^1.3.5",
+    "prettier": "^2.0.5",
+    "react-dom": "^16.13.1",
+    "react-refresh": "^0.8.3",
+    "redux": "^3.7.2",
+    "seamless-immutable": "^7.1.4",
+    "typescript": "^4.0.3"
   },
   "keywords": [
     "gatsby"
