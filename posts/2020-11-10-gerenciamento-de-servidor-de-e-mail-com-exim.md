@@ -49,8 +49,6 @@ Dessa forma teremos um output semelhante ao da imagem abaixo:
 
 ![Exim queue](/assets/img/2.jpg "Exim queue")
 
-
-
 Observe que cada mensagem possui um identificador como por exemplo "1WfnSO-004UX-9d" esse é o id da mensagem para que possamos rastreá-la caso necessário, existem três formas de fazermos isso, podemos verificar o seu cabeçalho, corpo e fluxo de envio/recebimento no log de e-mail:
 
 ```
@@ -64,6 +62,16 @@ exim -Mvb <id-da-mensagem>
 exiqgrep <id-da-mensagem> /var/log/exim_mainlog
 ```
 
+Também é possível realizar testes de envio de e-mail através da linha de comando, por exemplo:
 
+```
+echo "Titulo teste" |exim -r remetente@dominio.com.br  -v -odf destino@dominio.com.br
+```
 
-Para
+ Existem diversas possibilidades de configuração para o exim, para finalizarmos vou deixar um bônus, após uma certa quantidade de tentativas de erro para um domínio o exim salva um cache para evitar novos envios e já negar antes da sua saída, para limpar esse cache basta executar o seguinte comando para remoção dos arquivos:
+
+```
+cd /var/spool/exim/db && rm -rf retry* wait-remote_smtp*
+```
+
+ Bom, é isso pessoal, espero que tenham gostado!
