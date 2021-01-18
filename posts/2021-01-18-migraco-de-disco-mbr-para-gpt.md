@@ -1,6 +1,6 @@
 ---
 image: /assets/img/AWS.png
-title: Migraco de disco MBR para GPT
+title: Migração de disco MBR para GPT
 description: GPT é um tipo de tabela de partição para grandes unidades que
   excedem o limite de tamanho de 2 TB de MBR.
 date: 2021-01-18
