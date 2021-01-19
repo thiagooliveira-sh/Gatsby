@@ -1,6 +1,6 @@
 ---
 image: /assets/img/HashiCorp-Terraform-logo.png
-title: Terraform Variáveis e Outputs
+title: "Terraform: Variáveis e Outputs"
 description: Antes de continuar a ler, quero dizer que este artigo é uma
   continuação do nosso último artigo sobre o Terraform, onde há um exemplo
   prático em que criamos uma instância ec2.
