@@ -16,4 +16,4 @@ categories:
   - Terraform
   - Devops
 ---
-Este post na verdade utilizará o mesmo código que escrevemos no nosso primeiro artigo sobre Terraform, portanto se você não o leu, recomendo fortemente que o faça [clicando aqui](https://thiagoalexandria.com.br/criando-uma-instancia-ec2-usando-terraform/).
+Daremos continuidade aos estudos de Terraform, configurando o nosso primeiro módulo, podendo assim reutilizar em vários momentos. Teremos como base o mesmo código que escrevemos no nosso ultimo artigo sobre Terraform: Variáveis de Outputs, portanto se você não o leu, recomendo fortemente que o faça [clicando aqui](https://thiagoalexandria.com.br/terraform-variaveis-e-outputs/).
