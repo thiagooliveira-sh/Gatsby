@@ -1,6 +1,6 @@
 ---
 image: /assets/img/HashiCorp-Terraform-logo.png
-title: "Terraform: criando módulos"
+title: "Terraform: Criando módulos"
 description: A possibilidade de utilizar módulos em nosso código Terraform faz
   com que possamos ter a reutilização de código, evitando a repetições bem como
   nos dando flexibilidade para criarmos dezenas de recursos similares porém com
