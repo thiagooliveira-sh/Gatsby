@@ -139,7 +139,7 @@ http {
 
 Após ajustado, realize o reload do nginx `nginx -s reload` e tente acessar o url: `http://IP/Teste`
 
-### Variabeis
+### Variáveis
 
 O Nginx possui algumas variáveis que podem ser configuradas para facilitar o gerenciamento de algumas informações, nos aprofundaremos mais na parte de proxy reverso, no qual aplicaremos algumas configurações no redirecionamento. 
 
@@ -196,8 +196,26 @@ Vamos ver algumas configurações de locations para cada cenário:
 
 Quando acessado o url `/Redirect` veremos que a sua url será alterado para `/Destino-Redirect`. diferente no Rewrite, que por fazer o direcionamento de forma transparente para o usuário, redirecionará o acesso para `/Destino-Rewrite` porém irá manter o url `/Rewrite`.
 
+Esse é o funcionamento básico de como funciona os redirecionamentos, existem outras formas e caso tenham interesse basta acessar o [link](https://www.nginx.com/blog/creating-nginx-rewrite-rules/).
 
 ### Logs
+
+O Nginx grava registros de seus eventos em dois tipos de logs, logs de acesso e logs de erro. Os logs de acesso gravam informações sobre solicitações do cliente e os logs de erros gravam informações sobre os problemas do servidor e do aplicativo.
+
+Para configurarmos os logs basta adicionar a diretiva e o caminho absoluto cujo o arquivo será gerado:
+
+```
+...
+http {
+
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+...
+```
+
+Os logs também podem ser formatados, com a configuração da diretiva `log_format`, isso permite adaptar as informações que serão armazenadas no log, ou remover informações não necessárias, o mais comum e o padrão adotado é o `log_format combined` que reúne várias informações suficientes para análise.
+
+Para mais informações sobre o log_format, basta acessar a [documentação](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format).
 
 ### Workers
 
