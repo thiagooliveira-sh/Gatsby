@@ -219,6 +219,25 @@ Para mais informações sobre o log_format, basta acessar a [documentação](htt
 
 ### Workers
 
+O NGINX pode executar vários processos, cada um capaz de processar um grande número de conexões simultâneas. É possível controlar o número de workers e como eles lidam com as conexões com as seguintes diretivas:
+
+`worker_processes`: O número de workers, o padrão é 1. Na maioria dos casos, a execução de um processo de trabalho por núcleo da CPU funciona bem, e recomendamos definir essa diretiva como automática para conseguir isso. Há momentos em que você pode querer aumentar esse número, como quando os processos de trabalho precisam fazer muita E/S de disco.
+
+`worker_connections`: Essa diretiva define o número máximo de conexões que cada processo de trabalho pode manipular simultaneamente. O padrão é 512, mas a maioria dos ambientes possuim recursos suficientes para suportar um número maior.
+
+Dessa forma vamos configurar o `worker_processes` como auto e ajustaremos a quantidade de conexões em 1024:
+
+```
+...
+worker_processes auto;
+
+events {
+  worker_connections 1024;
+}
+...
+```
+
+
 ### Modulos dinâmicos
 
 # Performance
