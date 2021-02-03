@@ -237,9 +237,6 @@ events {
 ...
 ```
 
-
-### Modulos dinâmicos
-
 # Performance
 
 ### Headers
