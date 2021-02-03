@@ -94,7 +94,7 @@ Configurado isso, vamos acessar o diretório `/usr/share/nginx/html`, pode remov
 <title> Hello World Nginx! </title>
 </head>
 <body>
-<h1> Hello Word Nginx! </h1>
+<h1> Hello World Nginx! </h1>
 </body>
 </html>
 ```
@@ -108,7 +108,34 @@ nginx -s reload
 Pronto, colocando o ip da nossa máquina pelo navegador já deve ter o acesso sem problemas.
  
 ### Locations
-### Variables
+
+O location é usado para definir como o Nginx deve lidar com solicitações de diferentes recursos e URLs para o servidor, conhecido como subpastas, dessa forma podemos definir o que acontece quando acessamos: `http://192.168.18.3/Teste` se desejamos criar uma subpasta para ele ou se desejamos configurar regras.
+
+Vamos criar uma location chamado Teste e informaremos a ela que deverá retornar o status code 200 e repassar na tela uma informação diferente do nosso Hello World inicial. Observe:
+
+```
+events {}
+
+http {
+
+  include mime.types;
+
+  server {
+
+    listen 80;
+    server_name 192.168.18.3;
+
+    root /usr/share/nginx/html/;
+
+    location ^~ /Teste {
+      return 200 'Hello World NGINX "/Teste" location.';
+    }
+  }
+}
+```
+
+
+### Variabeis
 ### Rewrites e Redirects
 ### Logs
 ### Workers
