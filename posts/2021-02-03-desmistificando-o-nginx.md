@@ -182,6 +182,21 @@ Cliente acessa http://IP/redirect o servidor redireciona o url movendo o cliente
 
 O Rewrite, faz o mesmo processo porém de forma interna e transparente, em poucas palavras, ele redirecionará e o url não será alterado.
 
+Vamos ver algumas configurações de locations para cada cenário:
+
+```
+    location ^~ /Redirect{
+      return 307 /Destino-Redirect;
+    }
+
+    location ^~ /Rewrite{
+      rewrite ^/Rewrite/\w+ /Desino-Rewrite ;
+    }
+```
+
+Quando acessado o url `/Redirect` veremos que a sua url será alterado para `/Destino-Redirect`. diferente no Rewrite, que por fazer o direcionamento de forma transparente para o usuário, redirecionará o acesso para `/Destino-Rewrite` porém irá manter o url `/Rewrite`.
+
+
 ### Logs
 
 ### Workers
