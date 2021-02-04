@@ -55,21 +55,21 @@ Para que o nginx possa utilizar operar sem maiores problemas, é indicado que o 
 semanage permissive -a httpd_t
 ```
 
-Com o Nginx instalado e habilitado, vamos seguir com a configuração do mesmo.
+Com o Nginx instalado e habilitado, seguiremos com a configuração do mesmo.
 
 # Configuração
 
-Vamos abordar algumas configurações e opções que são úteis no dia a dia, para você que a administra um servidor Nginx e para os que estão migrando. 
+Abordaremos algumas configurações e opções que são úteis no dia a dia, para você que a administra um servidor Nginx e para os que estão migrando. 
 
 ### Criando um Vhost
 
-Vamos utilizar o arquivo `.conf` padrão do nginx:
+Será utilizado o arquivo `.conf` padrão do nginx:
 
 ```
 vim /etc/nginx/nginx.conf
 ```
 
-Vamos limpar o arquivo `nginx.conf` e deixar apenas o esqueleto do nosso Vhost, utilizaremos o path default do Nginx para o exemplo:
+Podemos limpar o arquivo `nginx.conf` e deixar apenas o esqueleto do nosso Vhost, utilizaremos o path default do Nginx para o exemplo:
 
 ```
 events {}
@@ -88,7 +88,7 @@ http {
 }
 ```
 
-Configurado isso, vamos acessar o diretório `/usr/share/nginx/html`, pode remover todos os arquivos, vamos criar o nosso `index.html` apenas com um Hello World:
+Configurado isso, acesse o diretório `/usr/share/nginx/html`, pode remover todos os arquivos, crie o nosso `index.html` apenas com um Hello World:
 
 ```
 <!DOCTYPE html>
@@ -114,7 +114,7 @@ Pronto, colocando o ip da nossa máquina pelo navegador já deve ter o acesso se
 
 O location é usado para definir como o Nginx deve lidar com solicitações de diferentes recursos e URLs para o servidor, conhecido como subpastas, dessa forma podemos definir o que acontece quando acessamos: `http://IP/Teste` se desejamos criar uma subpasta para ele ou se desejamos configurar regras.
 
-Vamos criar uma location chamado Teste e informaremos a ela que deverá retornar o status code 200 e repassar na tela uma informação diferente do nosso Hello World inicial. Observe:
+A partir disso criaremos um location chamado Teste. Informaremos ao servidor web que deverá retornar o status code 200 além de repassar na tela uma informação diferente do nosso Hello World inicial. Observe:
 
 ```
 events {}
@@ -145,7 +145,7 @@ O Nginx possui algumas variáveis que podem ser configuradas para facilitar o ge
 
 O próprio Nginx possui uma página que reúne várias variáveis e as suas aplicabilidades basta [clicar aqui](http://nginx.org/en/docs/varindex.html).
 
-Dessa forma, vamos criar uma location para retornar na tela algumas informações para inspecionarmos:
+Dessa forma, crie uma location para retornar na tela algumas informações para inspecionarmos:
 
 ```
 events {}
@@ -180,7 +180,7 @@ O redirecionamento simplesmente informa ao cliente para onde deverá ir o redire
 
 O Rewrite, faz o mesmo processo porém de forma interna e transparente, em poucas palavras, ele redirecionará e o url não será alterado.
 
-Vamos ver algumas configurações de locations para cada cenário:
+Observe algumas configurações de locations para cada cenário:
 
 ```
     location ^~ /Redirect{
@@ -221,7 +221,7 @@ O NGINX pode executar vários processos, cada um capaz de processar um grande n�
 
 `worker_connections`: Essa diretiva define o número máximo de conexões que cada processo de trabalho pode manipular simultaneamente. O padrão é 512, mas a maioria dos ambientes possuim recursos suficientes para suportar um número maior.
 
-Dessa forma vamos configurar o `worker_processes` como auto e ajustaremos a quantidade de conexões em 1024:
+Dessa forma basta configurar o `worker_processes` como auto e ajustaremos a quantidade de conexões em 1024:
 
 ```
 ...
@@ -233,6 +233,6 @@ events {
 ...
 ```
 
-Para não ficarmos com muito conteúdo e várias abordagens, vamos dar continuidade com a parte de Performance, Segurança e Proxy na parte dois desse artigo, espero que tenham gostado do material, tentei trazer o máximo de informações sobre as principais configurações que tenho tido vivencia.
+Para não ficarmos com muito conteúdo e várias abordagens, daremos continuidade com a parte de Performance, Segurança e Proxy na parte dois desse artigo, espero que tenham gostado do material, tentei trazer o máximo de informações sobre as principais configurações que tenho tido vivencia.
 
 Até a próxima.
