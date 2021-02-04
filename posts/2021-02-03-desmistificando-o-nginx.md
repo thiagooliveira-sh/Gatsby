@@ -213,8 +213,6 @@ http {
 
 Os logs também podem ser formatados, com a configuração da diretiva `log_format`, isso permite adaptar as informações que serão armazenadas no log, ou remover informações não necessárias, o mais comum e o padrão adotado é o `log_format combined` que reúne várias informações suficientes para análise.
 
-Para mais informações sobre o log_format, basta acessar o [link](http://nginx.org/en/docs/http/ngx_http_log_module.html).
-
 ### Workers
 
 O NGINX pode executar vários processos, cada um capaz de processar um grande número de conexões simultâneas. É possível controlar o número de workers e como eles lidam com as conexões com as seguintes diretivas:
