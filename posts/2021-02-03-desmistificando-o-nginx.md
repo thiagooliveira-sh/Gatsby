@@ -176,9 +176,7 @@ Os Rewries e Redirects são amplamente utilizados, um cenário para isso seria q
 
 O redirecionamento simplesmente informa ao cliente para onde deverá ir o redireciona, por exemplo:
 
-```
-Cliente acessa http://IP/redirect o servidor redireciona o url movendo o cliente para o url http://IP/new-redirect
-```
+> O visitante acessa http://IP/redirect e o servidor redireciona o url movendo o visitante para o url http://IP/new-redirect
 
 O Rewrite, faz o mesmo processo porém de forma interna e transparente, em poucas palavras, ele redirecionará e o url não será alterado.
 
@@ -215,7 +213,7 @@ http {
 
 Os logs também podem ser formatados, com a configuração da diretiva `log_format`, isso permite adaptar as informações que serão armazenadas no log, ou remover informações não necessárias, o mais comum e o padrão adotado é o `log_format combined` que reúne várias informações suficientes para análise.
 
-Para mais informações sobre o log_format, basta acessar a [documentação](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format).
+Para mais informações sobre o log_format, basta acessar a [documentação](http://nginx.org/en/docs/http/ngx_http_log_module.html).
 
 ### Workers
 
