@@ -3,7 +3,7 @@ image: /assets/img/nginx-1.jpg
 title: "Desmistificando o Nginx: parte 1"
 description: NGINX é um software de código aberto para serviço da Web, proxy
   reverso, cache, balanceamento de carga, streaming de mídia e muito mais.
-date: 2021-02-02
+date: 2021-02-03
 category: linux
 background: "#EE0000"
 tags:
