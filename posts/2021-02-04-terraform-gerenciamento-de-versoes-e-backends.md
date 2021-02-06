@@ -1,6 +1,6 @@
 ---
 image: /assets/img/HashiCorp-Terraform-logo.png
-title: Terraform gerenciamento de versoes e backends
+title: "Terraform: Gerenciamento de versões e backends"
 description: É muito importante que as versões e backends compatíveis com o
   projeto desenvolvido seja definida, evitando conflitos ou fala de
   compatibilidade.
