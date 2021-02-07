@@ -33,7 +33,7 @@ O cabeçalho `Very` significa que o conteúdo dessa resposta pode variar com o v
 
 Finalmente vamos configurar a tag `expires` que pode ser configurado definindo uma data ou uma duração padrão, por exemplo 60M que seria 60 minutos.
 
-```
+````
     location ~* \.(jpg|png)$ {
       access_log off;
       add_header Cache-Control public;
@@ -41,17 +41,88 @@ Finalmente vamos configurar a tag `expires` que pode ser configurado definindo u
       add_header Vary Accept-Encoding;
       expires 60M;
     }
-```
+````
 
 Dessa forma configuramos as tags de header e o de expiração para 60 minutos, forçando o cache local dessas informações das imagens. 
 
 ### Gzip
 
+Você precisa usar o módulo ngx_http_gzip_module. Ele compacta todas as respostas HTTP válidas (arquivos) usando o método “gzip”. Isso é útil para reduzir o tamanho da transferência de dados e acelerar as páginas da web para ativos estáticos como JavaScript, arquivos CSS e muito mais.
+
+Faremos uma configuração simples, habilitando e definindo alguns tipos de arquivos que podem ser compactados:
+
+````
+http{
+...
+
+  gzip on;
+  gzip_comp_level 3;
+
+  gzip_types text/css;
+  gzip_types text/javascript;
+
+...
+}
+````
+
+Para habilitar basta configurar a diretiva `gzip on`, podemos definir o nível da compactação, de 1 a 9, quanto maior mais ele vai tentar compactar, um valor aceitável é o `3` em `gzip_comp_level`.
+
+Para definir os tipos que serão compactados defina com a diretiva `gzip_types`.
+
 ### HTTP2
+
+A partir da versão 1.9.5 do Nginx tornou-se possível a configuração do http2, para isso é necessário que tenhamos um certificado ssl em nosso servidor, não cobriremos a geração ou compra do certificado, partiremos da pressuposição de que você já tenha um.
+
+Para habilitar a versão basta configurarmos o listener na porta 443 para uma conexão segura e nele informamos a nova versão:
+
+```
+http {
+
+  include mime.types;
+
+  server {
+
+    listen 443 ssl http2;
+...
+```
+
+Como informado, para configuração do acesso com ssl, é necessário definir o caminho dos certificados:
+
+````
+    ssl_certificate /etc/nginx/ssl/self.crt;
+    ssl_certificate_key /etc/nginx/ssl/self.key;
+````
 
 # Segurança
 
 ### HTTPS
+
+````
+  server {
+
+    listen 443 ssl http2;
+
+    ssl_certificate /etc/nginx/ssl/self.crt;
+    ssl_certificate_key /etc/nginx/ssl/self.key;
+
+    # Disable SSL
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+
+    # Optimise cipher suits
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:DH+3DES:!ADH:!AECDH:!MD5;
+
+    # Enable DH Params
+    ssl_dhparam /etc/nginx/ssl/dhparam.pem;
+
+    # Enable HSTS
+    add_header Strict-Transport-Security "max-age=31536000" always;
+
+    # SSL sessions
+    ssl_session_cache shared:SSL:40m;
+    ssl_session_timeout 4h;
+    ssl_session_tickets on;
+````
 
 ### Rate Limit
 
