@@ -97,6 +97,9 @@ Como informado, para configuração do acesso com ssl, é necessário definir o 
 
 ### HTTPS
 
+A configuração de uma conexão https vai além da configuração do certificado SSL, temos alguns pontos de ajuste de segurança, como por exemplo desabilitar alguns protocolos antigos, quais cifras serão aceitas, configuração de sessão entre outras.
+
+Abordaremos apenas a configuração indicada pelo nginx para ambientes atuais, desabilitando versões TLS 1, 1.1 e 1.2. Aceitando apenas algumas cifras especificas também, dessa forma teremos a configuração do nosso bloco `server` da seguinte forma:
 ````
   server {
 
@@ -105,20 +108,20 @@ Como informado, para configuração do acesso com ssl, é necessário definir o 
     ssl_certificate /etc/nginx/ssl/self.crt;
     ssl_certificate_key /etc/nginx/ssl/self.key;
 
-    # Disable SSL
+    # Desabilitar SSL
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 
-    # Optimise cipher suits
+    # Otimização de crifras
     ssl_prefer_server_ciphers on;
     ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:DH+3DES:!ADH:!AECDH:!MD5;
 
-    # Enable DH Params
+    # Habilitar dhparam
     ssl_dhparam /etc/nginx/ssl/dhparam.pem;
 
-    # Enable HSTS
+    # Habilitar HSTS
     add_header Strict-Transport-Security "max-age=31536000" always;
 
-    # SSL sessions
+    # Configuração de sessão
     ssl_session_cache shared:SSL:40m;
     ssl_session_timeout 4h;
     ssl_session_tickets on;
