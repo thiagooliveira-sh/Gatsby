@@ -129,6 +129,33 @@ Abordaremos apenas a configuração indicada pelo nginx para ambientes atuais, d
 
 ### Rate Limit
 
+Um dos recursos mais úteis, mas nem sempre compreendido da melhor forma, do NGINX é o rate limit. Ele permite limitar o número de solicitações HTTP que um usuário pode fazer em um determinado período. A solicitação pode ser uma solicitação GET na página inicial ou uma solicitação POST em um formulário de login.
+
+De modo mais geral, ele é usado para proteger os servidores de aplicativos upstream de serem sobrecarregados por muitas solicitações do usuário ao mesmo tempo.
+
+O rate limit é configurado por duas diretivas principais, `limit_req_zone`  e `limit_req` como no exemplo abaixo:
+
+````
+limit_req_zone $binary_remote_addr zone=meulimite:10m rate=10r/s;
+ 
+server {
+    location /login/ {
+        limit_req zone=meulimite;
+        
+        proxy_pass http://my_upstream;
+    }
+}
+````
+
+A diretiva `limit_req_zone` define os parâmetros para o rate limit, enquanto `limit_req` habilita o rate limit dentro do contexto no qual definimos (no exemplo, para todas as solicitações para /login/).
+
+`Key` - No exemplo, é a variável NGINX `$binary_remote_addr`, que contém uma representação binária do endereço IP de um cliente. Isso significa que estamos limitando cada request feito por IPs únicos.
+
+`Zone` - Define a zona de memória compartilhada usada para armazenar o estado de cada endereço IP e com que frequência ele acessou um URL. Manter as informações na memória compartilhada significa que elas podem ser compartilhadas entre os processos do NGINX. Ela é definida da seguinte forma, `zone=` e o tamanho após os dois pontos. Para armazenar a informação de cerca de 16.000 endereços IP ocupam 1 megabyte, dessa forma, nossa zona pode armazenar cerca de 160.000 endereços.
+
+`Rate` - Define a taxa máxima de requests. No exemplo, a taxa não pode exceder 10 requests por segundo. Na verdade, o NGINX rastreia solicitações com granularidade de milissegundos, portanto, esse limite corresponde a 1 solicitação a cada 100 milissegundos.
+
+
 ### Hardening
 
 # Proxy reverso e Load Balancing
