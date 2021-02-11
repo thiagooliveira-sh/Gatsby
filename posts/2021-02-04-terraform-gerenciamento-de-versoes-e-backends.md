@@ -2,7 +2,7 @@
 image: /assets/img/HashiCorp-Terraform-logo.png
 title: "Terraform: Gerenciamento de versões e backends"
 description: É muito importante que as versões e backends compatíveis com o
-  projeto desenvolvido seja definida, evitando conflitos ou fala de
+  projeto desenvolvido seja definida, evitando conflitos ou falta de
   compatibilidade.
 date: 2021-02-03
 category: devops
