@@ -45,7 +45,7 @@ terraform {
 
 Acima, estamos referenciando algumas informações referente ao nosso beckend:
 
-* `bucket` = Nome do nosso bucke já criado no s3
+* `bucket` = Nome do nosso bucket já criado no s3
 * `key`    = Nome dado ao nosso arquivo de estado
 * `region` = Região do bucket
 * `encrypt` = Habilitar criptografia no bucket
