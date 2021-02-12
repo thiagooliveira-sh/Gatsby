@@ -158,6 +158,30 @@ A diretiva `limit_req_zone` define os parâmetros para o rate limit, enquanto `l
 
 ### Hardening
 
+Além de habilitar o SSL em domínios existem algumas formas de aplicarmos uma camada de segurança a nível de servidor, por padrão o nosso servidor web retorna a versão do serviço dentro do request que pode ser facilmente obtida utilizando o curl. Para evitarmos que o atacante saiba a versão e identifique vulnerabilidades já publicada para a versão, existe uma opção dentro do bloco http para escondermos essa informação, observe:
+
+````
+http {
+
+  server_tokens off;
+...
+}
+````
+
+Além disso, podemos aplicar algumas configurações para bloquear algumas ações maliciosas como o bloqueio de ataques XSS, através da tag `X-XSS-Protection` em seu header. Outra configuração bastante importante e a de bloqueio de clickjacking.
+
+O clickjacking é uma técnica informática fraudulenta. O roubo de click é uma armadilha preparada para que o usuário pense que está fazendo uma ação num determinado site, mas na verdade os cliques executados nessa ação estejam sendo usados pelo atacante, para executar operações maliciosas.
+
+Para bloquear esse tipo de ação, basta adicionarmos ao header a opção `X-Frame-Options "SAMEORIGIN"`
+
+````
+server {
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-XSS-Protection "1; mode=block";
+...
+````
+
+
 # Proxy reverso e Load Balancing
 
 ### Proxy Reverso
