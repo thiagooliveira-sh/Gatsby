@@ -184,6 +184,62 @@ server {
 
 # Proxy reverso e Load Balancing
 
+Servidores proxy reversos e balanceadores de carga são componentes em uma arquitetura de computação cliente-servidor. Ambos atuam como intermediários na comunicação entre os clientes e servidores, desempenhando funções que aumentam a eficiência. Eles podem ser implementados como dispositivos dedicados e com um propósito específico.
+
 ### Proxy Reverso
 
+Um proxy reverso aceita uma solicitação de um cliente, encaminha-a para um servidor que pode atendê-la e retorna a resposta do servidor ao cliente.
+
+A configuração de um Proxy reverso pode englobar várias variáveis e tornar o processo complexo, porém a ideia principal é simples e objetiva:
+
+````
+ location / {
+        proxy_pass http://192.x.x.2;
+    }
+````
+
+Dessa forma ele fará o encaminhamento para o servidor em questão, a configuração pode ser feita também para urls complexos, como por exemplo:
+
+````
+ location / {
+        proxy_pass http://192.x.x.2:8080/app;
+    }
+````
+
 ### Load Balancer
+
+Um load balancer distribui as solicitações recebidas do cliente entre um grupo de servidores, em cada caso retornando a resposta do servidor selecionado para o cliente.
+
+Na configuração de um load balancer precisamos primeiro configurar um grupo de destino, no nginx esse grupo é chamado de `upstream`, observe:
+
+````
+http {
+    upstream target {
+        server target1.aplicacao.com.br;
+        server target2.aplicacao.com.br;
+    }
+}
+````
+
+Configurado o grupo de `upstream` cujo nomeamos de target, aplicaremos o `proxy_pass` apontando para o nosso grupo, o arquivo completo ficaria configurado dessa forma:
+
+````
+http {
+    upstream target{
+        server target1.aplicacao.com.br;
+        server target2.aplicacao.com.br;
+    }
+    
+    server {
+        location / {
+            proxy_pass http://target;
+        }
+    }
+}
+````
+
+Nginx é um mundo enorme e cheios de configurações e personalizações, espero ter alcançado o meu objetivo de desmistificar os principais pontos sobre esse serviço web que é amplamente utilizado no mercado. 
+
+Se tiver alguma dúvida ou sugestão, pode deixar na aba de comentários que vamos revisar.
+
+Abraços!
