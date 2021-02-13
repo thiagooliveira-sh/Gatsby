@@ -240,6 +240,8 @@ http {
 
 Nginx é um mundo enorme e cheios de configurações e personalizações, espero ter alcançado o meu objetivo de desmistificar os principais pontos sobre esse serviço web que é amplamente utilizado no mercado. 
 
+Não se apeguem apenas ao que foi abordado nesses últimos dois posts, sempre que necessário abram a documentação para analisar as variáveis e formas possíveis de sanar a necessidade particular do negócio de vocês.
+
 Se tiver alguma dúvida ou sugestão, pode deixar na aba de comentários que vamos revisar.
 
 Abraços!
