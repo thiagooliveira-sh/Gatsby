@@ -16,7 +16,7 @@ const AboutPage = () => (
       <h1>Sobre mim</h1>
       <p>
         Olá, tudo bem com você? Espero que sim! Me chamo Thiago Alexandria, tenho 23 anos e sou de João Pessoa, na Paraíba.
-        Trabalho atualmente como Analista de Infraestrutura na{' '}
+        Trabalho atualmente como Engenheiro DevOps na{' '}
         <a href="https://www.conductor.com.br/" target="_blank" rel="noopener noreferrer">
           Conductor
         </a>
