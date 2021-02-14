@@ -40,7 +40,7 @@ const AboutPage = () => (
       </p>
 
       <p>
-        Para o ano de 2020 tenho como objetivo focar em algumas tecnologias e metodologias DevOps como Ansible, Docker, Terraform
+        Para o ano de 2021 tenho como objetivo focar em algumas tecnologias e metodologias DevOps como Docker, Terraform
         e Kubernetes, além de que pretendo, ainda nesse ano, finalizar meus estudos referente a prova de certificação para Solutions Architect
         da Amazon. Irei compartilhar nesse blog um pouco sobre tudo o que já aprendi e também sobre os meus novos estudos e metas.
       </p>
