@@ -1,6 +1,6 @@
 ---
 image: /assets/img/HashiCorp-Terraform-logo.png
-title: Terraform workspace na pratica
+title: Terraform workspace na prática
 description: Os dados persistentes armazenados no backend pertencem a um
   workspace. Inicialmente, o backend tem apenas um workspace, o "default" e,
   portanto, há apenas um state associado a essa configuração.
