@@ -3,7 +3,7 @@ image: /assets/img/nginx-1.jpg
 title: Desmistificando o Nginx parte 2
 description: Daremos continuidade com o nosso estudo sobre o Nginx, abordando
   performance, segurança e proxy.
-date: 2021-02-03
+date: 2021-02-18
 category: linux
 background: "#EE0000"
 tags:
