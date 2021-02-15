@@ -14,3 +14,6 @@ categories:
 Estranhamos bastante o fato de usarmos o terminal como editor de textos. Parece inútil e lento para editar textos, uma vez que não podemos usar o mouse. 
 
 É aí que a gente se engana. Não percebemos, mas, para editar texto, o mouse mais atrapalha que ajuda, pois temos que constantemente tirar as mãos do teclado e leva-las até o mouse e vice-versa.
+
+Sabendo que o vi é um editor de texto, vamos aprender os principais comandos, e alguns atalhos que são bastante úteis no dia a dia.
+
