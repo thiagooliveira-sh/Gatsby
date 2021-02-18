@@ -4,7 +4,7 @@ title: "Terraform: Gerenciamento de versões e backends"
 description: É muito importante que as versões e backends compatíveis com o
   projeto desenvolvido seja definida, evitando conflitos ou falta de
   compatibilidade.
-date: 2021-02-03
+date: 2021-02-11
 category: devops
 background: "#05A6F0"
 tags:
