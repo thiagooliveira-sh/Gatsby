@@ -3,7 +3,7 @@ image: /assets/img/bash.png
 title: Edicao basica de arquivos vi e vim
 description: vi é um editor de textos, padrão nos sistemas Unix, criado na
   década de 70. Vim é uma versao melhorada do vi
-date: 2021-02-13
+date: 2021-02-25
 category: linux
 background: "#EE0000"
 tags:
