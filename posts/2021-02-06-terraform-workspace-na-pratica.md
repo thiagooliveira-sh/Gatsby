@@ -4,7 +4,7 @@ title: Terraform Workspace na prática
 description: Os dados persistentes armazenados no backend pertencem a um
   workspace. Inicialmente, o backend tem apenas um workspace, o "default" e,
   portanto, há apenas um state associado a essa configuração.
-date: 2021-02-25
+date: 2021-03-04
 category: devops
 background: "#05A6F0"
 tags:
