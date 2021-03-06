@@ -68,12 +68,17 @@ ansible -i hosts all -m shell -a "uptime"
 ````
 ansible-galexe init role_name
 ````
+
+
 #### ansible-playbook
+
+Responsável pela execução dos playbooks mais complexos, temos o comando ansible playbook que após estrtururado todo o projeto basta executa-lo passando como parâmetro o arquivo de inventário e o main.yml, observe:
+
 ````
 ansibe-playbook -i hosts main.yaml
 ````
-#### ansible-vault 
 
+#### ansible-vault 
 encryption/decryption utility for Ansible data files
 
 
