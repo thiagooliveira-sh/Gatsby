@@ -4,7 +4,7 @@ title: Ansible Primeiros passos
 description: O Ansible é uma ferramenta de automação de código aberto usada para
   configurar servidores, instalar software e executar uma grande variedade de
   tarefas de TI a partir de uma localização central.
-date: 2021-02-05
+date: 2021-03-09
 category: devops
 background: "#05A6F0"
 tags:
