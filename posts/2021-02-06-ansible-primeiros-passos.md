@@ -18,7 +18,7 @@ Embora voltado para administradores de sistema com acesso privilegiado que rotin
 
 Antes de começarmos, é necessário que tenha o Ansible instalado na sua máquina ou na máquina que utilizará para executar os seus playbooks, dessa forma você poderá seguir o processo de instalação através do [site oficial](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) de acordo com o seu sistema operacional. 
 
-Além disso, é necessário que tenha acesso ssh as máquinas de destino para que o ansible realize as suas configurações, se não definido uma chave SSH ele utilizará a chave padrão do seu usuário.
+Além disso, é necessário que tenha acesso SSH as máquinas de destino para que o Ansible realize as suas configurações, se não definido uma chave SSH ele utilizará a chave padrão do seu usuário. Nesse lab nós utilizaremos máquinas CentOs7.
 
 ### Estrutura
 
@@ -121,7 +121,7 @@ Feito isso, o Ansible irá criar toda a estrutura de roles padrão, nesse ambien
 
 #### install-basics
 
-Nesse playbook precisaremos instalar os seguintes pacotes nas máquinas `vim`, `screen`, `epel-release` e o `htop`. Para isso vamos utilizar o módulo do yum para o Ansible, basicamente a estrutura do módulo e essa:
+Nesse playbook precisaremos instalar os seguintes pacotes nas máquinas `vim`, `screen`, `epel-release` e o `htop`. Para isso vamos utilizar o módulo do [yum](https://docs.ansible.com/ansible/2.3/yum_module.html) para o Ansible, basicamente a estrutura do módulo e essa:
 
 ```yaml
 - name: instalação de pacote
@@ -177,7 +177,7 @@ Nessa role enviaremos um arquivo de script apenas para a máquina que estão no 
     └──   └── main.yml
 ```
 
-Feito isso, vamos configurar o nosso main.yml em nossas taks para realizar o envio do arquivo, utilizaremos o módulo de sincronia:
+Feito isso, vamos configurar o nosso main.yml em nossas taks para realizar o envio do arquivo, utilizaremos o módulo de [sincronia](https://docs.ansible.com/ansible/2.3/synchronize_module.html):
 
 ```yaml
 - name: Enviando script
@@ -233,6 +233,6 @@ ansible-playbook -i hosts main.yaml
 
 Executado, você receberá na tela uma plano de execução, com as mudanças que o Ansible realiza, esse plano servirá como report, dessa forma você saberá se em algum momento o playbook retorne erro. 
 
-Todo o projeto desenvolvido nesse artigo encontra-se disponível no github para consulta e para que possam comparar com os arquivos de vocês.
+Todo o projeto desenvolvido nesse artigo encontra-se disponível no [github](https://github.com/thiagoalexandria/ansible-post) para consulta e para que possam comparar com os arquivos de vocês.
 
 Caso tenham alguma dúvida, só deixar no campo de comentários! Até a próxima!
