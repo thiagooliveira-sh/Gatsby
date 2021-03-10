@@ -37,7 +37,7 @@ O arquivo `hosts` será um arquivo servirá como inventário, podemos separar as
 192.168.0.3
 
 [app2]
-192.168.0.4
+192.168.1.3
 ````
 
 Dessa forma, populamos o nosso arquivo de inventário com os grupos `app1` e `app2` especificando qual o endereço das máquinas targets. Os diretórios `vars` e roles` servirão para armazenar as variáveis do projeto e os passos que serão aplicados, respectivamente.
@@ -119,6 +119,74 @@ Feito isso, o Ansible irá criar toda a estrutura de roles padrão, nesse ambien
     └──  └── main.yml
 ````
 
+#### install-basics
+
+Nesse playbook precisaremos instalar os seguintes pacotes nas máquinas `vim`, `screen`, `epel-release` e o `htop`. Para isso vamos utilizar o módulo do yum para o Ansible, basicamente a estrutura do módulo e essa:
+
+````
+- name: instalação de pacote
+  yum:
+    name: PROGRAMA
+    state: latest
+```` 
+
+Em `PROGRAMA` é necessário inserir o nome do pacote que deseja instalar, no nosso caso vamos colocar um bloco para cada um. Para poder realizar a instalação do htop, é necessário que o epel seja instalado antes e que realizemos o upgrade dos pacotes então ficaremos com a seguinte estrutura
+
+````
+---
+# tasks file for install-basics
+
+- name: install vim
+  yum:
+    name: vim
+    state: latest
+
+- name: install screen
+  yum:
+    name: screen
+    state: latest
+
+- name: install epel
+  yum:
+    name: epel-release
+    state: latest
+
+- name: upgrade all packages
+  yum:
+    name: '*'
+    state: latest
+
+- name: install htop
+  yum:
+    name: htop
+    state: latest
+````
+
+Pronto, feito isso a primeira parte do playbook esta feita, vamos agora configurar a segunda role.
+
+#### import-files
+
+Nessa role enviaremos um arquivo de script apenas para a máquina que estão no grupo `app2`, dessa forma vamos fazer o seguinte, criaremos um arquivo `.sh` no diretório de files, da seguinte maneira:
+
+````
+├── import-files
+│   ├── files
+│   │     └── import.sh
+│   ├── README.md
+└── ├── tasks
+    └──   └── main.yml
+````
+
+Feito isso, vamos configurar o nosso main.yml em nossas taks para realizar o envio do arquivo, utilizaremos o módulo de sincronia:
+
+````
+- name: Enviando script
+  synchronize:
+    src: files/import.sh
+    dest: /tmp/
+````
+
+Pronto, nessa role só precisamos dessa configuração para realizarmos o envio. Vamos agora partir para a configuração do nosso main.yml da raiz do projeto, que terá todas as chamadas das roles e seus grupos.
 
 ### Execução
 
