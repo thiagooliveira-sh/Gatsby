@@ -31,7 +31,7 @@ Dentro de um projeto Ansible podemos falar que teremos um formato de estrutura p
 └── vars
 ```
 
-O arquivo `hosts` será um arquivo servirá como inventário, podemos separar as máquinas por grupos para que granulação da aplicação das regras, por exemplo:
+O arquivo `hosts` será um arquivo que servirá como inventário, podemos separar as máquinas por grupos, separando quais ações serão aplicadas a cada um, por exemplo:
 
 ```yaml
 [app1]
@@ -41,17 +41,17 @@ O arquivo `hosts` será um arquivo servirá como inventário, podemos separar as
 192.168.1.3
 ```
 
-Dessa forma, populamos o nosso arquivo de inventário com os grupos `app1` e `app2` especificando qual o endereço das máquinas targets. Os diretórios `vars` e roles` servirão para armazenar as variáveis do projeto e os passos que serão aplicados, respectivamente.
+Dessa forma, populamos o nosso arquivo de inventário com os grupos `app1` e `app2` especificando qual o endereço das máquinas targets. Os diretórios `vars` e \`roles\` servirão para armazenar as variáveis do projeto e os passos que serão aplicados, respectivamente.
 
 O arquivo `main.yml` faremos a estruturação do projeto e chamada das ações definidas através das roles.
 
 ### Comandos
 
-Com a instalação do Ansible, nos deparamos alguns comandos que podem ser utilizados, vamos abordar apenas alguns que julgo mais importante, tendo em vista que vamos iniciar no conteúdo hoje.
+Com a instalação do Ansible, nos deparamos com alguns comandos que podem ser utilizados. Abordaremos apenas alguns que julgo mais importante, tendo em vista que iniciaremos no conteúdo hoje.
 
 #### ansible
 
-O comando `ansible` pode ser utilizado para executar alguns playbooks mais simples a nível de comando, sendo possível a execução com alguns módulos. O mais simples, é o módulo ping, para testar a comunicação com as maquinas de destino:
+Com o comando `ansible` é possível executarmos chamadas através de alguns módulos. O mais simples, é o módulo ping, para testar a comunicação com as maquinas de destino configuradas no nosso inventário:
 
 ```shell
 ansible -i hosts all -m ping
@@ -65,7 +65,7 @@ ansible -i hosts all -m shell -a "uptime"
 
 #### ansible-galaxy
 
-Podemos utilizar o ansible-galaxy para realizar a criação da estrutura das nossas roles, geralmente utilizamos esse comando dentro do diretório que armazenará a role:
+O ansible-galaxy é utilizado para realizar a criação da estrutura das nossas roles, geralmente utilizamos esse comando dentro do diretório que armazenará a role:
 
 ```shell
 ansible-galexy init role_name
@@ -79,15 +79,11 @@ Responsável pela execução dos playbooks mais complexos, executando todas role
 ansibe-playbook -i hosts main.yaml
 ```
 
-#### ansible-vault
-
-encryption/decryption utility for Ansible data files
-
 ### Primeiro Playbook
 
-Vamos criar o nosso primeiro playbook, vamos defnir da seguinte forma, criaremos uma role para instalação de alguns pacotes em ambas as máquinas e em seguida enviaremos um script apenas para as máquinas do grupo `app2`. 
+Criaremos o nosso primeiro playbook, definiremos da seguinte forma, uma role para instalação de alguns pacotes em ambas as máquinas e uma segunda para o envio de um script apenas para as máquinas do grupo `app2`. 
 
-Dessa forma, vamos criar as nossas roles utilizando o ansible-galay, certifique-se de que a sua estrutura de arquivos já encontra-se semelhante ao que temos abaixo:
+Definido isso, utilizamos o comando ansible-galay para criação da estrutura das nossas roles, certifique-se de que a sua estrutura de arquivos já encontra-se semelhante ao que temos abaixo:
 
 ```yaml
 ├── hosts
@@ -97,14 +93,14 @@ Dessa forma, vamos criar as nossas roles utilizando o ansible-galay, certifique-
     └── vars.yml
 ```
 
-Feito isso, acesse o diretório de roles e crie duas roles, da seguinte forma:
+Feito a confirmação, acesse o diretório de roles e crie duas roles, da seguinte forma:
 
 ```shell
 ansible-galexy init install-basics
 ansible-galexy init import-files
 ```
 
-Feito isso, o Ansible irá criar toda a estrutura de roles padrão, nesse ambiente utilizaremos apenas os diretórios de `tasks` e `files` os demais podem ser removidos, ficando dessa forma:
+Após concluído o Ansible irá criar toda a estrutura de roles padrão, nesse exemplo utilizaremos apenas os diretórios de `tasks` e `files` os demais podem ser removidos, ficando apenas esses:
 
 ```
 ├── import-files
@@ -121,7 +117,7 @@ Feito isso, o Ansible irá criar toda a estrutura de roles padrão, nesse ambien
 
 #### install-basics
 
-Nesse playbook precisaremos instalar os seguintes pacotes nas máquinas `vim`, `screen`, `epel-release` e o `htop`. Para isso vamos utilizar o módulo do [yum](https://docs.ansible.com/ansible/2.3/yum_module.html) para o Ansible, basicamente a estrutura do módulo e essa:
+Nesse playbook precisaremos instalar os seguintes pacotes nas máquinas, `vim`, `screen`, `epel-release` e o `htop`. Para isso utilizaremos o módulo do [yum](https://docs.ansible.com/ansible/2.3/yum_module.html) do Ansible, basicamente a estrutura do módulo é essa:
 
 ```yaml
 - name: instalação de pacote
@@ -130,7 +126,7 @@ Nesse playbook precisaremos instalar os seguintes pacotes nas máquinas `vim`, `
     state: latest
 ```
 
-Em `PROGRAMA` é necessário inserir o nome do pacote que deseja instalar, no nosso caso vamos colocar um bloco para cada um. Para poder realizar a instalação do htop, é necessário que o epel seja instalado antes e que realizemos o upgrade dos pacotes então ficaremos com a seguinte estrutura
+Em `PROGRAMA` é necessário inserir o nome do pacote que deseja instalar, no nosso caso colocaremos um bloco para cada um. Na instalação do htop, é necessário que o epel seja instalado antes e que realizemos o upgrade dos pacotes então ficaremos com a seguinte estrutura
 
 ```yaml
 ---
@@ -162,11 +158,11 @@ Em `PROGRAMA` é necessário inserir o nome do pacote que deseja instalar, no no
     state: latest
 ```
 
-Pronto, feito isso a primeira parte do playbook esta feita, vamos agora configurar a segunda role.
+Pronto, feito isso a primeira parte do playbook esta feita, partimos para a segunda role.
 
 #### import-files
 
-Nessa role enviaremos um arquivo de script apenas para a máquina que estão no grupo `app2`, dessa forma vamos fazer o seguinte, criaremos um arquivo `.sh` no diretório de files, da seguinte maneira:
+Nessa role enviaremos um arquivo de script apenas para a máquina que estão no grupo `app2`, dessa forma utilizamos da seguinte logica, criaremos um arquivo `.sh` no diretório de files:
 
 ```
 ├── import-files
@@ -177,7 +173,7 @@ Nessa role enviaremos um arquivo de script apenas para a máquina que estão no 
     └──   └── main.yml
 ```
 
-Feito isso, vamos configurar o nosso main.yml em nossas taks para realizar o envio do arquivo, utilizaremos o módulo de [sincronia](https://docs.ansible.com/ansible/2.3/synchronize_module.html):
+Feito isso, basa configurar o nosso main.yml em nossas \`taks\` para realizar o envio do arquivo, utilizaremos o módulo de [sincronia](https://docs.ansible.com/ansible/2.3/synchronize_module.html):
 
 ```yaml
 - name: Enviando script
@@ -186,7 +182,7 @@ Feito isso, vamos configurar o nosso main.yml em nossas taks para realizar o env
     dest: /tmp/
 ```
 
-Pronto, nessa role só precisamos dessa configuração para realizarmos o envio. Vamos agora partir para a configuração do nosso main.yml da raiz do projeto, que terá todas as chamadas das roles e seus grupos.
+Pronto, nessa role só precisamos dessa configuração para realizarmos o envio. Partimos agora para a configuração do nosso main.yml da raiz do projeto, que terá todas as chamadas das roles e seus grupos.
 
 #### Organizando a execução
 
@@ -195,7 +191,7 @@ Para que o nosso playbook saiba o que e onde executar as roles, precisamos espec
 Dessa forma, configuraremos que todas as máquinas recebam a instalação dos pacotes e que somente o grupo `app2` receba o script, definiremos da seguinte forma:
 
 ```yaml
-- hosts: app1
+- hosts: all
   become: yes
   user: "{{ user }}"
   vars_files:
@@ -211,7 +207,6 @@ Dessa forma, configuraremos que todas as máquinas recebam a instalação dos pa
     - vars/vars.yml
   gather_facts: no
   roles:
-  - { role: Install, tags: ["install-basics"]  }
   - { role: Import, tags: ["import-files"] }
 ```
 
