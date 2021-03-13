@@ -29,7 +29,7 @@ echo "João Pessoa é cidade bastante antiga."
 echo "Os hoteis de João Pessoa estão lotados."
 ```
 
-Um código muito simples que imprime apenas algumas strings na tela. Imagine que você precise manter esse código porque sua empresa agora determina que a cidade seja Natal em vez de João Pessoa. Claro, você pode ler e alterar cada linha, linha por linha, mas leva muito mais tempo do que antes. Agora imagine que este sistema tenha centenas de linhas de código. Ou vários arquivos. Mudar tudo se torna cada vez mais complicado e demorado, sem falar que é fácil esquecer um erro. Por outro lado, se nosso código usa uma variável, vamos alterar o valor em apenas um lugar, para que possamos ter certeza absoluta de que está correto em todo o código. Por exemplo:
+Um código muito simples que imprime apenas algumas strings na tela. Imagine que você precise manter esse código porque sua empresa agora determina que a cidade seja Natal em vez de João Pessoa. Claro, você pode ler e alterar cada linha, linha por linha, mas leva muito mais tempo do que antes. Agora imagine que este sistema tenha centenas de linhas de código. Ou vários arquivos. Mudar tudo se torna cada vez mais complicado e demorado, sem falar que é fácil esquecer um erro. Por outro lado, se nosso código usa uma variável, alteraremos o valor em apenas um lugar, para que possamos ter certeza absoluta de que está correto em todo o código. Por exemplo:
 
 ```
 cidade="João Pessoa"
