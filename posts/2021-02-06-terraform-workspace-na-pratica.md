@@ -31,9 +31,9 @@ for this configuration.
 
 A utilização de múltiplos ambientes de trabalho pode ser amplamente utilizada, como por exemplo testar a criação do ambiente em outras zonas ou ambientes de testes. Nesse cenário, podemos utilizar algumas formas de declaração de variável mais maleável, aplicando condicionais simples em nosso código Terraform. 
 
-Seguindo a ideia de termos um workspace de Teste, vamos aplicar algumas regras para alterar a chave privada, AMI e tipo da instancia. Utilizaremos como base o nosso main.tf Criado anteriormente no nosso artigo sobre [Módulos](https://thiagoalexandria.com.br/terraform-criando-módulos/).
+Seguindo a ideia de termos um workspace de Teste, aplicaremos algumas regras para alterar a chave privada, AMI e tipo da instancia. Utilizaremos como base o nosso main.tf Criado anteriormente no nosso artigo sobre [Módulos](https://thiagoalexandria.com.br/terraform-criando-módulos/).
 
-````
+```
 provider "aws" {
   region  = "us-east-1"
   shared_credentials_file = "/home/thiago/.aws/credentials"
@@ -45,13 +45,13 @@ module "server" {
   inst_ami        = "ami-01d025118d8e760db"
   inst_type       = "t2.large"
   inst_key     = "Thiago"
-  tags = {"Name" = "lab-terraform", "Ambiente = "Desenvolvimento"}
+  tags = {"Name" = "lab-terraform", "Ambiente" = "Desenvolvimento"}
 }
-````
+```
 
-Vamos definir que quando estivermos no nosso workspace `Teste` a nossa instancia será `t2.micro`, utilizaremos outra AMI e a chave privada será outra, teremos algo próximo a isso:
+Definiremos que quando estivermos no nosso workspace `Teste` a nossa instancia será `t2.micro`, utilizaremos outra AMI e a chave privada será outra, teremos algo próximo a isso:
 
-````
+```
 module "server" {
   source          = "./modules/Ec2"
   inst_ami        = terraform.workspace == "Teste" ? "ami-01d025118d8e760db" : "ami-70ctopa4mfwdxqd3j"
@@ -59,14 +59,13 @@ module "server" {
   inst_key        = terraform.workspace == "Teste" ? "Thiago" : "Thiago2"
   tags = {"Name" = "${terraform.workspace == "Teste" ? "lab-terraform-tst" : "lab-terraform""}, "Ambiente = "${terraform.workspace == "Teste" ? "Teste" : "Desenvolvimento""}}
 }
-
-````
+```
 
 Com o nosso ambiente já configurado para tratar a utilização dos workspace, vamos entender a lógica por trás disso:
 
-````
+```
 terraform.workspace == "WOKSPACE_NAME" ? "ARG_1" : "ARG_2"
-````
+```
 
 * WORKSPACE_NAME = Nome do workspace que queremos tomar como base.
 * ARG_1 = Valor que será utilizado caso o workspace seja o definido em WOKSPACE_NAME.
@@ -74,4 +73,4 @@ terraform.workspace == "WOKSPACE_NAME" ? "ARG_1" : "ARG_2"
 
 Bom, a ideia é bem simples, temos vários cenários cujo essa estratégia pode ser adotada. Com esse artigo, chegamos ao fim dessa trilha de artigos introdutórios sobre Terraform, pretendo trazer futuramente alguns pontos mais complexos, assim como outras tecnologias.
 
-Até a próxima! 
+Até a próxima!
