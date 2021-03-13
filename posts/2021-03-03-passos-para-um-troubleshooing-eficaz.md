@@ -12,10 +12,16 @@ tags:
 categories:
   - Linux
 ---
-Não seja um desesperado, muito menos o cara que já sai pedindo ajuda sem nem entender o problema. Aqui vão alguns passos que podem te ajudar.\
-\
-REGRA 1: Gaste o maior tempo da sua análise entendendo o problema. Veja as mensagens. LEIA as mensagens. Tente interpretar. Faça perguntas (se estiver com um usuário). Use perguntas abertas e fechadas para ir deduzindo o que está ocorrendo.\
-\
+Não precisamos nos desesperar e sair correndo atrás de ajuda sem nem entender o que se passa, antes de começar uma análise de  troubleshooting é interessante partirmos de alguns princípios básicos:
+
+* Entenda o problema e o serviço/aplicação
+* Interprete e reproduza
+* Leia os logs 
+
+Seguindo esse fluxo, a compreensão e resolução dos problemas serão sempre muito simples. Entender o problema, compreender o funcionamento do serviço 
+
+
+
 No momento que você entende realmente o problema, tuuuudo fica mais fácil.\
 \
 REGRA 2: Agora que você já sabe e entende o problema, basta definir as possíveis causas que você acredita que possam ter causado isso...\
