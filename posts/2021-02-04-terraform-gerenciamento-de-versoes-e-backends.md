@@ -20,7 +20,7 @@ No Terraform temos a possibilidade de definirmos algumas regras para o nosso pro
 
 Cada projeto Terraform pode especificar um backend, que define onde e como e onde os arquivos de estado são armazenados etc.
 
-Existem alguns tipos de backends, remoto e local. Se você estiver aprendendo a utilizar o Terraform agora, é indicado que utilize o backend local, que não necessita de nenhuma configuração. Caso tenha pretensão de utiliza-lo de forma profissional, vamos abordar a configuração de um backend remoto.  
+Existem alguns tipos de backends, remoto e local. Se você estiver aprendendo a utilizar o Terraform agora, é indicado que utilize o backend local, que não necessita de nenhuma configuração. Caso tenha pretensão de utiliza-lo de forma profissional, será abordado a configuração de um backend remoto.  
 
 ## Inicialização
 
@@ -56,7 +56,7 @@ Acima, estamos referenciando algumas informações referente ao nosso beckend:
 
 O comum nesse caso, para configuração de versões, é criado um arquivo chamado `versions.tf` e nele podemos definir as versões que devem ser utilizadas:
 
-````
+```
 terraform {
 
   required_version = "~> 0.14"
@@ -68,8 +68,8 @@ terraform {
     }
   }
 }
-````
+```
 
 Acima definimos a versão necessária do nosso Terraform e do nosso provider. A expressão `~>` define que apenas as minor releases são aceitas. Por exemplo, caso já esteja disponível a versão 3.0.6 a mesma encontra-se apta para utilização no nosso projeto.
 
-É isso pessoal, espero que tenham entendido a ideia referente a utilização de beckends e configurações de versões. Em nosso próximo artigo abordaremos a configuração de workspaces. 
+É isso pessoal, espero que tenham entendido a ideia referente a utilização de beckends e configurações de versões. Em nosso próximo artigo abordaremos a configuração de workspaces.
