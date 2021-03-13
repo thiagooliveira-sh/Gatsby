@@ -1,12 +1,11 @@
 ---
 image: /assets/img/HashiCorp-Terraform-logo.png
 title: Criando uma instância EC2 usando Terraform
-description: >-
-  O Terraform é uma das ferramentas de infraestrutura muito popular e um dos
-  produtos da HashiCorp
-date: '2020-06-24'
+description: O Terraform é uma das ferramentas de infraestrutura muito popular e
+  um dos produtos da HashiCorp
+date: 2020-06-24
 category: devops
-background: '#05A6F0'
+background: "#05A6F0"
 tags:
   - Devops
   - Terraform
@@ -45,7 +44,7 @@ unzip terraform_0.12.26_linux_amd64.zip
 sudo mv terraform /usr/local/bin/
 ```
 
-1. Feito isso, para testar vamos executar o comando abaixo: 
+1. Feito isso, para testar executamos o comando abaixo: 
 
 ```shell
 terraform --version
@@ -94,13 +93,13 @@ No arquivo acima descrevemos o nosso provider sendo `aws` repassando as nossas c
 
 ### Iniciando o terraform
 
-Feito toda a configuração, vamos preparar o nosso diretório usando o comando `terraform init` para realizar o download dos plugins da AWS. Você verá que tudo deu certo caso tenha essa mensagem durante o retorno:
+Feito toda a configuração, prepararemos o nosso diretório usando o comando `terraform init` para realizar o download dos plugins da AWS. Você verá que tudo deu certo caso tenha essa mensagem durante o retorno:
 
 ```
 Terraform has been successfully initialized!
 ```
 
-Agora vamos executar o comando `terraform plan` . Isso nos permitirá ver o plano de ação que o Terraform fará antes de decidirmos definir a infra, esse comando pode demorar um pouco, verifique se as informações seguem de acordo com o planejado nos arquivos, no fim o seu plan deve ter algo semelhante a esse.
+Agora executaremos o comando `terraform plan` . Isso nos permitirá ver o plano de ação que o Terraform fará antes de decidirmos definir a infra, esse comando pode demorar um pouco, verifique se as informações seguem de acordo com o planejado nos arquivos, no fim o seu plan deve ter algo semelhante a esse.
 
 ```shell
 Plan: 1 to add, 0 to change, 0 to destroy.
