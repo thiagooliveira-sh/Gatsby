@@ -22,12 +22,12 @@ Um módulo é um contêiner para vários recursos usados ​​juntos. Os módul
 Os arquivos `.tf` em seu diretório de trabalho formam juntos o módulo raiz. Esse módulo pode chamar outros módulos e conectá-los, passando os valores de saída (outputs) de um para os valores de entrada (inputs) de outro.
 
 ## Estrutura de um Módulo
+
 Módulos reutilizáveis ​​são definidos usando todos os mesmos conceitos de linguagem de configuração que usamos nos módulos raiz. Mais comumente, os módulos usam:
 
 * Input  aceitam valores do módulo chamado.
-* Output para retornar resultados, que ele pode usar para preencher argumentos em outro lugar.
+* Output para retornar resultados, que ele pode usar para preencher argumentos em outro lugar.
 * Resources para definir um ou mais objetos de infraestrutura que o módulo gerenciará.
-
 
 Para definir um módulo, basta criar um novo diretório para ele e coloque um ou mais arquivos `.tf` dentro, da mesma forma que faria em um `root module`. O Terraform pode carregar módulos de forma local ou de repositórios remotos. Se um módulo for reutilizado por várias configurações, você pode colocá-lo em seu próprio repositório de controle de versão.
 
@@ -41,9 +41,9 @@ Após entender como funciona e qual a estrutura de um módulo, iremos configurar
 │       ├── main.tf
 │       └── variables.tf
 └── main.tf
-``` 
+```
 
-Para construir o nosso módulo, precisamos ajusta-lo para trabalhar de forma genérica, então vamos repassar todos os parâmetros em forma de variável. O nosso `Ec2/main.tf` ficará da seguinte forma:
+Para construir o nosso módulo, precisamos ajusta-lo para trabalhar de forma genérica, então repassaremos todos os parâmetros em forma de variável. O nosso `Ec2/main.tf` ficará da seguinte forma:
 
 ```
 resource "aws_instance" "Teste" {
@@ -88,7 +88,7 @@ module "server" {
   inst_ami        = "ami-01d025118d8e760db"
   inst_type       = "t2.micro"
   inst_key     = "Thiago"
-  tags = {"Name" = "lab-terraform-tst", ""Ambiente = "Desenvolvimento"}
+  tags = {"Name" = "lab-terraform-tst", "Ambiente" = "Desenvolvimento"}
 }
 ```
 
@@ -106,7 +106,7 @@ module "server" {
   inst_ami        = "ami-01d025118d8e760db"
   inst_type       = "t2.micro"
   inst_key     = "Thiago"
-  tags = {"Name" = "lab-terraform-tst", ""Ambiente = "Desenvolvimento"}
+  tags = {"Name" = "lab-terraform-tst", "Ambiente" = "Desenvolvimento"}
 }
 
 module "server2" {
@@ -114,7 +114,7 @@ module "server2" {
   inst_ami        = "ami-u40jymjdk5040h8f"
   inst_type       = "t2.2xlarge"
   inst_key     = "Thiago2"
-  tags = {"Name" = "lab-terraform-prd", ""Ambiente = "Produção"}
+  tags = {"Name" = "lab-terraform-prd", "Ambiente" = "Produção"}
 }
 ```
 
