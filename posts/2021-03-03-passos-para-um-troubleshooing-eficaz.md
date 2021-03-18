@@ -65,15 +65,15 @@ journalctl -xe | grep SERVICO
 
 as opções `-xe` vão nos retornar algumas informações relevantes para tratarmos os problemas, o `-e` irá retornar as ultimas linhas do arquivo de journal, a opção `-x` adiciona textos de ajuda que podem explicar o contexto de um erro ou evento de log. Algumas vezes contem mais informações que o log do próprio serviço.
 
-#### Comandos úteis
+### Comandos úteis
 
 Temos alguns comandos que podem ser úteis durante a análise e identificação de problemas, abordaremos alguns contextos e os comandos que podem ser utilizados para análise.
 
-##### Problema com espaço em disco
+#### Problema com espaço em disco
 
 Nesse cenário temos os comandos `df -h`, `du -h --max-depth=1.` e o `ncdu`. Ambos os comandos vão nos retornar informações referente a utilização de disco do servidor.
 
-###### df
+##### df
 
 Com o comando `df` podemos ter uma visualização sobre o consumo geral de disco e partições, nada muito detalhado, apenas % de utilização. Um df -i mostra o numero de inodes livres tbm:
 
@@ -89,36 +89,36 @@ tmpfs           254908      1  254907    1% /proc/acpi
 tmpfs           254908      1  254907    1% /sys/firmware
 ````
 
-###### du
+##### du
 
 Com o comando `du` começamos a ter mais informações, passamos a ter informações como tamanho de diretórios e arquivos.
 
-###### ncdu
+##### ncdu
 
 Assim como o `du` o `ncdu` informa a utilização de disco por diretório e arquivos, o seu diferencial é a disponibilização de uma interface que permite a navegação dentro dos diretórios e interação com os mesmos, podendo deletar arquivos por exemplo.
 
-###### iotop 
+##### iotop 
 
 O `iotop` é utilizado em cenários que precisamos saber qual processo esta com maior utilização dos discos do sistema.
 
 
-##### Overload e Memória
+#### Overload e Memória
 
 Para análise de utilização de cpu podemos utilizar o comando pidstat, top, htop e free.
 
-###### pidstat
+##### pidstat
 
 O pidstat é uma ferramenta de monitoramento, que torna possível acompanhar cada processo individualmente no Linux. já abordamos a sua utilização em uma [publicação](https://thiagoalexandria.com.br/analise-de-performance-com-pidstat/) dedicada inteiramente a ele.
 
-###### top e htop
+##### top e htop
 
 Esses comandos servem para analisar através de métricas a utilização de recursos por processo, por exemplo consumo de CPU, Ḿemória, IO direcionado por processo.
 
-###### free
+##### free
 
 O comando free permite verificarmos quanto de memória encontra-se alocada pelo sistema e seus processos.
 
-###### dmesg
+##### dmesg
 
 O comando mostra alguns logs uteis do sistema. Legal para procurar por erros de processos ou estouros de memória. Coisas importantes:
 
@@ -139,7 +139,7 @@ Um exemplo de log de erro do dmesg:
 [2320864.954447] TCP: Possible SYN flooding on port 7001. Dropping request.  Check SNMP counters.
 ````
 
-###### strace
+##### strace
 
 Provavelmente a partir desse ponto você já deve saber o processo que mais esta causando problemas e agora precisamos investiga-lo melhor.
 
@@ -184,11 +184,11 @@ test.cfg  nohup.out  original.cfg
 100.00    0,000507                   118         4 total
 ````
 
-##### Comunicação
+#### Comunicação
 
 É comum que em determinados momentos precisemos analisar a comunicação do nosso servidor com serviços ou aplicações externos, para isso podemos contar com os comandos telnet e curl
 
-###### telnet
+##### telnet
 
 Com o telnet conseguimos validar a comunicação com as portas no target, por exemplos, podemos verificar se existe resposta em alguma porta no ambiente de destino:
 
@@ -198,7 +198,7 @@ telnet 192.168.0.4 80
 telnet 192.168.0.4 25
 ```
 
-###### curl
+##### curl
 
 Com o curl podemos verificar algumas chamadas web, enviar tanto `GET` como `POST` para os ambientes externos, para analisar se o nosso ambiente tem comunicação com os urls de destino, podemos apenas executar um `curl` e verificar o seu retorno:
 
