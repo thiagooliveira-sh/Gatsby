@@ -1,6 +1,6 @@
 ---
 image: /assets/img/bash.png
-title: "Passos para um troubleshooing eficaz  "
+title: "Passos para um troubleshooting eficaz  "
 description: Troubleshooting nada mais é do que seguir uma logica de análise
   para resolução de um problema especifico.
 date: 2021-03-18
