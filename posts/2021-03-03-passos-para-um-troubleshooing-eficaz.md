@@ -67,7 +67,7 @@ as opções `-xe` vão nos retornar algumas informações relevantes para tratar
 
 #### Comandos úteis
 
-Temos alguns comandos que podem ser úteis durante a análise e identificação de problemas, vamos abordar alguns contextos e os comandos que podem ser utilizados para análise.
+Temos alguns comandos que podem ser úteis durante a análise e identificação de problemas, abordaremos alguns contextos e os comandos que podem ser utilizados para análise.
 
 ##### Problema com espaço em disco
 
