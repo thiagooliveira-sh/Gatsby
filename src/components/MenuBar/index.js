@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 
 import { Home } from "@styled-icons/boxicons-solid/Home"
 import { SearchAlt2 as Search } from "@styled-icons/boxicons-regular/SearchAlt2"
+import {Dollar} from "@styled-icons/boxicons-regular/Dollar"
 import { Lightbulb as Light } from "@styled-icons/typicons/Lightbulb"
 import { Grid } from "@styled-icons/boxicons-solid/Grid"
 import { ListUl as List } from "@styled-icons/boxicons-regular/ListUl"
@@ -37,6 +38,18 @@ const MenuBar = () => {
           >
           <S.MenuBarItem>
             <Home />
+          </S.MenuBarItem>
+        </S.MenuBarLink>
+        <S.MenuBarLink
+            to="/donate/"
+            cover
+            direction="right"
+            bg={getThemeColor()}
+            duration={0.6}
+            title="Doação"
+          >
+          <S.MenuBarItem>
+            <Dollar />
           </S.MenuBarItem>
         </S.MenuBarLink>
           <S.MenuBarLink
