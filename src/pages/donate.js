@@ -2,9 +2,8 @@ import React from 'react'
 
 import Layout from '../components/Layout/'
 import SEO from '../components/seo'
-import SocialLinks from '../components/SocialLinks'
 
-import { MainContent } from '../styles/base'
+import { MainContent } from '../styles/donate'
 
 const DonatePage = () => (
   <Layout>
@@ -16,7 +15,7 @@ const DonatePage = () => (
       <h1>Donate</h1>
 
       <p>
-      O Nosso blog surgiu com a necessidade de compartilhar conhecimentos sobre Linux, Ansible, Devops, automações. Meu objetivo aqui é compartilhar 
+      O Nosso blog surgiu com a necessidade de compartilhar conhecimentos sobre Linux, Devops, Infraestrutura e Automações. Meu objetivo aqui é compartilhar 
       conhecimento sobre tecnologia para pessoas que não sabem ler em outro idioma a não ser o português. 
       </p>
 
@@ -26,13 +25,12 @@ const DonatePage = () => (
       </p>
 
       <h2>Picpay</h2>
-      <img src="https://thiagoalexandria.com.br/assets/img/picpay.jpeg" />  
+      <img src="https://thiagoalexandria.com.br/assets/img/Picpay.jpeg" alt="Picpay qrcode" />  
 
       <h2>Pix</h2>
-      <img src="https://thiagoalexandria.com.br/assets/img/pix.jpeg"/>
+      <img src="https://thiagoalexandria.com.br/assets/img/Pix.jpeg" alt="Pix qrcode"/>
 
 
-      <SocialLinks/>
     </MainContent>
   </Layout>
 )
