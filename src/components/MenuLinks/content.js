@@ -8,7 +8,7 @@ const links = [
       url: "/about/",
     },
     {
-      label: "Donate",
+      label: "Doações",
       url: "/donate/",
     },
   ]
