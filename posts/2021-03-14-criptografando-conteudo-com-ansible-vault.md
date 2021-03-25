@@ -30,7 +30,7 @@ O processo de criptografia e descriptografia é bem simples e pode ser feito com
 ansible-vault create <nome_do_arquivo>
 ````
 
-Será solicitado uma senha para que só os que a possui conseguirem visualizar o conteúdo. Feito isso, o arquivo estará criptografado, caso tente abrir será retornado algo semelhante a isso:
+Será solicitado uma senha para que só os que a possui conseguirem abrir o conteúdo. Feito isso, o arquivo estará criptografado, caso tente abrir sem o `ansible-vault` será retornado algo semelhante a isso:
 
 ````
 $ cat senhas 
