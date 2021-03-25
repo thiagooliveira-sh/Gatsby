@@ -1,6 +1,6 @@
 ---
 image: /assets/img/ansible-logo.png
-title: " Criptografando conteudo com Ansible Vault"
+title: " Criptografando conteúdo com Ansible Vault"
 description: O Ansible Vault criptografa variáveis ​​e arquivos para que você
   possa proteger conteúdo confidencial, como senhas ou chaves, em vez de
   deixá-los disponíveis nas suas tasks..
