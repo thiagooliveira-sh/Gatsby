@@ -3,7 +3,7 @@ image: /assets/img/ansible-logo.png
 title: " Criptografando conteudo com Ansible Vault"
 description: O Ansible Vault criptografa variáveis ​​e arquivos para que você
   possa proteger conteúdo confidencial, como senhas ou chaves, em vez de
-  deixá-los disponíveis nas duas tasks..
+  deixá-los disponíveis nas suas tasks..
 date: 2021-03-25
 category: devops
 background: "#05A6F0"
@@ -27,7 +27,7 @@ Para o Ansible Vault conseguir criptografar e manter a mínima segurança, ele u
 O processo de criptografia e descriptografia é bem simples e pode ser feito com uma única linha de comando. Para criarmos o arquivo criptografado, utilizaremos a seguinte sintaxe:
 
 ````
-ansible-vault create <nome_do_arquivo>
+ansible-vault create <arquivo>
 ````
 
 Será solicitado uma senha para que só os que a possui conseguirem abrir o conteúdo. Feito isso, o arquivo estará criptografado, caso tente abrir sem o `ansible-vault` será retornado algo semelhante a isso:
@@ -45,22 +45,22 @@ $ANSIBLE_VAULT;1.1;AES256
 Para podermos acessar o seu conteúdo, utilizaremos a opção `view` e para editar a opção `edit` do `ansible-vault`:
 
 ````
-ansible-vault view <nome_do_arquivo>
-ansible-vault edit <nome_do_arquivo>
+ansible-vault view <arquivo>
+ansible-vault edit <arquivo>
 ````
 
 Agora um processo bastante comum é a criptografia do arquivo de variável do Ansible, dessa forma, para criptografarmos um arquivo já existente basta seguirmos com a opção `encrypt`:
 
 ````
-ansible-vault encrypt <nome_do_arquivo>
+ansible-vault encrypt <arquivo>
 ````
 
 Para executar uma playbook que esteja utiliza um arquivo ou variável criptografada é necessário passar o comando da seguinte formar:
 
 ````
-ansible-playbook --ask-vault-pass <nome_do_playbook>
+ansible-playbook --ask-vault-pass <playbook>
 OU
-ansible-playbook --vault-password-file <arquivo_de_senha> <nome_do_playbook>
+ansible-playbook --vault-password-file <arquivo_de_senha> <playbook>
 ````
 
 Finalizando, percebemos que o Ansible Vault é perfeito para proteger informações e implementar o básico de segurança de forma simples.
