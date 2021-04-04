@@ -48,5 +48,14 @@ Observe que cada `*` significa uma variação para a sua configuração, vamos p
 
  * Um agendamento para executar um script de backup todo dia as 23h:
 ```
-00 23 * * * /bin/sh backup.sh
+00 23 * * * /scripts/backup.sh
+```
+* Um agendamento para executar um script de sincronia a cada 10 minutos:
+
+```
+*/10 * * * *  /scripts/sync.sh
+```
+* Uma rotina para limpar os arquivos de um diretório todo dia primeiro ás 10h 
+```
+00 10 */1 * * find /home/thiago/logs/* -type f -delete
 ```
