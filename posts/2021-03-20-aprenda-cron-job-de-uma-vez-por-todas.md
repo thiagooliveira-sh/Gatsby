@@ -40,5 +40,8 @@ Sabendo como interagir com o cron vamos então aprender a sintaxe para realizarm
 
 ### Agendamento
 
+A sintaxe de um agendamento no crontab é bem simples, para entendermos melhor a sua disposição observe abaixo a imagem:
 
 
+
+![]()
