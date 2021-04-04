@@ -42,6 +42,11 @@ Sabendo como interagir com o cron vamos então aprender a sintaxe para realizarm
 
 A sintaxe de um agendamento no crontab é bem simples, para entendermos melhor a sua disposição observe abaixo a imagem:
 
+![](/assets/img/crontab.png)
 
+Observe que cada `*` significa uma variação para a sua configuração, vamos praticar alguns cenários.
 
-![]()
+ * Um agendamento para executar um script de backup todo dia as 23h:
+```
+00 23 * * * /bin/sh backup.sh
+```
