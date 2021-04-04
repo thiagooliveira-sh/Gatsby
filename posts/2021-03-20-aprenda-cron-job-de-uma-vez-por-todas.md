@@ -59,3 +59,14 @@ Observe que cada `*` significa uma variação para a sua configuração, vamos p
 ```
 00 10 */1 * * find /home/thiago/logs/* -type f -delete
 ```
+
+### Permissões Cron
+Os dois arquivos possuem um papel importante quando se trata de cron jobs.
+
+* /etc/cron.allow –se o `cron.allow` existe, ele deve contar o nome do usuário para o usuário utilizar cron jobs.
+* /etc/cron.deny – se o arquivo `cron.allow` não existe, mas o arquivos cron.deny existe, então para usar cron jobs o usuário não deve estar listado no arquivo cron.deny.
+
+
+Sabendo disso, podemos começar a automatizar nossas rotinas que hoje necessitam de uma intervenção manual e deixa-las configuradas no crontab.
+
+Valeu! 
