@@ -2,7 +2,7 @@
 image: /assets/img/bash.png
 title: Aprenda Cron Job de uma vez por todas
 description: O Crontab ou Cron Job é um agendador de tarefas baseado em tempo em sistemas
-date: 2021-03-20
+date: 2021-04-04
 category: linux
 background: "#EE0000"
 tags:
