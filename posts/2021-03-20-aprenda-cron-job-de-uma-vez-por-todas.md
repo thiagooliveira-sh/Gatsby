@@ -10,7 +10,7 @@ tags:
 categories:
   - Linux
 ---
-Sempre existem mais coisas que você pode fazer com muito mais praticidade. Gerenciar tarefas repetitivas usando um processo automatizado é algo que nós da área de tecnologia buscamos diariamente.
+Sempre existirá coisas que você pode fazer com muito mais praticidade. Gerenciar tarefas repetitivas usando um processo automatizado é algo que nós da área de tecnologia buscamos diariamente.
 
 ### O que é um cron job?
 
