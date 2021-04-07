@@ -131,3 +131,8 @@ Para mudar a intensidade que a ser utilizada, basta trocar na linha da div onde 
 Pronto, praticamente você já sabe personalizar e mudar todo o projeto com intuito de criar o seu próprio linkbio, vamos então hospeda-lo.
 
 ### Hospedagem
+
+Para a hospedagem, vamos partir do pressuposto de que você possui um domínio e uma conta no github. 
+
+1. Primeiro crie um novo repositório e faça o upload do projeto nele.
+2. Feito a criação, acesse as opções do repositório e busque por "Github Pages"
