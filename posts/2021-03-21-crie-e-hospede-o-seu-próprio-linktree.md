@@ -110,7 +110,7 @@ Temos três tonalidades para aplicarmos aos itens, se observar configuramos a no
 
 Para mudar a intensidade que a ser utilizada, basta trocar na linha da div onde temos `dark` para o da sua preferencia. Caso queira ir além e criar a sua própria paleta de cores, você pode editar o seu arquivo `style.css` e ajustar as seguintes variáveis
 
-```
+```css
 :root {
 	--darkest-color: #3b3b3b;
 	--lightest-color: #eaf6de;
@@ -121,15 +121,13 @@ Para mudar a intensidade que a ser utilizada, basta trocar na linha da div onde 
 }
 ```
 
-* darkest-color = Cor do body da sua página
-* lightest-color = Cor das bordas
-* highlight-color = Cor que aparecerá quando passamos por cima dos links
-* bright-color-1 = Cor `dark`
-* bright-color-2 = Cor `medium`
-* bright-color-3 = Cor `light`
-
+* `darkest-color` = Cor do body da sua página
+* `lightest-color` = Cor das bordas
+* `highlight-color` = Cor que aparecerá quando passamos por cima dos links
+* `bright-color-1` = Cor `dark`
+* `bright-color-2` = Cor `medium`
+* `bright-color-3` = Cor `light`
 
 Pronto, praticamente você já sabe personalizar e mudar todo o projeto com intuito de criar o seu próprio linkbio, vamos então hospeda-lo.
 
 ### Hospedagem
-
