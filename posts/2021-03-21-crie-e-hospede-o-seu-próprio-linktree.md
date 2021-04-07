@@ -128,11 +128,31 @@ Para mudar a intensidade que a ser utilizada, basta trocar na linha da div onde 
 * `bright-color-2` = Cor `medium`
 * `bright-color-3` = Cor `light`
 
-Pronto, praticamente você já sabe personalizar e mudar todo o projeto com intuito de criar o seu próprio linkbio, vamos então hospeda-lo.
+Pronto, praticamente você já sabe personalizar e mudar todo o projeto com intuito de criar o seu próprio linktree, vamos então hospeda-lo.
 
 ### Hospedagem
 
-Para a hospedagem, vamos partir do pressuposto de que você possui um domínio e uma conta no github. 
+Para a hospedagem, vamos partir do pressuposto de que você possui um domínio e uma conta no Github. 
 
 1. Primeiro crie um novo repositório e faça o upload do projeto nele.
-2. Feito a criação, acesse as opções do repositório e busque por "Github Pages"
+2. Feito a criação, acesse as opções do repositório e busque por "Github Pages" 
+
+![githubpages1](/assets/img/pages1.png)
+
+3. Em source`  defina a branch do projeto, geralmente será a master e clique em save, você terá algo semelhante a isso:
+
+![](/assets/img/pages2.png)
+
+Observe que ele informará o url do seu site, como nós vamos utilizar um domínio personalizado, vamos primeiro pegar os IPs que respondem pelo nosso domínio. Para isso o Github indica que peguemos da seguinte forma.
+
+```
+dig <GITHUB-USER>.github.io
+```
+
+Será retornado em torno de 4 endereços, pegue-os e crie a entrada de subdomínio na sua zona DNS, no nosso caso criei o subdomínio linkbio.thiagoalexandria.com.br e dis os devidos apontamentos. 
+
+Por ultimo voltamos as configurações do nosso repositório e vamos até a opção `custom domain` e inserimos o nosso domínio personalizado.
+
+Pronto, basta esperar a propagação DNS do seu provedor e realizar os acessos, indico fortemente a utilização do Cloudflare para uma rápida propagação e suporte a CDN.
+
+Espero que tenham curtido esse modelo de artigo, e que consigam criar os seus próprios linktree inteiramente personalizável.
