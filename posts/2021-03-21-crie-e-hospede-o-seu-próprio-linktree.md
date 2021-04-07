@@ -100,7 +100,7 @@ Crie toda a sua estrutura de links, vou colocar abaixo um exemplo de um linkbio 
       Github
   </div>
 </a>
-``
+```
 
 Entendido como funciona a distribuição dos itens, vamos a personalização.
 
