@@ -3,7 +3,7 @@ image: /assets/img/bash.png
 title: Crie e hospede o seu próprio Linktree
 description: "O Linktree é uma ferramenta bastante utilizada para centralizar
   links para as suas plataformas. "
-date: 2021-04-07
+date: 2021-04-08
 category: dev
 background: "#EB7728"
 tags:
@@ -41,7 +41,7 @@ Feito isso, vamos entender os arquivos:
 └── style.css
 ```
 
-* `CNAME` = Vocês podem limpar remover esse arquivo, ele é gerado automaticamente quando definimos o url personalizado;
+* `CNAME` = Vocês podem limpar ou remover esse arquivo, ele é gerado automaticamente quando definimos o url personalizado;
 * `images` = Será o diretório cujo armazenaremos o favicon e a foto do nosso avatar;
 * `index.hml` = arquivo principal contendo a estrutura do nosso linktree;
 * `style.css` = arquivo de estilo para caso precise alterar as cores.
@@ -149,7 +149,7 @@ Observe que ele informará o url do seu site, como nós vamos utilizar um domín
 dig <GITHUB-USER>.github.io
 ```
 
-Será retornado em torno de 4 endereços, pegue-os e crie a entrada de subdomínio na sua zona DNS, no nosso caso criei o subdomínio linkbio.thiagoalexandria.com.br e dis os devidos apontamentos. 
+Será retornado em torno de 4 endereços, pegue-os e crie a entrada de subdomínio na sua zona DNS, no nosso caso criei o subdomínio linkbio.thiagoalexandria.com.br e realizei os devidos apontamentos. 
 
 Por ultimo voltamos as configurações do nosso repositório e vamos até a opção `custom domain` e inserimos o nosso domínio personalizado.
 
