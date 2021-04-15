@@ -3,7 +3,7 @@ image: /assets/img/bash.png
 title: Conhecendo o Tmux
 description: "tmux é um multiplexador de terminal de código aberto para sistemas
   operacionais do tipo Unix. "
-date: 2021-03-20
+date: 2021-04-15
 category: linux
 background: "#EE0000"
 tags:
@@ -86,7 +86,7 @@ tmux ls
 
 Teremos um retorno semelhante ao da imagem abaixo:
 
-
+![](/assets/img/tmux3.png)
 
 É possível fazer várias sessões com o comando `C`. Para navegar entre elas então vamos usar o número identificador. Por exemplo, a primeira sessão que criamos do terminal regular seria `0`. Se nós criarmos outra sessão ela corresponderá ao número `1`.
 
