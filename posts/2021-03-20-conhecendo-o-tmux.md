@@ -2,8 +2,8 @@
 image: /assets/img/bash.png
 title: Conhecendo o Tmux
 description: Tmux é uma aplicação que é baseada em sessões. Isto é, quando você
-  executa uma utilidade ele abre uma nova sessão. Em cada sessão pode haver
-  vários terminais, porque o Tmux é um multiplexador de terminais.
+  o executa ele abre uma nova sessão. Em cada sessão pode haver vários
+  terminais, porque o Tmux trabalha como um multiplicador de terminais.
 date: 2021-04-15
 category: linux
 background: "#EE0000"
@@ -15,7 +15,7 @@ categories:
 ---
 
 
-Para começar a usar o Tmux, vamos inicialmente intala-lo, para realizar esse processo de instalação é bem simples basta que siga com o processo de instalação referente ao seu gerenciador de pacote:
+Para começar a usar o Tmux, vamos inicialmente instala-lo, para realizar esse processo de instalação é bem simples basta que siga com o processo referente ao seu gerenciador de pacote:
 
 ```
 sudo apt-get install tmux
@@ -35,7 +35,7 @@ Para abrir uma nova sessão basta utilizarmos o comando:
 tmux new
 ```
 
-Uma vez que iniciamos a sessão, veremos o mesmo terminal como sempre, exceto uma barra verde no fundo, observe:
+Uma vez que iniciamos a sessão, notaremos uma barra verde no fundo, observe:
 
 ![](/assets/img/tmux1.png)
 
@@ -57,7 +57,7 @@ A utilidade mais importante do Tmux é que permite diferentes instâncias de ter
 
 ### **Controlando o Tmux**
 
-Para trabalhar com Tmux precisamos ter em mente que para execução de seus comandos precisamos antes entender os seus prefixos, por padrão o prefixo é o CTRL+B. Então o caminho certo para estruturar um comando Tmux é: 
+Para trabalhar com Tmux precisamos ter em mente que para execução de seus comandos precisamos antes entender os seus prefixos, por padrão o prefixo é o `CTRL+B`. Então o caminho certo para estruturar um comando Tmux é: 
 
 ```
 <prefixo> + Comando.
