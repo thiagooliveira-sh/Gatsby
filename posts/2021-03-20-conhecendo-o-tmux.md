@@ -1,8 +1,9 @@
 ---
 image: /assets/img/bash.png
 title: Conhecendo o Tmux
-description: "tmux é um multiplexador de terminal de código aberto para sistemas
-  operacionais do tipo Unix. "
+description: Tmux é uma aplicação que é baseada em sessões. Isto é, quando você
+  executa uma utilidade ele abre uma nova sessão. Em cada sessão pode haver
+  vários terminais, porque o Tmux é um multiplexador de terminais.
 date: 2021-04-15
 category: linux
 background: "#EE0000"
@@ -12,7 +13,7 @@ tags:
 categories:
   - Linux
 ---
-Tmux é uma aplicação que é baseada em sessões. Isto é, quando você executa uma utilidade ele abre uma nova sessão. Em cada sessão pode haver vários terminais, porque o Tmux é um multiplexador de terminais.
+
 
 Para começar a usar o Tmux, vamos inicialmente intala-lo, para realizar esse processo de instalação é bem simples basta que siga com o processo de instalação referente ao seu gerenciador de pacote:
 
