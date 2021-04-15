@@ -101,19 +101,16 @@ Nós podemos ver a sessão atual na barra verde na parte inferior da janela.
 
 Com o Tmux temos a liberdades de dividir a tela do shell, chamado de paineis, tanto horizontalmente como verticalmente. Aumentando os paineis permitindo trabalhar em várias situações ao mesmo tempo, vamos ver então alguns dos principais comandos para trabalhar de forma otimizada com paineis:
 
-#### Janela
-
 * Nova Janela:	`<prefix>+c`
 * Próxima Janela:	`<prefix>+n`
 * Listar todas as janelas:	`<prefix>+w`
 * Renomear uma janela:	`<prefix>+,`
-
-#### Painéis
-
 * Dividir painel na vertical:	`<prefix>+%`
 * Dividir painel na horizontal:	`<prefix>+“`
 * Eliminar o painel:	`<prefix>+x`
 * Mostrar número do painel:	`<prefix>+q`
 * Alternar entre painéis:	`<prefix>+Setas do teclado
 
-Bom, espero que tenham curtido e compreendido `
+
+
+Bom, espero que tenham curtido e que utilizem o tmux cada vez mais para otimizar a produtividade !
