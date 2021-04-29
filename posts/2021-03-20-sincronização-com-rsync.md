@@ -11,15 +11,15 @@ tags:
 categories:
   - Linux
 ---
-Sincronizar pastas ou copiar arquivos manualmente pode consumir muito tempo. A utilidade do Rsync pode fazer a maior parte do trabalho adicionando recursos ótimos para economizar tempo.
+Sincronizar pastas ou copiar arquivos manualmente pode consumir muito tempo. A utilidade do Rsync pode fazer a maior parte do trabalho adicionando recursos ótimos para economizar tempo. 
 
-Qualquer um que trabalhe com sistema Linux deve conhecer e utilizar esse comando poderoso para melhorar sua produtividade. E com a ajuda deste artigo, você vai aprender tudo o que precisa saber para começar a usar.
+Qualquer um que trabalhe com sistema Linux deve conhecer e utilizar esse comando poderoso para melhorar sua produtividade. E com a ajuda deste artigo, você vai aprender tudo o que precisa saber para começar a usar. 
 
-O rsync pode ser utilizado de forma local, no mesmo servidor, por exemplo executar uma rotina de backup salvando em um disco de backup, como também pode ser utilizado entre servidores remotos atraves do SSH.
+O rsync pode ser utilizado de forma local, no mesmo servidor, por exemplo executar uma rotina de backup salvando em um disco de backup, como também pode ser utilizado entre servidores remotos através do SSH. 
 
 ### Sintaxe básica
 
-A utilizaçao do rsync e bem simples, consiste na seguinte estrutura:
+A utilização do rsync e bem simples, consiste na seguinte estrutura:
 
 ```
 rsync [opcionais] [SRC] [DEST]
@@ -27,7 +27,7 @@ rsync [opcionais] [SRC] [DEST]
 
 Neste exemplo, [opcionais] indicam as ações a serem tomadas, [SRC] é o diretório de origem e [DEST] é o diretório ou a máquina de destino.
 
-Quando se fizer necessario a utilizaçao entre hosts, por SSH ou RSH, a sintaxe do rsync seguira da seguinte forma:
+Quando se fizer necessário a utilizaçao entre hosts, por SSH ou RSH, a sintaxe do rsync seguira da seguinte forma:
 
 ```
 # Baixar de algum host para o ambiente local
@@ -72,7 +72,7 @@ Isto diz ao rsync para evitar cruzar os limites do sistema de arquivos quando fo
 -x, --one-file-system
 ```
 
-Para finalizar, temos o que mostra o progresso de sincronizaçao
+Para finalizar, temos o que mostra o progresso de sincronização
 
 ```
 --progress
@@ -80,14 +80,14 @@ Para finalizar, temos o que mostra o progresso de sincronizaçao
 
 ### Exemplos
 
-Temos alguns exemplos sobre a utilizaçao do comando, observe algumas indicaçoes de uso:
+Temos alguns exemplos sobre a utilização do comando, observe algumas indicações de uso:
 
 ```
-# Sincronizar um diretorio de backup para um usuario
+# Sincronizar um diretório de backup para um usuário
 rsync -avx --progress /backup/user/Documentos/ /home/user/Documentos/
 
 # Enviar um backup para um servidor externo
 rynx -avx --progress /backup/app1/backup.tar.gz root@192.168.0.5:/usr/local/app1/
 ```
 
-Bom, espero que tenham compreendido sobre como o rsync funciona e alguns cenarios para sua aplicaçao.
+Bom, espero que tenham compreendido sobre como o rsync funciona e alguns cenários para sua aplicação, até a próxima!
