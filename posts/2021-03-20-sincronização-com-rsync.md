@@ -3,7 +3,7 @@ image: /assets/img/bash.png
 title: Sincronização com Rsync
 description: O Comando Rsync Linux transfere e sincroniza arquivos ou diretórios
   de forma eficiente em uma máquina local ou entre hosts.
-date: 2021-03-20
+date: 2021-04-29
 category: linux
 background: "#EE0000"
 tags:
