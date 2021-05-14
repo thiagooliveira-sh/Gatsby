@@ -87,7 +87,58 @@ resource "kubernetes_config_map" "aws_auth" {
 
 ### Variáveis
 
+Bom, aqui fica a magica, precisamos montar a estrutura de objeto para receber e mapear as Roles e os Usuários. Para isso precisamos entender primeiro o que e necessário para darmos permissão a um usuário e ou a uma role, entao vamos la.
 
+Para adicionarmos a permissão para uma role vamos precisar das seguintes informações:
 
+* `rolearn`
+* `username`
+* `groups`
 
+Ja para adicionarmos um usuário o processo e praticamente o mesmo, diferenciando apenas que nesse inves de inserir uma `rolearn` utilizamos o `userarn`:
 
+* `userarn`
+* `username`
+* `groups`
+
+Sabendo disso, vamos montar a nossa lista de objeto para cada um dos cenários: 
+
+```
+variable "map_additional_iam_roles" {
+  description = "Additional IAM roles to add to `config-map-aws-auth` ConfigMap"
+
+  type = list(object({
+    rolearn  = string
+    username = string
+    groups   = list(string)
+  }))
+
+  default = []
+}
+
+variable "map_additional_iam_users" {
+  description = "Additional IAM users to add to `config-map-aws-auth` ConfigMap"
+
+  type = list(object({
+    userarn  = string
+    username = string
+    groups   = list(string)
+  }))
+
+  default = []
+}
+
+variable "cluster_token" {
+  description = "Cluster authentication token"
+}
+variable "cluster_certificate" {
+  description = "Amazon EKS CA certificate."
+}
+variable "cluster_endpoint" {
+  description = "Amazon EKS private API server endpoint."
+}
+```
+
+Bom, espero que tenha ficado claro e que tenham compreendido bem o cenario, recentemente passei por esse problema e tive uma certa dificuldade com a documentaçao achando apenas alguns fragmentos de explicaçoes.
+
+Ate a proxima.
