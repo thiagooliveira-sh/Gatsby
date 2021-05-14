@@ -19,11 +19,11 @@ categories:
 ---
 Quando você cria um cluster do Amazon EKS, a função ou o usuário da entidade do IAM, que cria o cluster, recebe automaticamente permissões `system:masters` na configuração do RBAC do cluster, no painel de controle.
 
-Para conceder permissao de interagir com o cluster a usuários ou funções adicionais da AWS, e necessario editar o aws-auth ConfigMap no Kubernetes, porem no nosso caso, que ja estamos utilizando o Terraform para criação do cluster, vamos aproveitar para ja subir essa configuração na criação do cluster.
+Para conceder permissão de interagir com o cluster a usuários ou funções adicionais da AWS, e necessário editar o aws-auth ConfigMap no Kubernetes, porém no nosso caso, que ja estamos utilizando o Terraform para criação do cluster, vamos aproveitar para já subir essa configuração na criação do cluster.
 
 ### Estrutura
 
-A nossa estrutura basicamente sera a seguinte:  
+A nossa estrutura basicamente será a seguinte:  
 
 ```
 .
@@ -37,7 +37,7 @@ A nossa estrutura basicamente sera a seguinte:
 * `variables.tf` Definiçao das variáveis.
 
 ### Provider
-Para essa ação não e utilizado o provider da aws, pois quem vai executa-lo sera o proprio kubernetes. Dessa forma vamos precisar configurar o provider para o kubernetes, para isso e necessário que tenhamos as seguintes informações:
+Para essa ação não é utilizado o provider da aws, pois quem vai executá-lo será o proprio kubernetes. Dessa forma vamos precisar configurar o provider para o kubernetes, para isso e necessário que tenhamos as seguintes informações:
 
 * `host` O endpoint que sera utilizado para conexão
 * `cluster_ca_certificate` O certificado que sera utilizado para autenticação TLS
@@ -52,7 +52,7 @@ data "aws_eks_cluster_auth" "example" {
 }
 ```
 
-Indico que o data source seja inserido dentro do módulo de criaçao do cluster e com isso externalizado atravez de um output. Fazendo isso teremos um bloco de provider da seguinte forma:
+Indico que o data source seja inserido dentro do módulo de criaçao do cluster e com isso externalizado através de um output. Fazendo isso teremos um bloco de provider da seguinte forma:
 
 ```
 provider "kubernetes" {
@@ -64,11 +64,11 @@ provider "kubernetes" {
 
 ### AWS-AUTH
 
-Nesse bloco, trabalharemos a disposição e a configuração do nosso aws-auth. Para que possamos personaliza-lo e necessário utilizarmos um resource do kubernetes chamado `kubernetes_config_map`.
+Nesse bloco, trabalharemos a disposição e a configuração do nosso aws-auth. Para que possamos personalizá-lo é necessário utilizarmos um resource do kubernetes chamado `kubernetes_config_map`.
 
 Ele e composto por dois blocos, o `metadata` e o `data`, em `metadata` informaremos o que sera modificado, no nosso caso sera o `aws-auth` do namespace `kube-system`.
 
-Ja em data, repassaremos os dados que serão inputados no nosso `aws-auth`, utilizaremos o `mapRoles` e `mapUsers` para mapear os usuários e roles adicionais que precisam acessar. Uma observação e para que precisamos ajustar a variável para yaml com o `yamlencode`
+Já em data, repassaremos os dados que serão inputados no nosso `aws-auth`, utilizaremos o `mapRoles` e `mapUsers` para mapear os usuários e roles adicionais que precisam acessar. Uma observação e para que precisamos ajustar a variável para yaml com o `yamlencode`
 
 ```
 resource "kubernetes_config_map" "aws_auth" {
@@ -139,6 +139,6 @@ variable "cluster_endpoint" {
 }
 ```
 
-Bom, espero que tenha ficado claro e que tenham compreendido bem o cenario, recentemente passei por esse problema e tive uma certa dificuldade com a documentaçao achando apenas alguns fragmentos de explicaçoes.
+Bom, espero que tenha ficado claro e que tenham compreendido bem o cenário, recentemente passei por esse problema e tive uma certa dificuldade com a documentação achando apenas alguns fragmentos de explicações.
 
-Ate a proxima.
+Até a proxima.
