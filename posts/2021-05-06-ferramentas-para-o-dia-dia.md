@@ -43,7 +43,7 @@ Além de indicar, clicando no codigo de erro seremos direcionado para uma págin
 
 ## tldr-pages
 
-Conheci o [tldr-pages](https://github.com/tldr-pages/tldr) a pouco tempo, foi uma indicação de um amigo e que gostei logo de cara. Ela reune várias man pages, pretendendo ser um complemento mais simples e acessível para os man pages tradicionais.
+Conheci o [tldr-pages](https://github.com/tldr-pages/tldr) a pouco tempo, foi uma indicação de um [amigo](https://linkedin.com/in/kelvinsoares) e que gostei logo de cara. Ela reune várias man pages, pretendendo ser um complemento mais simples e acessível para os man pages tradicionais.
 
 Ou seja, podemos ter acesso a algumas informações sobre as opçoes de um comando e nem sempre o man page dele sera bem estruturado. Dessa forma o ltdr simplifica essa busca retornando de forma objetiva oq precisamos seguido de alguns exemplos.
 
