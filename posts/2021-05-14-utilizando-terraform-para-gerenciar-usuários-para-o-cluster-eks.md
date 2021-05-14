@@ -64,6 +64,11 @@ provider "kubernetes" {
 
 ### AWS-AUTH
 
+Nesse bloco, trabalharemos a disposição e a configuração do nosso aws-auth. Para que possamos personaliza-lo e necessário utilizarmos um resource do kubernetes chamado `kubernetes_config_map`.
+
+Ele e composto por dois blocos, o `metadata` e o `data`, em `metadata` informaremos o que sera modificado, no nosso caso sera o `aws-auth` do namespace `kube-system`.
+
+Ja em data, repassaremos os dados que serão inputados no nosso `aws-auth`, utilizaremos o `mapRoles` e `mapUsers` para mapear os usuários e roles adicionais que precisam acessar. Uma observação e para que precisamos ajustar a variável para yaml com o `yamlencode`
 
 ```
 resource "kubernetes_config_map" "aws_auth" {
@@ -81,6 +86,8 @@ resource "kubernetes_config_map" "aws_auth" {
 ```
 
 ### Variáveis
+
+
 
 
 
