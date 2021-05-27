@@ -24,7 +24,7 @@ Uma dos maiores problemas e que quandos criamos um cluster sem especificar um la
 
 A problemática aparece quando precisamos acessar os nodes, para qualquer tipo de ação ou análise a nível de host. Uma vez que os endereços variam sempre que o autoscale group cria um novo nó para o node group, acaba inviabilizando o acesso por ssh + chave privada quando pensamos em praticidade.
 
-pensando nisso, partimos para a abordagem de criarmos um launch template que realize a instalação do SSM e quando precisarmos realizar uma nova personalização teríamos liberdade para gerencia-la. 
+Pensando nisso, partimos para a abordagem de criarmos um launch template que realize a instalação do SSM e quando precisarmos realizar uma nova personalização teríamos liberdade para gerencia-la. 
 
 Entao vamos la, nessa publicação não vamos abordar a configuração do cluster em geral, apenas a configuração de um módulo para launch template que será consumido durante o provisionamento do seu node group.
 
