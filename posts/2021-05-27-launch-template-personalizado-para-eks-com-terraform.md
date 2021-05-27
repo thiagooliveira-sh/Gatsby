@@ -20,7 +20,7 @@ categories:
   - kubernetes
   - terraform
 ---
-Uma dos maiores problemas e que quandos criamos um cluster sem especificar um launch template ele vai acabar criando as maquinas com o Amazon Linux 2 porem essas que sao utilizadas pelo EKS sao as unicas que nao possuem o SSM instalado por padrao. 
+Um dos problemas de quando criamos um cluster sem especificar um launch template é que ele vai acabar criando as máquinas com o Amazon Linux 2 porém essas que são utilizadas pelo EKS são as únicas que não possuem o SSM instalado por padrão.
 
 A problemática aparece quando precisamos acessar os nodes, para qualquer tipo de ação ou análise a nível de host. Uma vez que os endereços variam sempre que o autoscale group cria um novo nó para o node group, acaba inviabilizando o acesso por ssh + chave privada quando pensamos em praticidade.
 
