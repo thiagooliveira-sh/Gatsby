@@ -24,7 +24,7 @@ Um dos problemas de quando criamos um cluster sem especificar um launch template
 
 A problemática aparece quando precisamos acessar os nodes, para qualquer tipo de ação ou análise a nível de host. Uma vez que os endereços variam sempre que o autoscale group cria um novo nó para o node group, acaba inviabilizando o acesso por ssh + chave privada quando pensamos em praticidade.
 
-Pensando nisso, partimos para a abordagem de criarmos um launch template que realize a instalação do SSM e quando precisarmos realizar uma nova personalização teríamos liberdade para gerencia-la. 
+Pensando nisso, partimos para a abordagem de criarmos um launch template que realize a instalação do SSM e quando precisarmos realizar uma nova personalização teríamos liberdade para gerenciá-la. 
 
 Entao vamos la, nessa publicação não vamos abordar a configuração do cluster em geral, apenas a configuração de um módulo para launch template que será consumido durante o provisionamento do seu node group.
 
@@ -39,7 +39,7 @@ A estrutura de arquivos que utilizaremos, será a seguinte:
 └── variables.tf
 ```
 
-* `launch.tf` = Arquivo principal que ira conter as informações do nosso launch template.
+* `launch.tf` = Arquivo principal que irá conter as informações do nosso launch template.
 * `output.tf` = Arquivo que realizará o output das informações importantes para serem consumidas em outros módulos.
 * `userdata.tpl` = Template que compõem o userdata da nossa instância.
 * `variables.tf` = Arquivo de variáveis do módulo.
