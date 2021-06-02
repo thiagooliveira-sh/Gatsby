@@ -1,6 +1,6 @@
 ---
 image: /assets/img/bash.png
-title: Canivete suico para administracao de servidores cPanel
+title: Canivete suíço para administração de servidores cPanel
 description: O cPanel & WHM possui um API para gerenciamento por linha de comando.
 date: 2021-06-01
 category: linux
