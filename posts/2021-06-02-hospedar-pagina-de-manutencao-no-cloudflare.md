@@ -1,6 +1,6 @@
 ---
 image: /assets/img/bash.png
-title: Hospedar pagina de manutencao no cloudflare
+title: Hospedar página de manutenção no Cloudflare
 description: Em alguns tipos de migração nao podemos deixar o ambiente ligado,
   para evitar inconsistência sabendo disso podemos utilizar o cloudflare para
   hospedar e servir uma página de manutenção enquanto ocorre o processo.
