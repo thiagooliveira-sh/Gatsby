@@ -1,7 +1,7 @@
 ---
 image: /assets/img/bash.png
 title: Hospedar página de manutenção no Cloudflare
-description: "Em alguns tipos de procedimentos, como uma migração, não podemos
+description: "Em alguns tipos de procedimentos, como uma migração, precisamos
   deixar o ambiente fora do ar, seja para evitar inconsistência ou aguardar uma
   propagação DNS. "
 date: 2021-06-04
