@@ -88,7 +88,7 @@ Nesse ambiente estamos criando uma página HTML simples e você poderá editá-l
 
 Feito isso, basta clicar no botão `Salvar e Implantar` e partir para a configuração da rota. Para que a página venha a funcionar vamos precisar criar uma rota apontando para esse worker, para isso vamos em `Workers` > `Adicionar rota`, nessa tela você pode colocar um subdomínio, wildcard, caminho absoluto, faça de acordo com a sua necessidade. No nosso caso vamos deixar apenas para o nosso site principal e apontaremos para o nosso worker:
 
-![cloudflare2](/assets/img/cloudflare2.png)
+![cloudflare2](/assets/img/cloudflare-worker.png)
 
 Pronto, basta que acesse o url configurado e verá que agora a página retornada será a de manutenção semelhante a essa:
 
