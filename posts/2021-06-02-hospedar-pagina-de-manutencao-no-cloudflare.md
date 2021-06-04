@@ -2,7 +2,7 @@
 image: /assets/img/bash.png
 title: Hospedar página de manutenção no Cloudflare
 description: "Em alguns tipos de procedimentos, como uma migração, não podemos
-  deixar o ambiente fora do ar, seja para evitar inconsistencia ou aguardar uma
+  deixar o ambiente fora do ar, seja para evitar inconsistência ou aguardar uma
   propagação DNS. "
 date: 2021-06-04
 category: dev
@@ -18,15 +18,15 @@ categories:
   - Cloudflare
   - HTML
 ---
-Pensando nisso, vamos utilizar um serviço bastante conhecido no mercado que é o Cloudflare, para hospedar uma página de manutenção estática que será disponibilizada diretamente na estrutura de CDN deles.
-
-Antes disso, vamos falar um pouco sobre o que é o Cloudflare, de maneira bem simplificada, CloudFlare é um serviço de CDN que cria uma cópia em cache do seu site e distribui ela por centenas de servidores ao redor do mundo, reduzindo a carga no seu servidor principal primário e aumentando a velocidade de carregamento das suas páginas enviando elas a seus visitantes a partir do servidor proxy mais próximo dele.
-
-Apesar de algumas funcionalidades do Cloudflare serem pagas, disponibiliza uma serie de serviços gratuitos e uma delas será a que utilizaremos, conta com uma funcionalidade chamada worker. 
-
-O Worker é uma funcionalidade do Cloudflare que permite hospedar código javascript e html diretamente na infraestrutura do deles. Com a conta gratuita podemos realizar a criação de um worker e definir as rotas que vao utiliza-lo.
-
-Primeiro de tudo precisamos que o seu site esteja apontado para o DNS do Cloudflare, para isso basta criar uma conta no site deles e realizar o apontamento do seu dominio para os DNS disponibilizado.
+Pensando nisso, vamos utilizar um serviço bastante conhecido no mercado que é o Cloudflare, para hospedar uma página de manutenção estática que será disponibilizada diretamente na estrutura de CDN deles. \
+\
+Antes disso, vamos falar um pouco sobre o que é o Cloudflare, de maneira bem simplificada, CloudFlare é um serviço de CDN que cria uma cópia em cache do seu site e distribui ela por centenas de servidores ao redor do mundo, reduzindo a carga no seu servidor principal primário e aumentando a velocidade de carregamento das suas páginas enviando elas a seus visitantes a partir do servidor proxy mais próximo dele. \
+\
+Apesar de algumas funcionalidades do Cloudflare serem pagas, disponibiliza uma serie de serviços gratuitos e uma delas será a que utilizaremos, conta com uma funcionalidade chamada worker. \
+\
+O Worker é uma funcionalidade do Cloudflare que permite hospedar código javascript e htmldiretamente na infra-estrutura do deles. Com a conta gratuita podemos realizar a criação de um worker e definir as rotas que vão utiliza-lo. \
+\
+Primeiro de tudo precisamos que o seu site esteja apontado para o DNS do Cloudflare, para isso basta criar uma conta no site deles e realizar o apontamento do seu domínio para os DNS disponibilizado.
 
 Feito isso, vamos na aba `Workers` > `Gerenciar Workers` e em seguida basta cliar em `Crie um worker`, você será direcionado a uma página semelhante a essa:
 
