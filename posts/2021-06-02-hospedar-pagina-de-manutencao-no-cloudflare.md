@@ -4,7 +4,7 @@ title: Hospedar página de manutenção no Cloudflare
 description: "Em alguns tipos de procedimentos, como uma migração, não podemos
   deixar o ambiente fora do ar, seja para evitar inconsistencia ou aguardar uma
   propagação DNS. "
-date: 2021-06-01
+date: 2021-06-04
 category: dev
 background: "#EB7728"
 tags:
