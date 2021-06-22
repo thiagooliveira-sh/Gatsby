@@ -10,9 +10,9 @@ tags:
   - Terraform
   - infracost
 ---
-Recentemente comentaram sobre essa ferramenta na empresa em que trabalho e logo decidimos acata-la, o Infracost realiza a estimativa de custo para os nossos projetos com terraform.
+Recentemente comentaram sobre essa ferramenta na empresa em que trabalho e logo decidimos acata-la, o Infracost realiza a estimativa de custo para os nossos projetos com Terraform.
 
-Durante todo o nosso projeto iremos presupor que o terraform ja encontra-se instalado em sua maquina dessa forma precisamos instalar o infracost, para isso siga a orientaçao para o seu sistema operacional:
+Durante todo o artigo iremos presupor que o Terraform já encontra-se instalado em sua máquina dessa forma precisamos instalar o Infracost, para isso siga a orientação para o seu sistema operacional:
 
 ```
 # Brew
@@ -30,13 +30,13 @@ docker run --rm \
   -v $PWD/:/code/ infracost/infracost breakdown --path /code/
 ```
 
-Para utilizarmos precisamos nos registrar para solicitar uma API Key gratuita, dessa forma so precisamos executar o seguinte comando:
+Para utilizarmos precisamos registrar para solicitar uma API Key gratuita, dessa forma só precisamos executar o seguinte comando:
 
 ```
 infracost register
 ```
 
-Feito isso, ja estamos prontos para utilizar os comandos atraves do CLI, atraves dele temos duas opçoes de estimativas, a primeira e o detalhamento completo dos custos utilizando o comando:
+Feito isso, já estamos prontos para utilizar os comandos no CLI, através dele temos duas opções de estimativas, a primeira é o detalhamento completo dos custos utilizando o comando:
 
 ```
 infracost breakdown --path .
@@ -44,7 +44,9 @@ infracost breakdown --path .
 
 Observe a saida do comando:
 
-A segunda forma e a geraçao de um relatorio que mostra as diferenças de custos mensais entre o estado atual e planejado
+![sumario](/assets/img/infra-sumario.png)
+
+A segunda forma é a geração de um relatório que mostra as diferenças de custos mensais entre o estado atual e planejádo
 
 ```
 infracost diff --path .
@@ -52,9 +54,10 @@ infracost diff --path .
 
 Observe a saida do comando:
 
+![diff](/assets/img/infra-diff.png)
 
+A sua utilização principal basea-se nesses dois comandos, fora isso temos algumas variantes para isso basta executar comando seguido de `--help`.
 
+E é assim que a ferramenta Infracost funciona, ela pode ser facilmente inclusa na sua ferramenta de CI, basta seguir a documentação oficial na página da [ferramenta](https://www.infracost.io/docs/integrations/cicd).
 
-
-
-
+Espero que essa tecnologia sejá tão útil para vocês assim como tem sido pra mim, boa semana!
