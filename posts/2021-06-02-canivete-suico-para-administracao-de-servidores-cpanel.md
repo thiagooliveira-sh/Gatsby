@@ -24,7 +24,7 @@ Quando carregado o ambiente terá as seguintes opções:
 
 ## Carregar o ambiente
 
-Todo o script ficará disponíivel em meu github para que possam analisar, para carregar o ambiente no seu servidor basta que sempre que acesse o mesmo carregue da seguinte forma:
+Todo o script ficará disponíivel em meu [github](https://github.com/thiagoalexandria/cpanel) para que possam analisar, para carregar o ambiente no seu servidor basta que sempre que acesse o mesmo carregue da seguinte forma:
 
 ```
 eval "$(curl -s https://raw.githubusercontent.com/thiagoalexandria/cpanel/master/supas.sh)"
@@ -35,9 +35,11 @@ Com o ambiente carregado, podemos seguir com a utilização dos comandos para ge
 ## Principais funções
 
 #### apache_status
+
 Esse comando não precisa de nenhum input, retornará o fullstatus do seu servidor apache, asism como os sockets ocupados e quantidade conexões atuais.
 
 #### restrict_http
+
 Em alguns momentos possivelmente será necessário realizar a restrição de acesso web de um site/usuário cpanel, por exemplo uma conta que teve sua aplicação web comprometida. Para executarmos basta informar o comando acompanhada do nome do usuário cpanel que deseja restringir:
 
 ```
@@ -45,6 +47,7 @@ restrict_http usuario_cpanel
 ```
 
 #### enable_spamass
+
 Para uma rápida ativação da condifuguração de SpamAssassin em uma conta cpanel basta que executemos o comando da seguinte forma:
 
 ```
@@ -52,6 +55,7 @@ enable_spamass usuario_cpanel
 ```
 
 #### global_spambox
+
 Algumas configurações são essenciais, entre elas a configuração global da caixa de spam das contas de e-mail, basta que executemos o comando sem nenhum input inserido:
 
 ```
@@ -59,6 +63,7 @@ global_spambox
 ```
 
 #### mq
+
 Um dos problemas mais comuns em servidores de revenda e hospedagem é o problema frequente com compromentimento de spam ou usuário realizando envio de e-mails em massa para que possamos ter uma visão geral da fila de e-mails podemos executar o comando `mq`:
 
 ```
@@ -66,25 +71,25 @@ mq
 ```
 
 #### delfrozen
+
 Seguindo a ideia com problemas de e-mail, temos uma outra função bastante importante que é a `delfrozen` podendo ser utilizada para deletar os e-mails congelados que por ventura permaneceram na fila de e-mails.
 
 #### cpanel_session
+
 As vezes, quando trabalhamos em servidores gerenciados e só possuimos o acesso shell ao servidor, ficamos limitados em algumas açòes que sao realizadas por meio da interface, pois não temos a senha do user root para login. 
 
 Uma forma muito simples para resolvermos esse problema é gerar uma sessão do WHM de acesso único, dessa forma a API ira gerar um URL temporário, basta executar o comando `cpanel_session`.
 
 #### autossl
+
 Uma parte importante que podemos utilizar é geração de certificados SSL com o autossl repassando apenas a conta cPanel:
 
 ```
 autossl usuario_cpanel
 ```
 
-
 #### servicestatus
+
 Esse comando sera util pois retorna informações referente aos principais serviços do cPanel como tailwatchd, httpd, mysql, exim, sshd, ftpd, crond, imap, pop. Basta executar o comando `servicestatus`.
 
 Bom espero que tenham curtido esse modelo de postagem, e que utilizem do ambiente para trazer mais praticidade no dia a dia de vocês.
-
-
-
