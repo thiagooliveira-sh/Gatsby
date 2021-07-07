@@ -20,7 +20,7 @@ Pensando nisso, durante todo esse tempo trabalhando diretamente com o cPanel, ac
 
 Quando carregado o ambiente terá as seguintes opções:
 
-![](/assets/img/captura-de-tela-2021-07-06-às-20.43.13.png)
+![](/assets/img/menu.png)
 
 ## Carregar o ambiente
 
