@@ -90,6 +90,7 @@ Em alguns ambientes nao podemos perder tempo para ficar indo pessoa por pessoa e
                 "iam:CreateVirtualMFADevice",
                 "iam:EnableMFADevice",
                 "iam:GetUser",
+                "iam:ChangePassword",
                 "iam:ListMFADevices",
                 "iam:ListVirtualMFADevices",
                 "iam:ResyncMFADevice",
@@ -97,7 +98,7 @@ Em alguns ambientes nao podemos perder tempo para ficar indo pessoa por pessoa e
             ],
             "Resource": "*",
             "Condition": {
-                "BoolIfExists": {
+                "Bool": {
                     "aws:MultiFactorAuthPresent": "false"
                 }
             }
