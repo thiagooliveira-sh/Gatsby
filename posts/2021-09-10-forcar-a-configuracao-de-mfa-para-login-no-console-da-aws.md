@@ -1,6 +1,6 @@
 ---
 image: /assets/img/AWS.png
-title: Forcar a configuracao de MFA para login no console da AWS
+title: Forçar a configuração de MFA para login no console da AWS
 description: Todos nós sabemos que a configuração de uma camada extra de
   segurança é sempre bem-vinda, sabendo disso vamos aprender uma forma de forçar
   com que os usuários com acesso ao console só possam realizar essas ações se
