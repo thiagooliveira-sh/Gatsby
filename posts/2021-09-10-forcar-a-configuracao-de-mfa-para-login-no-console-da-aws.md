@@ -21,11 +21,11 @@ categories:
   - console
   - IAM
 ---
-Você pode permitir que seus usuários gerenciem os próprios dispositivos e credenciais de autenticação multifator (MFA) porem como garantiremos que eles realizem a configurçao para poder começar a utilizar o console de gerenciamento ?
+Você pode permitir que seus usuários gerenciem os próprios dispositivos e credenciais de autenticação multifator (MFA) porem como garantiremos que eles realizem a configuração para poder começar a utilizar o console de gerenciamento ?
 
-Em alguns ambientes nao podemos perder tempo para ficar indo pessoa por pessoa e solicitando que encarecidamente o individuo realize a configuraçao do MFA na sua cont, dessa forma vamos aprender como forçar com que qualquer açao dentro do console so seja possivel se o usuario possuir o MFA configurado em sua conta. 
+Em alguns ambientes nao podemos perder tempo para ficar indo pessoa por pessoa e solicitando que encarecidamente o individuo realize a configuração do MFA na sua conta, dessa forma vamos aprender como forçar com que qualquer ação dentro do console só seja possível se o usuário possuir o MFA configurado em sua conta. 
 
-### Etapa 1: Criar uma política para impor a utilização do MFA
+### 1: Criar uma política para impor a utilização do MFA
 
 1. Faça login no Console de Gerenciamento da AWS como um usuário com credenciais de administrador.
 2. Abra o console do IAM.
@@ -104,7 +104,7 @@ Em alguns ambientes nao podemos perder tempo para ficar indo pessoa por pessoa e
         }
     ]
 }
-``` 
+```
 
 O que essa política faz?
 
@@ -116,15 +116,15 @@ A instrução `AllowManageOwnVirtualMFADevice` permite que o usuário crie e atu
 
 A instrução `DenyAllExceptListedIfNoMFA` nega acesso a todas as ações em todos os serviços da AWS, exceto algumas ações listadas, mas somente se o usuário não estiver conectado com MFA. 
 
-### Etapa 2: anexar políticas ao grupo
+### 2: anexar políticas ao grupo
 
 Anexe a política nos grupos da sua conta no qual os usuarios que acessam o console estao inserido.
 
+### 3: Testar o acesso do usuário
 
-### Etapa 3: Testar o acesso do usuário
+Crie um usuário novo sem nenhuma configuração de MFA, apenas para teste, inserindo no grupo utilizado na Etapa 2. Feito isso basta realizar login e observar que o mesmo não tera permissão para nada além da alteração de MFA, observe:
 
-Crie um usuário novo sem nenhuma configuração de MFA, apenas para teste, inserindo no grupo utilizado na Etapa 2. Feito isso basta realizar login e observar que o mesmo não tera permissão para nada alem da alteração de MFA, observe:
-
+![console](/assets/img/console.png)
 
 Pronto, basta inserir os seus usuários no grupo de acesso, ou criar um grupo padrão cujo os usuários devem ser adicionados sempre que for utilizar o console da Amazon. Dessa forma não precisamos nos preocupar pois através do console não será possível realizar nenhuma intervenção sem que exista uma configuração de MFA.
 
