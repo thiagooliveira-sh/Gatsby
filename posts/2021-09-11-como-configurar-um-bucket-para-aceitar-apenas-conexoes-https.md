@@ -1,6 +1,6 @@
 ---
 image: /assets/img/AWS.png
-title: Como configurar um bucket para aceitar apenas conexoes HTTPS
+title: Como configurar um bucket para aceitar apenas conexões HTTPS
 description: O Amazon S3 oferece criptografia  in transit e criptografia at
   rest. Criptografia  in transit refere-se a HTTPS e criptografia at rest
   refere-se a criptografia do lado do cliente ou do lado do servidor.
