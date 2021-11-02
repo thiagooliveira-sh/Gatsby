@@ -16,7 +16,7 @@ categories:
   - SAA-C02
   - Certified
 ---
-A SAA-CO2 foi de longe umas das provas mais desafiados que ja fiz, ja trabalho com a nuvem da AWS desde março e sempre tive vontade de me aprofundar em seus produtos. Quando entrei na Dock e tive de fato acesso ao console e pude a partir dai comecar a aprender, estudar e gerenciar os servicos.
+A SAA-CO2 foi de longe umas das provas mais desafiadoras que ja fiz, trabalho com a nuvem da AWS desde março de 2020 e sempre tive vontade de me aprofundar em seus produtos. Quando entrei na Dock e tive de fato acesso ao console e pude a partir dai comecar a aprender, estudar e gerenciar os servicos.
 
 A maior barreira referente aos estudos eram quando tinha que estudar alguns serviços que a empresa nao utilizava no dia a dia, como o Kinesis, serviços voltados a AD e Windows e alguns outros serviços como AWS Glue, AWS X-ray, AWS OpsWorks, AWS Elastic Beanstalk e AWS Kinesis.
 
