@@ -16,7 +16,7 @@ categories:
   - SAA-C02
   - Certified
 ---
-A SAA-CO2 foi de longe umas das provas mais desafiadoras que ja fiz, trabalho com a nuvem da AWS desde março de 2020 e sempre tive vontade de me aprofundar em seus produtos e foi quando entrei na Dock e pude a partir dai comecar a aprender, estudar e gerenciar os servicos.
+A SAA-CO2 foi de longe umas das provas mais desafiadoras que ja fiz, trabalho com a nuvem da AWS desde março de 2020 e sempre tive vontade de me aprofundar em seus produtos e foi quando entrei na Dock que pude a partir dai comecar a aprender, estudar e gerenciar os servicos.
 
 A maior barreira referente aos estudos eram quando tinha que estudar alguns serviços que a empresa não utilizava no dia a dia, como o Kinesis, serviços voltados a AD e Windows e alguns outros serviços como AWS Glue, AWS X-ray, AWS OpsWorks, AWS Elastic Beanstalk.
 
@@ -31,7 +31,5 @@ Utilizei como base dois cursos de simulados, todos no padrao da prova, 65 questo
 Minha dica para realização dessa prova é, estudem mas não se apeguem a todos os detalhes de todos os serviços, aprenda de fato como funciona o core services.  Não precisa enfiar a cara em todos os white papers e decorar pois o que vai lhe ajudar na prova é ler e compreender as questões e para isso você precisa compreender muito bem como funciona o [AWS Well-Architected](https://aws.amazon.com/pt/architecture/well-architected/). 
 
 Estudem o material e realizem quantos simulados puderem, entenda a explicação do porque de cada resposta e com certeza teremos uma boa pontuação.
-
-
 
 ![](/assets/img/certificado.png)
