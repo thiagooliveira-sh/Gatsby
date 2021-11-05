@@ -15,10 +15,10 @@ const AboutPage = () => (
     <MainContent>
       <h1>Sobre mim</h1>
       <p>
-        Olá, tudo bem com você? Espero que sim! Me chamo Thiago Alexandria, tenho 23 anos e sou de João Pessoa, na Paraíba.
+        Olá, tudo bem com você? Espero que sim! Me chamo Thiago Alexandria, tenho 24 anos e sou de João Pessoa, na Paraíba.
         Trabalho atualmente como Engenheiro DevOps na{' '}
-        <a href="https://www.conductor.com.br/" target="_blank" rel="noopener noreferrer">
-          Conductor
+        <a href="http://dock.tech" target="_blank" rel="noopener noreferrer">
+          Dock
         </a>
         , tenho bacharel em Ciências da Computação pelo Centro Universitário de 
         João Pessoa e sempre fui apaixonado por tecnologia. Durante minha formação
