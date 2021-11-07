@@ -30,9 +30,14 @@ Quando você cria um volume do EBS criptografado e o anexa a um tipo de instânc
 Antes de mais nada, habilite a criptografia padrão de volumes, novos volumes criados a partir de entao ja surgem com a criptografia por padrao.
 
 #### 1. Acesse o Ec2 dashboard.
-#### 2. Em Account Attributes selecione a opçao EBS encryption.
-#### 3. Clique em Manage e em seguida enable.
 
+#### 2. Em **`Account Attributes`** selecione a opção **`EBS encryption`**.
+
+![ec2-bashboard](/assets/img/ec2-dashboard.png)
+
+#### 3. Clique em **`Manage`** e em seguida `enable`.
+
+![](/assets/img/ebs-encryption.png)
 
 # Criptografar recursos não criptografados
 
