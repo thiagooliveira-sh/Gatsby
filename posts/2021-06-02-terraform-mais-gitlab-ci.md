@@ -3,7 +3,7 @@ image: /assets/img/HashiCorp-Terraform-logo.png
 title: Terraform mais Gitlab CI
 description: "Uma forma de automatizarmos o nosso deploy de infraestrutura é
   utilizando alguma ferramenta para o deploy do nosso projeto. "
-date: 2021-06-01
+date: 2021-11-18
 category: devops
 background: "#05A6F0"
 tags:
