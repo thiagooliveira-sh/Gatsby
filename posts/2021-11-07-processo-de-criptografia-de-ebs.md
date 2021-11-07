@@ -55,35 +55,35 @@ Não é possível criptografar diretamente volumes ou snapshots não criptografa
 
 > OBS: coloque uma tag com o nome do snapshot para facilitar a busca.
 
-![criar-snapshot.png](/ops/infraestrutura/processos/aws/criptografia-ebs/criar-snapshot.png)
+![criar-snapshot.png](/assets/img/criar-snapshot.png)
 
-![criar-snapshot2.png](/ops/infraestrutura/processos/aws/criptografia-ebs/criar-snapshot2.png)
+![criar-snapshot2.png](/assets/img/criar-snapshot2.png)
 
 #### 4. Acesse agora o menu **`EC2 > Snapshots`** e busque pelo snapshot gerado.
 
 #### 5. Selecione com botão direito e selecione a opção **`Create Volume`**.
 
-![criar-volume.png](/ops/infraestrutura/processos/aws/criptografia-ebs/criar-volume.png)
+![criar-volume.png](/assets/img/criar-volume.png)
 
 #### 6. Nessa etapa as opções de criptografia vao ser preenchidas automaticamente, um ponto de atenção é escolher a **`Availability Zone`** identica ao do volume que irá ser substituido.
 
-![criar-volume2.png](/ops/infraestrutura/processos/aws/criptografia-ebs/criar-volume2.png)
+![criar-volume2.png](/assets/img/criar-volume2.png)
 
 #### 7. Com o volume criado e disponível para uso, você precisa desligar a máquina Ec2.
 
-![Interromper-instancia.png](/ops/infraestrutura/processos/aws/criptografia-ebs/interromper-instancia.png)
+![Interromper-instancia.png](/assets/img/interromper-instancia.png)
 
 #### 8. Acesse o menu **`EC2 > Volumes`** e filtre pelos volumes criado e utilizado pela maquina.
 
-![listar-volumes.png](/ops/infraestrutura/processos/aws/criptografia-ebs/listar-volumes.png)
+![listar-volumes.png](/assets/img/listar-volumes.png)
 
 #### 9. Anote o "`Attachment information`" disponível nas informações do volume atachado na Ec2 para que possamos utilizar com o novo volume:
 
-![mount-point.png](/ops/infraestrutura/processos/aws/criptografia-ebs/mount-point.png)
+![mount-point.png](/assets/img/mount-point.png)
 
 #### 10. Desatache o disco e atache o volume criptografado
 
-![add-volume.png](/ops/infraestrutura/processos/aws/criptografia-ebs/add-volume.png)
+![add-volume.png](/assets/img/add-volume.png)
 
 #### 11. Ligue a Ec2.
 
