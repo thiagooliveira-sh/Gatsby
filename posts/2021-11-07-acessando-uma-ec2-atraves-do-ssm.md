@@ -25,27 +25,27 @@ O Session Manager oferece suporte a Linux, MacOS e Windows Server 2012 até o Wi
 
 Acesse o painel de gerencimaento do **`IAM`** e selecione a opçao **`Roles`** em seguida seleciona a opçao **`Create Role`**.
 
-// FOTO
+![](/assets/img/create-role.png)
 
 Precisamos criar uma role baseada em serviços entao selecione a opcao **`AWS Services`** e busque por **`Ec2`** e **`Next`**.
 
 Agora busque pela police gerenciada pela Amazon chamada `AmazonEC2RoleforSSM` e Next.
 
-// FOTO
+![](/assets/img/police-role.png)
 
 Adicione as tags conforme sua organizaçao determina e em seguida de um nome para sua role, nesse caso coloquei o nome de `Ec2RoleSSM`.
 
-// FOTO
+![](/assets/img/review-role.png)
 
 #### 2. Atachar a role em uma EC2
 
 Pelo console da Amazon, acesse o painel de instancias dentro de EC2, la voce encontrara todas sa suas instancias:
 
-// FOTO
+![](/assets/img/lista-instancia.png)
 
 Selecione a instancia com botao direito e selecione` Security > Modify IAM Role`
 
-// FOTO
+![](/assets/img/atach-role.png)
 
 Selecione a IAM Role que criamos anteriormente e aplique. 
 
@@ -96,7 +96,9 @@ snap restart amazon-ssm-agent
 
 Pronto, agora basta seleciona a instancia e clicar em `Connect`, feito isso sera redirecionado para o painel no qual voce podera escolher a forma de conexao, selecione o **`Session Manager`** e `Connect`.
 
-// FOTO
+![](/assets/img/ssm-2.png)
+
+![](/assets/img/ssm-1.png)
 
 ## Trabalho com Session Manager
 
