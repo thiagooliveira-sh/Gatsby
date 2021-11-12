@@ -49,7 +49,7 @@ Não é possível criptografar diretamente volumes ou snapshots não criptografa
 
 #### 2. Observe que existe uma coluna com o nome **Encryption** lá será possível analisar os volumes que não estão criptografados.
 
-![listagem.png](/ops/infraestrutura/processos/aws/criptografia-ebs/listagem.png)
+![listagem.png](/assets/img/listagem.png)
 
 #### 3. Selecione o disco que será criptografado e em seguida clique com o botão direito e **Create snapshot**
 
