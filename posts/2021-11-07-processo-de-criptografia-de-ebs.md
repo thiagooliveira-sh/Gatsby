@@ -4,7 +4,7 @@ title: "Processo de criptografia de EBS "
 description: Vários serviços da Amazon oferece o serviço de criptografia em
   repouso e não é diferente com o EBS, utilizando o KMS, com isso todo snapshot
   criados a partir de uma EBS criptografada também será criptografado.
-date: 2021-11-07
+date: 2021-11-12
 category: aws
 background: "#FF9900"
 tags:
@@ -49,7 +49,7 @@ Não é possível criptografar diretamente volumes ou snapshots não criptografa
 
 #### 2. Observe que existe uma coluna com o nome **Encryption** lá será possível analisar os volumes que não estão criptografados.
 
-![listagem.png](/ops/infraestrutura/processos/aws/criptografia-ebs/listagem.png)
+![listagem.png](/assets/img/listagem.png)
 
 #### 3. Selecione o disco que será criptografado e em seguida clique com o botão direito e **Create snapshot**
 
