@@ -4,7 +4,7 @@ title: "Processo de criptografia de EBS "
 description: Vários serviços da Amazon oferece o serviço de criptografia em
   repouso e não é diferente com o EBS, utilizando o KMS, com isso todo snapshot
   criados a partir de uma EBS criptografada também será criptografado.
-date: 2021-11-07
+date: 2021-11-12
 category: aws
 background: "#FF9900"
 tags:
