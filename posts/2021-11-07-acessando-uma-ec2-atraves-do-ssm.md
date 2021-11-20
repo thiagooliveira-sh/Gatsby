@@ -3,7 +3,7 @@ image: /assets/img/AWS.png
 title: Acessando uma EC2 atraves do SSM
 description: O Session Manager permite que você estabeleça conexões seguras para
   as instâncias EC2
-date: 2021-11-06
+date: 2021-11-20
 category: aws
 background: "#FF9900"
 tags:
