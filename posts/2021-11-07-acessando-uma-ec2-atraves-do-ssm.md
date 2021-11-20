@@ -43,7 +43,7 @@ Pelo console da Amazon, acesse o painel de instancias dentro de EC2, la voce enc
 
 ![](/assets/img/lista-instancia.png)
 
-Selecione a instancia com botao direito e selecione` Security > Modify IAM Role`
+Selecione a instancia com botao direito e selecione`Security > Modify IAM Role`
 
 ![](/assets/img/atach-role.png)
 
@@ -102,6 +102,18 @@ Pronto, agora basta seleciona a instancia e clicar em `Connect`, feito isso sera
 
 ## Trabalho com Session Manager
 
-## Auditoria de atividade
+Caso prefira trabalhar atraves do console, e possível criar uma sessão ssm utilizando o `aws cli`, para isso basta que realizemos algumas configurações em nossa máquina local.
 
-## Soluçao dos principais problemas com SSM
+Sera necessário que instalemos o Session Manager plugin em nosso sistema operacional, para isso basta seguir com o tutorial especifico para o seu sistema através da documentação oficial.
+
+Com o plugin instalado sera possível criarmos uma sessão para o ssm e utilizar como se fosse ssh, para isso basta que busque o id da instância e execute o comando da seguinte forma:
+
+```
+aws ssm start-session --target <instance-id>
+```
+
+Obseve:
+
+![](/assets/img/ssm-plugin.png)
+
+Espero que tenham entendido o poder e facilidade de termos o SSM instalado na nossa infraestutura que roda dentro da AWS, qualquer dúvida podem deixar no campo de comentários que vamos respondendo.
