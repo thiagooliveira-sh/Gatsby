@@ -57,7 +57,7 @@ Nesse ponto, existem duas possibilidades, você pode criar uma instância EC2 co
 
 Vamos realizar o processo de configuração em uma instância Ubuntu recem criada a partir de uma imagem do marketplace.
 
-##### 3.1. Acesse a instancia por SSH
+#### 3.1. Acesse a instancia por SSH
 
 Utilize um cliente SSH para acessar a instância utilizando a private key que definimos durante a criação, por exempo:
 
@@ -65,7 +65,7 @@ Utilize um cliente SSH para acessar a instância utilizando a private key que de
 ssh ubuntu@ec2-3-239-56-227.compute-1.amazonaws.com -i thiagoalexandria.pem
 ```
 
-##### 3.2. Instale o ssm agent
+#### 3.2. Instale o ssm agent
 
 Nesse exemplo estamos utilizando o ubuntu, porem não precisa se preocupar o processo é bem semelhante, basta seguir com a instalação baseada no seu sistema operacional atraves da documentação. Pelo Ubuntu basta instalar utilizando o `snap`, da seguinte forma:
 
@@ -73,7 +73,7 @@ Nesse exemplo estamos utilizando o ubuntu, porem não precisa se preocupar o pro
 sudo snap install amazon-ssm-agent --classic
 ```
 
-##### 3.3. Habilite e inicie o serviço
+#### 3.3. Habilite e inicie o serviço
 
 No ubuntu, como observado, temos alguma mudanças na forma com que o serviço e chamado devido a instalação ocorrer pelo snap. Dessa forma segue abaixo os comandos para gerencia-lo pelo `systemctl`.
 
@@ -92,7 +92,7 @@ snap start amazon-ssm-agent
 snap restart amazon-ssm-agent
 ```
 
-##### 3.4. Acesse a instancia pelo SSM
+#### 3.4. Acesse a instancia pelo SSM
 
 Pronto, agora basta seleciona a instância e clicar em `Connect`, feito isso sera redirecionado para o painel no qual você podera escolher a forma de conexão, selecione o **`Session Manager`** e `Connect`.
 
