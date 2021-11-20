@@ -3,7 +3,7 @@ image: /assets/img/AWS.png
 title: Acessando uma EC2 atraves do SSM
 description: O Session Manager permite que você estabeleça conexões seguras para
   as instâncias EC2
-date: 2021-11-06
+date: 2021-11-20
 category: aws
 background: "#FF9900"
 tags:
@@ -23,11 +23,11 @@ O Session Manager oferece suporte a Linux, MacOS e Windows Server 2012 até o Wi
 
 #### 1. Criar uma IAM Role com acesso ao SSM
 
-Acesse o painel de gerencimaento do **`IAM`** e selecione a opçao **`Roles`** em seguida seleciona a opçao **`Create Role`**.
+Acesse o painel de gerencimaento do **`IAM`** e selecione a opção **`Roles`** em seguida seleciona a opção **`Create Role`**.
 
 ![](/assets/img/create-role.png)
 
-Precisamos criar uma role baseada em serviços entao selecione a opcao **`AWS Services`** e busque por **`Ec2`** e **`Next`**.
+Precisamos criar uma role baseada em serviços entao selecione a opção **`AWS Services`** e busque por **`Ec2`** e **`Next`**.
 
 Agora busque pela police gerenciada pela Amazon chamada `AmazonEC2RoleforSSM` e Next.
 
@@ -39,11 +39,11 @@ Adicione as tags conforme sua organizaçao determina e em seguida de um nome par
 
 #### 2. Atachar a role em uma EC2
 
-Pelo console da Amazon, acesse o painel de instancias dentro de EC2, la voce encontrara todas sa suas instancias:
+Pelo console da Amazon, acesse o painel de instâncias dentro de EC2, la você encontrara todas sa suas instâncias:
 
 ![](/assets/img/lista-instancia.png)
 
-Selecione a instancia com botao direito e selecione`Security > Modify IAM Role`
+Selecione a instância com botão direito e selecione `Security > Modify IAM Role`
 
 ![](/assets/img/atach-role.png)
 
@@ -51,15 +51,15 @@ Selecione a IAM Role que criamos anteriormente e aplique.
 
 #### 3. Instalar o Agent
 
-Em instancias que nao Amazon Linux e necessario que instalemos o SSM Agent para que a partir dai possamos gerar uma sessao pelo console da Amazon utilizando o SSM.
+Em instâncias que não Amazon Linux á necessário realizar a instalação do SSM Agent para que a partir dai possamos gerar uma sessão pelo console da Amazon utilizando o SSM.
 
-Nesse ponto, existem duas possibilidades, você pode criar uma instância EC2 configura-la com o SSM e a partir dela gerar uma AMI para sempre que lançar uma nova EC2 a partir dessa AMI ja ter as configurações de SSM instaladas, ou sempre que lançar uma AMI do marketplace acessar primeiro por SSH e instalar os pacotes necessários.
+Nesse ponto, existem duas possibilidades, você pode criar uma instância EC2 configura-la com o SSM e a partir dela gerar uma AMI para sempre que lançar uma nova EC2 a partir dessa AMI já ter as configurações de SSM instaladas, ou sempre que lançar uma AMI do marketplace acessar primeiro por SSH e instalar os pacotes necessários.
 
 Vamos realizar o processo de configuração em uma instância Ubuntu recem criada a partir de uma imagem do marketplace.
 
 ##### 3.1. Acesse a instancia por SSH
 
-Utilize um cliente SSH para acessar a instancia utilizando a private key que definimos durante a criaçao da instancia, por exempo:
+Utilize um cliente SSH para acessar a instância utilizando a private key que definimos durante a criação, por exempo:
 
 ```
 ssh ubuntu@ec2-3-239-56-227.compute-1.amazonaws.com -i thiagoalexandria.pem
@@ -67,7 +67,7 @@ ssh ubuntu@ec2-3-239-56-227.compute-1.amazonaws.com -i thiagoalexandria.pem
 
 ##### 3.2. Instale o ssm agent
 
-Nesse exemplo estamos utilizando o ubuntu, porem nao precisa se preocupar o processo e bem semelhante, basta seguir com a instalaçao baseada no seu sistema operacional atraves da documentaçao. Pelo Ubuntu basta instalar utilizando o `snap`, da seguinte forma:
+Nesse exemplo estamos utilizando o ubuntu, porem não precisa se preocupar o processo é bem semelhante, basta seguir com a instalação baseada no seu sistema operacional atraves da documentação. Pelo Ubuntu basta instalar utilizando o `snap`, da seguinte forma:
 
 ```
 sudo snap install amazon-ssm-agent --classic
@@ -75,7 +75,7 @@ sudo snap install amazon-ssm-agent --classic
 
 ##### 3.3. Habilite e inicie o serviço
 
-No ubuntu, como observado, temos alguma mudanças na forma com que o serviço e chamado devido a instalaçao ocorrer pelo snap. Dessa forma segue abaixo os comandos para gerencia-lo pelo `systemctl`.
+No ubuntu, como observado, temos alguma mudanças na forma com que o serviço e chamado devido a instalação ocorrer pelo snap. Dessa forma segue abaixo os comandos para gerencia-lo pelo `systemctl`.
 
 ```
 systemctl start snap.amazon-ssm-agent.amazon-ssm-agent.service
@@ -94,17 +94,17 @@ snap restart amazon-ssm-agent
 
 ##### 3.4. Acesse a instancia pelo SSM
 
-Pronto, agora basta seleciona a instancia e clicar em `Connect`, feito isso sera redirecionado para o painel no qual voce podera escolher a forma de conexao, selecione o **`Session Manager`** e `Connect`.
+Pronto, agora basta seleciona a instância e clicar em `Connect`, feito isso sera redirecionado para o painel no qual você podera escolher a forma de conexão, selecione o **`Session Manager`** e `Connect`.
 
 ![](/assets/img/ssm-2.png)
 
 ![](/assets/img/ssm-1.png)
 
-## Trabalho com Session Manager
+## Trabalhando com Session Manager
 
 Caso prefira trabalhar atraves do console, e possível criar uma sessão ssm utilizando o `aws cli`, para isso basta que realizemos algumas configurações em nossa máquina local.
 
-Sera necessário que instalemos o Session Manager plugin em nosso sistema operacional, para isso basta seguir com o tutorial especifico para o seu sistema através da documentação oficial.
+Sera necessário que instalemos o Session Manager plugin em nosso sistema operacional, para isso basta seguir com o tutorial especifico para o seu sistema através da documentação [oficial](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html).
 
 Com o plugin instalado sera possível criarmos uma sessão para o ssm e utilizar como se fosse ssh, para isso basta que busque o id da instância e execute o comando da seguinte forma:
 
