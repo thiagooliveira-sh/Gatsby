@@ -143,5 +143,20 @@ Pronto, agora podemos rodar o nosso `terraform plan` e `terraform apply` para cr
 
 ## Utilização
 
-Com tudo configurado, já estaremos prontos para utilizar o Atlantis em nossos repositórios configurados, o Atlantis vai intermediar dentro de pull/merge requests e nele nos retorna-rá o plan e poderemos realizar ou não o apply.
+Com tudo configurado, já estaremos prontos para utilizar o Atlantis em nossos repositórios configurados, o Atlantis vai intermediar dentro de pull/merge requests e nele nos retorna-rá o *plan* e poderemos realizar ou não o *apply*.
 
+Quando abrirmos um `pull request`, teremos uma interação por parte do Atlantis da seguinte forma:
+
+![](/assets/img/atlantis-1.png)
+
+Dessa forma conseguimos expandir o *output* e ter uma visão completa do *plan*
+
+![](/assets/img/atlantis-2.png)
+
+Se estiver tudo de acordo, basta adicionar um comentário com o comando `atlantis apply` e todo o *plan* será aplicado conforme projeto:
+
+![](/assets/img/atlantis-3.png)
+
+Esse é o básico referente a utilização do Atlantis em pipelines com Terraform, o Atlantis é altamente personalizado no qual você é capaz de ajustar o workflow e adicionar outros *steps* para melhor se adaptar a sua utilização, como adicionar uma *stage* de `terraform validade` por exemplo.
+
+Espero trazer outros assuntos sobre o Atlantis e como conseguimos personaliza-lo para diferentes casos de uso.
