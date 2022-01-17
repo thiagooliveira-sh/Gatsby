@@ -17,8 +17,8 @@ const AboutPage = () => (
       <p>
         Olá, tudo bem com você? Espero que sim! Me chamo Thiago Alexandria, tenho 24 anos e sou de João Pessoa, na Paraíba.
         Trabalho atualmente como Engenheiro DevOps na{' '}
-        <a href="http://dock.tech" target="_blank" rel="noopener noreferrer">
-          Dock
+        <a href="https://ciandt.com/br/" target="_blank" rel="noopener noreferrer">
+          CI&T
         </a>
         , tenho bacharel em Ciências da Computação pelo Centro Universitário de 
         João Pessoa e sempre fui apaixonado por tecnologia. Durante minha formação
@@ -33,15 +33,15 @@ const AboutPage = () => (
       
       <p>
         Possuo também experiência com a administração de servidores Windows, bem como sobre os principais
-        painéis de hospedagem e revenda de sites. Ademais, possuo certificações voltadas ao cPanel e Plesk.
+        painéis de hospedagem e revenda de sites. Ademais, possuo certificações voltadas ao mercado de hospedagem e também de Arquiteto de soluções AWS.
         Sempre tive vontade de começar um blog para poder compartilhar parte da minha trajetória dentro do mercado
         de trabalho e também para ter uma forma de documentar todos os meus estudos, podendo consulta-los futuramente
         sem maiores problemas.
       </p>
 
       <p>
-        Para o ano de 2021 tenho como objetivo focar em algumas tecnologias e metodologias DevOps como Docker, Terraform
-        e Kubernetes, além de que pretendo, ainda nesse ano, finalizar meus estudos referente a prova de certificação para Solutions Architect
+        Para o ano de 2022 tenho como objetivo focar em algumas tecnologias e metodologias DevOps como Kubernetes, Terraform
+        e Python, além de que pretendo, ainda nesse ano, finalizar meus estudos referente a certificação SysOps Administrator
         da Amazon. Irei compartilhar nesse blog um pouco sobre tudo o que já aprendi e também sobre os meus novos estudos e metas.
       </p>
 
@@ -50,16 +50,13 @@ const AboutPage = () => (
 
       <ul>
         <li>Linux</li>
-        <li>Windows Server</li>
         <li>Zabbix/Grafana</li>
         <li>Nginx/Apache</li>
         <li>cPanel/Plesk</li>
         <li>IPTables</li>
-        <li>Squid</li>
-        <li>Samba</li>
-        <li>Openvpn</li>
-        <li>Bacula</li>
         <li>Bash</li>
+        <li>Docker</li>
+        <li>Terraform</li>
         <li>AWS</li>
         <li>O que ainda não sei busco aprender.</li>
       </ul>
