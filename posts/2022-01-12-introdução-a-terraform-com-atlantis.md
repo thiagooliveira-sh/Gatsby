@@ -60,7 +60,7 @@ Primeiramente precisamos ter configurado em nosso ambiente as chaves que tenham 
 * EC2 para criação de target groups e ALB
 * ACM
 
-Vamos lá, partiremos de um ponto onde entendemos que você irá utiliza-lo em sua infra existente no qual não será necessário cria infraestrutura de rede, como VPC, subnet, etc...
+Vamos lá, partiremos de um ponto onde entendemos que você irá utiliza-lo em sua infra existente no qual não será necessário criar infraestrutura de rede, como VPC, subnet, etc...
 
 Em nosso arquivo `main.tf` será onde realizaremos a declaração do módulo Atlantis, teremos algumas definições
 
