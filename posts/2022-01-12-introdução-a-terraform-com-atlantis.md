@@ -83,7 +83,7 @@ atlantis_repo_allowlist    = ["github.com/USER/*"]
 atlantis_allowed_repo_names = Lista de nomes de repositórios
 ```
 
-Sabendo o que precisamos compor, segue abaixo a estrutura que deve ser aplicada:
+Para criar o token para o Github basta seguir a orientação do [site oficial](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token). Sabendo o que precisamos compor, segue abaixo a estrutura que deve ser aplicada:
 
 ```
 module "atlantis" {
@@ -117,8 +117,31 @@ module "atlantis" {
 }
 ```
 
-Um ponto de atenção é que se atentem a configuração de `policies_arn` nela foi inseria uma politica de acesso total apenas para o LAB, é indicado que crie uma policy com restrição para que o ECS utilize com o Terraform, aplicando deny explicito para funcções que você não quer que o terraform execute.
+Um ponto de atenção é que se atentem a configuração de `policies_arn` nela foi inseria uma politica de acesso total apenas para o LAB, é indicado que crie uma policy com restrição para que o ECS utilize com o Terraform, aplicando deny explicito para funções que você não quer que o terraform execute.
 
+## Webhook
 
+Com a primeira parte pronta, vamos agora criar o bloco no Terraform para criar o nosso webhook de forma automática,dessa forma basta que configuremos da seguinte forma:
 
+```
+module "github_webhook"{
+   source  = "terraform-aws-modules/atlantis/aws//modules/github-repository-webhook"
+   version = "~> 3.0"
+
+   github_owner = "thiagoalexandria"
+   github_token = var.git_token
+
+   atlantis_allowed_repo_names = module.atlantis.atlantis_allowed_repo_names
+
+   webhook_url = module.atlantis.atlantis_url_events
+   webhook_secret = module.atlantis.webhook_secret
+
+}
+```
+
+Pronto, agora podemos rodar o nosso `terraform plan` e `terraform apply` para criar toda a stack necessária para o nosso ambiente Atlantis.
+
+## Utilização
+
+Com tudo configurado, já estaremos prontos para utilizar o Atlantis em nossos repositórios configurados, o Atlantis vai intermediar dentro de pull/merge requests e nele nos retorna-rá o plan e poderemos realizar ou não o apply.
 
