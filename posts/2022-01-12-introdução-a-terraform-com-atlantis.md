@@ -117,5 +117,7 @@ module "atlantis" {
 }
 ```
 
-Um ponto de atenção é que se atentem a configuração de `policies_arn` nela foi inseria uma politica de acesso total apenas para titulo de LAB, é indicado que crie uma policy com restrição para que o ECS utilize com o Terraform.
+Um ponto de atenção é que se atentem a configuração de `policies_arn` nela foi inseria uma politica de acesso total apenas para o LAB, é indicado que crie uma policy com restrição para que o ECS utilize com o Terraform, aplicando deny explicito para funcções que você não quer que o terraform execute.
+
+
 
