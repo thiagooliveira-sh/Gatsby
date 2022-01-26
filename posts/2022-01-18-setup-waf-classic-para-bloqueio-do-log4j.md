@@ -68,6 +68,6 @@ Configure associada a ***CONDITION*** que acabamos de criar, configure da seguin
 
 Com a regra criada, basta que configuremos dentro da Web-ACLs utilizada no ambiente e definir a ***ACTION*** como ***BLOCK***, dessa forma vamos bloquear qualquer requisição que de ***match*** com a nossa regra.
 
-![](/assets/img/waf-5.png)
+![web-acl](/assets/img/waf-5.jpg)
 
 Pronto, com o WAF configurado, teremos uma camada extra de proteção fazendo com que a ação maliciosa seja barrada antes de chegar na nossa aplicação.
