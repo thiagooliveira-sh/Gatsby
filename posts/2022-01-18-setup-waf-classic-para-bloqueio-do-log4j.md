@@ -27,17 +27,13 @@ categories:
   - sec
   - devops
 ---
-
 Nesse artigo aprenderemos uma forma de mitigar a vulnerabilidade a nível de WAF, para que ele não chegue a nossa aplicação. Dessa forma, vamos utilizar o serviço AWS WAF Classic.
-
 
 ## Criar a condição
 
-Entre no painel de configurações do WAF e dentro do campo CONDITION vamos selecionar o tipo String and Regex Matching:
+Entre no painel de configurações do WAF e dentro do campo ***CONDITION*** vamos selecionar o tipo `String and Regex Matching`:
 
-```
-FOTO 1
-```
+![condition](/assets/img/waf-1.png)
 
 Feito isso, vamos seguir a seguinte lógica para criar uma lista de regras igual a da lista abaixo:
 
@@ -56,23 +52,22 @@ URI contains: "${::-j}${::-n}${::-d}${::-i}:" after converting to lowercase.
 
 No fim, você terá algo semelhante a essa imagem:
 
-```
-FOTO 2
-```
+![condition-regex](/assets/img/waf-3.png)
 
 ## Regra
 
-Criar uma nova RULE e a configure associada a CONDITION que acabamos de criar, configure da seguinte forma:
+Criar uma nova regra, para isso selecione a opção ***RULE*** no menu lateral:
 
-```
-FOTO 3
-```
+![rule-option](/assets/img/waf-2.png)
 
+Configure associada a ***CONDITION*** que acabamos de criar, configure da seguinte forma:
+
+![rule-condition](/assets/img/waf-4.png)
 
 # Web-ACL
 
-Com a regra criada, basta que configuremos dentro da Web-ACLs utilizada no ambiente e definir o default ACTION como
-BLOCK, dessa forma vamos bloquear qualquer requisição que de match com a nossa regra.
+Com a regra criada, basta que configuremos dentro da Web-ACLs utilizada no ambiente e definir a ***ACTION*** como ***BLOCK***, dessa forma vamos bloquear qualquer requisição que de ***match*** com a nossa regra.
 
+![](/assets/img/waf-5.png)
 
 Pronto, com o WAF configurado, teremos uma camada extra de proteção fazendo com que a ação maliciosa seja barrada antes de chegar na nossa aplicação.
