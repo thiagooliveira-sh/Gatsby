@@ -61,7 +61,18 @@ FOTO 2
 ```
 
 ## Regra
-Criar uma RULE e associar a CONDITION criada anteriormente.
 
-4 - Incluir a Rule dentro da Web-ACLs utilizada no ambiente e colocar a ACTION como
-BLOCK.
+Criar uma nova RULE e a configure associada a CONDITION que acabamos de criar, configure da seguinte forma:
+
+```
+FOTO 3
+```
+
+
+# Web-ACL
+
+Com a regra criada, basta que configuremos dentro da Web-ACLs utilizada no ambiente e definir o default ACTION como
+BLOCK, dessa forma vamos bloquear qualquer requisição que de match com a nossa regra.
+
+
+Pronto, com o WAF configurado, teremos uma camada extra de proteção fazendo com que a ação maliciosa seja barrada antes de chegar na nossa aplicação.
