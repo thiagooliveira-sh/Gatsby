@@ -27,9 +27,19 @@ categories:
   - sec
   - devops
 ---
-1 - Entrar no painel de configurações do WAF e criar uma CONDITION do tipo String and Regex Matching
 
-2 - Criar uma lista de regras igual a da imagem abaixo:
+Nesse artigo aprenderemos uma forma de mitigar a vulnerabilidade a nível de WAF, para que ele não chegue a nossa aplicação. Dessa forma, vamos utilizar o serviço AWS WAF Classic.
+
+
+## Criar a condição
+
+Entre no painel de configurações do WAF e dentro do campo CONDITION vamos selecionar o tipo String and Regex Matching:
+
+```
+FOTO 1
+```
+
+Feito isso, vamos seguir a seguinte lógica para criar uma lista de regras igual a da lista abaixo:
 
 ```
 Body contains: "${lower:${lower:jndi}}" after converting to lowercase.
@@ -44,7 +54,14 @@ URI contains: "${lower:${lower:jndi}}" after converting to lowercase.
 URI contains: "${::-j}${::-n}${::-d}${::-i}:" after converting to lowercase.
 ```
 
-3- Criar uma RULE e associar a CONDITION criada anteriormente.
+No fim, você terá algo semelhante a essa imagem:
+
+```
+FOTO 2
+```
+
+## Regra
+Criar uma RULE e associar a CONDITION criada anteriormente.
 
 4 - Incluir a Rule dentro da Web-ACLs utilizada no ambiente e colocar a ACTION como
 BLOCK.
