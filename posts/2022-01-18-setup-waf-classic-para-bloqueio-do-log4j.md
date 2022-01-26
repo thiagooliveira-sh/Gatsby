@@ -5,7 +5,7 @@ description: No final de Novembro de 2021, pesquisadores relataram a descoberta
   de uma falha no Apache Log4j, ferramenta presente em uma infinidade de
   sistemas, que permite execução remota de código e tem nível de gravidade CVSS
   10 de 10.
-date: 2022-01-18
+date: 2022-01-26
 category: aws
 background: "#FF9900"
 tags:
