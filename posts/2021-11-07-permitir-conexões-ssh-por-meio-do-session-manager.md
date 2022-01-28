@@ -21,7 +21,7 @@ Os usuários que se conectam usando SSH também podem copiar arquivos entre suas
 
 Para que isso seja possível precisamos primeiro realizar a instalação do Session Manager plugin na sua máquina, dessa forma basta que realize a instalação baseada no seu sistema [operacional](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html).
 
-# Configuração 
+# Configuração
 
 Atualize o arquivo de configuração do seu SSH para permitir que executemos um comando por proxy que vai iniciar uma sessão pelo Session Manager e permitir que tenha trafego de informações por essa conexão.
 
@@ -49,8 +49,7 @@ ssh -i minha-chave.pem username@instance-id
 
 Observe:
 
-```
-```
+![ssm-ssh](/assets/img/ssm-ssh-1.png)
 
 Da mesma forma, se precisarmos enviar um arquivo via SCP vamos realizar da seguinte forma:
 
@@ -60,7 +59,7 @@ scp -i minha-chave.pem arquivo-1.txt usrname@instance-id/home/ec2-user/
 
 Observe:
 
-```
-```
+![ssm-scp](/assets/img/ssm-ssh-2.png)
+
 
 Bom, essa é uma forma alternativa para que possamos acessar as nossas instâncias na AWS, espero que gostem!
