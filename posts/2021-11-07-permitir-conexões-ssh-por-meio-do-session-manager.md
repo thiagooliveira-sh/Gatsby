@@ -3,7 +3,7 @@ image: /assets/img/AWS.png
 title: Permitir conexões SSH por meio do Session Manager
 description: Você pode permitir que usuários em seu Conta da AWS para usar o AWS
   CLI para estabelecer conexões SSH com instâncias usando SSM.
-date: 2021-11-06
+date: 2022-02-01
 category: aws
 background: "#FF9900"
 tags:
