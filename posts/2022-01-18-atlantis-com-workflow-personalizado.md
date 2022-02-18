@@ -3,7 +3,7 @@ image: /assets/img/HashiCorp-Terraform-logo.png
 title: Atlantis com workflow personalizado
 description: Workflows personalizados podem ser definidos para substituir os
   comandos padrões que o Atlantis executa.
-date: 2022-01-18
+date: 2022-02-18
 category: devops
 background: "#05A6F0"
 tags:
@@ -66,3 +66,9 @@ Para que possamos utilizar o ***Workflow*** em questão, vamos precisar carrega-
 
 Após aplicar a mudança dentro da nossa infraestrutura, basta que a gente realize o teste, vamos editar o projeto e ver se a nossa mudança é aplicada dentro do nosso `merge`:
 
+
+![Atlantis validate](/assets/img/atlantis-validate.png "Workflow personalizado")
+
+Observe que no inicio do `Output` ele retorna o output do `terraform validate` informando que a configuração é valida, dessa forma é possível realizarmos várias personalizações e integrações.
+
+Espero que tenham entendido a ideia do que seja um ***Workflow*** personalizado e qualquer dúvida pode mandar nos comentários!
