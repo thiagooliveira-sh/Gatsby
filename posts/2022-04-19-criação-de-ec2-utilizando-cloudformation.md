@@ -118,23 +118,23 @@ Resources:
 
 Basta buscar na barra de pesquisa do console pelo serviço CloudFormation, caso não tenha  nenhuma stack, será retornado uma tela semelhante a abaixo, clique em `Create Stack`:
 
-![](/assets/img/cf-01.png)
+![](/assets/img/CF-01.png)
 
 Basta clicar na opçao `Template Ready` e em seguida `Upload a template file`, la você deve enviar o arquivo yaml que criamos durante esse artigo:
 
-![](/assets/img/cf-02.png)
+![](/assets/img/CF-02.png)
 
 Basta adicionar o nome da Stack e seguir as proximas configurações clicando em em `Next` ate a etapa de review e clicar em `Create Stack`:
 
-![](/assets/img/cf-04.png)
+![](/assets/img/CF-04.png)
 
 Pronto, feito isso, a nossa stack foi criada e agora basta que você acompanhe a criação através da aba events, por la teremos visualização sobre a etapa de criação e em caso de erro, será reportado por la também.
 
-![](/assets/img/cf-06.png)
+![](/assets/img/CF-06.png)
 
 Por fim, após o termino de todo processo de deploy da stack, podemos acessar a aba resources e por la verificar todos os recursos criados e seus respectivos ids:
 
-![](/assets/img/cf-07.png)
+![](/assets/img/CF-07.png)
 
 
 
