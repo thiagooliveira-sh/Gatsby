@@ -41,7 +41,7 @@ Sabendo que os recursos são declarados dentro da sessão `Resources`, vamos ent
     Type: AWS::EC2::Instance
     Properties:
       AvailabilityZone: us-east-1a
-      ImageId: ami-a4c7edb2
+      ImageId: ami-03ededff12e34e59e
       InstanceType: t2.micro
       KeyName: Thiago
       SecurityGroups:
@@ -85,7 +85,7 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       AvailabilityZone: us-east-1a
-      ImageId: ami-a4c7edb2
+      ImageId: ami-03ededff12e34e59e
       InstanceType: t2.micro
       KeyName: Thiago
       SecurityGroups:
