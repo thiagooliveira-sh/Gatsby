@@ -5,7 +5,7 @@ description: "O Cloudformation possui uma variedade de funções intrínsecas pa
   lhe auxiliar durante o seu desenvolvimento, são funções para conversão,
   referenciação e entre outras, facilitando a atribuição de valores às
   propriedades que não estão disponíveis até o runtime., "
-date: 2022-04-29
+date: 2022-05-20
 category: aws
 background: "#FF9900"
 tags:
