@@ -86,3 +86,6 @@ Fn::If
 Fn::Not
 Fn::Or
 ```
+
+Bom, trouxe aqui apenas algumas das várias funções disponíveis para o Cloudformation, espero que tenha servido de introdução para futuros projetos!
+
