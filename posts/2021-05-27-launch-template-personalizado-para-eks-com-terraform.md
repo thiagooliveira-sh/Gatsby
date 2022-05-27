@@ -4,7 +4,7 @@ title: Launch template personalizado para EKS com terraform
 description: Uma das problemáticas de criar um cluster EKS sem muita
   personalização é que ele acaba gerenciando bastante recurso limitando a sua
   utilização.
-date: 2021-05-27
+date: 2021-10-20
 category: devops
 background: "#05A6F0"
 tags:
