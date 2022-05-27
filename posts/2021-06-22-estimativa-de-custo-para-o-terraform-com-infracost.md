@@ -3,7 +3,7 @@ image: /assets/img/HashiCorp-Terraform-logo.png
 title: "Estimativa de custo para o Terraform com Infracost "
 description: Infracost é uma ferramenta de código aberto que ajuda DevOps, SRE e
   desenvolvedores a reduzir continuamente seus custos de nuvem.
-date: 2021-06-22
+date: 2021-10-18
 category: devops
 background: "#05A6F0"
 tags:
