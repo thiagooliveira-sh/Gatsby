@@ -15,7 +15,7 @@ const AboutPage = () => (
     <MainContent>
       <h1>Sobre mim</h1>
       <p>
-        Olá, tudo bem com você? Espero que sim! Me chamo Thiago Alexandria, tenho 24 anos e sou de João Pessoa, na Paraíba.
+        Olá, tudo bem com você? Espero que sim! Me chamo Thiago Alexandria, tenho 25 anos e sou de João Pessoa, na Paraíba.
         Trabalho atualmente como Engenheiro DevOps na{' '}
         <a href="https://ciandt.com/br/" target="_blank" rel="noopener noreferrer">
           CI&T
