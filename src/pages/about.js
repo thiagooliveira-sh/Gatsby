@@ -15,34 +15,31 @@ const AboutPage = () => (
     <MainContent>
       <h1>Sobre mim</h1>
       <p>
-        Olá, tudo bem com você? Espero que sim! Me chamo Thiago Alexandria, tenho 25 anos e sou de João Pessoa, na Paraíba.
-        Trabalho atualmente como Engenheiro DevOps na{' '}
-        <a href="https://ciandt.com/br/" target="_blank" rel="noopener noreferrer">
-          CI&T
-        </a>
-        , tenho bacharel em Ciências da Computação pelo Centro Universitário de 
-        João Pessoa e sempre fui apaixonado por tecnologia. Durante minha formação
-        me apaixonei pela área de Infraestrutura e Redes, o que me fez aprofundar meus estudos em Administração de Sistemas.
+      Oi! Espero que esteja tudo bem com você também! Meu nome é Thiago Alexandria, tenho 25 anos e sou de João Pessoa, na Paraíba. 
+      Atualmente trabalho como Engenheiro DevOps na <a href="https://www.livelo.com.br/" target="_blank" rel="noopener noreferrer"> Livelo </a> e tenho um Bacharelado em Ciências da Computação pelo Centro Universitário de João Pessoa. 
+      Eu sempre fui apaixonado por tecnologia e, durante minha formação, descobri que gostava da área de Infraestrutura e Redes. 
+      Isso me motivou a me aprofundar em Administração de Sistemas.
       </p>
 
       <p>
-        Trabalhei como Analista de Suporte durante o estágio e o primeiro emprego, atuando 
-        como SysAdmin de níveis 1 e 2. A maior parte do parque de servidores que tive contato 
-        era Linux, CentOs para ser mais específico, então estou sempre buscando aprender novas tecnologias e serviços.
+      Durante o meu estágio e primeiro emprego, atuei como Analista de Suporte e SysAdmin de níveis 1 e 2. 
+      A maioria dos servidores com os quais trabalhei era Linux, especificamente CentOS. 
+      Por isso, estou sempre buscando aprender sobre novas tecnologias e serviços.
       </p>
       
       <p>
-        Possuo também experiência com a administração de servidores Windows, bem como sobre os principais
-        painéis de hospedagem e revenda de sites. Ademais, possuo certificações voltadas ao mercado de hospedagem e também de Arquiteto de soluções AWS.
-        Sempre tive vontade de começar um blog para poder compartilhar parte da minha trajetória dentro do mercado
-        de trabalho e também para ter uma forma de documentar todos os meus estudos, podendo consulta-los futuramente
-        sem maiores problemas.
+      Além de ter experiência em administração de servidores, tenho me especializado em Cloud, 
+      aprendendo sobre os principais provedores de nuvem, como AWS, Azure e Oracle Cloud. 
+      Sou certificado em todas as certificações de nível associate da AWS e possuo a certificação Azure Fundamentals. 
+      Sempre tive  o desejo de iniciar um blog para compartilhar minha jornada no mercado de trabalho e documentar 
+      meus estudos para poder consultá-los facilmente no futuro.
       </p>
 
       <p>
-        Para o ano de 2022 tenho como objetivo focar em algumas tecnologias e metodologias DevOps como Kubernetes, Terraform
-        e Python, além de que pretendo, ainda nesse ano, finalizar meus estudos referente a certificação SysOps Administrator
-        da Amazon. Irei compartilhar nesse blog um pouco sobre tudo o que já aprendi e também sobre os meus novos estudos e metas.
+      Para o ano de 2023, meu objetivo é me aprofundar em algumas tecnologias e metodologias DevOps, 
+      como Kubernetes, Terraform e Python. Além disso, pretendo finalizar meus estudos para obter a 
+      certificação Solutions Architect Professional da Amazon. Eu planejo compartilhar em meu blog o 
+      que já aprendi até agora, bem como meus novos estudos e metas.
       </p>
 
 
@@ -50,10 +47,9 @@ const AboutPage = () => (
 
       <ul>
         <li>Linux</li>
-        <li>Zabbix/Grafana</li>
         <li>Nginx/Apache</li>
         <li>cPanel/Plesk</li>
-        <li>IPTables</li>
+        <li>Kubernetes</li>
         <li>Bash</li>
         <li>Docker</li>
         <li>Terraform</li>
