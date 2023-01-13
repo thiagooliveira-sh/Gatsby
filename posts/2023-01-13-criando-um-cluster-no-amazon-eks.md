@@ -76,22 +76,21 @@ Temos várias opções diferentes para criar um cluster, como o EKSCTL e o AWS C
 
 Escolha Add cluster e, em seguida, Create.
 
-\[﻿eks-01]
+![eks-01](/assets/img/eks-01.png)
 
-V﻿amos preencher algumas informações na primeira tela de configuração, precisamos preencher os campos de Name, Kubernetes Versions, Cluster Service Role, Secrets encryption ( Opcional ) e Tags, feito isso podemos avançar para a próxima tela de configuração.
+Vamos preencher algumas informações na primeira tela de configuração, precisamos preencher os campos de Name, Kubernetes Versions, Cluster Service Role, Secrets encryption ( Opcional ) e Tags, feito isso podemos avançar para a próxima tela de configuração.
 
-\[﻿eks-02]
+![﻿eks-02](/assets/img/eks-02.png)
 
 Na página Specify networking vamos precisar inserir as informações de VPC, Subnets, Security Groups (Opcional), IP address family e o tipo de Endpoint, para o nosso laboratório vamos seguir com o endpoint Público.
 
-\[﻿eks-03]
+![﻿eks-03](/assets/img/eks-03.png)
 
-V﻿amos pular a parte de configuração de logs, uma vez que esse é apenas um laboratório, mas lembre-se que podemos habilitar os seguintes logs do control plane:
+Vamos pular a parte de configuração de logs, uma vez que esse é apenas um laboratório, mas lembre-se que podemos habilitar os seguintes logs do control plane:
 
-﻿ *API server*
-﻿ Audit
-*﻿ Authenticator
-
+* ﻿API server
+* Audit
+* Authenticator
 * Controller manager
 * Scheduler
 
@@ -109,7 +108,7 @@ aws eks update-kubeconfig --region us-east-2 --name my-eks-lab-cluster
 
 Obtendo sucesso, passamos a ter acesso dentro do cluster e podemos realizar chamadas com o `kubectl` como o do exemplo abaixo:
 
-[﻿eks-get-cm-01]
+![﻿eks-get-cm-01](/assets/img/eks-get-cm-01.png)
 
 # SSM Daemonset
 
@@ -222,23 +221,21 @@ aws iam attach-role-policy \
 
 Para adicionar um grupo de nós ao nosso cluster, basta acessar o console da AWS e clicar no nome do cluster recém criado.  Nessa tela encontraremos informações relevantes sobre o cluster e uma aba chamada `compute` destinado a criação e gerenciamento dos Node Groups:
 
-[﻿eks-04]
+![﻿eks-04](/assets/img/eks-04.png)
 
 Para adicionar o Node, basta clicar em add node group e então iniciaremos o wizard para criação do recurso. Inicialmente precisamos preencher as seguintes informações, Nome, Node IAM role e Tags, as demais informações são opcionais como Kubernetes labels, Kubernetes taints. Como vamos utilizar Managed Nodes vamos ignorar a configuração de Launch Templates.
 
-[﻿eks-05]
+![﻿eks-05](/assets/img/eks-05.png)
 
 Na próxima tela, vamos determinar a parte computacional, então vamos escolher a familia das instancias EC2 e as configurações de scaling. Essa fica em aberto não existe uma configuração correta, vai depender da sua necessidade, por se tratar de um lab podemos seguir com apenas uma maquina t3a.medium:
 
-[﻿eks-06]
+![﻿eks-06](/assets/img/eks-06.png)
 
 Ainda nessa tela temos uma configuração muito importante para o Node Group que é a configurar o máximo de nodes que podem ficar indisponíveis ou que podem ser tolerados para realizarmos uma atualização no Node Group.
 
-[﻿eks-07]
+![﻿eks-07](/assets/img/eks-07.png)
 
 Na ultima tela temos a definição de rede, onde será possível definir quais subnets vão ser utilizadas, um ponto de atenção é que para subnets publicas é obrigatório que as subnets disponibilizem IPs públicos para as instancias por padrão.
-
-
 
 # Deploy Sample App
 
@@ -330,7 +327,7 @@ V﻿amos utilizar o seguinte comando para retornar todo o conteúdo criado na na
 kubectl get all -n eks-sample-app
 ```
 
-[﻿eks-get-all]
+![eks-get-all](/assets/img/eks-get-all.png)
 
 Com tudo funcionando, podemos testar o acesso ao nosso `Nginx` através do port-foward, sendo possível acessar o `service` criado utilizando a infraestrutura do cluster, para isso basta executar o comando abaixo e acessar no seu navegador através do `http://localhost:8080`:
 
@@ -338,42 +335,10 @@ Com tudo funcionando, podemos testar o acesso ao nosso `Nginx` através do port-
 kubectl port-forward svc/eks-sample-linux-service 8080:80 -n eks-sample-app
 ```
 
-[﻿eks-port-foward]
+![](/assets/img/eks-port-foward.png)
+
+
 
 # Considerações finais
 
 Espero que tenham aproveitado o lab e que os pontos principais referente a criação e funcionamento do EKS tenha sido explanado de forma simples, até a próxima!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
