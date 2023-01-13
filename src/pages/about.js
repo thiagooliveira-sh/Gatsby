@@ -1,14 +1,14 @@
 import React from 'react'
 
 import Layout from '../components/Layout/'
-import SEO from '../components/seo'
+import Seo from '../components/seo'
 import SocialLinks from '../components/SocialLinks'
 
 import { MainContent } from '../styles/base'
 
 const AboutPage = () => (
   <Layout>
-    <SEO
+    <Seo
       title="Sobre mim"
       description="Saiba um pouco mais sobre mim."
     />
