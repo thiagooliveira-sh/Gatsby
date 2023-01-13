@@ -29,12 +29,12 @@ module.exports = {
         path: `${__dirname}/posts`,
       },
     },
-    {
-	resolve: `gatsby-plugin-google-analytics`,
-	options: {
-		trackingId: "UA-165278630-1",
-    		},
-    },
+  //   {
+	// resolve: `ggatsby-plugin-google-gtag`,
+	// options: {
+	// 	trackingId: ["UA-165278630-1"],
+  //   		},
+  //   },
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -57,6 +57,7 @@ module.exports = {
         ],
       },
     },
+    `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
