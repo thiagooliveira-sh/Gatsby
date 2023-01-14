@@ -6375,6 +6375,14 @@ gatsby-plugin-algolia-search@0.5.7:
     algoliasearch "^3.24.5"
     lodash.chunk "^4.2.0"
 
+gatsby-plugin-google-gtag@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-gtag/-/gatsby-plugin-google-gtag-5.4.0.tgz#3ba7f230e67dbdf5160e16c2e79bb94d0541c2cc"
+  integrity sha512-O++yAA0XENpcxy/rJtw5y0Rgqmbw/zE/oXPI/9szazXHukpD41kgWj56aWj/EOD3vlWK8ubjvxNyXdceHPb0xA==
+  dependencies:
+    "@babel/runtime" "^7.20.7"
+    minimatch "^3.1.2"
+
 gatsby-plugin-image@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-image/-/gatsby-plugin-image-3.4.0.tgz#e8109fc040adf5a6ff10adf821122b3f8226742e"
