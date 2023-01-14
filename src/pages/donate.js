@@ -1,13 +1,13 @@
 import React from 'react'
 
 import Layout from '../components/Layout/'
-import SEO from '../components/seo'
+import Seo from '../components/seo'
 
 import { MainContent } from '../styles/donate'
 
 const DonatePage = () => (
   <Layout>
-    <SEO
+    <Seo
       title="Doações"
       description="Saiba como colaborar com o nosso blog."
     />

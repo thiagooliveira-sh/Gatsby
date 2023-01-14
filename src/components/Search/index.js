@@ -23,6 +23,10 @@ const Search = ({ algolia }) => {
         />
         <Hits hitComponent={Hit} />
       </InstantSearch>
+      <S.SearchTitle>
+      Powered by Algolia
+      <S.AlgoliaIcon />
+      </S.SearchTitle>
     </S.SearchWrapper>
   )
 }
