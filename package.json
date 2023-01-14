@@ -5,6 +5,10 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@babel/core": "^7.12.3",
+    "algoliasearch": "^4.14.3",
+    "babel-eslint": "^10.0.0",
+    "babel-plugin-styled-components": "^2.0.7",
     "disqus-react": "^1.1.5",
     "dotenv": "^16.0.3",
     "gatsby": "^5.4.1",
@@ -36,9 +40,13 @@
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-instantsearch-dom": "^6.10.3",
+    "react-is": "^18.2.0",
+    "redux": "^4.2.0",
     "styled-components": "^5.2.1",
     "styled-icons": "^10.30.0",
-    "styled-media-query": "^2.1.2"
+    "styled-media-query": "^2.1.2",
+    "typescript": "^4.9.4",
+    "webpack": "^5.20.0"
   },
   "devDependencies": {
     "prettier": "^2.2.1"
