@@ -13,12 +13,12 @@ const Comments = ({ url, title }) => {
       <DiscussionEmbed
           shortname='thiagoalexandria'
           config={
-              {
-                  url: {completeURL},
-                  identifier: {completeURL},
-                  title: {title},
-                  language: 'pt_br' //e.g. for Traditional Chinese (Taiwan)	
-              }
+            {
+              url: completeURL,
+              identifier: completeURL,
+              title: title,
+              language: 'pt_br'
+            }
           }
       />
     </S.CommentsWrapper>
