@@ -3,7 +3,7 @@ image: /assets/img/AWS.png
 title: Configurando EKS para usar AWS Load Balancer Controller
 description: O Load Balancer Controller gerencia os Elastic Load Balancers
   fornecendo Application e Network Load Balancer para um cluster do Kubernetes.
-date: 2022-06-01
+date: 2023-01-15
 category: aws
 background: "#FF9900"
 tags:
