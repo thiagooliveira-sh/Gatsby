@@ -50,7 +50,7 @@ eksctl utils associate-iam-oidc-provider --cluster my-eks-lab-cluster --approve
 
 Vamos acessar o console AWS para confirmar a criação:
 
-[iam-idenity]
+![iam-idenity](/assets/img/iam-idenity.png)
 
 I﻿AM Policies e Roles
 
@@ -60,11 +60,10 @@ Agora que temos o provedor de identidade podemos criar as nossas IAM Policies e 
 aws eks describe-cluster --name my-eks-lab-cluster --query "cluster.identity.oidc.issuer"  --output text | cut -d '/' -f 5
 ```
 
-Teremos um retorno semelhante a imagem abaixoL
+Teremos um retorno semelhante a imagem abaixo:
 
-[describe-cluster-oidc]
+![describe-cluster-oidc](/assets/img/describe-cluster-oidc.png)
 
-Vamos primeiro criar a Role adicionando uma relação de confiança através do trust relationships. Para criação da role levaremos em consideração que vamos utilizar a namespace `eks-s3-example` e a service account que tera permissão para acessar a role será a `eks-s3-example-iam-role-sa`, substitua no template abaixo `<AWS-ACCOUNT>` e `<OIDC-ID>` pelos dados da sua conta AWS e o id do OIDC obtido no passo anterior, execute o seguinte comando para criar um arquivo JSON de política de confiança do IAM:
 
 Primeiro, vamos criar uma Role adicionando uma relação de confiança através do trust relationships. Para criar a função, vamos considerar que vamos usar a namespace "eks-s3-example" e a service account que terá permissão para acessar a função será "eks-s3-example-iam-role-sa". Lembre-se de substituir <AWS-ACCOUNT>, <AWS-REGION> e <OIDC-ID> pelos dados da sua conta AWS e o id do OIDC obtido no passo anterior dai execute o seguinte comando para criar um arquivo JSON de política de confiança do IAM:
 
@@ -117,7 +116,6 @@ aws s3api create-bucket \
     --region us-east-1
 ```
 
-
 Sample App
 
 Bom, nessa altura do campeonato devemos estar com tudo criado, para realizar um teste vamos criar manifesto do tipo job, para tudo funcionar da forma que esperamos precisamos criar a namespace:
@@ -142,7 +140,7 @@ metadata:
   name: eks-s3-example-iam-role-sa
   namespace: eks-s3-example
 EOF
-``
+```
 
 Basta então criarmos o nosso `Job` seguindo o seguinte manifesto, lembre se alterar o `<BUCKET-NAME>` pelo nome do seu bucket criado anteriormente:
 
@@ -163,16 +161,13 @@ spec:
       containers:
       - name: eks-s3-test
         image: amazon/aws-cli:latest
-        args: ["s3", "ls”, "s3://<BUCKET-NAME>"]
+        args: \["s3", "ls”, "s3://<BUCKET-NAME>"]
       restartPolicy: Never
 EOF
 ```
 
 Para termos uma visão melhor da execução, adicionei um arquivo chamado `aws.png` no bucket e então o resultado da listagem do bucket deve ser semelhante ao abaixo:
 
-[eks-s3-example]
-
+![eks-s3-example](/assets/img/eks-s3-example.png)
 
 Espero que tenham compreendido bem como funciona a atribuição de IAM para os pods utilizando o OIDC atacado ao IAM Identity provider, em nosso próximo lab vamos criar o ALB ingress controller!
-
-
