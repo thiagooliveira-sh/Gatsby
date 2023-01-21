@@ -3,7 +3,7 @@ image: /assets/img/AWS.png
 title: Criação de permissões granulares do IAM para Pods
 description: Se você está trabalhando com o EKS, provavelmente já ouviu falar de
   OIDC. Mas o que é esse recurso e como ele funciona?
-date: 2023-01-15
+date: 2023-01-20
 category: aws
 background: "#FF9900"
 tags:
@@ -20,7 +20,8 @@ categories:
   - eks
 ---
 O OIDC é uma forma de autenticação que usa tokens para garantir que somente as pessoas certas tenham acesso ao seu cluster EKS e às ações que podem realizar nele. Ele é configurado usando o EKS e o IAM da AWS. Em resumo, ele funciona como uma porta de entrada para garantir a segurança do seu cluster EKS.
-Vamos partir do pressuposto de que seguiram o artigo anterior de criação de cluster EKS (https://thiagoalexandria.com.br/criando-um-cluster-no-amazon-eks/). Sabendo disso vamos então criar um laboratório com uma aplicação que terá permissão para acessar o S3, então antes de seguir vamos abordar os seguintes pontos:
+
+Partindo do pressuposto de que estamos dando continuidade ao artigo [criação de cluster EKS](https://thiagoalexandria.com.br/criando-um-cluster-no-amazon-eks/) vamos então criar um laboratório com uma aplicação que terá permissão para acessar o S3, então antes de seguir vamos abordar os seguintes pontos:
 
 * Criação do IAM Identity Providers
 * IAM Policies e Role
@@ -63,7 +64,6 @@ aws eks describe-cluster --name my-eks-lab-cluster --query "cluster.identity.oid
 Teremos um retorno semelhante a imagem abaixo:
 
 ![describe-cluster-oidc](/assets/img/describe-cluster-oidc.png)
-
 
 Primeiro, vamos criar uma Role adicionando uma relação de confiança através do trust relationships. Para criar a função, vamos considerar que vamos usar a namespace "eks-s3-example" e a service account que terá permissão para acessar a função será "eks-s3-example-iam-role-sa". Lembre-se de substituir <AWS-ACCOUNT>, <AWS-REGION> e <OIDC-ID> pelos dados da sua conta AWS e o id do OIDC obtido no passo anterior dai execute o seguinte comando para criar um arquivo JSON de política de confiança do IAM:
 
