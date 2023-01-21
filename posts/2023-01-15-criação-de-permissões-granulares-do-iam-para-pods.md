@@ -3,7 +3,7 @@ image: /assets/img/AWS.png
 title: Criação de permissões granulares do IAM para Pods
 description: Se você está trabalhando com o EKS, provavelmente já ouviu falar de
   OIDC. Mas o que é esse recurso e como ele funciona?
-date: 2023-01-15
+date: 2023-01-20
 category: aws
 background: "#FF9900"
 tags:
