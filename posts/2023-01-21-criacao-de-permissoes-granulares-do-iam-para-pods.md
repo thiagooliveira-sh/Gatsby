@@ -28,9 +28,9 @@ Partindo do pressuposto de que estamos dando continuidade ao artigo [criação d
 * Bucket S3
 * Sample App
 
-Criação do IAM Identity Provider
+# Criação do IAM Identity Provider
 
-Por padrão o nosso Cluster ja entrega um endpoint criado para o OIDC, o que precisamos fazer é criar um IAM Identity Provider, o processo pode ser feito utilizando o console da AWS através do painel IAM na opção Identity providers mas nesse laboratório vamos simplificar a criação utilizando o `eksctl`. O `eksctl` é uma ferramenta da AWS que facilita a criação e gerenciamento de clusters no EKS (Amazon Elastic Kubernetes Service). Ele te permite fazer tarefas comuns como criar clusters, escalonar nós e gerenciar configurações de segurança de forma fácil e rápida.
+Por padrão o nosso Cluster ja entrega um endpoint criado para o OIDC, o que precisamos fazer é criar um IAM Identity Provider, o processo pode ser feito utilizando o console da AWS através do painel IAM na opção Identity providers mas nesse laboratório vamos simplificar a criação utilizando o `eksctl`. O `eksctl` é uma ferramenta da AWS que facilita a criação e gerenciamento de clusters no EKS. Ele te permite fazer tarefas comuns como criar clusters, escalonar nós e gerenciar configurações de segurança de forma rápida.
 
 Para instalar o utilitário de linha de comando, siga os passos abaixo baseado no seu sistema operacional Linux e macOS:
 
@@ -53,9 +53,9 @@ Vamos acessar o console AWS para confirmar a criação:
 
 ![iam-idenity](/assets/img/iam-idenity.png)
 
-I﻿AM Policies e Roles
+# I﻿AM Policies e Roles
 
-Agora que temos o provedor de identidade podemos criar as nossas IAM Policies e Roles para que a nossa futura aplicação consiga utiliza-las. Para isso precisamos saber o url do nosso OIDC e para descobrir basta executar o seguinte comando:
+Agora que temos o provedor de identidade podemos criar as nossas IAM Policies e Roles para que a nossa futura aplicação consiga utiliza-las. Para isso precisamos saber o ID do nosso OIDC e para descobrir basta executar o seguinte comando:
 
 ```
 aws eks describe-cluster --name my-eks-lab-cluster --query "cluster.identity.oidc.issuer"  --output text | cut -d '/' -f 5
@@ -65,7 +65,9 @@ Teremos um retorno semelhante a imagem abaixo:
 
 ![describe-cluster-oidc](/assets/img/describe-cluster-oidc.png)
 
-Primeiro, vamos criar uma Role adicionando uma relação de confiança através do trust relationships. Para criar a função, vamos considerar que vamos usar a namespace "eks-s3-example" e a service account que terá permissão para acessar a função será "eks-s3-example-iam-role-sa". Lembre-se de substituir <AWS-ACCOUNT>, <AWS-REGION> e <OIDC-ID> pelos dados da sua conta AWS e o id do OIDC obtido no passo anterior dai execute o seguinte comando para criar um arquivo JSON de política de confiança do IAM:
+Primeiro, vamos criar uma Role adicionando uma relação de confiança através do trust relationships, para criar a função, vamos considerar que vamos usar a namespace "eks-s3-example" e a service account que terá permissão para acessar a função será "eks-s3-example-iam-role-sa". 
+
+Lembre-se de substituir <AWS-ACCOUNT>, <AWS-REGION> e <OIDC-ID> pelos dados da sua conta AWS e o id do OIDC obtido no passo anterior dai execute o seguinte comando para criar um arquivo JSON de política de confiança do IAM:
 
 ```
 cat << EOF > SampleAppS3AccessroleAssumeRole.json
@@ -106,7 +108,7 @@ aws iam attach-role-policy \
   --role-name SampleAppS3Accessrole
 ```
 
-Bucket S3
+# Bucket S3
 
 Para o laboratório, vamos precisar criar um bucket s3, esse processo pode ser executado através do console da AWS ou utilizando o CLI através do seguinte comando, lembre-se que o nome do bucket precisa ser único de forma global, então insira um nome personalizado:
 
@@ -116,7 +118,7 @@ aws s3api create-bucket \
     --region us-east-1
 ```
 
-Sample App
+# Sample App
 
 Bom, nessa altura do campeonato devemos estar com tudo criado, para realizar um teste vamos criar manifesto do tipo job, para tudo funcionar da forma que esperamos precisamos criar a namespace:
 
