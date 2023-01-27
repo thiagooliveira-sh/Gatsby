@@ -121,7 +121,7 @@ metadata:
 EOF
 ```
 
-Com a ServiceAccount criada agora teremos como de fato instalar o ALB controller utilizando o helm e construirmos o nosso primeiro ingress expondo o serviço para a internet, a instalação utilizando o helm é bem simples e basta que executemos o comando helm abaixo:
+Com a ServiceAccount criada agora teremos como de fato instalar o ALB controller utilizando o `helm` e construirmos o nosso primeiro ingress expondo o serviço para a internet, a instalação utilizando o `helm` é bem simples e basta que executemos o comando abaixo:
 
 ```
 # Add Helm repo
