@@ -38,25 +38,46 @@ Falando da prova, se você ja utiliza Terraform na sua empresa e já possui expe
 
 Na minha opinião a prova foi bem fácil, você ter uma ideia de como as questões são através dos exemplos abaixo:
 
-1) The terraform.tfstate file always matches your currently built infrastructure.
-  A. True
-  B. False 
+1)The terraform.tfstate file always matches your currently built infrastructure.
 
-2) Which provisioner invokes a process on the resource created by Terraform?
-    A. remote-exec
-    B. null-exec
-    C. local-exec
-    D. file
+A. True
 
-3) What command does Terraform require the first time you run it within a configuration directory?
-    A. terraform import
-    B. terraform init
-    C. terraform plan
-    D. terraform workspace
+B. False
 
-4) terraform init initializes a sample main.tf file in the current directory.
-      A. True
-      B. False
 
-Respostas:
+
+2)Which provisioner invokes a process on the resource created by Terraform? 
+
+A. remote-exec
+
+B. null-exec
+
+C. local-exec
+
+D. file
+
+
+
+3)What command does Terraform require the first time you run it within a configuration directory? 
+
+A. terraform import
+
+B. terraform init
+
+C. terraform plan
+
+D. terraform workspace
+
+
+
+4)Terraform init initializes a sample main.tf file in the current directory.
+
+A. True
+
+B. False
+
+
+
+Respostas: 
+
 1.B, 2.A, 3.B, 4.B
