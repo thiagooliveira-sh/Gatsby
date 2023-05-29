@@ -66,9 +66,36 @@ Os pontos de acesso S3 são endpoints personalizados que fornecem acesso simplif
 
 Aqui estão alguns passos para começar a utilizar os S3 Access Points:
 
-1. Crie um S3 Access Point: No Console de Gerenciamento da AWS ou por meio da API, você pode criar um novo Access Point para o seu bucket do S3.
-2. Defina políticas de acesso: Configure as políticas de acesso no Access Point para controlar quem pode acessar os dados e quais ações estão permitidas.
-3. Acesse seus dados: Agora, você pode acessar os dados no seu bucket do S3 por meio do Access Point, usando o URL personalizado.
+### Crie um S3 Access Point
+
+No Console de Gerenciamento da AWS ou por meio da API, você pode criar um novo Access Point para o seu bucket do S3.
+
+### Defina políticas de acesso
+
+Configure as políticas de acesso no Access Point para controlar quem pode acessar os dados e quais ações estão permitidas.
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowAccessToAccessPoint",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:<região>:<conta>:accesspoint/<nome-do-access-point>/*"
+    }
+  ]
+}
+```
+
+
+
+### Acesse seus dados
+
+Agora, você pode acessar os dados no seu bucket do S3 por meio do Access Point, usando o URL personalizado.
 
 ## Conclusão
 
