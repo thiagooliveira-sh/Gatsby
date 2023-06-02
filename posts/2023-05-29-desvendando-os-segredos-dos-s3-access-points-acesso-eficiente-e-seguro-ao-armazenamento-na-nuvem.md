@@ -68,11 +68,15 @@ Aqui estão alguns passos para começar a utilizar os S3 Access Points:
 
 ### Crie um S3 Access Point
 
-No Console de Gerenciamento da AWS ou por meio da API, você pode criar um novo Access Point para o seu bucket do S3.
+No Console de Gerenciamento da AWS ou por meio da API, você pode criar um novo Access Point para o seu bucket do S3. Iremos realizar a criação através do console de gerenciamento, para isso acesse ou crie o seu bucket s3 e no menu superior clique em `pontos de acesso` ou `access points`:
 
-### Defina políticas de acesso
+![](/assets/img/s3-access-points-1.png)
 
-Configure as políticas de acesso no Access Point para controlar quem pode acessar os dados e quais ações estão permitidas.
+Aqui você notará que tem a opção de escolher o tipo de acesso que será Virtual Private Network se quiser restringir seu ponto de acesso a uma VPC ou Internet se quiser que usuários fora da sua VPC também tenham acesso, no nosso laboratório será utilizado internet pois eu mesmo irei acessar:
+
+![](/assets/img/s3-acess-points-2.png)
+
+Defina políticas de acesso, configure as políticas de acesso no Access Point para controlar quem pode acessar os dados e quais ações estão permitidas, o principal pode ser definido igual uma bucket policy, sendo um usuário do IAM, uma role, um serviço, segue um modelo abaixo:
 
 ```
 {
@@ -81,21 +85,27 @@ Configure as políticas de acesso no Access Point para controlar quem pode acess
     {
       "Sid": "AllowAccessToAccessPoint",
       "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::<conta>:user/user"
+      },
       "Action": [
         "s3:GetObject",
         "s3:PutObject"
       ],
-      "Resource": "arn:aws:s3:<região>:<conta>:accesspoint/<nome-do-access-point>/*"
+      "Resource": "arn:aws:s3:<região>:<conta>:accesspoint/<nome-do-access-point>/object/<prefixo>/*"
     }
   ]
 }
 ```
 
+![](/assets/img/s3-acess-points-3.png)
 
+﻿Garanta que as mesmas permissões constem na bucket policy, feito isso, agora, você pode acessar os dados no seu bucket do S3 por meio do Access Point, usando o URL personalizado ou através do aws cli no seguinte formato:
 
-### Acesse seus dados
+```
+aws s3 cp <caminho_do_arquivo> s3://<nome_do_access_point>/<caminho_no_bucket>
 
-Agora, você pode acessar os dados no seu bucket do S3 por meio do Access Point, usando o URL personalizado.
+```
 
 ## Conclusão
 
