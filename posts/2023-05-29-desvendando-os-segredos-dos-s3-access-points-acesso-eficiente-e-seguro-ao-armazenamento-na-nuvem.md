@@ -5,7 +5,7 @@ title: Desvendando os Segredos dos S3 Access Points Acesso Eficiente e Seguro ao
 description: "Nessa postagem exploraremos um dos recursos mais poderosos do
   Amazon S3: os S3 Access Points, ele pode revolucionar a maneira como você
   gerencia o acesso e a segurança aos seus dados armazenados na nuvem"
-date: 2023-05-28
+date: 2023-06-02
 category: aws
 background: "#FF9900"
 tags:
