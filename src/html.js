@@ -13,6 +13,8 @@ export default function HTML(props) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         {props.headComponents}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9399633570489186"
+     crossorigin="anonymous"></script>
       </head>
       <body {...props.bodyAttributes} className="dark">
         <script
