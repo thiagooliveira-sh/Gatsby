@@ -22,8 +22,6 @@ categories:
   - OtimizaçãoDeLatência
   - InovaçãoEmNuvem
 ---
-
-
 As AWS Local Zones oferecem a capacidade de estender suas aplicações mais perto dos usuários finais, mantendo um desempenho de baixa latência. Imagine entregar seus serviços com uma velocidade impressionante para clientes em locais geográficos diversos, sem comprometer o desempenho ou a confiabilidade.
 
 ### Por Que Considerar as Local Zones?
@@ -34,3 +32,35 @@ As AWS Local Zones oferecem a capacidade de estender suas aplicações mais pert
 4. **Conformidade:** Atenda aos requisitos de residência de dados implantando recursos em áreas geográficas específicas.
 
 Expandir sua VPC por meio das AWS Local Zones é um movimento estratégico para otimizar o desempenho, a disponibilidade e o alcance de sua infraestrutura. Se você está executando aplicações sensíveis à latência, serviços de streaming ou cargas de trabalho intensivas em dados, as Local Zones podem transformar sua arquitetura em nuvem.
+
+
+
+
+
+**Criação de uma Local Zone**
+
+* Passos detalhados para criar uma nova Local Zone.
+
+**Configuração de VPC e Subredes**
+
+* Como associar a Local Zone à Virtual Private Cloud (VPC) e criar subredes.
+
+**Implementação de Recursos na Local Zone**
+
+* Demonstração de como implantar recursos, como instâncias EC2, bancos de dados, etc., na Local Zone.
+
+**Configuração de Balanceamento de Carga (opcional)**
+
+* Instruções sobre como configurar balanceamento de carga na Local Zone.
+
+**Considerações de Custos**
+
+* Discussão sobre os custos associados à utilização das Local Zones e como otimizar o orçamento.
+
+**Escalabilidade e Redundância**
+
+* Orientações sobre como escalar e configurar redundância para garantir alta disponibilidade.
+
+**Resolução de Problemas Comuns**
+
+* Uma lista de problemas comuns que os usuários podem encontrar e como resolvê-los.
