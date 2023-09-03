@@ -33,13 +33,27 @@ As AWS Local Zones oferecem a capacidade de estender suas aplicações mais pert
 
 Expandir sua VPC por meio das AWS Local Zones é um movimento estratégico para otimizar o desempenho, a disponibilidade e o alcance de sua infraestrutura. Se você está executando aplicações sensíveis à latência, serviços de streaming ou cargas de trabalho intensivas em dados, as Local Zones podem transformar sua arquitetura em nuvem.
 
-
-
-
-
 **Criação de uma Local Zone**
 
-* Passos detalhados para criar uma nova Local Zone.
+As Local Zones podem ser habilitadas dentro do painel de EC2 de cada região, lembrando que em cada região teremos zonas locais distintas e que durante esse tutorial iremos realizar dentro da região de Virginia.
+
+Como dito anteriormente, acesse o console de EC2, existirá um menu lateral em “**Account attributes**” nele existirá uma opção chamada “**zones**”:
+
+![](/assets/img/local-zone-1.png)
+
+Quando selecionada, teremos um retorno de todas as zonas que podem ser configuráveis para a região escolhida, nesse exemplo iremos escolher a sub zona de **Buenos Aires:**
+
+![](/assets/img/local-zone-2.png)
+
+
+
+Com issobasta selecionar a zona e confirmar a sua ativação, o processo de liberação da zona para utilização geral pode demorar alguns minutos mas logo logo será marcado como **Enabled**:
+
+![](/assets/img/local-zone-3.png)
+
+
+
+![](/assets/img/local-zone-4.png)
 
 **Configuração de VPC e Subredes**
 
@@ -48,10 +62,6 @@ Expandir sua VPC por meio das AWS Local Zones é um movimento estratégico para 
 **Implementação de Recursos na Local Zone**
 
 * Demonstração de como implantar recursos, como instâncias EC2, bancos de dados, etc., na Local Zone.
-
-**Configuração de Balanceamento de Carga (opcional)**
-
-* Instruções sobre como configurar balanceamento de carga na Local Zone.
 
 **Considerações de Custos**
 
