@@ -29,8 +29,26 @@ categories:
   - trust-policy
   - policy
 ---
-Sabemos, e não é de hoje, que a se preocupar com a segurança da nossa infraestrutura é algo primordial e que todos os projetos que nasçam, principalmente na cloud, precisam seguir algumas boas práticas para que não tenhamos nenhum pesadelo la no futuro.
+Sabemos, e isso não é novidade, que a segurança de nossa infraestrutura é de extrema importância. Todos os projetos, especialmente na nuvem, devem adotar boas práticas desde o início para evitar futuros problemas.
 
-Falando do Terraform, sabemos que é uma ferramenta de IaC amplamente difundida no mercado e que por se tratar de infraestrutura como código temos ai algumas batalhas para travar quando o assunto é segurança. É imprescindível que o nosso Terraform tenha um poder de acesso mais elevado que os demais usuários, até porque ele será o nosso principal caminho administrativo quando falamos na criação e gerenciamento de recursos.
+Quando se trata do Terraform, uma ferramenta de Infraestrutura como Código amplamente adotada no mercado, a segurança é uma questão crucial. É fundamental que nosso Terraform tenha privilégios de acesso mais elevados do que outros usuários, pois ele desempenhará um papel central na criação e gerenciamento de recursos.
 
-Nessa integração com a AWS, a principal forma de concessão de permissão é através do IAM, dessa forma é essencial que a utilizemos o serviço de IAM Roles, é importante porque oferece uma abordagem mais segura e gerenciável para essa finalidade. Em vez de usar chaves de acesso estáticas para autenticação, as roles permitem que você atribua permissões granulares aos usuários, serviços ou aplicativos por meio de políticas de acesso.
+Ao integrar o Terraform com a AWS, a concessão de permissões é principalmente realizada por meio do IAM. Portanto, é essencial que aproveitemos o serviço de IAM Roles. Isso é importante porque oferece uma abordagem mais segura e gerenciável.
+
+Em vez de utilizar chaves de acesso estáticas para autenticação, as roles permitem que atribuamos permissões detalhadas a usuários, serviços ou aplicativos por meio de políticas de acesso.
+
+#### **Requisitos Preliminares**
+
+Antes de começarmos este breve laboratório, é fundamental compreender que este tutorial é direcionado a indivíduos que desejam ou já utilizam o Terraform Cloud como plataforma executora de seus códigos de Infraestrutura como Código (IaC).
+
+Portanto, para dar início a este processo, é necessário que você cumpra os seguintes requisitos:
+
+**1. Conta no Terraform Cloud:**
+
+* É essencial criar uma conta no Terraform Cloud. A inscrição é gratuita e permite a gestão de até 500 recursos controlados pelo Terraform.
+
+**2. Conta na AWS:**
+
+* Você deverá possuir uma conta ativa na AWS, a qual será utilizada como base para a integração do Identity and Access Management (IAM).
+
+Ao garantir que você atende a esses pré-requisitos, estará preparado para prosseguir com o tutorial, no qual configuraremos a integração entre o Terraform Cloud e o OIDC na AWS. Certifique-se de seguir cada passo com cuidado para assegurar uma configuração segura e funcional.
