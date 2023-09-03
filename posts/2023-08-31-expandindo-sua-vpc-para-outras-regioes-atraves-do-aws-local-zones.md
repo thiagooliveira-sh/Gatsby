@@ -35,19 +35,19 @@ Expandir sua VPC por meio das AWS Local Zones é um movimento estratégico para 
 
 **Criação de uma Local Zone**
 
-As Local Zones podem ser habilitadas dentro do painel de EC2 de cada região, lembrando que em cada região teremos zonas locais distintas e que durante esse tutorial iremos realizar dentro da região de Virginia.
+Você pode ativar as Local Zones através do painel EC2 disponível em cada região. É importante ressaltar que em cada região, as Local Zones são distintas. Neste tutorial, estaremos realizando as configurações dentro da região de Virginia.
 
-Como dito anteriormente, acesse o console de EC2, existirá um menu lateral em “**Account attributes**” nele existirá uma opção chamada “**zones**”:
+Como mencionado anteriormente, para habilitar as Local Zones, acesse o console da EC2. No menu lateral, procure por "**Account Attributes** e lá você encontrará a opção denominada "**Zones**":
 
 ![](/assets/img/local-zone-1.png)
 
-Quando selecionada, teremos um retorno de todas as zonas que podem ser configuráveis para a região escolhida, nesse exemplo iremos escolher a sub zona de **Buenos Aires:**
+Uma vez selecionada a opção "Zonas", você receberá uma lista de todas as zonas disponíveis para configuração na região escolhida. Neste exemplo, optaremos pela subzona de **Buenos Aires**, conforme mostrado na imagem abaixo:
 
 ![](/assets/img/local-zone-2.png)
 
 
 
-Com issobasta selecionar a zona e confirmar a sua ativação, o processo de liberação da zona para utilização geral pode demorar alguns minutos mas logo logo será marcado como **Enabled**:
+Após selecionar a zona desejada, basta confirmar a ativação. É importante observar que o processo de liberação da zona para utilização geral pode levar alguns minutos, mas em breve ela será marcada como **Enabled**:
 
 ![](/assets/img/local-zone-3.png)
 
@@ -57,20 +57,33 @@ Com issobasta selecionar a zona e confirmar a sua ativação, o processo de libe
 
 **Configuração de VPC e Subredes**
 
-* Como associar a Local Zone à Virtual Private Cloud (VPC) e criar subredes.
+Após a ativação e disponibilidade para utilização, você terá a opção de escolher a Zona de Disponibilidade ao criar a subnets, e você notará que ela será diferente da AZ normalmente disponível em nossa região. Para realizar essa configuração, acesse o painel de VPC no seu console da AWS e vá para o menu de Subnets :
+
+![](/assets/img/local-zone-5.png)
+
+Durante a criação da nova sub-rede, preencha os campos obrigatórios, como o intervalo de endereços IP e o nome. Em seguida, expanda a opção de Zonas de Disponibilidade e observe que, no final da lista, você encontrará a Local Zone habilitada:
+
+![](/assets/img/local-zone-6.png)
 
 **Implementação de Recursos na Local Zone**
 
-* Demonstração de como implantar recursos, como instâncias EC2, bancos de dados, etc., na Local Zone.
+A partir deste ponto, você estará apto a criar recursos como EC2, EBS, RDS, Load Balancers, EKS, Elastic Cache e muitos outros. Para ilustrar, vamos criar uma instância EC2 como exemplo. Observe que, durante a configuração da rede, você poderá definir a nova máquina na zona configurada anteriormente.
 
+![](/assets/img/local-zone-7.png)
+
+É importante destacar que não será necessário sair da sua região atual, e a instância criada aparecerá na lista junto com as demais que já existem dentro dessa região, mantendo uma integração perfeita e facilitando a administração de recursos na Local Zone.
+
+![](/assets/img/local-zone-8.png)
+
+\
+\
 **Considerações de Custos**
 
-* Discussão sobre os custos associados à utilização das Local Zones e como otimizar o orçamento.
-
-**Escalabilidade e Redundância**
-
-* Orientações sobre como escalar e configurar redundância para garantir alta disponibilidade.
+Instâncias e outros recursos da AWS em zonas locais terão preços diferentes dos encontrados na região principal, a transferência de dados em zonas locais da AWS é cobrada com taxas específicas da zona local. Para isso consulte sempre os custos através da [documentação](https://aws.amazon.com/pt/ec2/pricing/on-demand/).
 
 **Resolução de Problemas Comuns**
 
-* Uma lista de problemas comuns que os usuários podem encontrar e como resolvê-los.
+Durante o processo de configuração das Local Zones na AWS, é possível que você encontre alguns problemas comuns. Um deles pode ser relacionado à conectividade e roteamento, onde é importante verificar se as tabelas de roteamento estão configuradas corretamente para direcionar o tráfego para a Local Zone desejada. Outra questão comum envolve a escalabilidade e desempenho, onde é essencial monitorar os recursos alocados na Local Zone e ajustá-los conforme necessário para lidar com aumentos de carga. 
+
+\
+Por fim, espero que tenham compreendido a grande variedade de alternativas que temos com esse tipo de arquitetura, podendo ter mais de um ponto de presença aumentando a resiliência e disponibilidade das nossas aplicações.
