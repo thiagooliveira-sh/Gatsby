@@ -24,9 +24,6 @@ const DonatePage = () => (
       a nossa profissão, contribua com qualquer valor e ajude a manter o blog no ar.
       </p>
 
-      <h2>Picpay</h2>
-      <img src="https://thiagoalexandria.com.br/assets/img/Picpay.jpeg" alt="Picpay qrcode" />  
-
       <h2>Pix</h2>
       <img src="https://thiagoalexandria.com.br/assets/img/Pix.jpeg" alt="Pix qrcode"/>
 
