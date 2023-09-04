@@ -29,6 +29,8 @@ categories:
   - trust-policy
   - policy
 ---
+![](/assets/img/HashiCorp-Terraform-logo.png)
+
 Sabemos, e isso não é novidade, que a segurança de nossa infraestrutura é de extrema importância. Todos os projetos, especialmente na nuvem, devem adotar boas práticas desde o início para evitar futuros problemas.
 
 Quando se trata do Terraform, uma ferramenta de Infraestrutura como Código amplamente adotada no mercado, a segurança é uma questão crucial. É fundamental que nosso Terraform tenha privilégios de acesso mais elevados do que outros usuários, pois ele desempenhará um papel central na criação e gerenciamento de recursos.
@@ -83,15 +85,16 @@ R﻿OLE
     ]
 }
 ```
+
 Claro, aqui estão os itens formatados como uma lista:
 
-- OIDC_PROVIDER_ARN: O ARN do recurso do provedor OIDC criado na etapa anterior.
-- SITE_ADDRESS: O endereço do Terraform Cloud com o "https://" removido, por exemplo, app.terraform.io.
-- AUDIENCE_VALUE: Isso deve ser definido como aws.workload.identity.
-- ORG_NAME: O nome da organização a qual esta política será aplicada.
-- PROJECT_NAME: O nome do projeto ao qual esta política será aplicada.
-- WORKSPACE_NAME: O nome do espaço de trabalho ao qual esta política será aplicada.
-- RUN_PHASE: A fase de execução a qual esta política será aplicada, atualmente uma das seguintes: plan ou apply.
+* OIDC_PROVIDER_ARN: O ARN do recurso do provedor OIDC criado na etapa anterior.
+* SITE_ADDRESS: O endereço do Terraform Cloud com o "https://" removido, por exemplo, app.terraform.io.
+* AUDIENCE_VALUE: Isso deve ser definido como aws.workload.identity.
+* ORG_NAME: O nome da organização a qual esta política será aplicada.
+* PROJECT_NAME: O nome do projeto ao qual esta política será aplicada.
+* WORKSPACE_NAME: O nome do espaço de trabalho ao qual esta política será aplicada.
+* RUN_PHASE: A fase de execução a qual esta política será aplicada, atualmente uma das seguintes: plan ou apply.
 
 Uma política de permissões precisa ser adicionada à função, definindo quais operações na AWS a função está autorizada a realizar.
 
