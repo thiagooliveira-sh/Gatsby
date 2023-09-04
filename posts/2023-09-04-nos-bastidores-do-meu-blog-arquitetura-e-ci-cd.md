@@ -86,7 +86,7 @@ Para a automação, continuouse integration e continuous deployment, eu acabei o
 
 ![blog-8](/assets/img/blog-8.png)
 
-Da mesma forma que todas as ferramentas selecionadas, a Netlify também oferece um nível gratuito que me permite realizar até 300 minutos de compilação por mês sem incorrer em custos. Além disso, ao hospedar meu site na plataforma, recebo 100 GB de largura de banda, e com a integração com o Cloudflare, essa quantidade de largura de banda é mantida praticamente inalterada devido à camada de cache externo gratuita.
+Da mesma forma que todas as ferramentas selecionadas, a Netlify também oferece um nível gratuito que me permite realizar até 300 minutos de compilação por mês sem incorrer em custos, apenas para conhecimento, um build para o meu blog leva em torno de 1 a 2 minutos, então consigo fazer até 150 build por mês. Além disso, ao hospedar meu site na plataforma, recebo 100 GB de largura de banda, e com a integração com o Cloudflare, essa quantidade de largura de banda é mantida praticamente inalterada devido à camada de cache externo gratuita.
 
 Embora eu pudesse usar meu próprio domínio, garantir uma conexão segura exigiria um certificado SSL válido. Nesse sentido, aproveito o serviço de certificado SSL do Cloudflare, que fornece um certificado válido, garantindo que meu site esteja disponível apenas via HTTPS, proporcionando segurança aos visitantes.
 
