@@ -57,6 +57,27 @@ Ao garantir que você atende a esses pré-requisitos, estará preparado para pro
 
 ### Criando uma organização no Terraform Cloud
 
+Após a criação da sua conta no Terraform Cloud, você será redirecionado para um menu no qual poderá escolher como configurar o seu Workflow. Uma das opções disponíveis e a que selecionaremos é "Criar uma nova organização".
+
+![terraform-cloud-1](/assets/img/terraform-cloud-1.png)
+
+O processo de criação é bastante simples. Você só precisa fornecer o nome da organização, que deve ser exclusivo e conter apenas letras, números, sublinhados e hífens, além de um endereço de e-mail que será responsável por receber e-mails, notificações e informações de faturamento.
+
+![terraform-cloud-2](/assets/img/terraform-cloud-2.png)
+
+Após a criação da organização, é hora de criar um novo Workspace. A configuração é simples e a opção mais comum é escolher um controle de versão baseado no Git.
+
+![terraform-cloud-3](/assets/img/terraform-cloud-3.png)
+
+O Terraform Cloud é compatível com os principais sistemas de controle de versão, como GitHub, GitLab e Bitbucket. No nosso caso, escolheremos o GitHub. A autorização é realizada por meio do OAuth e você pode obter detalhes adicionais na documentação, acessível por meio da [documentação](https://developer.hashicorp.com/terraform/cloud-docs/vcs/github).
+
+![terraform-cloud-4](/assets/img/terraform-cloud-4.png)
+
+\
+Basta selecionar o seu repositório e, em seguida, o seu workspace estará  pronto para uso:
+
+![terraform-cloud-5](/assets/img/terraform-cloud-5.png)
+
 ### Configurando sua conta AWS
 
 ### OIDC Provider, Role e Trust Policy
@@ -88,7 +109,7 @@ R﻿OLE
 
 Claro, aqui estão os itens formatados como uma lista:
 
-* OIDC_PROVIDER_ARN: O ARN do recurso do provedor OIDC criado na etapa anterior.
+* SOIDC_PROVIDER_ARN: O ARN do recurso do provedor OIDC criado na etapa anterior.
 * SITE_ADDRESS: O endereço do Terraform Cloud com o "https://" removido, por exemplo, app.terraform.io.
 * AUDIENCE_VALUE: Isso deve ser definido como aws.workload.identity.
 * ORG_NAME: O nome da organização a qual esta política será aplicada.
