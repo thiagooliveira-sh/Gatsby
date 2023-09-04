@@ -98,6 +98,19 @@ Claro, aqui estão os itens formatados como uma lista:
 
 Uma política de permissões precisa ser adicionada à função, definindo quais operações na AWS a função está autorizada a realizar.
 
-### Configurando seus workloads no Terraform Cloud
+### Configurando seus Workspaces no Terraform Cloud
+
+Para configurar a autenticação com a AWS usando credenciais dinâmicas através das roles, é necessário definir algumas variáveis de ambiente no nosso workspace no Terraform Cloud.
+
+Essas variáveis podem ser configuradas como variáveis individualizadas para o seu workspace ou se preferir compartilhar essa função AWS entre vários workspaces, é possível através dos variables sets.
+
+As variaveis são :
+
+* `TFC_AWS_PROVIDER_AUTH` = true
+* `TFC_AWS_RUN_ROLE_ARN`  = O ARN da role que será assumida
+
+Além disso, é possível configurar funções diferentes para cada etapa do Terraform, como o plan e apply, por meio das variáveis `TFC_AWS_PLAN_ROLE_ARN` e `TFC_AWS_APPLY_ROLE_ARN`. Isso possibilita uma granularização ainda maior das permissões para o planejamento e a implantação que o seu Terraform executará.
+
+Essa estrutura de "assume role" é fundamental para a implementação dos princípios de "least privilege" (princípio do menor privilégio). Dessa forma, é possível criar workspaces com permissões IAM específicas. Por exemplo, workspaces responsáveis pela gestão de IAM não precisam ter acesso a recursos como EC2, RDS ou CloudWatch. Da mesma forma, projetos que lidam com a criação de aplicativos em camadas (three-tier applications) não precisam criar usuários IAM.
 
 ### Executando plan e apply
