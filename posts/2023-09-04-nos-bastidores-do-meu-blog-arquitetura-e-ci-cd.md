@@ -23,4 +23,4 @@ categories:
   - blog
   - devops
 ---
-Bem-vindo aos bastidores do meu blog, onde a mágica acontece! Se você já se perguntou como tudo funciona por aqui, você está no lugar certo. Aqui, eu vou te contar tudo sobre a arquitetura que sustenta este espaço digital, e como algumas tecnologias incríveis como o GitHub, Gatsby e Netlify fazem tudo isso acontecer. Desde o primeiro rascunho de um novo post até o momento em que você o lê, vamos explorar como essas ferramentas se unem para tornar tudo possível.
+Bem-vindo aos bastidores do meu blog, onde a mágica acontece! Se você já se perguntou como tudo funciona por aqui, você está no lugar certo. Aqui, eu vou te contar tudo sobre a arquitetura que sustenta este espaço digital, e como algumas tecnologias incríveis como o GitHub, Gatsby, Netlify e Cloudflare fazem tudo isso acontecer. Desde o primeiro rascunho de um novo post até o momento em que você o lê, vamos explorar como essas ferramentas se unem para tornar tudo possível.
