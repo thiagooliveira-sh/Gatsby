@@ -49,6 +49,8 @@ Portanto, para dar início a este processo, é necessário que você cumpra os s
 
 **2. Conta na AWS:**
 
-* Você deverá possuir uma conta ativa na AWS, a qual será utilizada como base para a integração do Identity and Access Management (IAM).
+* Você deverá possuir uma conta ativa na AWS, a qual será utilizada como base para a integração do Identity and Access Management.
 
 Ao garantir que você atende a esses pré-requisitos, estará preparado para prosseguir com o tutorial, no qual configuraremos a integração entre o Terraform Cloud e o OIDC na AWS. Certifique-se de seguir cada passo com cuidado para assegurar uma configuração segura e funcional.
+
+### Criando uma organização no Terraform Cloud
