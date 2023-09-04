@@ -54,3 +54,11 @@ Portanto, para dar início a este processo, é necessário que você cumpra os s
 Ao garantir que você atende a esses pré-requisitos, estará preparado para prosseguir com o tutorial, no qual configuraremos a integração entre o Terraform Cloud e o OIDC na AWS. Certifique-se de seguir cada passo com cuidado para assegurar uma configuração segura e funcional.
 
 ### Criando uma organização no Terraform Cloud
+
+### Configurando sua conta AWS
+
+### OIDC Provider, Role e Trust Policy
+
+### Configurando seus workloads no Terraform Cloud
+
+### Executando plan e apply
