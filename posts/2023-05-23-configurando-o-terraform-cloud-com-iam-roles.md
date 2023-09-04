@@ -59,6 +59,42 @@ Ao garantir que você atende a esses pré-requisitos, estará preparado para pro
 
 ### OIDC Provider, Role e Trust Policy
 
+A URL do provider deve ser definida como o endereço do Terraform Cloud por exemplo, https://app.terraform.io, e a audience deve ser definida como aws.workload.identity.
+
+R﻿OLE
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "OIDC_PROVIDER_ARN"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "SITE_ADDRESS:aud": "AUDIENCE_VALUE",
+                    "SITE_ADDRESS:sub": "organization:ORG_NAME:project:PROJECT_NAME:workspace:WORKSPACE_NAME:run_phase:RUN_PHASE"
+                }
+            }
+        }
+    ]
+}
+```
+Claro, aqui estão os itens formatados como uma lista:
+
+- OIDC_PROVIDER_ARN: O ARN do recurso do provedor OIDC criado na etapa anterior.
+- SITE_ADDRESS: O endereço do Terraform Cloud com o "https://" removido, por exemplo, app.terraform.io.
+- AUDIENCE_VALUE: Isso deve ser definido como aws.workload.identity.
+- ORG_NAME: O nome da organização a qual esta política será aplicada.
+- PROJECT_NAME: O nome do projeto ao qual esta política será aplicada.
+- WORKSPACE_NAME: O nome do espaço de trabalho ao qual esta política será aplicada.
+- RUN_PHASE: A fase de execução a qual esta política será aplicada, atualmente uma das seguintes: plan ou apply.
+
+Uma política de permissões precisa ser adicionada à função, definindo quais operações na AWS a função está autorizada a realizar.
+
 ### Configurando seus workloads no Terraform Cloud
 
 ### Executando plan e apply
