@@ -80,11 +80,21 @@ Basta selecionar o seu repositório e, em seguida, o seu workspace estará  pron
 
 ### Configurando sua conta AWS
 
+É necessário configurar a nossa conta AWS para permitir que o Terraform Cloud realize a ação **Assume Role** dentro da nossa conta. Essa estrutura é estabelecida por meio do OpenID Connect, onde configuramos a audiência e confiamos que o Terraform poderá utilizar essas permissões. Além disso, é necessário criar uma **Role** com uma política de confiança personalizada que permita apenas a ação **Assume Role** originada do OIDC, concedendo as permissões necessárias para que o nosso Terraform externo possa operar de forma eficiente.
+
 ### OIDC Provider, Role e Trust Policy
 
-A URL do provider deve ser definida como o endereço do Terraform Cloud por exemplo, https://app.terraform.io, e a audience deve ser definida como aws.workload.identity.
+Primeiramente, vamos criar o OIDC. Para fazer isso, acesse o painel de **IAM** no console da AWS. Após o acesso, você encontrará a opção **Identity providers** no menu lateral esquerdo.
 
-R﻿OLE
+![terraform-cloud-6](/assets/img/terraform-cloud-6.png)
+
+Após abrir a seção de **Identity providers**, clique na opção **Add Provider**. Em seguida, selecione a opção **OpenID Connect**. No campo **Provider URL**, defina o endereço do Terraform Cloud, por exemplo, **https://app.terraform.io**. Na seção **Audience**, defina como **aws.workload.identity**. Após a configuração, seu OIDC ficará semelhante ao mostrado na imagem abaixo:
+
+![terraform-cloud-7](/assets/img/terraform-cloud-7.png)
+
+Agora que criamos o OIDC, podemos partir para a criação de políticas e funções (roles) e atribuição de permissões usando uma **Custom Trust Role Policy**. Para este laboratório, usaremos a política administrativa padrão gerenciada pela AWS. Ela garante que o seu ambiente de trabalho siga o princípio do "mínimo de privilégios", ou seja, só concede as permissões estritamente necessárias para a execução das tarefas.
+
+Para criar a função, você pode seguir direto para a criação no painel do IAM. Basta acessar a seção **Roles** no menu lateral esquerdo e clicar em **Create Role**. Durante o processo de criação, selecione a opção **Custom trust Policy** para que possamos inserir a nossa própria política personalizada:
 
 ```
 {
