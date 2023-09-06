@@ -71,7 +71,6 @@ O Terraform Cloud é compatível com os principais sistemas de controle de vers�
 
 ![terraform-cloud-4](/assets/img/terraform-cloud-4.png)
 
-\
 Basta selecionar o seu repositório e, em seguida, o seu workspace estará  pronto para uso:
 
 ![terraform-cloud-5](/assets/img/terraform-cloud-5.png)
