@@ -29,6 +29,8 @@ categories:
   - trust-policy
   - policy
 ---
+![](/assets/img/HashiCorp-Terraform-logo.png)
+
 Sabemos, e isso não é novidade, que a segurança de nossa infraestrutura é de extrema importância. Todos os projetos, especialmente na nuvem, devem adotar boas práticas desde o início para evitar futuros problemas.
 
 Quando se trata do Terraform, uma ferramenta de Infraestrutura como Código amplamente adotada no mercado, a segurança é uma questão crucial. É fundamental que nosso Terraform tenha privilégios de acesso mais elevados do que outros usuários, pois ele desempenhará um papel central na criação e gerenciamento de recursos.
@@ -71,6 +73,7 @@ O Terraform Cloud é compatível com os principais sistemas de controle de vers�
 
 ![terraform-cloud-4](/assets/img/terraform-cloud-4.png)
 
+\
 Basta selecionar o seu repositório e, em seguida, o seu workspace estará  pronto para uso:
 
 ![terraform-cloud-5](/assets/img/terraform-cloud-5.png)
@@ -124,21 +127,88 @@ Claro, aqui estão os itens formatados como uma lista:
 * WORKSPACE_NAME: O nome do espaço de trabalho ao qual esta política será aplicada.
 * RUN_PHASE: A fase de execução a qual esta política será aplicada, atualmente uma das seguintes: plan ou apply.
 
-Uma política de permissões precisa ser adicionada à função, definindo quais operações na AWS a função está autorizada a realizar.
+Pronto, criado a Role e anexando a policy de acesso podeos seguir para configuração do nosso workspace no Terraform Cloud.
 
 ### Configurando seus Workspaces no Terraform Cloud
 
-Para configurar a autenticação com a AWS usando credenciais dinâmicas através das roles, é necessário definir algumas variáveis de ambiente no nosso workspace no Terraform Cloud.
+Para configurar a autenticação com a AWS usando credenciais dinâmicas por meio das Roles, é necessário definir algumas variáveis de ambiente em seu Workspace no Terraform Cloud. Sabendo disso, basta acessar o seu workspace que será possível na tela principal uma opção de **Configure Variables**:
 
-Essas variáveis podem ser configuradas como variáveis individualizadas para o seu workspace ou se preferir compartilhar essa função AWS entre vários workspaces, é possível através dos variables sets.
+![terraform-cloud-8](/assets/img/terraform-cloud-8.png)
 
-As variaveis são :
+
+Essas variáveis podem ser configuradas individualmente para o seu espaço de trabalho ou, se preferir compartilhar essa função AWS entre vários espaços de trabalho, você pode usar os Variable Sets, as variáveis a serem configuradas são as seguintes:
 
 * `TFC_AWS_PROVIDER_AUTH` = true
 * `TFC_AWS_RUN_ROLE_ARN`  = O ARN da role que será assumida
 
-Além disso, é possível configurar funções diferentes para cada etapa do Terraform, como o plan e apply, por meio das variáveis `TFC_AWS_PLAN_ROLE_ARN` e `TFC_AWS_APPLY_ROLE_ARN`. Isso possibilita uma granularização ainda maior das permissões para o planejamento e a implantação que o seu Terraform executará.
+![terraform-cloud-9](/assets/img/terraform-cloud-9.png)
 
-Essa estrutura de "assume role" é fundamental para a implementação dos princípios de "least privilege" (princípio do menor privilégio). Dessa forma, é possível criar workspaces com permissões IAM específicas. Por exemplo, workspaces responsáveis pela gestão de IAM não precisam ter acesso a recursos como EC2, RDS ou CloudWatch. Da mesma forma, projetos que lidam com a criação de aplicativos em camadas (three-tier applications) não precisam criar usuários IAM.
+Além disso, você tem a opção de configurar funções diferentes para cada etapa do Terraform, como o Plan e a apply, por meio das variáveis `TFC_AWS_PLAN_ROLE_ARN` e `TFC_AWS_APPLY_ROLE_ARN`. Isso permite uma granularização ainda maior das permissões para o planejamento e a implantação que o seu Terraform executará.
+
+Essa estrutura de Assume Role é crucial para a aplicação dos princípios de **Least Privilege**. Com ela, você pode criar workspaces com permissões IAM específicas. Por exemplo, espaços de trabalho responsáveis pela gestão de IAM não precisam ter acesso a recursos como EC2, RDS ou CloudWatch. Da mesma forma, projetos que lidam com a criação de three-tier applications não precisam criar usuários IAM, essa abordagem ajuda a garantir a segurança e a eficiência da sua configuração. 
+
+Pronto estamos com o nosso ambiente pronto apra iniciarmos os testes de plan e apply.
 
 ### Executando plan e apply
+
+Para o nosso teste de plan e apply vamos criar um código simples. Eu deixarei o link para o repositório, mas começaremos criando os arquivos a partir do `main.tf`.
+
+```
+provider "aws" {
+  region = "sa-east-1"
+}
+
+terraform {
+  backend "remote" {
+    organization = "thiagoalexandria-org"
+
+    workspaces {
+      name = "terraform-cloud-example"
+    }
+  }
+}
+```
+
+Ótimo! Com o nosso backend e o provedor AWS definidos, vamos seguir em frente e começar a criar recursos. Começaremos com a criação de uma instância EC2, apenas para fins de demonstração no arquivo `ec2.tf`.
+
+```
+# Defina um data source para obter a AMI do Amazon Linux
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-2.*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
+# Crie uma instância EC2
+resource "aws_instance" "example" {
+  ami           = data.aws_ami.amazon_linux.id
+  instance_type = "t3a.micro"
+  tags = {
+    Name = "ec2-demo"
+  }
+}
+
+# Saída do endereço IP público da instância EC2
+output "public_ip" {
+  value = aws_instance.example.public_ip
+}
+```
+
+Basta fazer um commit no seu projeto e você verá que uma execução de Plan será iniciada no Terraform Cloud. Abaixo, temos um exemplo de como a etapa de Plan é executada e, em seguida, o Apply é disponibilizado para aprovação:
+
+![terraform-cloud-10](/assets/img/terraform-cloud-10.png)
+
+Neste ponto, você pode revisar as alterações planejadas antes de aprovar a aplicação real das mudanças em sua infraestrutura AWS. Isso ajuda a garantir que você tenha controle total sobre as alterações que serão implementadas.
+
+Este é o modelo mais comum de integração entre o Terraform Cloud e a AWS. Uma abordagem adicional que abordaremos posteriormente é a possibilidade de usar Agentes do Terraform Cloud dentro da sua infraestrutura, permitindo que o Terraform opere em sua rede privada na AWS, como a implantação de lançamentos Helm em um cluster EKS com um endpoint privado.
+
+Espero que tenham gostado deste guia. Foi um trabalho que exigiu um pouco mais de tempo, mas sempre quisemos disponibilizar materiais voltados para o Terraform Cloud. Agora, com o novo modelo de licenciamento, acreditamos que será uma ótima opção, pois a cobrança é baseada em um custo muito baixo de $0.00014 por hora por recurso criado. Isso torna a automação com o Terraform Cloud ainda mais acessível e eficiente.
