@@ -73,7 +73,6 @@ O Terraform Cloud é compatível com os principais sistemas de controle de vers�
 
 ![terraform-cloud-4](/assets/img/terraform-cloud-4.png)
 
-\
 Basta selecionar o seu repositório e, em seguida, o seu workspace estará  pronto para uso:
 
 ![terraform-cloud-5](/assets/img/terraform-cloud-5.png)
@@ -92,9 +91,9 @@ Após abrir a seção de **Identity providers**, clique na opção **Add Provide
 
 ![terraform-cloud-7](/assets/img/terraform-cloud-7.png)
 
-Agora que criamos o OIDC, podemos partir para a criação de políticas e funções (roles) e atribuição de permissões usando uma **Custom Trust Role Policy**. Para este laboratório, usaremos a política administrativa padrão gerenciada pela AWS. Ela garante que o seu ambiente de trabalho siga o princípio do "mínimo de privilégios", ou seja, só concede as permissões estritamente necessárias para a execução das tarefas.
+Agora que criamos o OIDC, podemos partir para a criação de políticas e Roles e atribuição de permissões usando uma **Custom Trust Role Policy**. Para este laboratório, usaremos a política administrativa padrão gerenciada pela AWS. Ela garante que o seu ambiente de trabalho siga o princípio do "mínimo de privilégios", ou seja, só concede as permissões estritamente necessárias para a execução das tarefas.
 
-Para criar a função, você pode seguir direto para a criação no painel do IAM. Basta acessar a seção **Roles** no menu lateral esquerdo e clicar em **Create Role**. Durante o processo de criação, selecione a opção **Custom trust Policy** para que possamos inserir a nossa própria política personalizada:
+Para criar a Role, você pode seguir direto para a criação no painel do IAM. Basta acessar a seção **Roles** no menu lateral esquerdo e clicar em **Create Role**. Durante o processo de criação, selecione a opção **Custom trust Policy** para que possamos inserir a nossa própria política personalizada:
 
 ```
 {
@@ -127,14 +126,13 @@ Claro, aqui estão os itens formatados como uma lista:
 * WORKSPACE_NAME: O nome do espaço de trabalho ao qual esta política será aplicada.
 * RUN_PHASE: A fase de execução a qual esta política será aplicada, atualmente uma das seguintes: plan ou apply.
 
-Pronto, criado a Role e anexando a policy de acesso podeos seguir para configuração do nosso workspace no Terraform Cloud.
+Pronto, criado a Role e anexando a Policy de acesso podemos seguir para configuração do nosso Workspace no Terraform Cloud.
 
 ### Configurando seus Workspaces no Terraform Cloud
 
 Para configurar a autenticação com a AWS usando credenciais dinâmicas por meio das Roles, é necessário definir algumas variáveis de ambiente em seu Workspace no Terraform Cloud. Sabendo disso, basta acessar o seu workspace que será possível na tela principal uma opção de **Configure Variables**:
 
 ![terraform-cloud-8](/assets/img/terraform-cloud-8.png)
-
 
 Essas variáveis podem ser configuradas individualmente para o seu espaço de trabalho ou, se preferir compartilhar essa função AWS entre vários espaços de trabalho, você pode usar os Variable Sets, as variáveis a serem configuradas são as seguintes:
 
@@ -151,7 +149,7 @@ Pronto estamos com o nosso ambiente pronto apra iniciarmos os testes de plan e a
 
 ### Executando plan e apply
 
-Para o nosso teste de plan e apply vamos criar um código simples. Eu deixarei o link para o repositório, mas começaremos criando os arquivos a partir do `main.tf`.
+Para o nosso teste de plan e apply vamos criar um código simples. Eu deixarei o link para o [repositório](https://github.com/thiagoalexandria/terraform-cloud-example), mas começaremos criando os arquivos a partir do `main.tf`.
 
 ```
 provider "aws" {
