@@ -5,7 +5,7 @@ description: Vamos dar uma olhada nos bastidores do meu blog! Descubra como tudo
   funciona, desde a estrutura do site até como eu mantenho o conteúdo
   atualizado. Vou te contar sobre as tecnologias e truques que uso para tornar o
   processo de publicação suave e divertido!
-date: 2023-09-04
+date: 2023-09-14
 category: devops
 background: "#05A6F0"
 tags:
