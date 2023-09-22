@@ -3,7 +3,7 @@ image: /assets/img/HashiCorp-Terraform-logo.png
 title: Configurando o Terraform Cloud com IAM Roles
 description: A configuração do Terraform Cloud com IAM roles permite uma gestão
   segura e simplificada das permissões de acesso aos recursos da AWS.
-date: 2023-05-22
+date: 2023-09-22
 category: devops
 background: "#05A6F0"
 tags:
