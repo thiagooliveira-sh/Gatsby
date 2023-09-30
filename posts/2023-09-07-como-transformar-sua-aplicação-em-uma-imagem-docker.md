@@ -5,7 +5,7 @@ description: "Dockerização, ou containerização, é o processo de empacotar u
   aplicação e suas dependências em um contêiner Docker, uma unidade leve e
   isolada que pode ser executada de maneira consistente em qualquer ambiente que
   suporte o Docker. "
-date: 2023-09-07
+date: 2023-09-29
 category: devops
 background: "#05A6F0"
 tags:
