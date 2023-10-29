@@ -1,5 +1,5 @@
 ---
-image: /assets/img/AWS.png
+image: /assets/img/HashiCorp-Terraform-logo.png
 title: Gerando diagramas de infraestrutura do seu codigo Terraform
 description: "Compreendo a importância de abordar mais a fundo a questão da
   documentação em projetos, especialmente no que diz respeito à parte gráfica e
