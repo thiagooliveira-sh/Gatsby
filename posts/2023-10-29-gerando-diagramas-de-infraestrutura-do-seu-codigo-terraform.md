@@ -96,7 +96,7 @@ terravision draw --source https://github.com/seu-repo/exemplos-terraform.git
 
 Os diagramas resultantes oferecem uma representação visual da arquitetura do Terraform, destacando a estrutura e as relações entre os recursos, simplificando a compreensão da infraestrutura de forma clara e direta. Como por exemplo esse examplo simples de um diagrama com load balancer e ec2:
 
-![Diagrama](/assets/img/architecture.dot.png)
+![Diagrama](/assets/img/terravision.png)
 
 Segue alguns projetos para utilizar de exemplo:
 
