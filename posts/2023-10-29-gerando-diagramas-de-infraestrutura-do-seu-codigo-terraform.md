@@ -1,6 +1,6 @@
 ---
 image: /assets/img/HashiCorp-Terraform-logo.png
-title: Gerando diagramas de infraestrutura do seu código Terraform
+title: Como automatizar a geração de documentações para Terraform
 description: "Compreendo a importância de abordar mais a fundo a questão da
   documentação em projetos, especialmente no que diz respeito à parte gráfica e
   ao uso do Terraform. A documentação desempenha um papel crucial na compreensão
