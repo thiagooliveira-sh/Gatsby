@@ -3,7 +3,7 @@ image: /assets/img/HashiCorp-Terraform-logo.png
 title: Introdução a Terraform com Atlantis
 description: O Atlantis é uma aplicação que, através de Pull Requests, permite
   fazer GitOps para Terraform.
-date: 2022-01-17
+date: 2023-01-17
 category: devops
 background: "#05A6F0"
 tags:
