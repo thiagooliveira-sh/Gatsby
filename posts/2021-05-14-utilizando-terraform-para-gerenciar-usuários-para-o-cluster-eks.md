@@ -3,7 +3,7 @@ image: /assets/img/HashiCorp-Terraform-logo.png
 title: Utilizando Terraform para gerenciar usuários para o cluster EKS
 description: Criando um Cluster EKS através do Terraform, em alguns casos,
   torna-se necessário definir também que alguns usuários possam administra-lo.
-date: 2021-05-14
+date: 2023-05-14
 category: devops
 background: "#05A6F0"
 tags:
