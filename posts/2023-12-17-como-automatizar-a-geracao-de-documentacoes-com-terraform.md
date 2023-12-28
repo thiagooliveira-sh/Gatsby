@@ -6,7 +6,7 @@ description: "Compreendo a importância de abordar mais a fundo a questão da
   ao uso do Terraform. A documentação desempenha um papel crucial na compreensão
   e na manutenção de um projeto, garantindo a colaboração eficaz entre as
   equipes e a continuidade do trabalho. "
-date: 2023-12-21
+date: 2023-12-28
 category: devops
 background: "#05A6F0"
 tags:
