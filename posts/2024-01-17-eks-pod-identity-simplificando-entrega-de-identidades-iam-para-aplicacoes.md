@@ -1,6 +1,6 @@
 ---
 image: /assets/img/AWS.png
-title: EKS Pod Identity simplificando entrega de identidades IAM para aplicacoes
+title: EKS Pod Identity simplificando entrega de identidades IAM para aplicações
 description: Em 2019, a introdução do IAM Roles for Service Accounts
   revolucionou a gestão de permissões no Kubernetes, permitindo a associação de
   funções IAM a contas de serviço.
