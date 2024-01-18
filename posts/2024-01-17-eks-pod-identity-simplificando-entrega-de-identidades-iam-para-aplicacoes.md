@@ -36,7 +36,7 @@ E﻿ é isso que vamos aprender a fazer hoje, como o EKS Pod Identity funciona, 
 
 **O Pod Identity não acarreta custos adicionais para o seu ambiente EKS. Essa funcionalidade está disponível a partir da versão 1.24, sendo essencial que suas aplicações estejam utilizando as versões mais recentes de seus respectivos SDKs para assegurar plena compatibilidade.**
 
-### Configurando Pod Identity
+### Habilitando o Pod Identity 
 
 Para começar a usar o Pod Identity, ao contrário do IRSA, é necessário instalar um plugin no nosso cluster. Basta acessar o seu cluster EKS, escolher a opção "Add-ons" e selecionar "Get mode add-ons" e procure pelo EKS Pod Identity Agent.
 
@@ -49,3 +49,52 @@ Para iniciar o uso do EKS Pod Identity, simplesmente siga as etapas do wizard e 
 Com o plugin instalado, vamos agora configurar uma aplicação simples que já utilizamos como [exemplo](https://thiagoalexandria.com.br/criacao-de-permissoes-granulares-do-iam-para-pods/) em artigos anteriores, envolvendo acesso a um bucket S3. Nosso próximo passo é entender as mudanças na política do IAM.
 
 ### Criação de Policy e Roles
+
+Primeiro, vamos criar uma Role adicionando uma relação de confiança através do trust relationships, para criar a função, vamos considerar que vamos usar a namespace "eks-s3-example" e a service account que terá permissão para acessar a função será "eks-s3-example-iam-role-sa".
+
+P﻿ara que a configuração possa surtir efeito, precisamos configurar a trust relationship utilizando como "principal" o `pods.eks.amazonaws.com`:
+
+```
+cat << EOF > SampleAppS3AccessroleAssumeRole.json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "pods.eks.amazonaws.com"
+            },
+            "Action": [
+                "sts:AssumeRole",
+                "sts:TagSession"
+            ]
+        }
+    ]
+}
+```
+
+Com o arquivo JSON criado, vamos agora criar a função de permissão (Role) usando o AWS CLI.
+
+```
+aws iam create-role \
+  --role-name SampleAppS3Accessrole \
+  --assume-role-policy-document file://"SampleAppS3AccessroleAssumeRole.json"
+```
+
+Com a função criada, vamos anexar a política que determinará quais permissões a aplicação poderá assumir, foi utilizado a politica de Full Access apenas para laboratório:
+
+```
+aws iam attach-role-policy \
+  --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess \
+  --role-name SampleAppS3Accessrole
+```
+
+# Bucket S3
+
+Para o laboratório, vamos precisar criar um bucket s3, esse processo pode ser executado através do console da AWS ou utilizando o CLI através do seguinte comando, lembre-se que o nome do bucket precisa ser único de forma global, então insira um nome personalizado:
+
+```text
+aws s3api create-bucket \
+    --bucket eks-s3-example-app-bucket \
+    --region us-east-1
+```
