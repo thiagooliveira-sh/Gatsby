@@ -32,7 +32,17 @@ Lidar com identidade em ambientes Kubernetes pode ser um verdadeiro quebra-cabe�
 
 E﻿ é isso que vamos aprender a fazer hoje, como o EKS Pod Identity funciona, como podemos configurar no nosso cluster e os principais pontos comparado com o IRSA.
 
+#﻿## Configurando Pod Identity
 
+Para começar a usar o Pod Identity, ao contrário do IRSA, é necessário instalar um plugin no nosso cluster. Basta acessar o seu cluster EKS, escolher a opção "Add-ons" e selecionar "Get mode add-ons" e procure pelo EKS Pod Identity Agent.
 
+[﻿imagem]
 
+Para iniciar o uso do EKS Pod Identity, simplesmente siga as etapas do wizard e escolha a versão mais recente disponível.
+
+[﻿imagem]
+
+Com o plugin instalado, vamos agora configurar uma aplicação simples que já utilizamos como exemplo em artigos anteriores, envolvendo acesso a um bucket S3. Nosso próximo passo é entender as mudanças na política do IAM.
+
+#﻿## Criação de Policy e Roles
 
