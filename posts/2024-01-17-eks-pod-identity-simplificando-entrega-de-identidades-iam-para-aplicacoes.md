@@ -40,13 +40,9 @@ E﻿ é isso que vamos aprender a fazer hoje, como o EKS Pod Identity funciona, 
 
 Para começar a usar o Pod Identity, ao contrário do IRSA, é necessário instalar um plugin no nosso cluster. Basta acessar o seu cluster EKS, escolher a opção "Add-ons" e selecionar "Get mode add-ons" e procure pelo EKS Pod Identity Agent.
 
-\[﻿imagem]
+![](/assets/img/pod-identity-1.png)
 
-Para iniciar o uso do EKS Pod Identity, simplesmente siga as etapas do wizard e escolha a versão mais recente disponível.
-
-\[﻿imagem]
-
-Com o plugin instalado, vamos agora configurar uma aplicação simples que já utilizamos como [exemplo](https://thiagoalexandria.com.br/criacao-de-permissoes-granulares-do-iam-para-pods/) em artigos anteriores, envolvendo acesso a um bucket S3. Nosso próximo passo é entender as mudanças na política do IAM.
+Para iniciar o uso do EKS Pod Identity, simplesmente siga as etapas do wizard e escolha a versão mais recente disponível. Com o plugin instalado, vamos agora configurar uma aplicação simples que já utilizamos como [exemplo](https://thiagoalexandria.com.br/criacao-de-permissoes-granulares-do-iam-para-pods/) em artigos anteriores, envolvendo acesso a um bucket S3. Nosso próximo passo é entender as mudanças na política do IAM.
 
 ### Criação de Policy e Roles
 
@@ -98,3 +94,68 @@ aws s3api create-bucket \
     --bucket eks-s3-example-app-bucket \
     --region us-east-1
 ```
+
+### S﻿ample App
+
+Bom, nessa altura do campeonato devemos estar com tudo criado, para realizar um teste vamos criar manifesto do tipo job, para tudo funcionar da forma que esperamos precisamos criar a namespace:
+
+```
+kubectl create namespace eks-s3-example
+```
+
+Para criamos o service account, rode o comando abaixo na sua máquina para criar o arquivo de manifesto, mais uma vez
+
+```
+cat << EOF > eks-s3-service-account.yaml
+apiVersion: v1
+automountServiceAccountToken: true
+kind: ServiceAccount
+metadata:
+  labels:
+    env: dev
+    app: eks-s3-example
+  name: eks-s3-example-iam-role-sa
+  namespace: eks-s3-example
+EOF
+
+```
+
+Basta então criarmos o nosso `Job` seguindo o seguinte manifesto, lembre se alterar o `<BUCKET-NAME>` pelo nome do seu bucket criado anteriormente:
+
+```text
+cat << EOF > eks-s3-job.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: eks-s3-example 
+  namespace: eks-s3-example
+spec:
+  template:
+    metadata:
+      labels:
+        app: eks-s3-example
+    spec:
+      serviceAccountName: eks-s3-example-iam-role-sa
+      containers:
+      - name: eks-s3-test
+        image: amazon/aws-cli:latest
+        args: \["s3", "ls”, "s3://<BUCKET-NAME>"]
+      restartPolicy: Never
+EOF
+```
+
+### Atribuindo identidade
+
+É preciso que agora naveguemos até a guia Access no nosso cluster EKS. Na seção Pod Identity associations, selecionamos a opção Create Pod Identity association para mapear minha função IAM aos pods do Kubernetes.
+
+![](/assets/img/pod-identity-2.png)
+
+S﻿elecione as opções referente a role, namespace e service account e finalize a associação:
+
+![](/assets/img/pod-identity-3.png)
+
+Para termos uma visão melhor da execução, adicionei um arquivo chamado `aws.png` no bucket e então o resultado da listagem do bucket deve ser semelhante ao abaixo:
+
+![](/assets/img/pod-identity-4.png)
+
+Este é o mais recente plugin que chega para revolucionar a maneira como as identidades IAM são entregues para as aplicações dentro do EKS, simplificando o processo de criação e associação de identidades para o ambiente EKS.
