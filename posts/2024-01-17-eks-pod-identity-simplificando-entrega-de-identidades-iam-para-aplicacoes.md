@@ -144,6 +144,8 @@ spec:
 EOF
 ```
 
+Execute então o comando` kubectl create -f <NOME-DOS-ARQUIVOS> `para criar os recursos no seu cluster EKS.
+
 ### Atribuindo identidade
 
 É preciso que agora naveguemos até a guia Access no nosso cluster EKS. Na seção Pod Identity associations, selecionamos a opção Create Pod Identity association para mapear minha função IAM aos pods do Kubernetes.
@@ -158,4 +160,8 @@ Para termos uma visão melhor da execução, adicionei um arquivo chamado `aws.
 
 ![](/assets/img/pod-identity-4.png)
 
+### Considerações
+
 Este é o mais recente plugin que chega para revolucionar a maneira como as identidades IAM são entregues para as aplicações dentro do EKS, simplificando o processo de criação e associação de identidades para o ambiente EKS.
+
+M﻿ostra ser uma ótima alternativas ao invés das complexas `trust relationship` que precisávamos configurar anteriormente utilizando o IRSA, gostei muito da integração e facilidade gráfica de se realizar as mudanças e atribuições de permissões, espero que logo mais tenhamos essa funcionalidade para ferramentas de IaC uma vez que até a data de hoje não  identifiquei nada relacionado nas documentações do Terraform.
