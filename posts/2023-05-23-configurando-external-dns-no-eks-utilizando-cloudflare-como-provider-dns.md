@@ -5,7 +5,7 @@ description: Aprenda a configurar o external-dns no EKS usando CloudFlare como
   provedor DNS. Automatize a atualização dos registros DNS no CloudFlare à
   medida que implanta e remove serviços no EKS. Simplifique a gestão de domínios
   e mantenha tudo em sincronia com external-dns e CloudFlare.
-date: 2023-05-22
+date: 2024-01-20
 category: devops
 background: "#05A6F0"
 tags:
