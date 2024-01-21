@@ -1,6 +1,6 @@
 ---
 image: /assets/img/AWS.png
-title: Teste e validacao automaticos de restauracao com AWS Backup
+title: Teste e validação automáticos de restauração com AWS Backup
 description: Agora, com o AWS Backup, você pode realizar testes automáticos e
   validação de restauração, assegurando a integridade e disponibilidade dos seus
   dados. Ganhe confiança na recuperação eficaz de informações cruciais para o
