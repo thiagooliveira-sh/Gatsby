@@ -69,8 +69,6 @@ Antes de configurar o AWS VPN Client Endpoint, é importante verificar os pré-r
 * C﻿rie uma instância EC2
 * Configure seu AWS CLI com as credenciais corretas da conta
 
-
-
 ### 2.1 Criação da instância EC2
 
 Crie uma instância EC2, conecte através do SSM ou SSH, e instale o git
@@ -151,7 +149,7 @@ Em "Other parameters" informe o IP dos servidores DNS, indico inserir como prim�
 
 [FOTO 4]
 
-### 3.1 Associação de sub-redes à Client VPN Endpoint:
+### 3.1 Associação de sub-redes ao Client VPN Endpoint:
 
 Como não associamos ainda nenhum recurso a VPN o status ficará como "Pending Associate", associe as sub-redes relevantes à Client VPN Endpoint para permitir que seus dispositivos se conectem à infraestrutura na nuvem.
 
@@ -186,11 +184,14 @@ Abra o arquivo que fez download e adicione duas novas sessões no arquivo:
 
 Basta popular com as informações dos certificados e chaves geradas anteriormente e adicionar no arquivo dentro das sessões indicadas e salve o arquivo.
 
-
-
-
-
 ## 4. Conectando na VPN
+
+Para conectar na VPN você pode utilizar qualquer client que aceite os arquivos do openvpn, a AWS possui um próprio client se tiver preferencia ou faça o download do openvpn para o seu sistema operacional, utilize o arquivo que montamos e faça a conexão.
+
+Para validar o funcionamento da VPN vamos tentar mandar um ping na EC2 que criamos, para isso garanta que a regra de ICMP no security group da instância esteja habilitado.
+
+[FOTO10]
+
 
 ## F﻿im
 
