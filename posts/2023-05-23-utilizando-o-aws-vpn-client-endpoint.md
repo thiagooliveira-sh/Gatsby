@@ -117,47 +117,47 @@ Crie um diretório no servidor e copie os arquivos gerados, após feito acesse o
 ```
 mkdir ~/custom_folder/
 cp pki/ca.crt ~/custom_folder/
-cp pki/issued/server.crt ~/custom_folder/
-cp pki/private/server.key ~/custom_folder/
-cp pki/issued/client1.domain.tld.crt ~/custom_folder
-cp pki/private/client1.domain.tld.key ~/custom_folder/
+cp pki/issued/vpn.seudominio.com.br.crt ~/custom_folder/
+cp pki/private/vpn.seudominio.com.br.key ~/custom_folder/
+cp pki/issued/client1.seudominio.com.br.crt ~/custom_folder
+cp pki/private/client1.seudominio.com.br.key ~/custom_folder/
 cd ~/custom_folder/
 ```
 
 Crie uma IAM role, ou edite a role usada caso esteja acessando a EC2 através do SSM, adicione a policy AWSCertificateManagerFullAccess para gerenciamento do ACM e em seguida faça o upload do certificado.
 
 ```
-aws acm import-certificate --certificate fileb://server.crt --private-key fileb://server.key --certificate-chain fileb://ca.crt
-aws acm import-certificate --certificate fileb://client1.domain.tld.crt --private-key fileb://client1.domain.tld.key --certificate-chain fileb://ca.crt
+aws acm import-certificate --certificate fileb://vpn.seudominio.com.br.crt --private-key fileb://vpn.seudominio.com.br.key --certificate-chain fileb://ca.crt
+aws acm import-certificate --certificate fileb://client1.seudominio.com.br.crt --private-key fileb://client1.seudominio.com.br.key --certificate-chain fileb://ca.crt
 ```
 
 ## 3 Criação e configuração de uma Client VPN Endpoint:
 
 Acesse a interface de Client VPN Ednpoint no console de gerenciamento da AWS e clique em `Create Client VPN endpoint`
 
-\[FOTO 1]
+![client-vpn-1](/assets/img/client-vpn-1.png "client-vpn-1")
 
 Na tela de `Details`, basta preencher com as informações solicitadas como nome do endpoint, descrições e o range de ipv4 que será utilizado pelo client quando acessarmos a VPN.
 
-\[FOTO 2]
+![client-vpn-2](/assets/img/client-vpn-2.png "client-vpn-2")
 
 Em `Authentication` selecione o certificados de server e client e selecione a opção Mutual Authentication:
 
-\[FOTO 3]
+![client-vpn-3](/assets/img/client-vpn-3.png "client-vpn-3")
 
 Em "Other parameters" informe o IP dos servidores DNS, indico inserir como primário o IP do DNS primário da VPC e no secundário um DNS publico como o do google ou cloudflare. Selecione a VPC e um security group, para simplificarmos o processo será atribuido um security group permitindo todo o tráfico no security group, você pode personalizar basedo nos seus requisitos, selecione a opção "Split tunneling" para usar a conexão de VPN para conectar a apenas recursos da AWS. Por fim crie o endpoint.
 
-\[FOTO 4]
+![client-vpn-4](/assets/img/client-vpn-4.png "client-vpn-4")
 
 ### 3.1 Associação de sub-redes ao Client VPN Endpoint:
 
 Como não associamos ainda nenhum recurso a VPN o status ficará como "Pending Associate", associe as sub-redes relevantes à Client VPN Endpoint para permitir que seus dispositivos se conectem à infraestrutura na nuvem. Vamos associar a subnet que temos a ec2 criada, clique em "Associate target network" em "Target network" selecione a VPC e a subnet e clique em "Associate target network"
 
-\[FOTO 5]
+![client-vpn-5](/assets/img/client-vpn-5.png "client-vpn-5")
 
 O processo de associação demora um pouco, então basta acompanhar através da interface, enquanto isso vamos criar algumas "Authorization rules" para que consigamos acessar os recursos de infraestrutura, em "Authorization rules" clique em "Add authorization rule". Em "Destination network" para habilitar o acesso utilize o CIDR da sua VPC e selecione "Allow access to all users" para simplificarmos:
 
-\[FOTO 6]
+![client-vpn-6](/assets/img/client-vpn-6.png "client-vpn-6")
 
 Feito isso, clique em "Download client configuration" para baixar os arquivos de configurações:
 
@@ -180,7 +180,7 @@ Para conectar na VPN você pode utilizar qualquer client que aceite os arquivos 
 
 Para validar o funcionamento da VPN vamos tentar mandar um ping na EC2 que criamos, para isso garanta que a regra de ICMP no security group da instância esteja habilitado.
 
-\[FOTO 7]
+![client-vpn-7](/assets/img/client-vpn-7.png "client-vpn-7")
 
 ## F﻿im
 
