@@ -103,13 +103,13 @@ Inicialize o environment para PKI e crie um novo CA
 Gere o certificado do server:
 
 ```
-./easyrsa build-server-full server nopass
+./easyrsa build-server-full vpn.seudominio.com.br nopass
 ```
 
 Gere o certificado e chaves do client promovendo o client name como o seu dominio:
 
 ```
-./easyrsa build-client-full client1.domain.tld nopass
+./easyrsa build-client-full client1.seudominio.com.br nopass
 ```
 
 Crie um diretório no servidor e copie os arquivos gerados, após feito acesse o diretório criado:
@@ -135,45 +135,35 @@ aws acm import-certificate --certificate fileb://client1.domain.tld.crt --privat
 
 Acesse a interface de Client VPN Ednpoint no console de gerenciamento da AWS e clique em `Create Client VPN endpoint`
 
-[FOTO 1]
+\[FOTO 1]
 
 Na tela de `Details`, basta preencher com as informações solicitadas como nome do endpoint, descrições e o range de ipv4 que será utilizado pelo client quando acessarmos a VPN.
 
-[FOTO 2]
+\[FOTO 2]
 
 Em `Authentication` selecione o certificados de server e client e selecione a opção Mutual Authentication:
 
-[FOTO 3]
+\[FOTO 3]
 
 Em "Other parameters" informe o IP dos servidores DNS, indico inserir como primário o IP do DNS primário da VPC e no secundário um DNS publico como o do google ou cloudflare. Selecione a VPC e um security group, para simplificarmos o processo será atribuido um security group permitindo todo o tráfico no security group, você pode personalizar basedo nos seus requisitos, selecione a opção "Split tunneling" para usar a conexão de VPN para conectar a apenas recursos da AWS. Por fim crie o endpoint.
 
-[FOTO 4]
+\[FOTO 4]
 
 ### 3.1 Associação de sub-redes ao Client VPN Endpoint:
 
-Como não associamos ainda nenhum recurso a VPN o status ficará como "Pending Associate", associe as sub-redes relevantes à Client VPN Endpoint para permitir que seus dispositivos se conectem à infraestrutura na nuvem.
+Como não associamos ainda nenhum recurso a VPN o status ficará como "Pending Associate", associe as sub-redes relevantes à Client VPN Endpoint para permitir que seus dispositivos se conectem à infraestrutura na nuvem. Vamos associar a subnet que temos a ec2 criada, clique em "Associate target network" em "Target network" selecione a VPC e a subnet e clique em "Associate target network"
 
-[FOTO 5]
+\[FOTO 5]
 
-Vamos associar a subnet que temos a ec2 criada, clique em "Associate target network" em "Target network" selecione a VPC e a subnet e clique em "Associate target network"
+O processo de associação demora um pouco, então basta acompanhar através da interface, enquanto isso vamos criar algumas "Authorization rules" para que consigamos acessar os recursos de infraestrutura, em "Authorization rules" clique em "Add authorization rule". Em "Destination network" para habilitar o acesso utilize o CIDR da sua VPC e selecione "Allow access to all users" para simplificarmos:
 
-[FOTO 6]
-
-O processo de associação demora um pouco, então basta acompanhar através da interface, enquanto isso vamos criar algumas "Authorization rules" para que consigamos acessar os recursos de infraestrutura, em "Authorization rules" clique em "Add authorization rule":
-
-[FOTO 7]
-
-Em "Destination network" para habilitar o acesso utilize o CIDR da sua VPC e selecione "Allow access t oall users" para simplificarmos:
-
-[FOTO 8]
+\[FOTO 6]
 
 Feito isso, clique em "Download client configuration" para baixar os arquivos de configurações:
 
-[FOTO 9]
-
 ### 3.2 Ajuste o arquivo do client
 
-Abra o arquivo que fez download e adicione duas novas sessões no arquivo:
+Abra o arquivo que fez download e adicione duas novas sessões logo abaixo de `</ca>`, lembrando de inserir os valores dos seus certificados de cliente gerado.
 
 ```
 <cert>
@@ -190,8 +180,7 @@ Para conectar na VPN você pode utilizar qualquer client que aceite os arquivos 
 
 Para validar o funcionamento da VPN vamos tentar mandar um ping na EC2 que criamos, para isso garanta que a regra de ICMP no security group da instância esteja habilitado.
 
-[FOTO10]
-
+\[FOTO 7]
 
 ## F﻿im
 
