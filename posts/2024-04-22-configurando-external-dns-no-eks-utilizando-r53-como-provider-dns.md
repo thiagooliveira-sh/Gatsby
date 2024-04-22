@@ -32,3 +32,9 @@ Vamos supor que você tenha uma aplicação sendo executada em um Cluster Kubern
 Agora, e se você tiver centenas de projetos e vários registros DNS para serem criados? E se o endpoint da load balancer mudar? Como você acompanharia esse gerenciamento massivo de registros DNS?
 
 É ai que entra o external-dns, ele permite que você controle registros DNS de forma dinâmica por meio de recursos do Kubernetes de uma maneira independente do provedor de DNS. O ExternalDNS sincroniza os Serviços e Ingresses do Kubernetes expostos com os provedores de DNS, gerenciando apenas as entradas criadas por ele e sem interferir nas entradas já existentes no ambiente.
+
+### 1﻿. Prepare as permissões no IAM
+
+Neste tutorial, esperamos que você já tenha configurado a zona no seu Route 53, por se tratar de uma interação direta com o R53, precisaremos criar uma política que contenha as permissões necessárias para gerenciar nossa zona DNS.
+
+É importante ter em mente o princípio do Privilégio Mínimo, assim entregaremos apenas as permissões necessárias para gerenciar as entradas DNS.
