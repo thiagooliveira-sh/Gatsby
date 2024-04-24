@@ -4,7 +4,7 @@ title: Utilizando o AWS VPN Client Endpoint
 description: O AWS VPN Client endpoint é um ponto de acesso que permite aos
   clientes estabelecerem conexões seguras com a AWS por meio de uma rede virtual
   privada.
-date: 2024-04-21
+date: 2024-04-24
 category: aws
 background: "#FF9900"
 tags:
