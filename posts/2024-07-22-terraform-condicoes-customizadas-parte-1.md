@@ -1,6 +1,6 @@
 ---
 image: /assets/img/HashiCorp-Terraform-logo.png
-title: "Terraform condicoes customizadas - parte 1 "
+title: "Terraform condições customizadas - Parte 1 "
 description: O Terraform possui diversas alternativas para validar variáveis e
   configurações dentro do seu código. Essas validações ajudam a evitar erros e
   seguir boas práticas, assegurando que a infraestrutura seja robusta e
