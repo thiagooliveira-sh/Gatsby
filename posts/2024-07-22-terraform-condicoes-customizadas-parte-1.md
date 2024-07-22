@@ -90,6 +90,6 @@ O que os usuários irão visualizar no terminal quando executar versões inferio
 │ Please upgrade from python3.9 to python3.11 or python3.12
 ```
 
-
+### Verificar se as tags são fornecidas para alocação de custos
 
 ##  O que acontece quando você executa o Terraform Apply
