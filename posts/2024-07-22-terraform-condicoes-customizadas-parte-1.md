@@ -92,4 +92,17 @@ O que os usuários irão visualizar no terminal quando executar versões inferio
 
 ### Verificar se as tags são fornecidas para alocação de custos
 
+Quando estamos falando de ambiente corporativo na cloud, temos um trabalho muito forte na visão de custo, principalmente quando a empresa trabalha com centro de custos e equipes possuem budgets próprios para trabalhar com produtos na AWS.
+
+D﻿essa forma, outra forma inteligente de utilizarmos os `checks` é para analisar se as tags adequadas estão sendo utilizadas pelas equipes e evitarmos que recursos sejam criadas da seguinte forma
+
+```
+resource "aws_instance" "test" {
+  ...
+  tags             = { "name" = "test" }
+}
+``` 
+
+Podemos utilizar o `assert` com tags especificas presentes no check, podemo implementar utilizando as funções do Terraform `lookup` ou `try` mas vamos utilizar o `can` juntamente ao `&&` para demonstrar que podemos utilizar múltiplas condições.
+
 ##  O que acontece quando você executa o Terraform Apply
