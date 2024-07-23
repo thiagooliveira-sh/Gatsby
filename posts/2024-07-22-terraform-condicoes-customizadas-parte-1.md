@@ -33,7 +33,7 @@ N﻿esse primeiro post vamos falar sobre os Check blocks.
 
 Checks podem validar qualquer condição que você defina nas configurações do seu código Terraform. Um check pode validar um atributo da sua infraestrutura, ou uma funcionalidade do recurso, por exemplo. 
 
-É ﻿importante frisar que as checagens ocorrem fora do ciclo de vida usual dos recursos. Ou seja, você pode adicionar condições customizadas através do bloco `assert` que são executados ao final das etapas de `plan` e `apply` notificando sempre sobre os possíveis problemas na sua infraestrutura.
+É ﻿importante frisar que as checagens ocorrem fora do ciclo de vida usual dos recursos, ou seja, você pode adicionar condições customizadas através do bloco `assert` que são executados ao final das etapas de `plan` e `apply` notificando sempre sobre os possíveis problemas na sua infraestrutura.
 
 ## Introdução
 
@@ -63,7 +63,7 @@ V﻿amos trazer dois exemplos práticos que podem ser utilizados no dia a dia co
 
 ### Evitar utilização de runtimes desatualizados no lambda
 
-Q﻿uando trabalhamos criando módulos compartilhados com diversas outras equipes, é importante que criemos formas de avaliar se as boas práticas estão sendo seguidas, como por exemplo, garantir que as equipes utilizem as runtimes mais atualizadas do lambda.
+Quando trabalhamos criando módulos compartilhados com diversas outras equipes, é importante que criemos formas de avaliar se as boas práticas estão sendo seguidas, como por exemplo, garantir que as equipes utilizem as runtimes mais atualizadas do lambda.
 
 N﻿esse exemplo vamos criar uma checagem para analisar se a runtime do python que esta sendo utilizada é a mais recente:
 
