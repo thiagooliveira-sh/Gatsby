@@ -59,7 +59,7 @@ Se a `condition` for avaliada como `false`, o Terraform produzirá uma mensagem 
 V﻿amos trazer dois exemplos práticos que podem ser utilizados no dia a dia corporativo, como forma de guard rails para criação de recursos, por exemplo: 
 
 * Evitar utilização de runtimes desatualizados no lambda
-  -﻿ Verificar se as tags são fornecidas para alocação de custos
+* Verificar se as tags são fornecidas para alocação de custos
 
 ### Evitar utilização de runtimes desatualizados no lambda
 
