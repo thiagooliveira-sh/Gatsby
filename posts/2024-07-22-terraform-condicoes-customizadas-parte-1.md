@@ -5,7 +5,7 @@ description: O Terraform possui diversas alternativas para validar variáveis e
   configurações dentro do seu código. Essas validações ajudam a evitar erros e
   seguir boas práticas, assegurando que a infraestrutura seja robusta e
   confiável.
-date: 2024-07-22
+date: 2024-07-23
 category: devops
 background: "#05A6F0"
 tags:
