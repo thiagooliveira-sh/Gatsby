@@ -38,7 +38,8 @@ Outra alternativa  é habilitar o AWS Cost Optimization Hub, depois de aceitar a
 
 ### 2. Configure alertas de orçamento:
 
-A AWS permite configurar alertas de orçamento que notificam você quando seus gastos ultrapassam um limite predefinido. Isso ajuda a evitar surpresas desagradáveis no final do mês. Siga estas etapas para configurar alertas de orçamento:
+A AWS permite configurar alertas de orçamento que notificam você quando seus gastos ultrapassam um limite predefinido. Isso ajuda a evitar surpresas no final do mês:
+ Siga estas etapas para configurar alertas de orçamento:
 
 - Vá para o console da AWS e acesse o serviço "AWS Budgets".
 - Crie um novo orçamento com um limite que você deseja manter.
