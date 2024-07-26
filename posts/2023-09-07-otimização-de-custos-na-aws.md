@@ -4,7 +4,7 @@ title: Otimização de Custos na AWS
 description: "A AWS é uma plataforma poderosa para hospedar aplicativos e
   serviços em nuvem, mas os custos podem se acumular rapidamente se não forem
   gerenciados adequadamente. "
-date: 2024-01-24
+date: 2024-07-24
 category: aws
 background: "#FF9900"
 tags:
