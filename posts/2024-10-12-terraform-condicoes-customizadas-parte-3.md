@@ -27,9 +27,8 @@ Neste artigo, vamos explorar o que são preconditions e postconditions, como us�
 
 ## O que são Preconditions e Postconditions?
 
-- **Preconditions**: São validações que ocorrem antes que um recurso seja criado ou modificado. Elas garantem que certos critérios sejam atendidos antes de permitir que o Terraform execute a mudança. Se as preconditions não forem atendidas, o Terraform falha antes de aplicar qualquer alteração.
-
-- **Postconditions**: São condições verificadas após a execução de um recurso. Elas confirmam se o estado final do recurso está de acordo com as expectativas definidas. Caso contrário, o Terraform também interrompe o processo com um erro.
+* **Preconditions**: São validações que ocorrem antes que um recurso seja criado ou modificado. Elas garantem que certos critérios sejam atendidos antes de permitir que o Terraform execute a mudança. Se as preconditions não forem atendidas, o Terraform falha antes de aplicar qualquer alteração.
+* **Postconditions**: São condições verificadas após a execução de um recurso. Elas confirmam se o estado final do recurso está de acordo com as expectativas definidas. Caso contrário, o Terraform também interrompe o processo com um erro.
 
 Essas validações podem ser úteis para evitar falhas em ambientes de produção, impor padrões ou garantir que os parâmetros fornecidos estejam corretos.
 
@@ -109,12 +108,11 @@ resource "aws_instance" "example" {
 }
 ```
 
-
 ### Exemplo 3: Verificando a Configuração de Ciclo de Vida do S3 com Postcondition
 
 Neste exemplo, verificamos que o bucket S3 foi criado com a política de ciclo de vida correta.
 
-```
+```hcl
 resource "aws_s3_bucket" "example" {
   bucket = "example-bucket"
 }
@@ -139,5 +137,3 @@ resource "aws_s3_bucket_lifecycle_configuration" "example" {
 ```
 
 Ao aplicar essas práticas em seus projetos Terraform, você pode reduzir o risco de erros em ambientes de produção e garantir que suas implementações sejam executadas de acordo com as expectativas.
-
-
