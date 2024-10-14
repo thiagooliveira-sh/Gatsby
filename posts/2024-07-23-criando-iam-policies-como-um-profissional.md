@@ -5,7 +5,7 @@ description: Neste artigo, exploraremos as melhores práticas e técnicas
   avançadas para a criação de políticas IAM. Aprenda a proteger recursos
   críticos e a gerenciar permissões com eficiência, garantindo a segurança e a
   conformidade da sua infraestrutura em nuvem como um verdadeiro profissional.
-date: 2024-07-26
+date: 2024-10-14
 category: aws
 background: "#FF9900"
 tags:
