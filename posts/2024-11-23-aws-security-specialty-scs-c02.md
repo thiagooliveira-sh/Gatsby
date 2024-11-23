@@ -69,7 +69,7 @@ O que realmente importa na certificação, para mim, não é o pedaço de papel 
 
 ## Tempo de estudo
 
-Estudei durante aproximadamente por três meses, tinha pouco tempo para estudar durante a semana e aproveitei minhas férias em Setembro para maratonar o material de estudo e iniciar no final de outubro os simulados. Lembrando que boa parte do material eu já conhecia por causa da prova AWS Solutions Architect Professional que fiz em Dezembro de 2023. Pode ser que você precise de mais tempo caso esteja vendo o conteúdo pela primeira vez. Além disso, cada pessoa tem um ritmo e outros compromissos que acabam demandando tempo, então isso vai variar.
+Estudei durante aproximadamente três meses, tinha pouco tempo para estudar durante a semana e aproveitei minhas férias em Setembro para maratonar o material de estudo e iniciar no final de outubro os simulados. Lembrando que boa parte do material eu já conhecia por causa da prova AWS Solutions Architect Professional que fiz em Dezembro de 2023. Pode ser que você precise de mais tempo caso esteja vendo o conteúdo pela primeira vez. Além disso, cada pessoa tem um ritmo e outros compromissos que acabam demandando tempo, então isso vai variar.
 
 ## Materiais de estudo
 
