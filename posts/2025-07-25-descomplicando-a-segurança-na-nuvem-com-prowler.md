@@ -126,16 +126,16 @@ Rodou os checks e apareceu uma penca de alertas? Calma! Nem tudo que parece crí
 * Baixos: Boas práticas
 
 #### 2. Agrupe por serviços
-*﻿ IAM, S3, EC2, CloudTrail, etc.
+* IAM, S3, EC2, CloudTrail, etc.
 
 #### 3. Monte uma planilha ou um épico no Jira/Trello
-*﻿ Categorize os itens e direcione para as equipes que vão trabalhar nessa força tarefa
+* Categorize os itens e direcione para as equipes que vão trabalhar nessa força tarefa
 
 #### 4. Automatize as correções
-*﻿ Se os recursos ja foram criados com IaC, utilize do gestor de configurações e aplique mudanças em lote, correções como não permitir instance metadata v1, bucket sempre privados....
-*﻿ Crie alertas no CloudWatch baseado em eventos do Cloudtrail para analisar quando um recurso foi criado fora do padrão.
-*﻿ Crie regras no AWS Config para tratar os recursos que ficarem não compliance
-*﻿ Aplique SCPs para conter cenários mais críticos
+* Se os recursos ja foram criados com IaC, utilize do gestor de configurações e aplique mudanças em lote, correções como não permitir instance metadata v1, bucket sempre privados....
+* Crie alertas no CloudWatch baseado em eventos do Cloudtrail para analisar quando um recurso foi criado fora do padrão.
+* Crie regras no AWS Config para tratar os recursos que ficarem não compliance
+* Aplique SCPs para conter cenários mais críticos
 
 ### Final
 Se você ainda não testou o Prowler, recomendo muito! Comece rodando em uma conta de teste e veja o quanto ele pode te mostrar.
