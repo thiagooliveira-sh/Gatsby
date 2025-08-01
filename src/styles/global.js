@@ -82,5 +82,30 @@ const GlobalStyles = createGlobalStyle`
     --white: #fff;
     --black: #222;
   }
+  /* Tabela formatada */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: var(--texts);
+    background-color: var(--background);
+    border: 1px solid var(--borders);
+  }
+
+  th, td {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--borders);
+    text-align: left;
+  }
+
+  thead {
+    background-color: var(--mediumBackground);
+  }
+
+  th {
+    font-weight: bold;
+    color: var(--postColor);
+  }
 `
 export default GlobalStyles
