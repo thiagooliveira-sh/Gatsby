@@ -4,7 +4,7 @@ title: AWS IAM Identity Center Pipeline
 description: O AWS IAM Identity Center, sucessor do AWS Single Sign-On, ajuda
   você a criar ou conectar com segurança suas identidades de força de trabalho e
   gerenciar seu acesso centralmente em contas e aplicativos da AWS
-date: 2025-05-12
+date: 2025-08-01
 category: aws
 background: "#FF9900"
 tags:
@@ -266,7 +266,7 @@ A﻿o finalizar a execução da pipeline teremos todos os componentes criados na
 
 ![](/assets/img/idc-pipeline-3.png)
 
-### F﻿echamento
+### Fechamento
 
 Espero que este fork contribua para que mais pessoas desenvolvam automações mais robustas e confiáveis na entrega de **Permission Sets**, **grupos** e **assignments** dentro do **AWS IAM Identity Center**.
 
