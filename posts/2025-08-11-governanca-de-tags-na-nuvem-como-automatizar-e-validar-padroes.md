@@ -86,15 +86,11 @@ Antes de sair aplicando regras, precisamos definir um **padrão claro e aceito**
 | `cost-center` | core, business, marketing | ✅           | Centro de custo oficial     |
 | `owner`       | e-mail corporativo        | ✅           | Pessoa ou grupo responsável |
 
-
-
 **Boas práticas**:
 
 * Sempre usar **letras minúsculas**.
 * Não usar espaços nem caracteres especiais.
 * Revisar a lista a cada 6 meses.
-
-
 
 ### **Como vamos implementar**
 
@@ -103,9 +99,9 @@ Vamos usar dois pilares:
 1. **Automação com Terraform** → para garantir que os recursos já nasçam com as tags certas.
 2. **Validação com AWS Config** → para garantir que, mesmo que alguém crie algo manualmente, ele será identificado se estiver fora do padrão.
 
-
-
 ## **Hands-on: Criando e validando tags na AWS**
+
+![](/assets/img/tags-auto.png)
 
 ### **1. Pré-requisitos**
 
@@ -140,7 +136,6 @@ resource "aws_s3_bucket" "example" {
   bucket = "governanca-tags-exemplo-${random_id.suffix.hex}"
   tags   = var.tags
 }
-
 ```
 
 ### **3. Criando a regra de compliance no AWS Config**
@@ -209,8 +204,6 @@ terraform init
 terraform apply -auto-approve
 ```
 
-
-
 ### **5. Testando a governança**
 
 Remova uma tag do bucket no console ou via CLI:
@@ -252,8 +245,6 @@ Isso garante que ninguém crie, por exemplo, `Environment=Testinho`.
 * **Não iniciar o Configuration Recorder** → sem ele, o AWS Config não funciona.
 * **Demora para atualização** → avaliações podem levar até 15 minutos.
 * **Valores inconsistentes** → padronize lowercase e listas controladas.
-
-
 
 Ao unir **Terraform** para aplicar tags automaticamente e **AWS Config** para validar compliance, você cria uma camada de governança que funciona de forma contínua e automática.
 
