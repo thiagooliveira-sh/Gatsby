@@ -6,7 +6,7 @@ description: Em ambientes de nuvem, a velocidade de deploy é cada vez maior, ma
   questão de minutos. Ativar uma instância sem criptografia ou criar um bucket
   S3 público pode parecer inofensivo no início, mas pode gerar impactos
   financeiros, legais e reputacionais sérios.
-date: 2025-08-11
+date: 2025-08-15
 category: devops
 background: "#05A6F0"
 tags:
