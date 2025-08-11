@@ -5,7 +5,7 @@ description: Em ambientes de nuvem, a velocidade com que criamos recursos é ao
   mesmo tempo uma vantagem e um risco. É comum que, no meio da correria para
   atender uma demanda urgente, recursos sejam criados sem qualquer padrão de
   nomenclatura ou identificação.
-date: 2025-08-10
+date: 2025-08-19
 category: devops
 background: "#05A6F0"
 tags:
