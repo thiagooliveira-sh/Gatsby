@@ -6,7 +6,7 @@ description: A certificação AWS Certified DevOps Engineer – Professional é 
   diversos serviços e integrações. Neste artigo, compartilho como foi minha
   preparação, quais tópicos encontrei na prova e os materiais que utilizei para
   estudar.
-date: 2025-08-11
+date: 2025-08-14
 category: aws
 background: "#FF9900"
 tags:
