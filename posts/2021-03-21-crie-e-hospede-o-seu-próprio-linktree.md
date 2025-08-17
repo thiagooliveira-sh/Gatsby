@@ -27,7 +27,7 @@ Nesse post aprenderemos a criar o nosso próprio linktree e também como hospeda
 
 ### Iniciando o projeto.
 
-Vocês podem fazer um fork, clonar ou criar a partir do meu projeto no github, nesse [link](https://github.com/thiagoalexandria/own-link).
+Vocês podem fazer um fork, clonar ou criar a partir do meu projeto no github, nesse [link](https://github.com/thiagooliveira-sh/own-link).
 
 Feito isso, vamos entender os arquivos:
 
@@ -92,7 +92,7 @@ Crie toda a sua estrutura de links, vou colocar abaixo um exemplo de um linkbio 
 </a>
 
 <a
- href="https://github.com/thiagoalexandria"
+ href="https://github.com/thiagooliveira-sh"
  target="_blank"
  rel="noopener noreferrer"
 >

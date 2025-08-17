@@ -228,6 +228,6 @@ ansible-playbook -i hosts main.yaml
 
 Executado, você receberá na tela uma plano de execução, com as mudanças que o Ansible realiza, esse plano servirá como report, dessa forma você saberá se em algum momento o playbook retorne erro. 
 
-Todo o projeto desenvolvido nesse artigo encontra-se disponível no [github](https://github.com/thiagoalexandria/ansible-post) para consulta e para que possam comparar com os arquivos de vocês.
+Todo o projeto desenvolvido nesse artigo encontra-se disponível no [github](https://github.com/thiagooliveira-sh/ansible-post) para consulta e para que possam comparar com os arquivos de vocês.
 
 Caso tenham alguma dúvida, só deixar no campo de comentários! Até a próxima!

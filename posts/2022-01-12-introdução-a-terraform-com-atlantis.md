@@ -104,7 +104,7 @@ module "atlantis" {
   # Atlantis
   atlantis_github_user       = "thiagoalexandria"
   atlantis_github_user_token = var.git_token
-  atlantis_repo_allowlist    = ["github.com/thiagoalexandria/*"]
+  atlantis_repo_allowlist    = ["github.com/thiagooliveira-sh/*"]
   atlantis_allowed_repo_names = ["terraform_atlantis"]
 
   allow_unauthenticated_access = true

@@ -24,7 +24,7 @@ Quando carregado o ambiente terá as seguintes opções:
 
 ## Carregar o ambiente
 
-Todo o script ficará disponíivel em meu [github](https://github.com/thiagoalexandria/cpanel) para que possam analisar, para carregar o ambiente no seu servidor basta que sempre que acesse o mesmo carregue da seguinte forma:
+Todo o script ficará disponíivel em meu [github](https://github.com/thiagooliveira-sh/cpanel) para que possam analisar, para carregar o ambiente no seu servidor basta que sempre que acesse o mesmo carregue da seguinte forma:
 
 ```
 eval "$(curl -s https://raw.githubusercontent.com/thiagoalexandria/cpanel/master/supas.sh)"

@@ -149,7 +149,7 @@ Pronto estamos com o nosso ambiente pronto apra iniciarmos os testes de plan e a
 
 ### Executando plan e apply
 
-Para o nosso teste de plan e apply vamos criar um código simples. Eu deixarei o link para o [repositório](https://github.com/thiagoalexandria/terraform-cloud-example), mas começaremos criando os arquivos a partir do `main.tf`.
+Para o nosso teste de plan e apply vamos criar um código simples. Eu deixarei o link para o [repositório](https://github.com/thiagooliveira-sh/terraform-cloud-example), mas começaremos criando os arquivos a partir do `main.tf`.
 
 ```
 provider "aws" {

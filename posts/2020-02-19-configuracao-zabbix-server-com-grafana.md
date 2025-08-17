@@ -129,7 +129,7 @@ yum install -y epel-release
 yum install -y nginx php-fpm php-common
 ```
 
-Com o nginx instalado, basta seguir com a configuração do Virtual Host, vou deixar um [link direto](https://gist.githubusercontent.com/thiagoalexandria/593a285acafd4e7e5c7441cbc28c0529/raw/caed91256c59bce2eee4ba807faea04c7afb188e/Nginx-zabbix.conf) para um pré configurado e a partir dele podem fazer as suas personalizações, o arquivo deve ser criado no path abaixo
+Com o nginx instalado, basta seguir com a configuração do Virtual Host, vou deixar um [link direto](https://gist.githubusercontent.com/thiagooliveira-sh/593a285acafd4e7e5c7441cbc28c0529/raw/caed91256c59bce2eee4ba807faea04c7afb188e/Nginx-zabbix.conf) para um pré configurado e a partir dele podem fazer as suas personalizações, o arquivo deve ser criado no path abaixo
 
 ```bash
 vi /etc/nginx/conf.d/zabbix.conf
@@ -144,7 +144,7 @@ chown root:nginx /var/lib/php/zabbix-php-fpm/
 chown nginx:nginx /etc/zabbix/web/
 ```
 
-Crie o arquivo zabbix.conf no /etc/php-fpm.d/ tendo como referencia o seguinte [arquivo](https://gist.githubusercontent.com/thiagoalexandria/ddbb3feda4d7754d5dbed3bb1da78f4b/raw/2b742235aba84aab4afea1b4915e9184550cbb06/PHP-FPM.zabbix.conf), feito a configuração, basta habilitar e iniciar os serviços:
+Crie o arquivo zabbix.conf no /etc/php-fpm.d/ tendo como referencia o seguinte [arquivo](https://gist.githubusercontent.com/thiagooliveira-sh/ddbb3feda4d7754d5dbed3bb1da78f4b/raw/2b742235aba84aab4afea1b4915e9184550cbb06/PHP-FPM.zabbix.conf), feito a configuração, basta habilitar e iniciar os serviços:
 
 ```bash
 systemctl enable php-fpm
@@ -180,7 +180,7 @@ Feito isso, basta seguir com a instalação utilizando o yum:
 yum install -y grafana
 ```
 
-Realizaremos também a instalação do Nginx, basta seguir os mesmos passos feitos para o Zabbix, feito a instalação siga com a criação do Virtual Host, segue o [arquivo modelo](https://gist.githubusercontent.com/thiagoalexandria/c0d2debc189f4ab1d4bee75e9c4390cc/raw/84eb3483eca60ddc2f4cd3cddf1de6cdd38f7c30/Nginx-grafana.conf) para consulta:
+Realizaremos também a instalação do Nginx, basta seguir os mesmos passos feitos para o Zabbix, feito a instalação siga com a criação do Virtual Host, segue o [arquivo modelo](https://gist.githubusercontent.com/thiagooliveira-sh/c0d2debc189f4ab1d4bee75e9c4390cc/raw/84eb3483eca60ddc2f4cd3cddf1de6cdd38f7c30/Nginx-grafana.conf) para consulta:
 
 ```bash
 vi /etc/nginx/conf.d/grafana.conf

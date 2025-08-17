@@ -2,7 +2,7 @@
 const links = [
   {
     label: "Github",
-    url: `https://github.com/thiagoalexandria`,
+    url: `https://github.com/thiagooliveira-sh`,
   },
   {
     label: "LinkedinSquare",

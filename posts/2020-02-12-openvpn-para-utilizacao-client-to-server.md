@@ -149,7 +149,7 @@ OpenVPN possui exemplos de arquivos de configuração em seu diretório de docum
 cp /usr/share/doc/openvpn-*/sample/sample-config-files/server.conf /etc/openvpn
 ```
 
-Vou deixar um link para o arquivo de configuração "enxuto" no [Gist](https://gist.githubusercontent.com/thiagoalexandria/4b419a2fb9cc8962290a2d0950ccb210/raw/44eab659ab7b1f04262ff6c97bb133841394c1c0/openvpn-server.conf), assim basta alterar apenas as informações de "server" para o seu host. Em seguida basta seguir desabilitando o firewalld e selinux (após ajustar o selinux é necessário reiniciar).
+Vou deixar um link para o arquivo de configuração "enxuto" no [Gist](https://gist.githubusercontent.com/thiagooliveira-sh/4b419a2fb9cc8962290a2d0950ccb210/raw/44eab659ab7b1f04262ff6c97bb133841394c1c0/openvpn-server.conf), assim basta alterar apenas as informações de "server" para o seu host. Em seguida basta seguir desabilitando o firewalld e selinux (após ajustar o selinux é necessário reiniciar).
 
 ```bash
 systemctl stop firewalld
@@ -235,7 +235,7 @@ cp -a /etc/openvpn/easyrsa/pki/issued/deepak.crt /etc/openvpn/easyrsa/keys/
 cp -a /etc/openvpn/easyrsa/pki/private/deepak.key /etc/openvpn/easyrsa/keys/
 ```
 
-Pronto, basta encaminhar os arquivos criados para o cliente e o ca.crt para a pessoa que vai utilizados, além disso é necessário que encaminhe também um arquivo *.ovpn* para que o cliente inclua no seu cliente, segue um exemplo para [Download](https://gist.githubusercontent.com/thiagoalexandria/c477dad3196128bdff93400c908aa3a2/raw/a540e6621b8a49e930af60ee100d47ea03565490/cliente.ovpn). Basta seguir com a mudança do nome do crt e key conforme o nome gerado para o cliente e ajustar as configurações de server para o seu.
+Pronto, basta encaminhar os arquivos criados para o cliente e o ca.crt para a pessoa que vai utilizados, além disso é necessário que encaminhe também um arquivo *.ovpn* para que o cliente inclua no seu cliente, segue um exemplo para [Download](https://gist.githubusercontent.com/thiagooliveira-sh/c477dad3196128bdff93400c908aa3a2/raw/a540e6621b8a49e930af60ee100d47ea03565490/cliente.ovpn). Basta seguir com a mudança do nome do crt e key conforme o nome gerado para o cliente e ajustar as configurações de server para o seu.
 
 #### Configuração Cliente Windows
 

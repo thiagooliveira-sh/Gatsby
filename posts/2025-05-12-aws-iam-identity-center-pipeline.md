@@ -42,7 +42,7 @@ A equipe da AWS desenvolveu a solução **aws-iam-identity-center-pipeline**, qu
 
 ### O fork que amplia a solução
 
-Originalmente, a pipeline apenas criava Permission Sets e atribuía a grupos já existentes. Para estender essa capacidade, realizei um [fork do projeto](https://github.com/thiagoalexandria/aws-iam-identity-center-pipeline/tree/feature/groups-terraform-support) com suporte à criação de grupos como parte do fluxo, tornando a solução **100% autônoma** e ainda mais prática para ambientes multi-conta.
+Originalmente, a pipeline apenas criava Permission Sets e atribuía a grupos já existentes. Para estender essa capacidade, realizei um [fork do projeto](https://github.com/thiagooliveira-sh/aws-iam-identity-center-pipeline/tree/feature/groups-terraform-support) com suporte à criação de grupos como parte do fluxo, tornando a solução **100% autônoma** e ainda mais prática para ambientes multi-conta.
 
 ### P﻿ré-requisitos
 
