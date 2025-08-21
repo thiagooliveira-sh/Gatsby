@@ -1,6 +1,6 @@
 ---
 image: /assets/img/AWS.png
-title: Como arquitetar aplicacoes em producao na AWS
+title: Como arquitetar aplicações em produção na AWS
 description: O jeito de desenvolver e colocar softwares em produção mudou
   bastante nos últimos anos. Antes, tudo girava em torno de aplicações
   monolíticas rodando em data centers locais. Hoje, migramos para sistemas
@@ -126,15 +126,15 @@ Antes de começar a implementação prática, é importante ter uma compreensão
 
 A arquitetura em camadas, também conhecida como *multi-tier architecture*, é um padrão de software em que a aplicação é dividida em camadas lógicas e físicas distintas, ou "tiers". A principal vantagem dessa separação é que cada camada pode ser desenvolvida, gerenciada, escalada e protegida de forma independente.
 
-##### Modelo Two-Tier: Simplicidade e Casos de Uso
+#### Modelo Two-Tier: Simplicidade e Casos de Uso
 
 O modelo *Two-Tier* é o mais simples das arquiteturas em camadas, dividindo a aplicação em duas camadas principais:
 
-##### Tier 1: Presentation/Web Tier
+#### Tier 1: Presentation/Web Tier
 
 Esta é a camada que interage com o usuário. Normalmente é composta por um ou mais web servers que exibem a interface e se comunicam com a camada de dados.
 
-##### Tier 2: Data Tier
+#### Tier 2: Data Tier
 
 Essa camada é responsável por armazenar e gerenciar os dados da aplicação. Geralmente é um servidor de banco de dados que responde a consultas e solicitações da camada de apresentação.
 
@@ -146,15 +146,15 @@ Os principais benefícios são a simplicidade e a rapidez de implantação, torn
 
 O modelo *Three-Tier* adiciona uma camada intermediária que desacopla ainda mais os componentes da aplicação, trazendo vantagens importantes em escalabilidade, segurança e facilidade de manutenção.
 
-##### Tier 1: Presentation Tier (Web Tier)
+#### Tier 1: Presentation Tier (Web Tier)
 
 O papel desta camada é o mesmo do modelo *Two-Tier*: lidar com a interação do usuário e apresentar os dados. Ela serve conteúdos estáticos como HTML, CSS e JavaScript e encaminha requisições dinâmicas para a *Application Tier*.
 
-##### Tier 2: Application Tier (Logic Tier)
+#### Tier 2: Application Tier (Logic Tier)
 
 Esta é a camada "cérebro" da aplicação. Ela fica entre a *Presentation Tier* e a *Data Tier* e contém a lógica de negócio principal. A *Application Tier* processa requisições dos usuários, executa cálculos complexos e se comunica com a *Data Tier* para ler ou escrever informações. Ao isolar a lógica de negócio aqui, a aplicação fica mais flexível e fácil de atualizar.
 
-##### Tier 3: Data Tier
+#### Tier 3: Data Tier
 
 Esta camada é dedicada exclusivamente à persistência e gerenciamento dos dados. Ela hospeda os sistemas de banco de dados e só é acessível pela *Application Tier*, criando uma barreira de segurança robusta.
 
@@ -164,7 +164,7 @@ O modelo *Three-Tier* é o padrão para a maioria das aplicações web modernas 
 
 A AWS oferece um grande conjunto de serviços que podem ser combinados para construir aplicações multi-tier robustas. Entender como esses serviços se conectam a cada camada da arquitetura é essencial para qualquer engenheiro de cloud.
 
-##### Mapeamento de Serviços AWS
+#### Mapeamento de Serviços AWS
 
 | Architectural Tier           | Função                                                                              | Core AWS Services                                                   | Considerações                                                                                             |
 | ---------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -176,7 +176,7 @@ A AWS oferece um grande conjunto de serviços que podem ser combinados para cons
 
 
 
-##### Serviços Gerenciados vs Não-Gerenciados
+#### Serviços Gerenciados vs Não-Gerenciados
 
 Ao escolher serviços da AWS, o engenheiro DevOps precisa avaliar o nível de gerenciamento desejado. Para quase todos os componentes, existe a opção entre um serviço totalmente configurável, “*unmanaged*”, e um serviço de nível superior, “*managed*”.
 
