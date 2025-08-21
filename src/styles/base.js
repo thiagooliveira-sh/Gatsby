@@ -57,7 +57,6 @@ export const MainContent = styled.section`
   h2,
   h3,
   h4,
-  h5,
   ul,
   ol,
   .tags,
@@ -83,6 +82,9 @@ export const MainContent = styled.section`
   h4,
   h5 {
     margin: 2.4rem auto 1rem;
+    font-weight: 800; /* Movido para cá */
+    letter-spacing: 0.069rem;
+    line-height: 1.4;
   }
   ul,
   ol {
@@ -128,15 +130,6 @@ export const MainContent = styled.section`
   .instagram-media,
   .twitter-tweet {
     margin: 20px auto !important;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    font-weight: 800;
-    letter-spacing: 0.069rem;
-    line-height: 1.4;
   }
   h1 {
     font-size: 2.8rem;
