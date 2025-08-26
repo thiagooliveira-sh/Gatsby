@@ -22,7 +22,7 @@ categories:
   - INTERATIVO
   - SEGUIDORESVIP
 ---
-As 4 primeiras pessoas que entrarem em contato comigo pelo LinkedIn mencionando que viram este post no blog vão receber um prêmio surpresa.
+As 4 primeiras pessoas que entrarem em contato comigo pelo [LinkedIn](https://www.linkedin.com/in/thiago-alexandria/) mencionando que viram este post no blog vão receber um prêmio surpresa.
 
 Não posso revelar exatamente o que é, mas posso garantir que será algo inesperado e divertido.
 
