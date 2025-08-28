@@ -96,12 +96,12 @@ O primeiro passo da implementação é montar a rede. É aqui que garantimos que
 
 No **VPC Dashboard** do AWS Management Console:
 
-1. Clique em **Create VPC**
-2. Selecione a opção **VPC and more** para usar o assistente
-3. Configure o **CIDR block** como `10.0.0.0/16` – isso nos dá 65.536 endereços privados, espaço suficiente para crescer a aplicação com segurança
-4. Defina 3 Availability Zones para garantir resiliência
-5. Marque a opção 1 NAT Gateway por AZ – o assistente criará automaticamente os NATs, cada um em sua zona, com seus respectivos Elastic IPs
-6. O Internet Gateway (IGW) e as Route Tables (pública e privadas) também são criados automaticamente, já com as associações corretas para cada subnet
+* Clique em **Create VPC**
+* Selecione a opção **VPC and more** para usar o assistente
+* Configure o **CIDR block** como `10.0.0.0/16` – isso nos dá 65.536 endereços privados, espaço suficiente para crescer a aplicação com segurança
+* Defina 3 Availability Zones para garantir resiliência
+* Marque a opção 1 NAT Gateway por AZ – o assistente criará automaticamente os NATs, cada um em sua zona, com seus respectivos Elastic IPs
+* O Internet Gateway (IGW) e as Route Tables (pública e privadas) também são criados automaticamente, já com as associações corretas para cada subnet
 
 #### Definindo Subnets
 
@@ -116,13 +116,11 @@ Vamos criar **seis subnets**, três públicas e três privadas, distribuídas em
 | private-subnet-b | Data | us-east-1b        | 10.0.12.0/24    | private-rt-b            |
 | private-subnet-c | Data | us-east-1c        | 10.0.13.0/24    | private-rt-c            |
 
-
-
 Ou seja, ao invés de criar manualmente IGW, NAT Gateways e tabelas de rotas, podemos deixar o próprio **VPC Wizard** gerar esses componentes de forma automática e consistente, reduzindo riscos de erro e agilizando a criação da infraestrutura.
 
 ![vpc-wizard](/assets/img/arquitetura-vpc-1.png "vpc-wizard")
 
-## Implementando o Web Tier 
+## Implementando o Web Tier
 
 A camada de aplicação que ficará exposta para os usuários será formada por um conjunto de **instâncias EC2** rodando o WordPress. Essas instâncias estarão sob controle de um **Auto Scaling Group (ASG)**, que garante elasticidade e resiliência, e serão acessadas através de um **Application Load Balancer (ALB)**.
 
@@ -132,33 +130,31 @@ O **Launch Template** funciona como um blueprint das instâncias EC2, garantindo
 
 **Passos para criação:**
 
-1. No **EC2 Dashboard**, crie um novo **Launch Template**
+* No **EC2 Dashboard**, crie um novo **Launch Template**
 
-   ![arquitetura-lounch-template-1](/assets/img/arquitetura-lounch-template-1.png "arquitetura-lounch-template-1")
-2. Defina a **Amazon Machine Image (AMI)** como *Amazon Linux 2023*
-3. Selecione o **Instance Type** `t3a.micro`
-4. Crie e associe um par de chaves para acesso via SSH (embora seja recomendável depois usar o **SSM Session Manager**)
+  ![arquitetura-lounch-template-1](/assets/img/arquitetura-lounch-template-1.png "arquitetura-lounch-template-1")
+* Defina a **Amazon Machine Image (AMI)** como *Amazon Linux 2023*
+* Selecione o **Instance Type** `t3a.micro`
+* Crie e associe um par de chaves para acesso via SSH (embora seja recomendável depois usar o **SSM Session Manager**)
 
 ![arquitetura-lounch-template-2](/assets/img/arquitetura-lounch-template-2.png "arquitetura-lounch-template-2")
 
-1. Em **Advanced details**, insira o seguinte script em **User Data**:
+* Em **Advanced details**, insira o seguinte script em **User Data**:
 
-   ```
-   #!/bin/bash
-   yum update -y
-   dnf install wget php-mysqlnd httpd php-fpm php-mysqli mariadb105-server php-json php php-devel -y
-   systemctl start httpd
-   systemctl enable httpd
-   wget https://wordpress.org/latest.tar.gz
-   tar -xzf latest.tar.gz
-   cp -r wordpress/* /var/www/html/
-   ```
+  ```
+  #!/bin/bash
+  yum update -y
+  dnf install wget php-mysqlnd httpd php-fpm php-mysqli mariadb105-server php-json php php-devel -y
+  systemctl start httpd
+  systemctl enable httpd
+  wget https://wordpress.org/latest.tar.gz
+  tar -xzf latest.tar.gz
+  cp -r wordpress/* /var/www/html/
+  ```
 
-   ![arquitetura-lounch-template-3](/assets/img/arquitetura-lounch-template-3.png "arquitetura-lounch-template-3")
+  ![arquitetura-lounch-template-3](/assets/img/arquitetura-lounch-template-3.png "arquitetura-lounch-template-3")
 
 Esse script atualiza a instância, instala Apache + PHP, baixa o WordPress e coloca os arquivos no diretório padrão do servidor web.
-
-
 
 ### Auto Scaling Group (ASG)
 
@@ -166,12 +162,12 @@ O **ASG** garante que sempre teremos a quantidade necessária de instâncias rod
 
 **Passos de configuração:**
 
-1. Crie um **Auto Scaling Group** usando o Launch Template criado acima
-2. Distribua as instâncias pelas três subnets públicas: `public-subnet-a`, `public-subnet-b` e `public-subnet-c`
-3. Defina a capacidade do grupo:
+* Crie um **Auto Scaling Group** usando o Launch Template criado acima
+* Distribua as instâncias pelas três subnets públicas: `public-subnet-a`, `public-subnet-b` e `public-subnet-c`
+* Defina a capacidade do grupo:
 
-   * **Desired capacity:** 3
-   * **Minimum capacity:** 3
-   * **Maximum capacity:** 6\
-     Dessa forma, sempre teremos pelo menos três instâncias (uma por AZ) garantindo redundância, mas conseguimos escalar até seis em momentos de alto tráfego
-4. Configure uma **Target Tracking Scaling Policy**, usando como métrica a **Average CPU Utilization** com alvo de 50%. Assim, novas instâncias serão criadas automaticamente quando a média de CPU da frota passar de 50%, e removidas quando cair abaixo disso.
+  * **Desired capacity:** 3
+  * **Minimum capacity:** 3
+  * **Maximum capacity:** 6\
+    Dessa forma, sempre teremos pelo menos três instâncias (uma por AZ) garantindo redundância, mas conseguimos escalar até seis em momentos de alto tráfego
+* Configure uma **Target Tracking Scaling Policy**, usando como métrica a **Average CPU Utilization** com alvo de 50%. Assim, novas instâncias serão criadas automaticamente quando a média de CPU da frota passar de 50%, e removidas quando cair abaixo disso.
