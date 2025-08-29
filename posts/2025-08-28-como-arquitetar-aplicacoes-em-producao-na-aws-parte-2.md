@@ -164,6 +164,16 @@ O **ASG** garante que sempre teremos a quantidade necessária de instâncias rod
 
 * Crie um **Auto Scaling Group** usando o Launch Template criado acima
 * Distribua as instâncias pelas três subnets públicas: `public-subnet-a`, `public-subnet-b` e `public-subnet-c`
+
+![arquitetura-asg-1](/assets/img/arquitetura-asg-1.png "arquitetura-asg-1")
+
 * Durante a configuração, habilite a opção para criar um **Application Load Balancer (ALB)** junto com o **Target Group**. O ASG irá registrar as instâncias nesse ALB automaticamente, garantindo balanceamento de carga e health checks sem necessidade de configuração manual
+
+![arquitetura-asg-2](/assets/img/arquitetura-asg-2.png "arquitetura-asg-2")
+
+![arquitetura-asg-3](/assets/img/arquitetura-asg-3.png "arquitetura-asg-3")
+
+![arquitetura-asg-4](/assets/img/arquitetura-asg-4.png "arquitetura-asg-4")
+
 * Defina a capacidade do grupo, **Desired capacity:** 3, **Minimum capacity:** 3, **Maximum capacity:** 6. Dessa forma, sempre teremos pelo menos três instâncias (uma por AZ) garantindo redundância, mas conseguimos escalar até seis em momentos de alto tráfego 
 * Configure uma **Target Tracking Scaling Policy**, usando como métrica a **Average CPU Utilization** com alvo de 50%. Assim, novas instâncias serão criadas automaticamente quando a média de CPU da frota passar de 50%, e removidas quando cair abaixo disso.
