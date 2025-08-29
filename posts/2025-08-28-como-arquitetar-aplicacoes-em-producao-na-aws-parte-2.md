@@ -69,7 +69,7 @@ Os principais requisitos do projeto são:
 
 Para atender a esses requisitos, vamos construir a seguinte solução:
 
-* Uma **Amazon VPC** cobrindo trs *Availability Zones*.
+* Uma **Amazon VPC** cobrindo três *Availability Zones*.
 * Um **Application Load Balancer (ALB)** servindo como ponto de entrada público.
 * Um **Auto Scaling Group (ASG)** de instâncias **EC2** em subnets públicas rodando os servidores web com WordPress.
 * Um **Amazon RDS for MySQL** configurado em **Multi-AZ** em subnets privadas para hospedar o banco de dados.
