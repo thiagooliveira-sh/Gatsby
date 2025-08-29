@@ -177,3 +177,39 @@ O **ASG** garante que sempre teremos a quantidade necessária de instâncias rod
 
 * Defina a capacidade do grupo, **Desired capacity:** 3, **Minimum capacity:** 3, **Maximum capacity:** 6. Dessa forma, sempre teremos pelo menos três instâncias (uma por AZ) garantindo redundância, mas conseguimos escalar até seis em momentos de alto tráfego 
 * Configure uma **Target Tracking Scaling Policy**, usando como métrica a **Average CPU Utilization** com alvo de 50%. Assim, novas instâncias serão criadas automaticamente quando a média de CPU da frota passar de 50%, e removidas quando cair abaixo disso.
+
+![](/assets/img/arquitetura-asg-6.png)
+
+
+
+### Implementando o Data Tier
+
+O **data tier** será responsável por armazenar os dados da aplicação usando o **Amazon RDS** com **MySQL**. O RDS é um serviço totalmente gerenciado que facilita a configuração, operação e escalabilidade de bancos relacionais na nuvem, além de oferecer opções nativas de alta disponibilidade.
+
+#### DB Subnet Group
+
+Antes de criar a instância do banco, precisamos configurar um **DB Subnet Group**. Esse grupo define em quais subnets privadas o RDS poderá rodar, garantindo isolamento e redundância.
+
+**Passos de configuração:**
+
+* No console do RDS, crie um novo **DB Subnet Group**
+* Adicione as três subnets privadas: `private-subnet-a`, `private-subnet-b` e `private-subnet-c`
+* Dessa forma, o RDS consegue distribuir a instância principal e a réplica em diferentes **Availability Zones**, evitando pontos únicos de falha
+
+![arquitetura-rds-1](/assets/img/arquitetura-rds-1.png "arquitetura-rds-1")
+
+#### Instância Multi-AZ
+
+Para atender o requisito de alta disponibilidade, vamos utilizar o **Multi-AZ deployment**. Nesse modo, o RDS mantém uma réplica síncrona em outra AZ. Em caso de falha de hardware, rede ou zona, o serviço faz o failover automático para a réplica sem necessidade de intervenção manual.
+
+**Passos de configuração:**
+
+* No dashboard do RDS, clique em **Create database**
+* Selecione **Standard Create** e escolha **MySQL** como engine
+* Defina o template (se possível, use **Free tier** para testes)
+* Configure o nome da instância, usuário mestre e senha (armazenando as credenciais de forma segura)
+* Em **Availability & durability**, habilite **Multi-AZ deployment** para garantir failover automático
+* Em **Connectivity**, escolha a VPC customizada e o **DB Subnet Group** criado anteriormente e para criar um novo security group.
+
+  ![arquitetura-rds-2](/assets/img/arquitetura-rds-2.png "arquitetura-rds-2")
+* Defina **Public access = No**. O banco deve ficar restrito à rede privada, sem exposição direta à internet
