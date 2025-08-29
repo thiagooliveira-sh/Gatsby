@@ -143,13 +143,47 @@ O **Launch Template** funciona como um blueprint das instâncias EC2, garantindo
 
   ```
   #!/bin/bash
+  set -e
+
   yum update -y
-  dnf install wget php-mysqlnd httpd php-fpm php-mysqli mariadb105-server php-json php php-devel -y
+  dnf install -y wget php-mysqlnd httpd php-fpm php-mysqli mariadb105-server php-json php php-devel unzip jq awscli
   systemctl start httpd
   systemctl enable httpd
-  wget https://wordpress.org/latest.tar.gz
-  tar -xzf latest.tar.gz
-  cp -r wordpress/* /var/www/html/
+
+  # Baixa e instala WordPress
+  wget https://wordpress.org/latest.tar.gz -O /tmp/wordpress.tar.gz
+  tar -xzf /tmp/wordpress.tar.gz -C /tmp/
+  cp -r /tmp/wordpress/* /var/www/html/
+  chown -R apache:apache /var/www/html/
+
+  # Nome do secret no Secrets Manager
+  SECRET_NAME="wordpress-db-credentials"
+  REGION="us-east-1"
+
+  # Recupera secret do AWS Secrets Manager
+  SECRET_JSON=$(aws secretsmanager get-secret-value --secret-id "$SECRET_NAME" --region "$REGION" --query SecretString --output text)
+
+  # Extrai valores do JSON
+  DB_NAME=$(echo $SECRET_JSON | jq -r '.db_name')
+  DB_USER=$(echo $SECRET_JSON | jq -r '.username')
+  DB_PASSWORD=$(echo $SECRET_JSON | jq -r '.password')
+  DB_HOST=$(echo $SECRET_JSON | jq -r '.host')
+
+  # Copia e configura o wp-config.php
+  cd /var/www/html
+  cp wp-config-sample.php wp-config.php
+
+  # Substitui placeholders com valores do secret
+  sed -i "s/database_name_here/$DB_NAME/" wp-config.php
+  sed -i "s/username_here/$DB_USER/" wp-config.php
+  sed -i "s/password_here/$DB_PASSWORD/" wp-config.php
+  sed -i "s/localhost/$DB_HOST/" wp-config.php
+
+  # Permissões
+  chown apache:apache wp-config.php
+  chmod 640 wp-config.php
+
+  echo "WordPress instalado e configurado com sucesso."
   ```
 
   ![arquitetura-lounch-template-3](/assets/img/arquitetura-lounch-template-3.png "arquitetura-lounch-template-3")
@@ -179,8 +213,6 @@ O **ASG** garante que sempre teremos a quantidade necessária de instâncias rod
 * Configure uma **Target Tracking Scaling Policy**, usando como métrica a **Average CPU Utilization** com alvo de 50%. Assim, novas instâncias serão criadas automaticamente quando a média de CPU da frota passar de 50%, e removidas quando cair abaixo disso.
 
 ![](/assets/img/arquitetura-asg-6.png)
-
-
 
 ### Implementando o Data Tier
 
@@ -213,3 +245,82 @@ Para atender o requisito de alta disponibilidade, vamos utilizar o **Multi-AZ de
 
   ![arquitetura-rds-2](/assets/img/arquitetura-rds-2.png "arquitetura-rds-2")
 * Defina **Public access = No**. O banco deve ficar restrito à rede privada, sem exposição direta à internet
+
+### Segurança da Arquitetura Two-Tier
+
+Segurança na AWS segue o modelo de **responsabilidade compartilhada**. Dentro do que é responsabilidade do cliente, um dos pontos principais é configurar corretamente os **Security Groups**, que funcionam como firewalls virtuais stateful para controlar tráfego de entrada e saída das instâncias.
+
+#### Security Groups como Firewalls Virtuais
+
+Vamos criar três Security Groups distintos, um para cada camada da arquitetura, seguindo o princípio de **least privilege**.
+
+#### Security Group Chaining
+
+Em vez de liberar portas para faixas amplas de IP, a boa prática é usar **referência entre Security Groups**. Isso garante que, mesmo que novas instâncias sejam criadas (como no caso do ASG), as regras de tráfego continuam válidas automaticamente, sem necessidade de ajuste manual.
+
+| Security Group | Associado a               | Porta | Protocolo | Origem    | Descrição                                       |
+| -------------- | ------------------------- | ----- | --------- | --------- | ----------------------------------------------- |
+| **alb-sg**     | Application Load Balancer | 80    | TCP       | 0.0.0.0/0 | Permite tráfego HTTP da internet                |
+| **alb-sg**     | Application Load Balancer | 443   | TCP       | 0.0.0.0/0 | Permite tráfego HTTPS da internet               |
+| **web-sg**     | EC2 (Web Tier)            | 80    | TCP       | alb-sg    | Permite tráfego HTTP apenas do ALB              |
+| **db-sg**      | RDS (Database Tier)       | 3306  | TCP       | web-sg    | Permite tráfego MySQL apenas dos servidores web |
+
+Com essa configuração, o fluxo de tráfego fica totalmente controlado:
+
+* A internet acessa apenas o **ALB**
+* O **ALB** se comunica apenas com as instâncias web
+* Somente as instâncias web conseguem acessar o **banco de dados**
+
+Agora precisamos ajustar o nosso **Launch Template** para que ele utilize o novo *Security Group*.\
+Em seguida, devemos editar a nossa **Application Load Balancer (ALB)** para também anexar esse *Security Group* recém-criado, garantindo que tanto as instâncias quanto o balanceador sigam as mesmas regras de segurança.
+
+### Gestão de secrets com Secret Manager
+
+Um ponto essencial em qualquer aplicação em produção é a **gestão segura de credenciais**. No caso do WordPress, por padrão o arquivo `wp-config.php` precisa conter informações sensíveis como nome do banco de dados, usuário, senha e host. Se configurarmos isso manualmente, corremos o risco de expor segredos em repositórios, scripts ou até mesmo em logs.
+
+Para resolver esse problema, utilizamos o **AWS Secrets Manager** como repositório central de credenciais. Essa solução permite armazenar dados de forma criptografada, com rotação automática de segredos e acesso controlado via IAM. No nosso cenário, criamos um secret com a seguinte estrutura em JSON, a sua deve ser baseada no seu output até aqui.
+
+```
+{
+  "db_name": "wordpressdb",
+  "username": "wp_user",
+  "password": "SuperSecretPass123!",
+  "host": "mydb.cluster-abcdefghijkl.us-east-1.rds.amazonaws.com"
+}
+```
+
+Antes de permitir que a instância acesse esse segredo, precisamos configurar as permissões corretas no IAM. O fluxo é o seguinte:
+
+* **Criar uma IAM Policy** que concede permissão apenas de leitura ao secret do WordPress:
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:GetSecretValue"
+      ],
+      "Resource": "arn:aws:secretsmanager:us-east-1:123456789012:secret:wordpress-db-credentials-*"
+    }
+  ]
+}
+```
+
+* Criar uma IAM Role para EC2 e anexar a policy acima. Essa role deve ter como Trusted Entity o serviço ec2.amazonaws.com.
+* Adicionar o Instance Profile no Launch Template utilizado para criar a instância EC2. Isso garante que, assim que a instância subir, ela já terá permissão para recuperar os segredos.
+
+Com isso, a instância EC2 que hospeda o WordPress acessa o Secrets Manager em tempo de provisionamento, recupera os valores necessários e preenche automaticamente o arquivo `wp-config.php`.
+
+Com isso, finalizamos a configuração da nossa infraestrutura. Agora temos uma estrutura completa para realizar o **deploy e acesso do WordPress**, utilizando o domínio exposto pela **Application Load Balancer (ALB)**. Através da própria ALB, conseguimos acompanhar a **saúde dos targets** no *Resource Map*, garantindo que nossas instâncias estejam funcionando corretamente e recebendo tráfego de forma balanceada.
+
+![](/assets/img/arquitetura-alb-1.png)
+
+Vale destacar que, além da abordagem que utilizamos, é possível adotar uma solução mais robusta utilizando o **Amazon EFS** para centralizar os arquivos de configuração do WordPress. Dessa forma, conseguimos manter o estado compartilhado entre múltiplas instâncias, permitindo inclusive criar uma **AMI personalizada a partir de um template** e utilizá-la diretamente no **Launch Template**, em vez de depender apenas do *user data* para configurar cada instância no momento do provisionamento.
+
+![](/assets/img/arquitetura-wordpress.png)
+
+### Fechamento
+
+Encerramos aqui esta etapa, mas na próxima semana vamos dar continuidade explorando um modelo de arquitetura **Three-Tier**, entendendo como separar as camadas de aplicação, banco de dados e frontend para obter mais escalabilidade, segurança e organização.
