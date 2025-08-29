@@ -1,6 +1,6 @@
 ---
 image: /assets/img/AWS.png
-title: Como arquitetar aplicacoes em producao na AWS Parte 2
+title: Como arquitetar aplicações em produção na AWS Parte 2
 description: No último artigo falamos sobre os fundamentos de arquitetura em
   nuvem e como eles servem de base para qualquer aplicação em produção na AWS.
 date: 2025-08-28
@@ -185,8 +185,6 @@ O **Launch Template** funciona como um blueprint das instâncias EC2, garantindo
 
   echo "WordPress instalado e configurado com sucesso."
   ```
-
-  ![arquitetura-lounch-template-3](/assets/img/arquitetura-lounch-template-3.png "arquitetura-lounch-template-3")
 
 Esse script atualiza a instância, instala Apache + PHP, baixa o WordPress e coloca os arquivos no diretório padrão do servidor web.
 
