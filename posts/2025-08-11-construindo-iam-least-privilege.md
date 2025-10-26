@@ -35,7 +35,9 @@ categories:
   - EC2
   - AWSPOLICIES
 ---
-Neste artigo, vamos sair do cenário de permissões amplas e criar políticas restritivas reais, utilizando **tag-based policies** para controlar quem pode criar ou excluir instâncias EC2 com base na tag `squad`. 
+Antes de falar em tag-based policies, é importante reforçar um ponto que poucas empresas percebem no começo: **na AWS, a identidade é mais importante que a rede**. Tradicionalmente no data center, segurança se baseia em limites de rede (firewalls, VLANs, perímetros). Na AWS, quem controla tudo é o IAM.
+
+Se uma identidade (user, role ou aplicação) tem permissão, ela acessa de qualquer lugar do mundo, independentemente de rede. Por isso IAM é o primeiro pilar de segurança na nuvem, e também o mais negligenciado. 
 
 ### **O problema das permissões amplas**
 
@@ -46,7 +48,17 @@ Isso traz riscos claros:
 * **Ataques internos**: um funcionário mal-intencionado pode explorar privilégios para acessar dados sensíveis.
 * **Compliance**: permissões amplas violam normas como ISO 27001, SOC 2, PCI-DSS.
 
-Na prática, o maior número de incidentes de segurança não vem de ataques externos, mas sim de excessos de permissão combinados com erros ou descuidos.
+Na maioria das empresas, permissões amplas nascem por três motivos principais:
+
+| Motivo                                      | Consequência                                        |
+| ------------------------------------------- | --------------------------------------------------- |
+| Pressa para “fazer funcionar”               | Começa com Admin temporário e ele nunca é removido  |
+| Falta de governança                         | Times não sabem quem deveria controlar cada recurso |
+| Dificuldade em escrever policies granulares | IAM parece complexo, então usam *Resource "**       |
+
+
+
+O problema é que **o erro não aparece imediatamente**, e sim no pior momento possível, em produção, durante migração ou auditoria.
 
 ## **O que é Least Privilege**
 
@@ -64,8 +76,6 @@ Na nuvem, é a mesma coisa**,** um usuário, função ou aplicação só deveria
 
 Dar acesso de **Administrador** para todo mundo é como distribuir o crachá-mestre para qualquer visitante: é prático no curto prazo, mas perigoso e caro no longo prazo.
 
-
-
 ### **Por que isso é tão importante na AWS?**
 
 Na AWS (e em qualquer nuvem), permissões são extremamente granulares. Essa flexibilidade é um dos grandes diferenciais da nuvem, mas também é um dos maiores riscos quando se fala em permissões.
@@ -79,8 +89,6 @@ Isso significa que:
 * Os custos podem disparar com a criação acidental ou mal-intencionada de recursos caros (GPU, storage, instâncias grandes).
 
 Por isso, o **Least Privilege** é tão importante na AWS, ele reduz a superfície de ataque, limita o impacto de credenciais comprometidas e impede ações não autorizadas mesmo dentro da própria equipe.
-
-
 
 ### **Cenários reais onde o Least Privilege faz diferença**
 
@@ -117,8 +125,6 @@ Isso não só aumenta o custo, mas também **dificulta auditoria e resposta a in
 
 * **Como o Least Privilege resolve:** Restringir criação (`RunInstances`, `CreateBucket`, etc.) apenas para regiões aprovadas via `Condition` com `aws:RequestedRegion`.
 
-
-
 ### **Evaluation Strategy da AWS**
 
 A AWS decide se permite ou não uma ação seguindo esta ordem:
@@ -129,9 +135,36 @@ A AWS decide se permite ou não uma ação seguindo esta ordem:
 
 Nas **tag-based policies**, o `Condition` é avaliado antes de conceder o `Allow`. Se não for atendido, o acesso é negado, mesmo com a ação listada.
 
+### I﻿AM Users, Roles e Policies
+
+Para contextualizar a aplicação das tag-based policies, precisamos entender o que estamos realmente autorizando:
+
+| Componente                  | Função                                                  |
+| --------------------------- | ------------------------------------------------------- |
+| **IAM Users**               | Identidades humanas (cada vez menos usados)             |
+| **IAM Roles**               | Identidades assumidas (aplicações, serviços, automação) |
+| **Policies**                | Documento JSON que define o que pode ou não             |
+| **Resource-based policies** | Policies anexadas ao recurso (ex: S3 Bucket)            |
+| **IAM vs SCP**              | IAM controla “quem pode”, SCP controla “até onde pode”  |
 
 
-## **Hands-on:** 
+
+Neste artigo estamos atuando no nível **IAM Policy**, que é onde ocorre o controle de granularidade real.
+
+
+
+### T﻿ag-based policies: Porque são tão poderosas?
+
+Além de restringir ações, elas criam **governança de times** sem precisar criar dezenas de policies diferentes para cada squad.\
+Ou seja, você substitui:
+
+* 10 policies diferentes
+* com 10 listas de ARNs diferentes
+* por 1 única lógica central
+
+Essa estratégia escala quando o número de equipes ou recursos cresce.
+
+## **Hands-on:**
 
 #### **Pré-requisitos**
 
@@ -157,7 +190,6 @@ Permite criar e deletar qualquer EC2:
     }
   ]
 }
-
 ```
 
 ### **2. Criando a policy mínima (tag-based)**
@@ -194,8 +226,6 @@ Permite criar apenas instâncias com `squad=cloud` e deletar apenas instâncias 
 }
 ```
 
-
-
 ### **3. Testando**
 
 1. Criar instância sem tag `squad=cloud` → **AccessDenied**.
@@ -203,19 +233,62 @@ Permite criar apenas instâncias com `squad=cloud` e deletar apenas instâncias 
 3. Tentar deletar instância sem a tag → **AccessDenied**.
 4. Deletar instância com tag correta → **Permitido**.
 
-
-
-## **Erros comuns e soluções**
+### **Erros comuns e soluções**
 
 * **Falta de tag na criação**: Use `aws:RequestTag` para forçar envio da tag.
 * **Confundir `RequestTag` com `ResourceTag`**: o primeiro é na criação, o segundo para recursos já existentes.
 * **`Resource` amplo sem `Condition`**: sempre restringir.
 * **Achar que IAM substitui SCP**: SCP é para restrições organizacionais, IAM é granular no nível de conta.
 
-
-
 Migrar do acesso Admin para políticas mínimas é fundamental para segurança na AWS.\
 O uso de **tag-based policies** é uma forma prática de aplicar controle granular, alinhando segurança e agilidade.
 
-\
-Ao entender a **evaluation strategy** e cenários reais de risco, você implementa proteção que realmente funciona no dia a dia. Os próximos passos é expandir a mesma lógica para S3, RDS, Lambda, integrar a criação das politicas em ferramentas de IaC e periodicamente monitorar os acessos atravsé do IAM Access Analyzer.
+### Restringindo também por região
+
+Além da tag, é comum que empresas limitem onde os recursos podem ser criados.\
+Principalmente por motivos de:
+
+* custo
+* latência
+* compliance
+* controle de superfície de ataque
+
+A própria AWS recomenda usar `aws:RequestedRegion` para reforçar governança.
+
+```
+{
+  "Sid": "AllowRunInstancesWithSquadTagAndRegion",
+  "Effect": "Allow",
+  "Action": "ec2:RunInstances",
+  "Resource": "*",
+  "Condition": {
+    "StringEquals": {
+      "aws:RequestTag/squad": "cloud",
+      "aws:RequestedRegion": "us-east-1"
+    }
+  }
+}
+
+```
+
+Dessa forma, mesmo que o usuário tente criar a instância com a tag correta, se for fora de `us-east-1` → **AccessDenied**.
+
+## Auditoria e FinOps
+
+Muita gente acha que IAM = segurança apenas, mas num ambiente maduro, tag-based policies fortalecem também:
+
+| Área            | Benefício                                   |
+| --------------- | ------------------------------------------- |
+| Segurança       | impede ações indevidas                      |
+| FinOps          | ajuda a identificar dono de custo           |
+| Observabilidade | tagging consistente → dashboards precisos   |
+| Auditoria       | prova de controle de acesso baseado em time |
+| Governança      | elimina “recursos órfãos”                   |
+
+
+
+Sem tag obrigatória, mais cedo ou mais tarde você descobre “caixas pretas” custando centenas de dólares/mês sem dono declarado. Tag-based IAM transforma governança em segurança de verdade, ela reduz risco operacional, elimina conflitos entre times, facilita auditoria, reforça FinOps e cria um ambiente onde cada identidade só pode tocar o que lhe pertence. 
+
+Em vez de políticas amplas e perigosas, você implementa **least privilege real**, executado nativamente pela AWS.
+
+Nos próximos passos, vale expandir o mesmo padrão para S3, RDS, Lambda, EKS e automatizar tudo via IaC, complementando com IAM Access Analyzer para monitorar acessos excessivos continuamente.
