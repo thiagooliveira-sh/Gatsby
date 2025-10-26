@@ -7,7 +7,7 @@ description: Em ambientes AWS, dar permissões de Admin para todos pode até ser
   Privilege garante que cada usuário ou aplicação tenha apenas as permissões
   necessárias para realizar suas funções, reduzindo riscos e aumentando a
   segurança.
-date: 2025-08-11
+date: 2025-10-26
 category: aws
 background: "#FF9900"
 tags:
@@ -92,21 +92,21 @@ Por isso, o **Least Privilege** é tão importante na AWS, ele reduz a superfíc
 
 ### **Cenários reais onde o Least Privilege faz diferença**
 
-##### **1. Exclusão acidental de recursos críticos**
+#### **1. Exclusão acidental de recursos críticos**
 
 Imagine que um desenvolvedor precise criar instâncias EC2 para testes.\
 Se ele tiver a permissão `AdministratorAccess`, ele também pode **apagar instâncias de produção** sem querer basta errar um ID ou rodar um script no ambiente errado.
 
 * **Como o Least Privilege resolve:** Permitir apenas `ec2:RunInstances` e `ec2:TerminateInstances` para recursos com uma tag específica (ex.: `environment=dev`). Assim, mesmo que o comando seja executado com o ID errado, a AWS negará a ação.
 
-##### **2. Aumento inesperado de custos**
+#### **2. Aumento inesperado de custos**
 
 Um analista de dados recebe acesso ao serviço SageMaker para rodar experimentos.\
 Se ele tiver permissão ampla (`sagemaker:*`), pode acidentalmente criar instâncias p3.16xlarge (com GPU de alto desempenho) que custam **mais de US$ 30/hora**.
 
 * **Como o Least Privilege resolve:** Restringir as instâncias permitidas a tipos e tamanhos específicos, além de aplicar limite de regiões.
 
-##### **3. Ambiente multi-squad com governança fraca**
+#### **3. Ambiente multi-squad com governança fraca**
 
 Sem restrição, a squad “SRE” pode apagar recursos da squad “Cloud” e vice-versa, gerando conflitos internos e risco operacional.
 
