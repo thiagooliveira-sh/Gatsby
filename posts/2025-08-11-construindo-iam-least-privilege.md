@@ -7,7 +7,7 @@ description: Em ambientes AWS, dar permissões de Admin para todos pode até ser
   Privilege garante que cada usuário ou aplicação tenha apenas as permissões
   necessárias para realizar suas funções, reduzindo riscos e aumentando a
   segurança.
-date: 2025-10-26
+date: 2025-10-28
 category: aws
 background: "#FF9900"
 tags:
