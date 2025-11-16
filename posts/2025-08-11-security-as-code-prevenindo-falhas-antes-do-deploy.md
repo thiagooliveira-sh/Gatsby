@@ -6,7 +6,7 @@ description: "Em ambientes de nuvem, a velocidade dos deploys cresce
   automatizadas e distribuídas. No entanto, essa agilidade traz um efeito
   colateral perigoso: erros de configuração podem ir para produção em minutos,
   abrindo portas para incidentes de segurança que poderiam ter sido evitados."
-date: 2025-08-15
+date: 2025-11-16
 category: devops
 background: "#05A6F0"
 tags:
