@@ -1,11 +1,11 @@
 ---
 image: /assets/img/AWS.png
 title: Security as Code Prevenindo Falhas Antes do Deploy
-description: Em ambientes de nuvem, a velocidade de deploy é cada vez maior, mas
-  isso também significa que erros de configuração podem chegar à produção em
-  questão de minutos. Ativar uma instância sem criptografia ou criar um bucket
-  S3 público pode parecer inofensivo no início, mas pode gerar impactos
-  financeiros, legais e reputacionais sérios.
+description: "Em ambientes de nuvem, a velocidade dos deploys cresce
+  continuamente. A cada sprint, releases se tornam mais frequentes,
+  automatizadas e distribuídas. No entanto, essa agilidade traz um efeito
+  colateral perigoso: erros de configuração podem ir para produção em minutos,
+  abrindo portas para incidentes de segurança que poderiam ter sido evitados."
 date: 2025-08-15
 category: devops
 background: "#05A6F0"
@@ -38,24 +38,27 @@ categories:
   - SECURITYBESTPRACTICES
   - AWSSECURITY
 ---
-Os times de desenvolvimento e infraestrutura vêm adotando metodologias cada vez mais ágeis, e isso traz um desafio: **a segurança precisa acompanhar a velocidade dos deploys**. Não adianta apenas ter um time de segurança revisando configurações depois que tudo já está em produção, o custo e o risco aumentam exponencialmente.
+Times de desenvolvimento e infraestrutura operam hoje em modelos altamente ágeis: CI/CD, infra como código, microserviços.\
+Mas a segurança nem sempre acompanha esse ritmo.
 
-Com **Security as Code**, a segurança deixa de ser uma barreira no fim do processo e passa a estar **integrada desde o início** do ciclo de desenvolvimento, com verificações automatizadas que impedem que código inseguro seja implantado.
+Modelos tradicionais dependem de revisões manuais no final do ciclo — quando tudo já está pronto ou até mesmo em produção. E aí surgem dois problemas:
 
+* **Custo de correção mais alto**
+* **Risco de incidentes devido a erros que poderiam ter sido barrados antes**
 
+Security as Code resolve esse gargalo ao trazer a segurança para o início do ciclo, automatizando verificações e prevenindo erros antes mesmo de chegar ao deploy.
 
 ## **O caso do bucket exposto**
 
-Todos os anos vemos casos muito semelhantes, empresas globais sofrendo com exposição de registros hospedados em buckets s3 mal configurados. 
+Todos os anos, vemos incidentes praticamente idênticos envolvendo buckets S3 públicos ou mal configurados. Alguns exemplos conhecidos: 
 
-* [mcGraw Hill](https://edscoop.com/mcgraw-hill-amazon-s3-data-exposure-student-emails-grades/)
-* [Premier Diagnostics](https://www.hipaajournal.com/unsecured-amazon-s3-buckets-contained-id-card-scans-of-52000-individuals/)
-* [Raindeer](https://www.securitymagazine.com/articles/95782-reindeer-leaked-the-sensitive-data-of-more-than-300000-people)
+* [mcGraw Hill](https://edscoop.com/mcgraw-hill-amazon-s3-data-exposure-student-emails-grades/) – milhões de registros de estudantes expostos
+* [Premier Diagnostics](https://www.hipaajournal.com/unsecured-amazon-s3-buckets-contained-id-card-scans-of-52000-individuals/) – dados sensíveis acessíveis publicamente
+* [Raindeer](https://www.securitymagazine.com/articles/95782-reindeer-leaked-the-sensitive-data-of-more-than-300000-people) – informações pessoais deixadas em buckets sem proteção
 
 O bucket não estava criptografado, não tinha autenticação adequada e estava acessível publicamente. O pior? Isso poderia ter sido evitado com uma simples verificação automatizada no código Terraform ou através de remediações automáticas através do AWS Config.
 
-Esse tipo de falha não é exclusividade de grandes empresas. **Qualquer organização** que não tenha práticas de segurança automatizadas corre o mesmo risco.\
-A diferença entre o desastre e a prevenção está em colocar a segurança no início do ciclo de desenvolvimento**,** e é aí que entra o Security as Code.
+Esse tipo de falha não é exclusividade de grandes empresas. **Qualquer organização** que não tenha práticas de segurança automatizadas corre o mesmo risco. A diferença entre o desastre e a prevenção está em colocar a segurança no início do ciclo de desenvolvimento e é aí que entra o Security as Code.
 
 ## **O que é Security as Code**
 
@@ -69,8 +72,6 @@ Ao invés de revisar manualmente configurações depois que o ambiente está no 
 3. **Velocidade**: segurança integrada ao pipeline, sem gargalos manuais.
 4. **Compliance contínuo**: auditoria facilitada com relatórios e histórico.
 
-
-
 ### **Security as Code no ciclo DevSecOps**
 
 O DevSecOps coloca a segurança como responsabilidade compartilhada entre **desenvolvedores, operações e segurança**. O Security as Code é o motor dessa abordagem — ele garante que as regras de segurança não fiquem “guardadas” em documentos, mas vivam no código e pipelines.
@@ -82,8 +83,6 @@ Fluxo simplificado:
 3. Se violar as regras → pipeline falha.
 4. Se passar → deploy autorizado.
 
-
-
 ### **Ferramentas populares de Security as Code**
 
 | Ferramenta                   | Foco principal                       | Pontos fortes                                                                           |
@@ -94,13 +93,9 @@ Fluxo simplificado:
 | **CloudFormation Guard**     | Templates AWS CloudFormation         | Focado em AWS, fácil para quem já usa CloudFormation.                                   |
 | **Conftest**                 | Políticas em YAML/JSON               | Simples, versátil, ideal para pipelines leves.                                          |
 
-
-
 ## **Estratégia do hands-on**
 
 Vamos criar alguns buckets no s3 via Terraform e implementar políticas que bloqueiem qualquer recurso s3 de estarem publicamente acessíveis e validar se outras features como versionamento esta habilitado. Isso será integrado à pipeline localmente, mas a mesma lógica pode ser aplicada no GitHub Actions, GitLab CI, etc.
-
-
 
 ## **Cenário 1: Bloqueio de buckets públicos na conta**
 
@@ -117,7 +112,6 @@ resource "aws_s3_account_public_access_block" "account_level" {
   block_public_policy     = true
   restrict_public_buckets = true
 }
-
 ```
 
 V﻿amos agora testar criar um bucket com `public-read`, a tentativa de aplicar `public-read` deve falhar, mostrando que o bloqueio está ativo.
@@ -159,7 +153,6 @@ definition:
         - aws_s3_bucket
       attribute: versioning
       operator: exists
-
 ```
 
 Execute o checkov com a política customizada:
@@ -173,8 +166,6 @@ Saída esperada:
 ```
 FAILED for resource: aws_s3_bucket.insecure
 ```
-
-
 
 ### **Corrigindo**
 
@@ -204,10 +195,69 @@ A﻿gora é só executar o scan novamente e agora ele deve retornar sucesso:
 checkov -d . --external-checks-dir .
 ```
 
+### Auto-remediação com AWS Config
 
+Em ambientes dinâmicos, com múltiplas contas, times diferentes e centenas de recursos sendo criados diariamente, um risco adicional surge: **o drift**, quando um recurso muda depois do deploy e foge dos padrões aprovados.
 
-Security as Code não é um luxo, é uma necessidade. Colocar a segurança dentro do pipeline garante que erros sejam barrados antes de virar incidentes, reduz custos e protege a reputação da empresa.
+É aqui que entra o **AWS Config**, um dos serviços mais poderosos da AWS para quem deseja segurança contínua e governança automatizada, ele permite:
 
-O investimento inicial em configurar essas verificações se paga rápido, porque **o custo de corrigir um erro em produção é sempre maior**.
+* Monitorar recursos em tempo real
+* Registrar todo o histórico de alterações
+* Avaliar se cada recurso está em conformidade com as regras da empresa
+* Gerar alertas
+* Principalmente, aplicar **auto-remediação** quando algo estiver fora do padrão
 
-Explore também serviços como AWS Config para criar regras customizadas baseada na necessidade da sua empresa, para facilitar a padronização em ambientes com múltiplas AWS Accounts explore alternativas como Account Factory para Terraform ( AFT ), nele existe uma estrutura de globals-configuration  que são configurações aplicadas para todas as contas AWS que estivem cobertas pelo AFT, facilitando a entrega de guardrails.
+Ou seja:
+
+> **Se um desvio acontecer, ele será corrigido automaticamente sem intervenção humana.**
+
+Isso reduz risco operacional, diminui o tempo de exposição e aumenta a maturidade de segurança da organização.
+
+#### Como funciona o ciclo de auto-remediação
+
+1. **Regra do AWS Config** monitora um recurso e avalia se ele está em conformidade.
+2. Se a avaliação for **NON_COMPLIANT**, a regra pode acionar:
+
+   * Um **SSM Automation Runbook**, ou
+   * Uma **Lambda Function**
+3. O runbook/função executa a correção e retorna o recurso ao estado desejado.
+4. AWS Config reavalia o recurso e confirma a conformidade.
+
+### Garantir que grupos de segurança não permitam tráfego *0.0.0.0/0* na porta 22
+
+Mesmo em ambientes maduros, um dos problemas mais recorrentes é a abertura acidental de portas perigosas para a internet especialmente **SSH**. Isso representa risco de ataques de força bruta e exposição desnecessária do servidor.
+
+#### Objetivo da auto-remediação
+
+* Detectar automaticamente qualquer Security Group que permita acesso SSH de **qualquer origem pública**.
+* Executar uma ação de correção removendo a regra insegura.
+
+#### **1. Regra do AWS Config**
+
+Usamos a regra gerenciada: **`INCOMING_SSH_DISABLED`** Ela verifica se existe alguma regra de inbound SSH aberta para 0.0.0.0/0.
+
+#### **2. Ação de remediação**
+
+Podemos anexar um **SSM Automation Runbook** que remove automaticamente a regra insegura.
+
+Exemplo de runbook pronto da AWS: **`AWS-DisablePublicAccessForSecurityGroup`**
+
+Ele:
+
+* localiza regras de entrada perigosas
+* remove apenas aquelas que estão fora da conformidade
+* mantém outras regras intactas
+
+#### Fluxo da auto-remediação
+
+1. Alguém cria ou altera um Security Group e adiciona a regra:
+
+   * **Inbound**
+   * Porta: `22`
+   * Origem: `0.0.0.0/0`
+2. AWS Config detecta a regra e marca como **NON_COMPLIANT**
+3. O runbook é acionado automaticamente
+4. A regra insegura é removida em segundos
+5. O recurso volta ao estado **COMPLIANT**
+
+Security as Code não é um luxo e nem uma tendência: é um **pilar obrigatório** para empresas que querem operar em nuvem com segurança e velocidade.
