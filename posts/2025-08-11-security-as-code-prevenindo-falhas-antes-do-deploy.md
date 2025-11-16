@@ -41,7 +41,7 @@ categories:
 Times de desenvolvimento e infraestrutura operam hoje em modelos altamente ágeis: CI/CD, infra como código, microserviços.\
 Mas a segurança nem sempre acompanha esse ritmo.
 
-Modelos tradicionais dependem de revisões manuais no final do ciclo — quando tudo já está pronto ou até mesmo em produção. E aí surgem dois problemas:
+Modelos tradicionais dependem de revisões manuais no final do ciclo, quando tudo já está pronto ou até mesmo em produção. E aí surgem dois problemas:
 
 * **Custo de correção mais alto**
 * **Risco de incidentes devido a erros que poderiam ter sido barrados antes**
@@ -74,7 +74,7 @@ Ao invés de revisar manualmente configurações depois que o ambiente está no 
 
 ### **Security as Code no ciclo DevSecOps**
 
-O DevSecOps coloca a segurança como responsabilidade compartilhada entre **desenvolvedores, operações e segurança**. O Security as Code é o motor dessa abordagem — ele garante que as regras de segurança não fiquem “guardadas” em documentos, mas vivam no código e pipelines.
+O DevSecOps coloca a segurança como responsabilidade compartilhada entre **desenvolvedores, operações e segurança**. O Security as Code é o motor dessa abordagem, ele garante que as regras de segurança não fiquem “guardadas” em documentos, mas vivam no código e pipelines.
 
 Fluxo simplificado:
 
@@ -215,13 +215,13 @@ Isso reduz risco operacional, diminui o tempo de exposição e aumenta a maturid
 
 #### Como funciona o ciclo de auto-remediação
 
-1. **Regra do AWS Config** monitora um recurso e avalia se ele está em conformidade.
-2. Se a avaliação for **NON_COMPLIANT**, a regra pode acionar:
+1. 1. **Regra do AWS Config** monitora um recurso e avalia se ele está em conformidade.
+2. 2. Se a avaliação for **NON_COMPLIANT**, a regra pode acionar:
 
    * Um **SSM Automation Runbook**, ou
    * Uma **Lambda Function**
-3. O runbook/função executa a correção e retorna o recurso ao estado desejado.
-4. AWS Config reavalia o recurso e confirma a conformidade.
+3. 3. O runbook/função executa a correção e retorna o recurso ao estado desejado.
+4. 4. AWS Config reavalia o recurso e confirma a conformidade.
 
 ### Garantir que grupos de segurança não permitam tráfego *0.0.0.0/0* na porta 22
 
@@ -240,9 +240,7 @@ Usamos a regra gerenciada: **`INCOMING_SSH_DISABLED`** Ela verifica se existe al
 
 Podemos anexar um **SSM Automation Runbook** que remove automaticamente a regra insegura.
 
-Exemplo de runbook pronto da AWS: **`AWS-DisablePublicAccessForSecurityGroup`**
-
-Ele:
+Exemplo de runbook pronto da AWS: **`AWS-DisablePublicAccessForSecurityGroup`** ele:
 
 * localiza regras de entrada perigosas
 * remove apenas aquelas que estão fora da conformidade
@@ -250,14 +248,14 @@ Ele:
 
 #### Fluxo da auto-remediação
 
-1. Alguém cria ou altera um Security Group e adiciona a regra:
+1. 1. Alguém cria ou altera um Security Group e adiciona a regra:
 
    * **Inbound**
    * Porta: `22`
    * Origem: `0.0.0.0/0`
-2. AWS Config detecta a regra e marca como **NON_COMPLIANT**
-3. O runbook é acionado automaticamente
-4. A regra insegura é removida em segundos
-5. O recurso volta ao estado **COMPLIANT**
+2. 2. AWS Config detecta a regra e marca como **NON_COMPLIANT**
+3. 3. O runbook é acionado automaticamente
+4. 4. A regra insegura é removida em segundos
+5. 5. O recurso volta ao estado **COMPLIANT**
 
 Security as Code não é um luxo e nem uma tendência: é um **pilar obrigatório** para empresas que querem operar em nuvem com segurança e velocidade.
