@@ -1,7 +1,7 @@
 ---
 image: /assets/img/AWS.png
-title: Account Factory for Terraform A Chave para o Provisionamento Escalavel de
-  Contas AWS
+title: "Account Factory for Terraform: A Chave para o Provisionamento Escalável
+  de Contas AWS"
 description: O gerenciamento de ambientes multi-contas na Amazon Web Services
   (AWS) é uma prática recomendada para isolamento de segurança, governança e
   otimização de custos. No entanto, a criação e a manutenção consistentes dessas
