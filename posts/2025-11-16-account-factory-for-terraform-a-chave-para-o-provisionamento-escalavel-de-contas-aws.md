@@ -75,7 +75,6 @@ Não há cobrança adicional pelo AFT. Você paga somente pelos recursos implant
 * Execuções no Step Functions e Lambdas
 * Utilização do DynamoDB
 
-
 #### Componentes de Orquestração
 
 O AFT é um conjunto de serviços AWS orquestrados, incluindo:
@@ -89,13 +88,13 @@ O AFT é um conjunto de serviços AWS orquestrados, incluindo:
 
 O processo de criação de uma nova conta via AFT é totalmente automatizado e orientado por código:
 
-* 1. Requisição: Um usuário submete um arquivo de requisição (um arquivo .tf) para o repositório aft-account-request.
-* 2. Gatilho: O push para o repositório dispara o pipeline principal do AFT.
-* 3. Provisionamento Base: O AFT invoca o Account Factory do AWS Control Tower via Service Catalog para criar a conta AWS base.
-* 4. Customizações de Provisionamento: O pipeline executa o código Terraform do repositório aft-account-provisioning-customizations para aplicar configurações iniciais.
-* 5. Registro e Customizações Globais: A conta é registrada no Control Tower. Em seguida, o pipeline executa o código do repositório aft-global-customizations, aplicando a linha de base de segurança e infraestrutura a todas as contas.
-* 6. Customizações Específicas: Por fim, o pipeline verifica o repositório aft-account-customizations e aplica quaisquer configurações específicas para a nova conta.
-* 7. Conta Pronta: A conta está provisionada, customizada e pronta para uso, garantindo a conformidade desde o início.
+* Requisição: Um usuário submete um arquivo de requisição (um arquivo .tf) para o repositório aft-account-request.
+* 2 Gatilho: O push para o repositório dispara o pipeline principal do AFT.
+* Provisionamento Base: O AFT invoca o Account Factory do AWS Control Tower via Service Catalog para criar a conta AWS base.
+* Customizações de Provisionamento: O pipeline executa o código Terraform do repositório aft-account-provisioning-customizations para aplicar configurações iniciais.
+* Registro e Customizações Globais: A conta é registrada no Control Tower. Em seguida, o pipeline executa o código do repositório aft-global-customizations, aplicando a linha de base de segurança e infraestrutura a todas as contas.
+* Customizações Específicas: Por fim, o pipeline verifica o repositório aft-account-customizations e aplica quaisquer configurações específicas para a nova conta.
+* Conta Pronta: A conta está provisionada, customizada e pronta para uso, garantindo a conformidade desde o início.
 
 #### Benefícios do AFT para o DevOps
 
@@ -109,4 +108,3 @@ A adoção do AFT transforma a maneira como as organizações gerenciam seus amb
 O Account Factory for Terraform é mais do que uma ferramenta de automação; é uma extensão da mentalidade DevOps para o nível de gestão de contas AWS. Ao combinar a governança robusta do AWS Control Tower com a flexibilidade e o poder do Terraform, o AFT permite que as organizações escalem suas operações na nuvem com segurança, consistência e agilidade. Para qualquer empresa que utilize o Control Tower e busque otimizar seu footprint na AWS, o AFT é uma peça indispensável na sua estratégia de nuvem.
 
 Este artigo serviu como uma introdução conceitual e arquitetural. Nas próximas postagens, faremos uma transição para a prática, explorando em detalhes: como fazer o deploy inicial do AFT, o processo passo a passo para criar a primeira conta AWS, como criar um account-customization específico e dicas valiosas para definir seus global-customizations. Fique ligado para aprofundar seus conhecimentos e colocar o AFT em ação!
-
