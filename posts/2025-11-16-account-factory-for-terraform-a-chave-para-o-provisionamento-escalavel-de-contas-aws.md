@@ -89,13 +89,13 @@ O AFT é um conjunto de serviços AWS orquestrados, incluindo:
 
 O processo de criação de uma nova conta via AFT é totalmente automatizado e orientado por código:
 
-* 1. Requisição: Um usuário submete um arquivo de requisição (um arquivo .tf) para o repositório aft-account-request.
-* 2. Gatilho: O push para o repositório dispara o pipeline principal do AFT.
-* 3. Provisionamento Base: O AFT invoca o Account Factory do AWS Control Tower via Service Catalog para criar a conta AWS base.
-* 4. Customizações de Provisionamento: O pipeline executa o código Terraform do repositório aft-account-provisioning-customizations para aplicar configurações iniciais.
-* 5. Registro e Customizações Globais: A conta é registrada no Control Tower. Em seguida, o pipeline executa o código do repositório aft-global-customizations, aplicando a linha de base de segurança e infraestrutura a todas as contas.
-* 6. Customizações Específicas: Por fim, o pipeline verifica o repositório aft-account-customizations e aplica quaisquer configurações específicas para a nova conta.
-* 7. Conta Pronta: A conta está provisionada, customizada e pronta para uso, garantindo a conformidade desde o início.
+* 1 Requisição: Um usuário submete um arquivo de requisição (um arquivo .tf) para o repositório aft-account-request.
+* 2 Gatilho: O push para o repositório dispara o pipeline principal do AFT.
+* 3 Provisionamento Base: O AFT invoca o Account Factory do AWS Control Tower via Service Catalog para criar a conta AWS base.
+* 4 Customizações de Provisionamento: O pipeline executa o código Terraform do repositório aft-account-provisioning-customizations para aplicar configurações iniciais.
+* 5 Registro e Customizações Globais: A conta é registrada no Control Tower. Em seguida, o pipeline executa o código do repositório aft-global-customizations, aplicando a linha de base de segurança e infraestrutura a todas as contas.
+* 6 Customizações Específicas: Por fim, o pipeline verifica o repositório aft-account-customizations e aplica quaisquer configurações específicas para a nova conta.
+* 7 Conta Pronta: A conta está provisionada, customizada e pronta para uso, garantindo a conformidade desde o início.
 
 #### Benefícios do AFT para o DevOps
 
