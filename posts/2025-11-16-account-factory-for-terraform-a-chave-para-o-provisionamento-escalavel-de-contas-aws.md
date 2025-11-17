@@ -107,3 +107,6 @@ A adoção do AFT transforma a maneira como as organizações gerenciam seus amb
 * Foco em Valor: Libera os engenheiros de DevOps da tarefa manual e repetitiva de configurar contas, permitindo que se concentrem em entregar valor de negócio.
 
 O Account Factory for Terraform é mais do que uma ferramenta de automação; é uma extensão da mentalidade DevOps para o nível de gestão de contas AWS. Ao combinar a governança robusta do AWS Control Tower com a flexibilidade e o poder do Terraform, o AFT permite que as organizações escalem suas operações na nuvem com segurança, consistência e agilidade. Para qualquer empresa que utilize o Control Tower e busque otimizar seu footprint na AWS, o AFT é uma peça indispensável na sua estratégia de nuvem.
+
+Este artigo serviu como uma introdução conceitual e arquitetural. Nas próximas postagens, faremos uma transição para a prática, explorando em detalhes: como fazer o deploy inicial do AFT, o processo passo a passo para criar a primeira conta AWS, como criar um account-customization específico e dicas valiosas para definir seus global-customizations. Fique ligado para aprofundar seus conhecimentos e colocar o AFT em ação!
+
