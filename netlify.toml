@@ -5,9 +5,9 @@
 [build.environment]
   NODE_VERSION = "22"
   NPM_FLAGS = "--legacy-peer-deps"
-  # Optimize image processing
-  GATSBY_CONCURRENT_DOWNLOAD = "5"
-  GATSBY_CPU_COUNT = "2"
+  # Optimize image processing - single CPU reduces context switching
+  GATSBY_CONCURRENT_DOWNLOAD = "10"
+  GATSBY_CPU_COUNT = "1"
   # Reduce memory usage
   NODE_OPTIONS = "--max-old-space-size=3072"
 

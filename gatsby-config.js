@@ -63,13 +63,14 @@ module.exports = {
           {
             resolve: "gatsby-remark-images",
             options: {
-              maxWidth: 960,
+              maxWidth: 800,
               linkImagesToOriginal: false,
-              quality: 75,
-              withWebp: true,
+              quality: 65,
+              withWebp: false,
               loading: "lazy",
               disableBgImageOnAlpha: true,
               backgroundColor: "transparent",
+              tracedSVG: false,
             },
           },
           `gatsby-remark-lazy-load`,
@@ -89,17 +90,15 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
-          formats: [`auto`, `webp`],
-          placeholder: `blurred`,
-          quality: 75,
-          breakpoints: [750, 1080, 1920],
+          formats: [`auto`],
+          placeholder: `none`,
+          quality: 65,
+          breakpoints: [750, 1080],
           backgroundColor: `transparent`,
         },
-        // Reduce CPU usage during image processing
         failOnError: false,
-        // Limit concurrent image processing
         stripMetadata: true,
-        defaultQuality: 75,
+        defaultQuality: 65,
       },
     },
     {
