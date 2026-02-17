@@ -1,5 +1,10 @@
 [build]
   publish = "public"
+  command = "npm install --legacy-peer-deps && npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NPM_FLAGS = "--legacy-peer-deps"
 
 [[plugins]]
 package = "netlify-plugin-gatsby-cache"

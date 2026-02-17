@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
 import {Helmet} from "react-helmet"
 import { useStaticQuery, graphql } from 'gatsby'
 
-function SEO({ description, lang, meta, title, image }) {
+function SEO({ description, lang, meta, title, image, slug }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -27,8 +27,24 @@ function SEO({ description, lang, meta, title, image }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
-  const url= site.siteMetadata.siteUrl
-  const ogImage = `${url}${image || "/assets/img/template.png"}`
+  const siteUrl = site.siteMetadata.siteUrl
+  
+  // Ensure absolute URL for images - handle both custom and default images
+  let imagePath = image || "/assets/img/template.png"
+  
+  // Normalize path: remove ../static/ prefix if present (from gatsby-remark-relative-images)
+  // and ensure path starts with /
+  if (imagePath.includes('../static/')) {
+    imagePath = imagePath.replace('../static', '')
+  }
+  if (!imagePath.startsWith('/')) {
+    imagePath = '/' + imagePath
+  }
+  
+  const ogImage = `${siteUrl}${imagePath}`
+  
+  // Build canonical URL if slug is provided
+  const canonicalUrl = slug ? `${siteUrl}${slug}` : siteUrl
 
   return (
     <Helmet
@@ -43,10 +59,6 @@ function SEO({ description, lang, meta, title, image }) {
           content: metaDescription,
         },
         {
-          property: `og:image`,
-          content: ogImage
-        },
-        {
           property: `og:title`,
           content: title,
         },
@@ -56,14 +68,38 @@ function SEO({ description, lang, meta, title, image }) {
         },
         {
           property: `og:type`,
-          content: `website`,
+          content: slug ? `article` : `website`,
+        },
+        {
+          property: `og:url`,
+          content: canonicalUrl,
+        },
+        {
+          property: `og:image`,
+          content: ogImage
+        },
+        {
+          property: `og:image:secure_url`,
+          content: ogImage
+        },
+        {
+          property: `og:image:width`,
+          content: `1200`,
+        },
+        {
+          property: `og:image:height`,
+          content: `630`,
+        },
+        {
+          property: `og:image:alt`,
+          content: title,
         },
         {
           name: `twitter:card`,
           content: `summary_large_image`,
         },
         {
-          name: `twitter:image:src`,
+          name: `twitter:image`,
           content: ogImage
         },  
         {
@@ -94,6 +130,8 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  slug: PropTypes.string,
 }
 
 export default SEO
