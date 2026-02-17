@@ -10,6 +10,20 @@ module.exports = {
     author: `@thiagoalexandria`,
     siteUrl: `https://thiagoalexandria.com.br`
   },
+  flags: {
+    // Enable faster builds with parallel query running
+    PARALLEL_QUERY_RUNNING: true,
+    // Enable faster image processing
+    FAST_DEV: true,
+    // Preserve file download cache between builds
+    PRESERVE_FILE_DOWNLOAD_CACHE: true,
+    // Preserve webpack cache
+    PRESERVE_WEBPACK_CACHE: true,
+    // Enable lazy images
+    LAZY_IMAGES: true,
+    // Reduce bundle size
+    DEV_SSR: false,
+  },
   plugins: [
     `gatsby-plugin-transition-link`,
     `gatsby-plugin-styled-components`,
@@ -57,6 +71,9 @@ module.exports = {
             options: {
               maxWidth: 960,
               linkImagesToOriginal: false,
+              quality: 80,
+              withWebp: true,
+              loading: "lazy",
             },
           },
           `gatsby-remark-lazy-load`,
@@ -65,8 +82,27 @@ module.exports = {
       },
     },
     `gatsby-plugin-image`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-transformer-sharp`,
+      options: {
+        // Optimize image processing
+        checkSupportedExtensions: false,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`],
+          placeholder: `blurred`,
+          quality: 80,
+          breakpoints: [750, 1080, 1366, 1920],
+          backgroundColor: `transparent`,
+        },
+        // Reduce CPU usage during image processing
+        failOnError: false,
+      },
+    },
     {
       resolve: `gatsby-plugin-algolia-search`,
       options: {
@@ -93,6 +129,6 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
-    `gatsby-plugin-netlify-cms`,
+    `gatsby-plugin-decap-cms`,
   ],
 }

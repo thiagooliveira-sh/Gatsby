@@ -35,9 +35,10 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 }
 
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
-  return graphql(`
+  
+  const result = await graphql(`
     {
       allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
         edges {
@@ -45,15 +46,6 @@ exports.createPages = ({ graphql, actions }) => {
             fields {
               slug
             }
-            frontmatter {
-              background
-              category
-              date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
-              description
-              title
-              image
-            }
-            timeToRead
           }
           next {
             frontmatter {
@@ -74,37 +66,126 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
     }
-  `).then((result) => {
-    const posts = result.data.allMarkdownRemark.edges
+  `)
 
-    posts.forEach(({ node, next, previous }) => {
-      createPage({
-        path: node.fields.slug,
-        component: path.resolve(`./src/templates/blog-post.js`),
-        context: {
-          // Data passed to context is available
-          // in page queries as GraphQL variables.
-          slug: node.fields.slug,
-          previousPost: next,
-          nextPost: previous,
-        },
-      })
-    })
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`)
+    return
+  }
 
-    const postsPerPage = 8
-    const numPages = Math.ceil(posts.length / postsPerPage)
+  const posts = result.data.allMarkdownRemark.edges
 
-    Array.from({ length: numPages }).forEach((_, index) => {
-      createPage({
-        path: index === 0 ? `/` : `/page/${index + 1}`,
-        component: path.resolve(`./src/templates/blog-list.js`),
-        context: {
-          limit: postsPerPage,
-          skip: index * postsPerPage,
-          numPages,
-          currentPage: index + 1,
-        },
-      })
+  // Create blog post pages
+  posts.forEach(({ node, next, previous }) => {
+    createPage({
+      path: node.fields.slug,
+      component: path.resolve(`./src/templates/blog-post.js`),
+      context: {
+        slug: node.fields.slug,
+        previousPost: next,
+        nextPost: previous,
+      },
     })
   })
+
+  // Create paginated blog list pages
+  const postsPerPage = 8
+  const numPages = Math.ceil(posts.length / postsPerPage)
+
+  Array.from({ length: numPages }).forEach((_, index) => {
+    createPage({
+      path: index === 0 ? `/` : `/page/${index + 1}`,
+      component: path.resolve(`./src/templates/blog-list.js`),
+      context: {
+        limit: postsPerPage,
+        skip: index * postsPerPage,
+        numPages,
+        currentPage: index + 1,
+      },
+    })
+  })
+}
+
+// Webpack optimization
+exports.onCreateWebpackConfig = ({ stage, actions, getConfig, plugins }) => {
+  if (stage === 'build-javascript' || stage === 'develop') {
+    actions.setWebpackConfig({
+      optimization: {
+        minimize: stage === 'build-javascript',
+        minimizer: stage === 'build-javascript' ? [
+          plugins.minifyJs({
+            terserOptions: {
+              compress: {
+                drop_console: true,
+              },
+              output: {
+                comments: false,
+              },
+            },
+          }),
+          plugins.minifyCss(),
+        ] : [],
+        splitChunks: {
+          chunks: 'all',
+          maxInitialRequests: 25,
+          minSize: 20000,
+          cacheGroups: {
+            default: false,
+            vendors: false,
+            // Vendor chunk
+            vendor: {
+              name: 'vendor',
+              chunks: 'all',
+              test: /node_modules/,
+              priority: 20
+            },
+            // Common chunk
+            common: {
+              name: 'common',
+              minChunks: 2,
+              chunks: 'all',
+              priority: 10,
+              reuseExistingChunk: true,
+              enforce: true
+            },
+            // React chunk
+            react: {
+              test: /[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/,
+              name: 'react',
+              chunks: 'all',
+              priority: 30,
+            },
+            // Styled components chunk
+            styles: {
+              test: /[\\/]node_modules[\\/](styled-components|@emotion)[\\/]/,
+              name: 'styles',
+              chunks: 'all',
+              priority: 25,
+            },
+          }
+        }
+      },
+      cache: {
+        type: 'filesystem',
+        buildDependencies: {
+          config: [__filename],
+        },
+        compression: 'gzip',
+      },
+      // Reduce bundle size
+      resolve: {
+        alias: {
+          'react': 'react',
+          'react-dom': 'react-dom',
+        },
+      },
+    })
+  }
+  
+  // Production optimizations
+  if (stage === 'build-javascript') {
+    actions.setWebpackConfig({
+      devtool: false, // Disable source maps in production for faster builds
+    })
+  }
 }
