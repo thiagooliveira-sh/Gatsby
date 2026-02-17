@@ -5,6 +5,11 @@
 [build.environment]
   NODE_VERSION = "22"
   NPM_FLAGS = "--legacy-peer-deps"
+  # Optimize image processing
+  GATSBY_CONCURRENT_DOWNLOAD = "5"
+  GATSBY_CPU_COUNT = "2"
+  # Reduce memory usage
+  NODE_OPTIONS = "--max-old-space-size=3072"
 
 [[plugins]]
 package = "netlify-plugin-gatsby-cache"
