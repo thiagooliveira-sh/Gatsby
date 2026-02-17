@@ -14,6 +14,25 @@ exports.sourceNodes = ({ actions, schema }) => {
   `)
 }
 
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+
+  createTypes(`
+    type MarkdownRemarkFrontmatter {
+      image: String
+      title: String
+      description: String
+      date: Date @dateformat
+      category: String
+      background: String
+      tags: [String]
+    }
+    type MarkdownRemark implements Node {
+      frontmatter: MarkdownRemarkFrontmatter
+    }
+  `)
+}
+
 // To add the slug field to each post
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
