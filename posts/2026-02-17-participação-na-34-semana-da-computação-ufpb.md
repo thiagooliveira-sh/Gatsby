@@ -1,6 +1,6 @@
 ---
 image: /assets/img/AWS.png
-title: Participação na 34 Semana da Computação UFPB
+title: Participação na 34º Semana da Computação UFPB
 description: Participar da 34ª Semana da Computação da UFPB foi uma experiência
   extremamente enriquecedora e especial para mim.
 date: 2025-11-12
