@@ -56,9 +56,9 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "NODE_OPTIONS='--no-deprecation --max-old-space-size=4096' GATSBY_CPU_COUNT=logical_cores gatsby build",
-    "build:fast": "NODE_OPTIONS='--no-deprecation --max-old-space-size=4096' GATSBY_CPU_COUNT=logical_cores GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build",
-    "develop": "NODE_OPTIONS='--no-deprecation' GATSBY_CPU_COUNT=logical_cores gatsby develop",
+    "build": "NODE_OPTIONS='--no-deprecation --max-old-space-size=4096' gatsby build",
+    "build:fast": "NODE_OPTIONS='--no-deprecation --max-old-space-size=4096' GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build",
+    "develop": "NODE_OPTIONS='--no-deprecation' gatsby develop",
     "develop:playground": "NODE_OPTIONS='--no-deprecation' GATSBY_GRAPHQL_IDE=playground gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",

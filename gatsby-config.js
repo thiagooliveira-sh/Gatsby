@@ -11,16 +11,10 @@ module.exports = {
     siteUrl: `https://thiagoalexandria.com.br`
   },
   flags: {
-    // Enable faster builds with parallel query running
-    PARALLEL_QUERY_RUNNING: true,
     // Enable faster image processing
     FAST_DEV: true,
     // Preserve file download cache between builds
     PRESERVE_FILE_DOWNLOAD_CACHE: true,
-    // Preserve webpack cache
-    PRESERVE_WEBPACK_CACHE: true,
-    // Enable lazy images
-    LAZY_IMAGES: true,
     // Reduce bundle size
     DEV_SSR: false,
   },
@@ -69,11 +63,14 @@ module.exports = {
           {
             resolve: "gatsby-remark-images",
             options: {
-              maxWidth: 960,
+              maxWidth: 800,
               linkImagesToOriginal: false,
-              quality: 80,
-              withWebp: true,
+              quality: 65,
+              withWebp: false,
               loading: "lazy",
+              disableBgImageOnAlpha: true,
+              backgroundColor: "transparent",
+              tracedSVG: false,
             },
           },
           `gatsby-remark-lazy-load`,
@@ -93,14 +90,15 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
-          formats: [`auto`, `webp`],
-          placeholder: `blurred`,
-          quality: 80,
-          breakpoints: [750, 1080, 1366, 1920],
+          formats: [`auto`],
+          placeholder: `none`,
+          quality: 65,
+          breakpoints: [750, 1080],
           backgroundColor: `transparent`,
         },
-        // Reduce CPU usage during image processing
         failOnError: false,
+        stripMetadata: true,
+        defaultQuality: 65,
       },
     },
     {
