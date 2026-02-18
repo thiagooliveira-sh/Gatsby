@@ -9,6 +9,7 @@ description: "Em ambientes de nuvem, a velocidade dos deploys cresce
 date: 2025-11-16
 category: devops
 background: "#05A6F0"
+status: draft
 tags:
   - SECURITYASCODE
   - NUVEM
