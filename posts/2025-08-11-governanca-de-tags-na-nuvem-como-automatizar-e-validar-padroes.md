@@ -8,6 +8,7 @@ description: Em ambientes de nuvem, a velocidade com que criamos recursos é ao
 date: 2025-08-19
 category: devops
 background: "#05A6F0"
+status: draft
 tags:
   - TAGS
   - NUVEM
