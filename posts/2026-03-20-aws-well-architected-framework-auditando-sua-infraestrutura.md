@@ -1,6 +1,6 @@
 ---
 image: /assets/img/AWS.png
-title: AWS Well-Architected Framework Auditando sua Infraestrutura
+title: "AWS Well-Architected Framework: Auditando sua Infraestrutura"
 description: O Well-Architected Framework é um dos principais guias de boas
   práticas para avaliar e melhorar arquiteturas na AWS. Vamos ver como utilizar
   esse framework para auditar sua infraestrutura, identificar riscos, corrigir
