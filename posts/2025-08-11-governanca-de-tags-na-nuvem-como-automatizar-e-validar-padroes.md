@@ -5,7 +5,7 @@ description: Em ambientes de nuvem, a velocidade com que criamos recursos é ao
   mesmo tempo uma vantagem e um risco. É comum que, no meio da correria para
   atender uma demanda urgente, recursos sejam criados sem qualquer padrão de
   nomenclatura ou identificação.
-date: 2025-08-19
+date: 2026-02-21
 category: devops
 background: "#05A6F0"
 status: draft
@@ -101,10 +101,6 @@ Vamos usar dois pilares:
 2. **Validação com AWS Config** → para garantir que, mesmo que alguém crie algo manualmente, ele será identificado se estiver fora do padrão.
 
 ## Hands-on: Criando e validando tags na AWS
-
-![Diagrama de arquitetura mostrando Terraform aplicando tags e AWS Config validando compliance](/assets/img/tags-auto.png)
-
-*Imagem sugerida: Diagrama mostrando o fluxo: Terraform → Recursos AWS (com tags) → AWS Config → Compliance Check → Alerta/Remediação*
 
 ### 1. Pré-requisitos
 
@@ -216,10 +212,6 @@ aws s3api delete-bucket-tagging --bucket <nome-do-bucket>
 ```
 
 Aguarde alguns minutos e vá em **AWS Config → Rules → required-tags**, você verá o recurso marcado como **NON_COMPLIANT.**
-
-![Screenshot do AWS Config mostrando recurso NON_COMPLIANT](/assets/img/aws-config-non-compliant.png)
-
-*Imagem sugerida: Screenshot do console AWS Config mostrando a regra "required-tags" com um recurso em status NON_COMPLIANT (vermelho)*
 
 ### 6. Corrigindo
 
