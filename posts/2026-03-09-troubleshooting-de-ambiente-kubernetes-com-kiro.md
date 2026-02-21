@@ -7,9 +7,7 @@ description: Problemas em clusters Kubernetes raramente acontecem de forma
   Em ambientes complexos, identificar a causa raiz exige correlação rápida entre
   múltiplas fontes de informação. Com o Kiro, é possível acelerar o diagnóstico
   utilizando context keys e integração via MCP para analisar logs, eventos e
-  configurações de forma estruturada. Neste artigo, você vai aprender como usar
-  o Kiro para investigar e resolver incidentes em Kubernetes com mais precisão e
-  menos tentativa e erro.
+  configurações de forma estruturada.
 date: 2026-03-09
 category: devops
 background: "#05A6F0"
