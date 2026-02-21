@@ -46,7 +46,7 @@ Utilizando o Kiro em conjunto com clusters do Kubernetes, é possível estrutura
 
 ### Cenário
 
-Era 3h da manhã de uma sexta-feira quando o telefone do plantão tocou, novamente.
+Eram 2h da manhã de uma sexta-feira quando o telefone do plantão tocou, novamente.
 
 "Pods em CrashLoopBackOff no cluster de produção."
 
