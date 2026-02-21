@@ -1,6 +1,6 @@
 ---
 image: /assets/img/AWS.png
-title: AWS Secrets Manager vs Parameter Store Quando Usar Cada Um
+title: "AWS Secrets Manager vs Parameter Store : Quando Usar Cada Um"
 description: No universo da AWS, escolher a ferramenta certa para gerenciar
   segredos e configurações pode impactar diretamente a segurança, a
   escalabilidade e o custo da sua aplicação. Neste artigo, exploramos as
