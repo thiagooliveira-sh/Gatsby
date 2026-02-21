@@ -68,9 +68,9 @@ Kiro CLI é uma ferramenta de linha de comando com IA que entende contexto compl
 - Busca documentação AWS/Kubernetes automaticamente
 - Sugere soluções baseadas em best practices atuais
 
-É como ter um SRE sênior disponível 24/7, que nunca esquece um comando kubectl.
+É como ter um SRE disponível 24/7, que nunca esquece um comando kubectl.
 
-## So Why Should You Care?
+## Então, por que você deveria se importar?
 
 Se você trabalha com Kubernetes, conhece esses problemas:
 
@@ -78,20 +78,20 @@ Se você trabalha com Kubernetes, conhece esses problemas:
 - 15+ comandos kubectl para diagnosticar um problema
 - Logs espalhados em múltiplos pods
 - Documentação desatualizada
-- Context switching entre terminal, browser, Slack
+- Context switching entre terminal, browser, Teams
 - Pressão para resolver RÁPIDO (é produção!)
 
 **O Custo Real:**
-- MTTR (Mean Time To Repair): 2-4 horas em média
-- Downtime: $5.000-$50.000 por hora (dependendo do negócio)
-- Burnout: acordar às 3h da manhã não é sustentável
+- MTTR (Mean Time To Repair): 1-3 horas em média
+- Downtime: R$5.000-R$50.000 por hora (dependendo do negócio)
+- Burnout: acordar às 3h da manhã todo plantão não é sustentável
 - Conhecimento: depende de quem está on-call
 
 Kiro CLI + EKS MCP resolve tudo isso. Automaticamente.
 
-## How Do You Use It?
+## Como você utiliza isso?
 
-### Installation
+### Instalação
 
 Primeiro, você precisa do EKS MCP server. Se tem Python/uv instalado:
 
@@ -112,7 +112,7 @@ $ uvx awslabs.eks-mcp-server --version
 eks-mcp-server 0.2.1
 ```
 
-### Configuration
+### Configuração
 
 Aqui está minha config do agent k8s (em `~/.kiro/agents/k8s.json`):
 
@@ -163,11 +163,11 @@ Model: claude-sonnet-4 (/model to change)
 
 Pronto! Agora o Kiro CLI tem acesso direto ao meu cluster EKS.
 
-## Kiro CLI + EKS MCP in Action
+## Kiro CLI + EKS MCP em ação
 
 Vou mostrar 3 cenários reais que enfrentei. Com outputs completos do Kiro CLI.
 
-### Cenário 1: CrashLoopBackOff (O Clássico)
+### Cenário 1: O Clássico CrashLoopBackOff
 
 **O Problema:**
 
@@ -191,10 +191,7 @@ $ kubectl top pod api-deployment-7d9f8c-xyz -n production
 **Com Kiro CLI:**
 
 ```
-[você] > Pod api-deployment-7d9f8c-xyz está em CrashLoopBackOff. 
-Analise e resolva.
-
-#Terminal (kubectl get pods -n production)
+[você] > O Pod api-deployment-7d9f8c-xyz na namespace production está em CrashLoopBackOff, analise, verifique a causa raiz e resolva.
 #File k8s/deployment.yaml
 ```
 
@@ -313,9 +310,9 @@ Would you like me to:
 - Analyze DataProcessor code for leaks?
 ```
 
-**Tempo total: 12 minutos** (vs 2-3 horas antes)
+**Tempo total: 12 minutos** (vs 1-2 horas antes)
 
-### Cenário 2: ImagePullBackOff (Rate Limiting do ECR)
+### Cenário 2: ImagePullBackOff
 
 **O Problema:**
 
@@ -426,30 +423,6 @@ spec:
   selector:
     matchLabels:
       app: frontend
-      
----
-# 3. DaemonSet to pre-pull images (optional but recommended)
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  name: image-prepuller
-  namespace: kube-system
-spec:
-  selector:
-    matchLabels:
-      app: image-prepuller
-  template:
-    metadata:
-      labels:
-        app: image-prepuller
-    spec:
-      initContainers:
-      - name: prepull-frontend
-        image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/frontend:v2.1.0
-        command: ['sh', '-c', 'echo Image pulled']
-      containers:
-      - name: pause
-        image: gcr.io/google_containers/pause:3.2
 ```
 
 E continua:
@@ -517,7 +490,7 @@ Would you like me to:
 - Generate Terraform for ECR quota increase request?
 ```
 
-**Tempo: 10 minutos** (vs 2-3 horas investigando e procurando docs)
+**Tempo: 20 minutos** (vs 1-3 horas investigando e procurando docs)
 
 **Lições aprendidas:**
 
@@ -527,7 +500,7 @@ Would you like me to:
 4. **Solução não é só aumentar quota** - Otimizar pull strategy é mais efetivo
 5. **Gradual rollout é essencial** - maxSurge e maxUnavailable controlam a velocidade
 
-### Cenário 3: Service Não Responde (Network Issue)
+### Cenário 3: Service Não Responde
 
 **O Problema:**
 
@@ -662,9 +635,9 @@ kubectl run test --rm -it --image=busybox -- \
 I can help you create a naming standard if you'd like.
 ```
 
-**Tempo: 2 minutos** (vs 1-2 horas debugando)
+**Tempo: 5 minutos** (vs 1 hora debugando)
 
-## Bloopers (Porque Nem Tudo é Perfeito)
+## Erros de gravação (Porque Nem Tudo é Perfeito)
 
 ### Problema 1: MCP Não Conectou ao Cluster
 
@@ -677,7 +650,7 @@ $ kiro-cli --agent k8s
 Error: No kubeconfig found
 ```
 
-😅 Esqueci de configurar o kubeconfig!
+Esqueci de configurar o kubeconfig!
 
 **Solução:**
 
@@ -690,33 +663,18 @@ $ kiro-cli --agent k8s
 ✓ eks loaded in 1.2 s
 ```
 
-### Problema 2: Permissões IAM Insuficientes
+### Problema 2: Permissões IAM
 
 Tentei usar o EKS MCP e:
 
 ```
-Error: User is not authorized to perform: eks:DescribeCluster
+The SSO session associated with this profile has expired or is otherwise invalid. To refresh this SSO session run aws sso login with the corresponding profile.
 ```
 
-O MCP precisa de permissões IAM para acessar o cluster.
+Minha sessão do SSO precisa ter um token válido para avançar.
 
-**Solução:** Adicionei policy ao meu usuário IAM:
+**Solução:** Fiz login novamente na AWS utilizando o `aws sso login`
 
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [{
-    "Effect": "Allow",
-    "Action": [
-      "eks:DescribeCluster",
-      "eks:ListClusters",
-      "eks:DescribeNodegroup",
-      "eks:ListNodegroups"
-    ],
-    "Resource": "*"
-  }]
-}
-```
 
 ### Problema 3: Timeout em Cluster Grande
 
@@ -738,50 +696,12 @@ Demorou 30 segundos (ainda rápido, mas inesperado).
 ✓ Completed in 3s
 ```
 
-## Real-World Impact
-
-Aqui estão métricas reais do meu time após 2 meses usando Kiro CLI + EKS MCP:
-
-### Antes do Kiro CLI:
-
-| Métrica | Valor |
-|---------|-------|
-| MTTR médio | 2.5 horas |
-| Incidents/mês | 45 |
-| Escalações | 15/mês |
-| Documentação | 30% atualizada |
-| Burnout score | 7/10 |
-
-### Depois do Kiro CLI:
-
-| Métrica | Valor | Melhoria |
-|---------|-------|----------|
-| MTTR médio | 15 minutos | **90% ↓** |
-| Incidents/mês | 45 (mesmo) | - |
-| Escalações | 3/mês | **80% ↓** |
-| Documentação | 95% atualizada | **65% ↑** |
-| Burnout score | 3/10 | **57% ↓** |
-
-**ROI Financeiro:**
-
-- Downtime evitado: ~$150.000/mês
-- Tempo economizado: 100h/mês do time
-- Custo Kiro CLI: ~$200/mês
-- **ROI: 75.000%** 🚀
-
-**Impacto Humano:**
-
-- Menos acordadas às 3h da manhã
-- Mais tempo para trabalho proativo
-- Onboarding de novos SREs 60% mais rápido
-- Time mais feliz (sério!)
-
-## Advanced Use Cases
+## Casos de uso avançados
 
 ### 1. Análise de Performance
 
 ```
-[você] > Cluster está lento. Analise performance.
+[você] > O cluster eks está lento e os microserviços não estão escalando da forma que deveria. Analise performance.
 
 #Terminal (kubectl top nodes)
 #Terminal (kubectl top pods --all-namespaces)
@@ -796,23 +716,20 @@ Kiro CLI analisa e sugere:
 ### 2. Security Audit
 
 ```
-[você] > Faça auditoria de segurança do namespace production
-
-#Folder k8s/production/
+[você] > Alguém deletou um deployment da minha namespace production. Faça auditoria analisando os logs do cluster no Cloudwatch para identificar o horário e quem causou a remoção.
 ```
 
 Kiro CLI identifica:
-- Pods rodando como root
-- Sem resource limits
-- Secrets em variáveis de ambiente
-- Network policies faltando
+- Events do kubernets para identificar a ultima vez que o deployment gerou evento.
+- Analisa os logs do CloudWatch em busca de evidências.
+- Sugere restrições no modelo de acesso do usuário responsável pela remoção.
+- Caso tenha acesso aos deployments originais, corrige automaticamente fazendo um novo deploy ( com sua aprovação )
 
-E corrige automaticamente (com sua aprovação).
 
 ### 3. Cost Optimization
 
 ```
-[você] > Analise custos do cluster e sugira otimizações
+[você] > Analise meus pods, deployments, daemonsets em busca de otimizações voltada a custos.
 
 #Terminal (kubectl get pods --all-namespaces -o json)
 ```
@@ -821,8 +738,6 @@ Kiro CLI encontra:
 - Pods com CPU/Memory request muito alto
 - Nodes underutilized
 - Oportunidades para Spot instances
-
-Economia identificada: $8.000/mês no meu caso.
 
 ## Tips & Tricks
 
@@ -882,16 +797,6 @@ Sempre que Kiro CLI resolve um problema:
 
 Kiro CLI cria/atualiza automaticamente.
 
-## Looking Forward
-
-Estou curioso sobre algumas coisas:
-
-1. **Multi-cluster:** Como usar Kiro CLI com múltiplos clusters simultaneamente?
-2. **GitOps:** Integração com ArgoCD para troubleshooting de sync issues?
-3. **Observability:** Conectar com Prometheus/Grafana via MCP?
-4. **Chaos Engineering:** Kiro CLI poderia ajudar a criar cenários de teste?
-
-Se você tem experiências ou ideias sobre isso, adoraria ouvir nos comentários!
 
 ## Conclusão
 
@@ -905,21 +810,5 @@ Com Kiro CLI + EKS MCP:
 
 E o melhor: você pode começar hoje. Literalmente.
 
-## Resources
 
-- [EKS MCP Server](https://github.com/awslabs/eks-mcp-server)
-- [AWS Docs MCP](https://github.com/awslabs/aws-documentation-mcp-server)
-- [Kiro Documentation](https://kiro.dev/docs)
-- [Minha config completa](https://gist.github.com/thiagoalexandria/k8s-kiro-config)
-- [Runbooks gerados pelo Kiro](https://github.com/thiagoalexandria/k8s-runbooks)
-
-## Próximos Passos
-
-1. Instale o EKS MCP: `uvx awslabs.eks-mcp-server@latest`
-2. Configure seu agent k8s
-3. Teste com um problema real
-4. Compartilhe seus resultados!
-
-**Desafio:** Use Kiro CLI para resolver seu próximo incident e me conte quanto tempo economizou. Aposto que vai ser impressionante.
-
-*PS: Se você acordou às 3h da manhã hoje por causa de um CrashLoopBackOff, meus sentimentos. Mas agora você sabe como evitar isso na próxima vez. 😴*
+*PS: Se você acordou às 3h da manhã hoje por causa de um CrashLoopBackOff, meus sentimentos. Mas agora você sabe como evitar isso na próxima vez.*
