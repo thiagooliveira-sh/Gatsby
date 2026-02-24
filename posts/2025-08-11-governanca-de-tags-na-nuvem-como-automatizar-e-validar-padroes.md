@@ -1,6 +1,6 @@
 ---
 image: /assets/img/AWS.png
-title: Governanca de Tags na Nuvem Como Automatizar e Validar Padroes
+title: Governanca de Tags na Nuvem Como Automatizar e Validar Padrões
 description: Em ambientes de nuvem, a velocidade com que criamos recursos é ao
   mesmo tempo uma vantagem e um risco. É comum que, no meio da correria para
   atender uma demanda urgente, recursos sejam criados sem qualquer padrão de
