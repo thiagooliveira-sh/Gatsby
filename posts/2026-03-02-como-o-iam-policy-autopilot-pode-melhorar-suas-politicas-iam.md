@@ -1,7 +1,12 @@
 ---
 image: /assets/img/AWS.png
 title: Como o IAM Policy Autopilot pode melhorar suas políticas IAM
-description: Criar políticas IAM com least privilege sempre foi um desafio que consome tempo e gera frustração. O IAM Policy Autopilot, lançado no re:Invent 2024 e agora disponível como Kiro Power, muda esse cenário ao analisar seu código e gerar políticas IAM automaticamente. Entenda como essa ferramenta open source acelera desenvolvimento, reduz erros de permissão, e se integra perfeitamente com assistentes de IA.
+description: Criar políticas IAM com least privilege sempre foi um desafio que
+  consome tempo e gera frustração. O IAM Policy Autopilot, lançado no re:Invent
+  2024 e agora disponível como Kiro Power, muda esse cenário ao analisar seu
+  código e gerar políticas IAM automaticamente. Entenda como essa ferramenta
+  open source acelera desenvolvimento, reduz erros de permissão, e se integra
+  perfeitamente com assistentes de IA.
 date: 2026-03-02
 category: aws
 background: "#FF9900"
@@ -184,18 +189,18 @@ O IAM Policy Autopilot é uma ferramenta open source da AWS que resolve esses pr
 ┌─────────────────────────────────────────────────┐
 │         Seu código (Python/Go/TypeScript)       │
 │                                                 │
-│  s3_client.put_object(...)                     │
-│  dynamodb.get_item(...)                        │
-│  lambda_client.invoke(...)                     │
+│  s3_client.put_object(...)                      │
+│  dynamodb.get_item(...)                         │
+│  lambda_client.invoke(...)                      │
 └─────────────────────────────────────────────────┘
                       ↓
 ┌─────────────────────────────────────────────────┐
 │        IAM Policy Autopilot                     │
 │                                                 │
-│  1. Analisa chamadas SDK                       │
-│  2. Mapeia para ações IAM                      │
-│  3. Identifica dependências cross-service      │
-│  4. Gera política JSON válida                  │
+│  1. Analisa chamadas SDK                        │
+│  2. Mapeia para ações IAM                       │
+│  3. Identifica dependências cross-service       │
+│  4. Gera política JSON válida                   │
 └─────────────────────────────────────────────────┘
                       ↓
 ┌─────────────────────────────────────────────────┐
@@ -205,7 +210,7 @@ O IAM Policy Autopilot é uma ferramenta open source da AWS que resolve esses pr
 │    "Effect": "Allow",                           │
 │    "Action": [                                  │
 │      "s3:PutObject",                            │
-│      "kms:GenerateDataKey",  // Detectado!     │
+│      "kms:GenerateDataKey",  // Detectado!      │
 │      "dynamodb:GetItem",                        │
 │      "lambda:InvokeFunction"                    │
 │    ],                                           │
