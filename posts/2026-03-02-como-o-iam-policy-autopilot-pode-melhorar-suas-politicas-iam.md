@@ -351,7 +351,7 @@ iam-policy-autopilot fix-access-denied \
 ```
 
 
-### 2. MCP Server (Model Context Protocol)
+### 2. MCP Server
 
 **Quando usar**: Integração com assistentes de IA (Kiro, Claude, Cursor, Cline).
 
@@ -395,9 +395,9 @@ Adicione ao `.kiro/settings/mcp.json`:
 }
 ```
 
-**Configuração para Claude Desktop**:
+**Configuração para Kiro IDE**:
 
-Adicione ao `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):
+Adicione ao `~/.kiro/settings/mcp.json` (macOS):
 
 ```json
 {
@@ -467,7 +467,7 @@ Kiro Powers são integrações refinadas que vão além do MCP tradicional:
 
 ### Instalando o Kiro Power
 
-**Opção 1: Via GitHub URL** (recomendado):
+**Opção 1: Via GitHub URL**:
 
 1. Abra Kiro
 2. Vá em "Powers" no menu lateral
@@ -1044,90 +1044,6 @@ jobs:
 ```
 
 
-## Comparação: Antes vs Depois
-
-### Antes do IAM Policy Autopilot
-
-```
-Tempo para criar política IAM funcional:
-- Pesquisa de documentação: 15-20 min
-- Escrita da política: 10-15 min
-- Troubleshooting de AccessDenied: 20-40 min
-- Iterações até funcionar: 3-5 deploys
-Total: 1-2 horas
-
-Resultado:
-- Política funcional, mas provavelmente permissiva demais
-- Frustração alta
-- Tempo desperdiçado
-```
-
-### Depois do IAM Policy Autopilot
-
-```
-Tempo para criar política IAM funcional:
-- Executar comando: 10 segundos
-- Revisar política gerada: 2-3 min
-- Deploy: 1 vez (funciona no primeiro deploy)
-Total: 5-10 minutos
-
-Resultado:
-- Política funcional desde o início
-- Sintaxe sempre correta
-- Dependências cross-service incluídas
-- Pode refinar depois para least privilege
-```
-
-**Ganho**: 90-95% de redução de tempo.
-
-### Exemplo concreto
-
-**Tarefa**: Criar Lambda que processa arquivos S3 com criptografia KMS e salva resultados no DynamoDB.
-
-**Antes**:
-
-```
-1. Escrever código Lambda (30 min)
-2. Criar política IAM inicial (chute):
-   {
-     "Action": ["s3:*", "dynamodb:*"],
-     "Resource": "*"
-   }
-3. Deploy (5 min)
-4. Testar → AccessDenied (KMS) ❌
-5. Pesquisar documentação KMS (15 min)
-6. Adicionar kms:Decrypt
-7. Deploy (5 min)
-8. Testar → AccessDenied (kms:GenerateDataKey) ❌
-9. Pesquisar mais (10 min)
-10. Adicionar kms:GenerateDataKey
-11. Deploy (5 min)
-12. Testar → Funciona ✅
-
-Total: ~1h 15min
-Deploys: 3
-Frustração: Alta
-```
-
-**Depois**:
-
-```
-1. Escrever código Lambda (30 min)
-2. Gerar política:
-   iam-policy-autopilot generate-policies lambda.py --pretty
-   (10 segundos)
-3. Revisar política gerada (2 min)
-4. Deploy (5 min)
-5. Testar → Funciona ✅
-
-Total: ~37 minutos
-Deploys: 1
-Frustração: Zero
-```
-
-**Economia**: 38 minutos (50% mais rápido) + zero frustração.
-
-
 ## Quando usar cada abordagem
 
 ### Use CLI quando:
@@ -1163,34 +1079,14 @@ done
 
 * Usando Kiro como IDE principal
 * Querendo experiência mais refinada que MCP
-* Precisando de onboarding guiado
 * Querendo validação automática de instalação
 * Preferindo instalação com um clique
-
-**Recomendação geral**:
-
-```
-Desenvolvimento local com Kiro → Kiro Power
-Desenvolvimento local com outros assistentes → MCP Server
-CI/CD e automação → CLI
-```
-
 
 ## Conclusão
 
 Criar políticas IAM com least privilege sempre foi um dos maiores desafios no desenvolvimento AWS. Documentação complexa, dependências cross-service não óbvias, e ciclos lentos de troubleshooting consomem tempo e geram frustração.
 
 O IAM Policy Autopilot resolve esse problema de forma elegante através de análise estática de código. Ao invés de adivinhar permissões ou copiar políticas da internet, você gera políticas válidas e funcionais em segundos, baseadas no código real da sua aplicação.
-
-Os benefícios são concretos:
-
-* **90-95% de redução de tempo** na criação de políticas
-* **Zero erros de sintaxe** (análise determinística)
-* **Dependências cross-service detectadas** automaticamente
-* **Funciona no primeiro deploy** (quase sempre sem ciclos de troubleshooting)
-* **Integração perfeita** com assistentes de IA
-
-A evolução para Kiro Power em fevereiro de 2026 tornou a ferramenta ainda mais acessível, com instalação com um clique, onboarding guiado, e validação automática.
 
 Mas lembre-se: o IAM Policy Autopilot é um ponto de partida, não uma solução final. Use-o para gerar políticas funcionais rapidamente, depois refine para least privilege usando IAM Access Analyzer e especificando recursos específicos.
 
