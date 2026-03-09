@@ -1,7 +1,12 @@
 ---
 image: /assets/img/AWS.png
 title: Revolucionando Auto Scaling no EKS com Karpenter
-description: O Cluster Autoscaler serviu bem por anos, mas tem limitações fundamentais que impactam custo e performance. O Karpenter muda o jogo ao provisionar nodes sob demanda em segundos, escolher automaticamente os melhores tipos de instância, e consolidar recursos de forma inteligente. Entenda como funciona, quando migrar, e as práticas essenciais para extrair o máximo dessa ferramenta.
+description: O Cluster Autoscaler serviu bem por anos, mas tem limitações
+  fundamentais que impactam custo e performance. O Karpenter muda o jogo ao
+  provisionar nodes sob demanda em segundos, escolher automaticamente os
+  melhores tipos de instância, e consolidar recursos de forma inteligente.
+  Entenda como funciona, quando migrar, e as práticas essenciais para extrair o
+  máximo dessa ferramenta.
 date: 2026-04-03
 category: aws
 background: "#FF9900"
@@ -110,24 +115,24 @@ O Karpenter inverte a lógica: ao invés de escalar node groups pré-definidos, 
 ┌─────────────────────────────────────────────────┐
 │              Kubernetes Cluster                 │
 │                                                 │
-│  ┌──────────────────────────────────────────┐  │
-│  │         Karpenter Controller             │  │
-│  │                                          │  │
-│  │  1. Monitora pods pending                │  │
-│  │  2. Analisa requirements                 │  │
-│  │  3. Simula bin-packing                   │  │
-│  │  4. Escolhe melhor instância             │  │
-│  │  5. Provisiona via EC2 API               │  │
-│  │  6. Registra node no cluster             │  │
-│  └──────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────┐   │
+│  │         Karpenter Controller             │   │
+│  │                                          │   │
+│  │  1. Monitora pods pending                │   │
+│  │  2. Analisa requirements                 │   │
+│  │  3. Simula bin-packing                   │   │
+│  │  4. Escolhe melhor instância             │   │
+│  │  5. Provisiona via EC2 API               │   │
+│  │  6. Registra node no cluster             │   │
+│  └──────────────────────────────────────────┘   │
 │                      ↓                          │
-│  ┌──────────────────────────────────────────┐  │
-│  │         Nodes provisionados              │  │
-│  │                                          │  │
-│  │  Node 1: m5.large (escolhido para pod A)│  │
-│  │  Node 2: c5.xlarge (escolhido para pod B)│ │
-│  │  Node 3: r5.2xlarge (escolhido para pod C)│ │
-│  └──────────────────────────────────────────┘  │
+│  ┌───────────────────────────────────────────┐  │
+│  │         Nodes provisionados               │  │
+│  │                                           │  │
+│  │  Node 1: m5.large (escolhido para pod A)  │  │
+│  │  Node 2: c5.xlarge (escolhido para pod B) │  │
+│  │  Node 3: r5.2xlarge (escolhido para pod C)│  │
+│  └───────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────┘
 ```
 
