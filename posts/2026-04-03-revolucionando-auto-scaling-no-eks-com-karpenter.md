@@ -7,7 +7,7 @@ description: O Cluster Autoscaler serviu bem por anos, mas tem limitações
   melhores tipos de instância, e consolidar recursos de forma inteligente.
   Entenda como funciona, quando migrar, e as práticas essenciais para extrair o
   máximo dessa ferramenta.
-date: 2026-04-03
+date: 2026-03-13
 category: aws
 background: "#FF9900"
 tags:
@@ -100,10 +100,10 @@ Você paga por 3 nodes, mas poderia usar apenas 1
 ### Limitação 4: Spot instances complexas
 
 Usar Spot com Cluster Autoscaler exige:
+
 * Criar node groups separados para cada tipo de instância
 * Gerenciar interrupções manualmente
 * Configurar diversificação de instâncias
-
 
 ## Como o Karpenter funciona
 
@@ -111,30 +111,7 @@ O Karpenter inverte a lógica: ao invés de escalar node groups pré-definidos, 
 
 ### Arquitetura do Karpenter
 
-```
-┌─────────────────────────────────────────────────┐
-│              Kubernetes Cluster                 │
-│                                                 │
-│  ┌──────────────────────────────────────────┐   │
-│  │         Karpenter Controller             │   │
-│  │                                          │   │
-│  │  1. Monitora pods pending                │   │
-│  │  2. Analisa requirements                 │   │
-│  │  3. Simula bin-packing                   │   │
-│  │  4. Escolhe melhor instância             │   │
-│  │  5. Provisiona via EC2 API               │   │
-│  │  6. Registra node no cluster             │   │
-│  └──────────────────────────────────────────┘   │
-│                      ↓                          │
-│  ┌───────────────────────────────────────────┐  │
-│  │         Nodes provisionados               │  │
-│  │                                           │  │
-│  │  Node 1: m5.large (escolhido para pod A)  │  │
-│  │  Node 2: c5.xlarge (escolhido para pod B) │  │
-│  │  Node 3: r5.2xlarge (escolhido para pod C)│  │
-│  └───────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────┘
-```
+![](/assets/img/eks-karpenter-arquitetura-proposta.png)
 
 ### Fluxo de provisionamento
 
@@ -220,23 +197,22 @@ Pod é agendado
 Total: ~60-90 segundos
 ```
 
-
 ## Karpenter vs Cluster Autoscaler
 
 ### Comparação detalhada
 
-| Aspecto | Cluster Autoscaler | Karpenter |
-|---------|-------------------|-----------|
-| **Provisionamento** | Escala node groups pré-definidos | Provisiona nodes sob demanda |
-| **Velocidade** | 3-6 minutos | 60-90 segundos |
+| Aspecto                  | Cluster Autoscaler               | Karpenter                              |
+| ------------------------ | -------------------------------- | -------------------------------------- |
+| **Provisionamento**      | Escala node groups pré-definidos | Provisiona nodes sob demanda           |
+| **Velocidade**           | 3-6 minutos                      | 60-90 segundos                         |
 | **Escolha de instância** | Limitado aos tipos do node group | Escolhe automaticamente entre centenas |
-| **Bin-packing** | Básico | Avançado com simulação |
-| **Consolidação** | Manual (scale down) | Automática e contínua |
-| **Spot instances** | Complexo (múltiplos node groups) | Nativo e simples |
-| **Diversificação** | Manual | Automática |
-| **Overhead** | Alto (múltiplos ASGs) | Baixo (direto via EC2 API) |
-| **Custo** | Maior (desperdício) | 30-60% menor |
-| **Configuração** | Node groups + ASG | NodePool + EC2NodeClass |
+| **Bin-packing**          | Básico                           | Avançado com simulação                 |
+| **Consolidação**         | Manual (scale down)              | Automática e contínua                  |
+| **Spot instances**       | Complexo (múltiplos node groups) | Nativo e simples                       |
+| **Diversificação**       | Manual                           | Automática                             |
+| **Overhead**             | Alto (múltiplos ASGs)            | Baixo (direto via EC2 API)             |
+| **Custo**                | Maior (desperdício)              | 30-60% menor                           |
+| **Configuração**         | Node groups + ASG                | NodePool + EC2NodeClass                |
 
 ### Ganhos reais com Karpenter
 
@@ -296,7 +272,6 @@ Karpenter:
 - Diversificação automática
 - Fallback automático para on-demand
 ```
-
 
 ## EC2NodeClass: Configuração de infraestrutura
 
@@ -426,7 +401,6 @@ metadataOptions:
 
 **Boa prática**: Sempre use `httpTokens: required` (IMDSv2) para segurança.
 
-
 ### Exemplo completo de EC2NodeClass
 
 ```yaml
@@ -467,7 +441,6 @@ spec:
     ManagedBy: karpenter
     CostCenter: engineering
 ```
-
 
 ## NodePool: Regras de provisionamento
 
@@ -619,7 +592,6 @@ Requirements definem quais instâncias o Karpenter pode escolher:
 
 **Boa prática**: Se suas imagens suportam ARM64, inclua para reduzir custos (~20% mais barato).
 
-
 ### Limits: Controlando crescimento
 
 Limits evitam que o Karpenter provisione recursos ilimitados:
@@ -701,12 +673,12 @@ disruption:
 ```
 
 **Por que expirar nodes**:
+
 * Atualizar AMI automaticamente
 * Aplicar patches de segurança
 * Renovar Spot instances (reduz interrupções)
 
 **Boa prática**: Use `720h` (30 dias) para produção. Garante nodes atualizados sem disrupção frequente.
-
 
 ### Exemplo completo de NodePool
 
@@ -840,7 +812,6 @@ spec:
     expireAfter: Never  # Nunca expira automaticamente
 ```
 
-
 ## Preparando workloads para Karpenter
 
 O Karpenter funciona melhor quando seus workloads seguem boas práticas do Kubernetes.
@@ -898,15 +869,20 @@ spec:
 **Como definir requests corretos**:
 
 #### 1. Monitorar uso real
+
 ```bash
 kubectl top pods -n production
 ```
+
 #### 2. Analisar histórico (Prometheus)
+
 Queries úteis:
+
 * container_cpu_usage_seconds_total
 * container_memory_working_set_bytes
 
 #### 3. Definir requests = P95 do uso
+
 * Se P95 CPU = 400m, use request: 500m
 * Se P95 Memory = 800Mi, use request: 1Gi
 
@@ -921,7 +897,6 @@ resources:
     cpu: 2x requests    # Permite burst
     memory: 1.5x requests  # Evita OOM
 ```
-
 
 ### 2. Pod Disruption Budgets (PDB)
 
@@ -945,13 +920,13 @@ spec:
 **Cenário**:
 
 Karpenter consolida nodes:
+
 1. Drena Node 1 (2 pods da API)
 2. Drena Node 2 (1 pod da API)
 3. Todos os 3 pods terminam ao mesmo tempo
 4. API fica indisponível por 30-60s
 
 Downtime!
-
 
 **Solução com PDB**:
 
@@ -971,6 +946,7 @@ spec:
 **Cenário com PDB**:
 
 Karpenter consolida nodes:
+
 1. Tenta drenar Node 1 (2 pods)
 2. PDB permite drenar apenas 1 pod (mantém minAvailable: 2)
 3. Aguarda novo pod ficar Ready
@@ -979,7 +955,6 @@ Karpenter consolida nodes:
 6. Drena terceiro pod
 
 Zero downtime!
-
 
 **Estratégias de PDB**:
 
@@ -1052,7 +1027,6 @@ spec:
       app: api
 ```
 
-
 ### 3. Pod Affinity e Anti-Affinity
 
 **Por que é importante**:
@@ -1097,7 +1071,6 @@ Node 3: api-pod-3
 
 Alta disponibilidade (falha de 1 node não derruba tudo)
 
-
 **Sem anti-affinity**:
 
 Node 1: api-pod-1, api-pod-2, api-pod-3
@@ -1124,6 +1097,7 @@ affinity:
 ```
 
 **Diferença**:
+
 * `required`: Obrigatório (pod fica pending se não conseguir)
 * `preferred`: Preferencial (tenta, mas não bloqueia)
 
@@ -1161,8 +1135,6 @@ Node 1: api-pod-1, cache-pod-1
 Node 2: api-pod-2, cache-pod-2
 
 Latência mínima entre API e cache
-
-
 
 ### 4. Topology Spread Constraints
 
@@ -1207,6 +1179,7 @@ spec:
 ```
 
 **Resultado**:
+
 ```
 AZ us-east-1a: api-pod-1, api-pod-2
 AZ us-east-1b: api-pod-3, api-pod-4
@@ -1220,6 +1193,7 @@ Distribuição uniforme entre AZs
 * `maxSkew: 1`: Diferença máxima de pods entre AZs
 * `topologyKey`: Chave para agrupar (zone, hostname)
 * `whenUnsatisfiable`: O que fazer se não conseguir distribuir
+
   * `DoNotSchedule`: Pod fica pending
   * `ScheduleAnyway`: Agenda mesmo sem distribuição ideal
 
@@ -1266,7 +1240,6 @@ spec:
       matchLabels:
         app: api
 ```
-
 
 ### 5. Multi-AZ: Garantindo alta disponibilidade
 
@@ -1338,6 +1311,7 @@ spec:
 ```
 
 **Resultado**:
+
 ```
 us-east-1a:
   Node 1: api-pod-1
@@ -1380,7 +1354,6 @@ kubectl uncordon -l topology.kubernetes.io/zone=us-east-1a
 3. **Use topology spread constraints** com `maxSkew: 1`
 4. **Configure PDBs** para manter disponibilidade durante falhas
 5. **Teste falhas de AZ** regularmente (chaos engineering)
-
 
 ## Estratégias avançadas com Karpenter
 
@@ -1520,7 +1493,6 @@ spec:
   weight: 20  # 20% do peso
 ```
 
-
 ### 2. Consolidação inteligente
 
 **Como funciona**:
@@ -1605,7 +1577,6 @@ kubectl logs -n karpenter -l app.kubernetes.io/name=karpenter | grep consolidati
 * Monitore eventos de consolidação
 * Ajuste `consolidateAfter` se houver muita volatilidade (padrão: 30s)
 
-
 ### 3. Drift: Atualizações automáticas
 
 **O que é drift**:
@@ -1656,7 +1627,6 @@ kubectl annotate nodepool default karpenter.sh/do-not-disrupt=false
 * Use `expireAfter` para renovação periódica
 * Teste mudanças em staging primeiro
 * Monitore eventos de drift
-
 
 ## Instalando e configurando Karpenter
 
@@ -1790,7 +1760,6 @@ kubectl get nodes -w
 kubectl logs -n karpenter -l app.kubernetes.io/name=karpenter -f
 ```
 
-
 ## Migrando do Cluster Autoscaler para Karpenter
 
 ### Estratégia de migração
@@ -1914,7 +1883,6 @@ aws eks delete-nodegroup \
 kubectl delete deployment cluster-autoscaler -n kube-system
 ```
 
-
 ## Monitoramento e troubleshooting
 
 ### Métricas importantes
@@ -2022,12 +1990,12 @@ requirements:
   values: ["small", "medium", "large"]  # Limitar tamanhos
 ```
 
-
 ## Melhores práticas: Checklist completo
 
 ### Configuração de NodePools
 
 **Diversificação de instâncias**:
+
 ```yaml
 # Múltiplas categorias
 instance-category: ["c", "m", "r"]
@@ -2038,6 +2006,7 @@ arch: ["amd64", "arm64"]
 ```
 
 **Limits definidos**:
+
 ```yaml
 limits:
   cpu: 1000
@@ -2045,6 +2014,7 @@ limits:
 ```
 
 **Consolidação habilitada**:
+
 ```yaml
 disruption:
   consolidationPolicy: WhenUnderutilized
@@ -2052,6 +2022,7 @@ disruption:
 ```
 
 **Spot com fallback**:
+
 ```yaml
 capacity-type: ["spot", "on-demand"]
 ```
@@ -2059,6 +2030,7 @@ capacity-type: ["spot", "on-demand"]
 ### Configuração de Workloads
 
 **Resource requests em todos os pods**:
+
 ```yaml
 resources:
   requests:
@@ -2070,6 +2042,7 @@ resources:
 ```
 
 **PDBs para deployments com múltiplas réplicas**:
+
 ```yaml
 apiVersion: policy/v1
 kind: PodDisruptionBudget
@@ -2083,6 +2056,7 @@ spec:
 ```
 
 **Topology spread para Multi-AZ**:
+
 ```yaml
 topologySpreadConstraints:
 - maxSkew: 1
@@ -2091,6 +2065,7 @@ topologySpreadConstraints:
 ```
 
 **Anti-affinity para alta disponibilidade**:
+
 ```yaml
 affinity:
   podAntiAffinity:
@@ -2103,12 +2078,14 @@ affinity:
 ### Segurança
 
 **IMDSv2 obrigatório**:
+
 ```yaml
 metadataOptions:
   httpTokens: required
 ```
 
 **Discos criptografados**:
+
 ```yaml
 blockDeviceMappings:
 - deviceName: /dev/xvda
@@ -2117,22 +2094,26 @@ blockDeviceMappings:
 ```
 
 **IAM roles com least privilege**:
+
 * KarpenterControllerRole: Apenas permissões necessárias
 * KarpenterNodeRole: Apenas permissões para nodes
 
 ### Monitoramento
 
 **Logs centralizados**:
+
 ```bash
 kubectl logs -n karpenter -l app.kubernetes.io/name=karpenter -f
 ```
 
 **Métricas no Prometheus**:
+
 * karpenter_nodes_created_total
 * karpenter_nodes_terminated_total
 * karpenter_deprovisioning_actions_performed_total
 
 **Alertas configurados**:
+
 * Pods pending por mais de 5 minutos
 * Nodes não consolidando
 * Custos acima do esperado
@@ -2146,13 +2127,13 @@ kubectl logs -n karpenter -l app.kubernetes.io/name=karpenter -f
 **Instâncias Graviton** (ARM64) quando possível
 
 **Monitoramento de custos**:
+
 ```bash
 # Ver distribuição de capacity type
 kubectl get nodes -o json | \
   jq -r '.items[] | .metadata.labels["karpenter.sh/capacity-type"]' | \
   sort | uniq -c
 ```
-
 
 ## Conclusão
 
