@@ -6,7 +6,7 @@ description: Containers trouxeram agilidade e padronização para o
   do que apenas subir pods. No contexto da AWS, o Amazon EKS simplifica a
   operação do Kubernetes ao oferecer um control plane totalmente gerenciado,
   altamente disponível e integrado ao ecossistema da nuvem.
-date: 2026-03-27
+date: 2026-03-16
 category: aws
 background: "#FF9900"
 tags:
@@ -61,6 +61,7 @@ No final, você terá uma compreensão profunda de como o EKS funciona e como to
 O EKS separa claramente duas responsabilidades:
 
 **Control Plane (gerenciado pela AWS)**:
+
 * API Server (kube-apiserver)
 * Scheduler (kube-scheduler)
 * Controller Manager (kube-controller-manager)
@@ -68,6 +69,7 @@ O EKS separa claramente duas responsabilidades:
 * Cloud Controller Manager (integração AWS)
 
 **Data Plane (gerenciado por você)**:
+
 * Worker nodes (EC2, Fargate, ou híbridos)
 * Pods e containers
 * Kubelet e kube-proxy
@@ -78,42 +80,7 @@ O EKS separa claramente duas responsabilidades:
 
 O control plane do EKS roda em uma VPC gerenciada pela AWS, completamente isolada da sua conta:
 
-```
-┌─────────────────────────────────────────────────┐
-│         AWS Managed VPC (invisível)             │
-│                                                 │
-│  ┌──────────────────────────────────────────┐  │
-│  │     EKS Control Plane (Multi-AZ)         │  │
-│  │                                          │  │
-│  │  ┌──────────┐  ┌──────────┐  ┌────────┐│  │
-│  │  │ API      │  │Scheduler │  │ etcd   ││  │
-│  │  │ Server   │  │          │  │        ││  │
-│  │  │ (HA)     │  │          │  │ (HA)   ││  │
-│  │  └──────────┘  └──────────┘  └────────┘│  │
-│  │                                          │  │
-│  │  ┌──────────┐  ┌──────────────────────┐│  │
-│  │  │Controller│  │ Cloud Controller     ││  │
-│  │  │ Manager  │  │ Manager (AWS)        ││  │
-│  │  └──────────┘  └──────────────────────┘│  │
-│  └──────────────────────────────────────────┘  │
-│                      │                          │
-└──────────────────────┼──────────────────────────┘
-                       │ ENI Cross-Account
-                       │
-┌──────────────────────▼──────────────────────────┐
-│              Sua VPC                             │
-│                                                  │
-│  ┌────────────────────────────────────────────┐ │
-│  │         Worker Nodes (Data Plane)          │ │
-│  │                                            │ │
-│  │  ┌──────┐  ┌──────┐  ┌──────┐  ┌──────┐ │ │
-│  │  │ Node │  │ Node │  │ Node │  │ Node │ │ │
-│  │  │  1   │  │  2   │  │  3   │  │  4   │ │ │
-│  │  └──────┘  └──────┘  └──────┘  └──────┘ │ │
-│  │                                            │ │
-│  └────────────────────────────────────────────┘ │
-└──────────────────────────────────────────────────┘
-```
+![](/assets/img/eks-control-plane.png)
 
 **Características do Control Plane**:
 
@@ -122,7 +89,6 @@ O control plane do EKS roda em uma VPC gerenciada pela AWS, completamente isolad
 * **Versionado**: Você escolhe a versão do Kubernetes
 * **Atualizado pela AWS**: Patches de segurança automáticos
 * **Isolado**: Não consome recursos da sua conta
-
 
 ### Comunicação Control Plane ↔ Data Plane
 
@@ -164,18 +130,21 @@ O EKS suporta três tipos de nodes, cada um com características específicas:
 **O que é**: Grupos de instâncias EC2 gerenciados pelo EKS.
 
 **Como funciona**:
+
 * EKS cria e gerencia Auto Scaling Groups
 * Nodes são automaticamente registrados no cluster
 * Atualizações podem ser automatizadas
 * Integração nativa com AWS Systems Manager
 
 **Quando usar**:
+
 * Workloads stateful (bancos de dados, caches)
 * Aplicações que precisam de GPU
 * Controle sobre tipo de instância
 * Necessidade de acesso SSH aos nodes
 
 **Limitações**:
+
 * Você paga pelas instâncias EC2 (mesmo ociosas)
 * Precisa gerenciar capacidade
 * Startup time de ~2-3 minutos
@@ -193,29 +162,29 @@ aws eks create-nodegroup \
   --node-role arn:aws:iam::123456789012:role/EKSNodeRole
 ```
 
-
 ### 2. AWS Fargate
 
 **O que é**: Serverless compute para Kubernetes. Você não gerencia nodes.
 
 **Como funciona**:
+
 * Cada pod roda em uma micro-VM isolada
 * Recursos alocados sob demanda
 * Cobrança por vCPU e memória consumidos
 * Sem acesso ao node subjacente
 
 **Quando usar**:
+
 * Workloads stateless (APIs, workers)
 * Ambientes de desenvolvimento/staging
 * Cargas de trabalho com padrões previsíveis
 * Quando você quer zero gerenciamento de nodes
 
 **Limitações**:
+
 * Não suporta DaemonSets
 * Não suporta privileged containers
-* Não suporta GPU
 * Startup time de ~30-60 segundos
-* Custo pode ser maior para workloads 24/7
 
 **Configurando Fargate Profile**:
 
@@ -254,21 +223,23 @@ spec:
 **O que é**: Instâncias EC2 que você cria e registra manualmente no cluster.
 
 **Como funciona**:
+
 * Você cria as instâncias EC2
 * Instala kubelet e registra no cluster
 * Controle total sobre configuração
 
 **Quando usar**:
+
 * Requisitos muito específicos de OS
 * Instâncias spot com lógica customizada
 * Integração com ferramentas próprias
 * Ambientes híbridos (on-premises)
 
 **Limitações**:
+
 * Mais trabalho operacional
 * Você gerencia tudo (AMI, patches, updates)
 * Sem integração automática com EKS
-
 
 ## Plugins essenciais do EKS
 
@@ -280,34 +251,17 @@ O EKS vem com três add-ons críticos que fazem o cluster funcionar:
 
 **Como funciona**:
 
-```
-┌─────────────────────────────────────────┐
-│           VPC (10.0.0.0/16)             │
-│                                         │
-│  ┌────────────────────────────────────┐ │
-│  │  Subnet (10.0.1.0/24)              │ │
-│  │                                    │ │
-│  │  ┌──────────────────────────────┐ │ │
-│  │  │  EC2 Node (10.0.1.10)        │ │ │
-│  │  │                              │ │ │
-│  │  │  Primary ENI: 10.0.1.10      │ │ │
-│  │  │                              │ │ │
-│  │  │  Secondary IPs:              │ │ │
-│  │  │  ├─ Pod 1: 10.0.1.20         │ │ │
-│  │  │  ├─ Pod 2: 10.0.1.21         │ │ │
-│  │  │  └─ Pod 3: 10.0.1.22         │ │ │
-│  │  └──────────────────────────────┘ │ │
-│  └────────────────────────────────────┘ │
-└─────────────────────────────────────────┘
-```
+![](/assets/img/eks-vpc-cni.png)
 
 **Características**:
+
 * Pods recebem IPs reais da VPC
 * Comunicação direta entre pods sem NAT
 * Integração nativa com Security Groups
 * Suporta Network Policies
 
 **Limitações importantes**:
+
 * Número de pods por node limitado por ENIs e IPs secundários
 * Consome IPs da sua VPC rapidamente
 * Planeje bem o CIDR da VPC
@@ -315,12 +269,12 @@ O EKS vem com três add-ons críticos que fazem o cluster funcionar:
 **Exemplo de limites**:
 
 | Tipo de Instância | ENIs | IPs por ENI | Pods máximos |
-|-------------------|------|-------------|--------------|
-| t3.small | 3 | 4 | 11 |
-| t3.medium | 3 | 6 | 17 |
-| t3.large | 3 | 12 | 35 |
-| m5.large | 3 | 10 | 29 |
-| m5.xlarge | 4 | 15 | 58 |
+| ----------------- | ---- | ----------- | ------------ |
+| t3.small          | 3    | 4           | 11           |
+| t3.medium         | 3    | 6           | 17           |
+| t3.large          | 3    | 12          | 35           |
+| m5.large          | 3    | 10          | 29           |
+| m5.xlarge         | 4    | 15          | 58           |
 
 **Configurações importantes**:
 
@@ -339,6 +293,7 @@ kubectl get daemonset aws-node -n kube-system -o yaml
 **O que faz**: Resolve nomes DNS dentro do cluster.
 
 **Como funciona**:
+
 * Deployment com 2 réplicas por padrão
 * Resolve `service.namespace.svc.cluster.local`
 * Cache de resoluções DNS
@@ -368,12 +323,12 @@ kubectl get configmap coredns -n kube-system -o yaml
 kubectl scale deployment coredns -n kube-system --replicas=3
 ```
 
-
 ### 3. kube-proxy
 
 **O que faz**: Gerencia regras de rede para Services.
 
 **Como funciona**:
+
 * DaemonSet rodando em cada node
 * Cria regras iptables/ipvs para roteamento
 * Implementa load balancing entre pods
@@ -431,11 +386,11 @@ data:
 
 **Problemas do aws-auth**:
 
-❌ ConfigMap pode ser sobrescrito acidentalmente
-❌ Difícil de auditar mudanças
-❌ Não suporta versionamento
-❌ Requer acesso ao cluster para modificar
-❌ Não integra com CloudTrail
+* ConfigMap pode ser sobrescrito acidentalmente
+* Difícil de auditar mudanças
+* Não suporta versionamento
+* Requer acesso ao cluster para modificar
+* Não integra com CloudTrail
 
 ### Modelo Novo: Access Entries (EKS Access API)
 
@@ -460,12 +415,12 @@ aws eks associate-access-policy \
 
 **Políticas disponíveis**:
 
-| Policy | Permissões | Uso |
-|--------|-----------|-----|
-| AmazonEKSClusterAdminPolicy | Acesso total | Administradores |
-| AmazonEKSAdminPolicy | Admin sem cluster-scoped | Admins de namespace |
-| AmazonEKSEditPolicy | Criar/modificar recursos | Desenvolvedores |
-| AmazonEKSViewPolicy | Somente leitura | Auditores |
+| Policy                      | Permissões               | Uso                 |
+| --------------------------- | ------------------------ | ------------------- |
+| AmazonEKSClusterAdminPolicy | Acesso total             | Administradores     |
+| AmazonEKSAdminPolicy        | Admin sem cluster-scoped | Admins de namespace |
+| AmazonEKSEditPolicy         | Criar/modificar recursos | Desenvolvedores     |
+| AmazonEKSViewPolicy         | Somente leitura          | Auditores           |
 
 **Vantagens do Access Entries**:
 
@@ -474,7 +429,6 @@ aws eks associate-access-policy \
 * Não requer acesso ao cluster
 * Suporta namespaces específicos
 * Integração com IAM Identity Center
-
 
 **Migração de aws-auth para Access Entries**:
 
@@ -503,24 +457,7 @@ Pods frequentemente precisam acessar serviços AWS (S3, DynamoDB, SQS). Existem 
 
 **Como funciona**:
 
-```
-┌──────────────────────────────────────────┐
-│           Pod                            │
-│                                          │
-│  ServiceAccount: app-sa                  │
-│  Annotation: eks.amazonaws.com/role-arn  │
-│                                          │
-│  ┌────────────────────────────────────┐ │
-│  │  Container                         │ │
-│  │                                    │ │
-│  │  AWS SDK detecta token JWT        │ │
-│  │  ↓                                 │ │
-│  │  Assume IAM Role via OIDC         │ │
-│  │  ↓                                 │ │
-│  │  Recebe credenciais temporárias   │ │
-│  └────────────────────────────────────┘ │
-└──────────────────────────────────────────┘
-```
+![](/assets/img/eks-irsa.png)
 
 **Configuração**:
 
@@ -569,7 +506,6 @@ spec:
 }
 ```
 
-
 ### 2. EKS Pod Identity - Novo e Recomendado
 
 **Como funciona**:
@@ -587,11 +523,11 @@ aws eks create-pod-identity-association \
 
 **Vantagens sobre IRSA**:
 
-*  Não precisa configurar OIDC provider
-*  Trust policy mais simples
-*  Gerenciado via AWS API (auditável)
-*  Suporta múltiplos clusters facilmente
-*  Melhor performance (menos chamadas STS)
+* Não precisa configurar OIDC provider
+* Trust policy mais simples
+* Gerenciado via AWS API (auditável)
+* Suporta múltiplos clusters facilmente
+* Melhor performance (menos chamadas STS)
 
 **Trust Policy simplificada**:
 
@@ -631,7 +567,8 @@ spec:
 
 **Como funciona**: Todos os pods no node herdam as permissões do node.
 
-❌ **Problemas**:
+**Problemas**:
+
 * Sem isolamento entre pods
 * Princípio do menor privilégio violado
 * Difícil de auditar quem acessou o quê
@@ -654,11 +591,13 @@ Pod A (10.0.1.20) → Pod B (10.0.2.30)
 ```
 
 **Vantagens**:
+
 * Performance nativa (sem overhead)
 * Compatível com Security Groups
 * Troubleshooting mais simples (IPs reais)
 
 **Desvantagens**:
+
 * Consome muitos IPs da VPC
 * Planejamento de CIDR crítico
 
@@ -693,19 +632,21 @@ Client Pod → api-service (10.100.45.123:80)
         └─ Pod 3 (10.0.2.30:8080)
 ```
 
-
 ### Tipos de Services
 
 **ClusterIP** (padrão):
+
 * Acessível apenas dentro do cluster
 * Ideal para comunicação interna
 
 **NodePort**:
+
 * Expõe porta em todos os nodes
 * Acessível via `<NodeIP>:<NodePort>`
 * Raramente usado em produção
 
 **LoadBalancer**:
+
 * Cria um AWS Load Balancer (NLB ou CLB)
 * Expõe serviço para internet ou VPC
 * Custo adicional por LB
@@ -792,13 +733,13 @@ aws eks update-cluster-config \
 
 **Tipos de logs e quando usar**:
 
-| Tipo | O que registra | Quando habilitar | Custo |
-|------|---------------|------------------|-------|
-| **audit** | Todas as ações no cluster | Sempre (compliance) | Alto |
-| **authenticator** | Tentativas de autenticação | Sempre (segurança) | Baixo |
-| **api** | Requisições ao API Server | Troubleshooting | Médio |
-| **controllerManager** | Ações dos controllers | Debug avançado | Baixo |
-| **scheduler** | Decisões de scheduling | Debug de pods pending | Baixo |
+| Tipo                  | O que registra             | Quando habilitar      | Custo |
+| --------------------- | -------------------------- | --------------------- | ----- |
+| **audit**             | Todas as ações no cluster  | Sempre (compliance)   | Alto  |
+| **authenticator**     | Tentativas de autenticação | Sempre (segurança)    | Baixo |
+| **api**               | Requisições ao API Server  | Troubleshooting       | Médio |
+| **controllerManager** | Ações dos controllers      | Debug avançado        | Baixo |
+| **scheduler**         | Decisões de scheduling     | Debug de pods pending | Baixo |
 
 **Recomendação**: Habilite pelo menos `audit` e `authenticator` em produção.
 
@@ -1018,20 +959,8 @@ aws cloudwatch put-metric-alarm \
 
 ### Retenção e custos de logs
 
-**Custos típicos**:
-
-```
-Cluster pequeno (10 nodes):
-- Audit logs: ~5 GB/dia = $2.50/dia = $75/mês
-- API logs: ~2 GB/dia = $1/dia = $30/mês
-- Authenticator: ~100 MB/dia = $0.05/dia = $1.50/mês
-
-Cluster médio (50 nodes):
-- Audit logs: ~25 GB/dia = $12.50/dia = $375/mês
-- API logs: ~10 GB/dia = $5/dia = $150/mês
-```
-
-**Recomendações de retenção**:
+````
+Recomendações de retenção :
 
 ```bash
 # Audit logs: 90 dias (compliance)
@@ -1048,7 +977,7 @@ aws logs put-retention-policy \
 aws logs put-retention-policy \
   --log-group-name /aws/eks/meu-cluster/cluster \
   --retention-in-days 30
-```
+````
 
 **Otimização de custos**:
 
@@ -1056,8 +985,6 @@ aws logs put-retention-policy \
 2. **Use S3 Intelligent-Tiering** para arquivamento
 3. **Habilite apenas logs necessários** em dev/staging
 4. **Use filtros** para reduzir volume (ex: ignore health checks)
-
-
 
 ### Application Logs
 
@@ -1111,13 +1038,13 @@ helm install prometheus prometheus-community/kube-prometheus-stack \
 
 **Diferenças do Cluster Autoscaler**:
 
-| Cluster Autoscaler | Karpenter |
-|-------------------|-----------|
-| Baseado em node groups | Provisiona nodes individuais |
-| Reativo (espera pending pods) | Proativo (antecipa necessidades) |
+| Cluster Autoscaler             | Karpenter                           |
+| ------------------------------ | ----------------------------------- |
+| Baseado em node groups         | Provisiona nodes individuais        |
+| Reativo (espera pending pods)  | Proativo (antecipa necessidades)    |
 | Limitado a tipos pré-definidos | Escolhe melhor tipo automaticamente |
-| Escala em grupos | Escala granularmente |
-| Lento (~5 min) | Rápido (~2 min) |
+| Escala em grupos               | Escala granularmente                |
+| Lento (~5 min)                 | Rápido (~2 min)                     |
 
 **Como funciona**:
 
@@ -1167,85 +1094,11 @@ spec:
 ```
 
 **Benefícios**:
+
 * Redução de custos (30-50% com spot)
 * Melhor bin-packing
 * Consolidação automática
 * Menos desperdício de recursos
-
-
-### EKS Auto Mode: O futuro do EKS
-
-**O que é**: Modo totalmente gerenciado onde a AWS cuida de tudo.
-
-**Lançado em**: re:Invent 2024
-
-**O que a AWS gerencia no Auto Mode**:
-
-*  Compute (nodes)
-*  Networking (VPC CNI)
-*  Storage (EBS CSI Driver)
-*  Load balancing
-*  Autoscaling (Karpenter integrado)
-*  Atualizações de nodes
-*  Patches de segurança
-
-**Você só gerencia**:
-* Seus workloads (pods, deployments)
-* Configurações de aplicação
-* Políticas de acesso
-
-**Como funciona**:
-
-```
-Você:
-  kubectl apply -f deployment.yaml
-     ↓
-EKS Auto Mode:
-  ├─ Analisa recursos necessários
-  ├─ Provisiona nodes automaticamente
-  ├─ Configura networking
-  ├─ Gerencia storage
-  └─ Escala conforme necessário
-```
-
-**Diferenças dos modos tradicionais**:
-
-| Aspecto | Tradicional | Auto Mode |
-|---------|-------------|-----------|
-| Node management | Você | AWS |
-| Autoscaling | Você configura | Automático |
-| Add-ons | Você instala | Pré-instalados |
-| Atualizações | Você agenda | Automáticas |
-| Networking | Você configura | Gerenciado |
-| Custo | Pay per node | Pay per pod |
-
-**Quando usar Auto Mode**:
-
-*  Novos clusters
-*  Equipes pequenas
-*  Foco em aplicação, não infra
-*  Ambientes de desenvolvimento
-*  Startups
-
-**Quando NÃO usar Auto Mode**:
-
-❌ Requisitos muito específicos de nodes
-❌ Necessidade de controle total
-❌ Workloads com GPU (ainda não suportado)
-❌ Integração com ferramentas próprias de node management
-
-**Habilitando Auto Mode**:
-
-```bash
-# Criar cluster com Auto Mode
-aws eks create-cluster \
-  --name meu-cluster-auto \
-  --role-arn arn:aws:iam::123456789012:role/EKSClusterRole \
-  --resources-vpc-config subnetIds=subnet-abc,subnet-def \
-  --compute-config enabled=true,nodeRoleArn=arn:aws:iam::123456789012:role/EKSNodeRole
-```
-
-**Modelo de cobrança**:
 
 ```
 Tradicional:
@@ -1257,7 +1110,6 @@ Auto Mode:
 - Compute: $0.10/vCPU/hora + $0.01/GB/hora
 - Cobrança por pod, não por node
 ```
-
 
 ## Primeiros passos práticos
 
@@ -1387,7 +1239,6 @@ aws eks create-addon \
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ```
 
-
 ## Decisões arquiteturais importantes
 
 ### 1. Planejamento de VPC e CIDR
@@ -1407,6 +1258,7 @@ VPC: 10.0.0.0/16 (65,536 IPs)
 ```
 
 **Recomendação**:
+
 * VPC: /16 (65k IPs)
 * Subnets públicas: /20 (4k IPs)
 * Subnets privadas: /19 (8k IPs)
@@ -1422,6 +1274,7 @@ VPC: 10.0.0.0/16 (65,536 IPs)
 ### 3. Multi-AZ vs Single-AZ
 
 **Production** → Sempre Multi-AZ:
+
 * Control plane já é Multi-AZ
 * Distribua nodes em pelo menos 2 AZs
 * Use topology spread constraints
@@ -1448,6 +1301,7 @@ O EKS permite configurar como o API Server do Kubernetes será acessado. Existem
 #### Modo 1: Apenas Privado (Private Only) RECOMENDADO PARA PRODUÇÃO
 
 **Como funciona**:
+
 * API Server acessível apenas de dentro da VPC
 * Acesso externo via VPN, AWS Direct Connect ou bastion host
 * Nodes acessam via rede privada
@@ -1471,6 +1325,7 @@ VPN/Direct Connect
 **Isolamento**: Tráfego nunca sai da rede privada
 
 **Quando usar**:
+
 * Ambientes de produção (sempre)
 * Clusters com dados sensíveis
 * Requisitos de compliance (PCI-DSS, HIPAA, SOC2)
@@ -1541,6 +1396,7 @@ kubectl get nodes
 #### Modo 2: Público e Privado (Public and Private)
 
 **Como funciona**:
+
 * API Server tem endpoint público E privado
 * Nodes usam endpoint privado automaticamente
 * Acesso externo via endpoint público (com restrições de IP)
@@ -1553,6 +1409,7 @@ Internet (IPs restritos)    VPC
 ```
 
 **Quando usar**:
+
 * Ambientes de staging/desenvolvimento
 * Transição para modelo totalmente privado
 * Equipes distribuídas sem VPN estabelecida
@@ -1577,20 +1434,23 @@ aws eks update-cluster-config \
 #### Modo 3: Apenas Público (Public Only) NÃO RECOMENDADO
 
 **Como funciona**:
+
 * API Server exposto à internet
 * Nodes acessam pela internet
 
 **Quando usar**:
+
 * Apenas para testes rápidos
 * Ambientes de desenvolvimento pessoal
 * Nunca em produção
 
 **Problemas**:
-❌ API Server exposto à internet
-❌ Nodes precisam de internet para falar com control plane
-❌ Maior latência
-❌ Maior superfície de ataque
-❌ Não atende compliance
+
+* API Server exposto à internet
+* Nodes precisam de internet para falar com control plane
+* Maior latência
+* Maior superfície de ataque
+* Não atende compliance
 
 #### Migração para endpoint privado
 
@@ -1668,159 +1528,16 @@ Recomendado: 1.34 ou 1.33
 ```
 
 **Ciclo de suporte EKS**:
+
 * Cada versão suportada por ~14 meses
 * Planeje upgrades anuais
 * Teste em staging primeiro
 
 
-## Troubleshooting comum
-
-### Pods não iniciam
-
-**Sintoma**: Pods ficam em `Pending`
-
-```bash
-# Verificar eventos
-kubectl describe pod <pod-name>
-
-# Causas comuns:
-# 1. Recursos insuficientes
-Events:
-  Warning  FailedScheduling  pod didn't fit on any node
-
-# Solução: Adicionar mais nodes ou reduzir requests
-
-# 2. Node selector não encontrado
-Events:
-  Warning  FailedScheduling  no nodes matched pod's node selector
-
-# Solução: Verificar labels dos nodes
-kubectl get nodes --show-labels
-
-# 3. Taints não tolerados
-Events:
-  Warning  FailedScheduling  node(s) had taint that pod didn't tolerate
-
-# Solução: Adicionar tolerations ou remover taints
-```
-
-### Pods não conseguem acessar AWS
-
-**Sintoma**: `AccessDenied` ao chamar APIs AWS
-
-```bash
-# Verificar se ServiceAccount tem annotation
-kubectl get sa <service-account> -o yaml
-
-# Deve ter:
-metadata:
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::...
-
-# Verificar se pod usa o ServiceAccount
-kubectl get pod <pod-name> -o yaml | grep serviceAccountName
-
-# Verificar logs do pod
-kubectl logs <pod-name>
-
-# Testar credenciais dentro do pod
-kubectl exec -it <pod-name> -- env | grep AWS
-```
-
-### DNS não resolve
-
-**Sintoma**: `nslookup` falha dentro dos pods
-
-```bash
-# Verificar CoreDNS
-kubectl get pods -n kube-system -l k8s-app=kube-dns
-
-# Verificar logs do CoreDNS
-kubectl logs -n kube-system -l k8s-app=kube-dns
-
-# Testar DNS de um pod
-kubectl run -it --rm debug --image=busybox --restart=Never -- nslookup kubernetes.default
-
-# Verificar configuração
-kubectl get configmap coredns -n kube-system -o yaml
-```
-
-### Nodes não aparecem
-
-**Sintoma**: `kubectl get nodes` não mostra nodes
-
-```bash
-# Verificar node group
-aws eks describe-nodegroup \
-  --cluster-name meu-cluster \
-  --nodegroup-name workers
-
-# Verificar Auto Scaling Group
-aws autoscaling describe-auto-scaling-groups \
-  --auto-scaling-group-names <asg-name>
-
-# Verificar logs do node (via SSM)
-aws ssm start-session --target <instance-id>
-sudo journalctl -u kubelet -f
-```
-
-Causas comuns:
-1. IAM role incorreta
-2. Security group bloqueando comunicação
-3. Subnet sem rota para internet (para pull de imagens)
-
-
-## Melhores práticas
-
-### Segurança
-
-1. **Use Pod Identity ou IRSA** - Nunca use credenciais hardcoded
-2. **Habilite control plane logs** - Auditoria é essencial
-3. **Use Network Policies** - Isole pods entre si
-4. **Atualize regularmente** - Patches de segurança são críticos
-5. **Restrinja acesso ao API Server** - Use Security Groups e CIDRs
-6. **Use Secrets para dados sensíveis** - Nunca em ConfigMaps
-7. **Implemente Pod Security Standards** - Evite containers privilegiados
-
-### Performance
-
-1. **Configure resource requests/limits** - Evita noisy neighbors
-2. **Use HPA** - Horizontal Pod Autoscaler para escalar pods
-3. **Use Cluster Autoscaler ou Karpenter** - Escala nodes automaticamente
-4. **Monitore métricas** - Prometheus + Grafana
-5. **Use readiness/liveness probes** - Kubernetes sabe quando pod está pronto
-6. **Otimize imagens** - Imagens menores = startup mais rápido
-
-### Custos
-
-1. **Use Spot instances** - 70-90% mais barato
-2. **Rightsizing** - Não oversized requests
-3. **Use Karpenter** - Melhor bin-packing
-4. **Fargate para workloads intermitentes** - Pague apenas quando roda
-5. **Delete recursos não usados** - LoadBalancers, volumes EBS
-6. **Use Savings Plans** - Para workloads previsíveis
-
-### Operacional
-
-1. **Automatize tudo** - GitOps com ArgoCD ou Flux
-2. **Documente decisões** - Por que escolheu X ao invés de Y
-3. **Teste upgrades** - Sempre em staging primeiro
-4. **Tenha runbooks** - Para incidentes comuns
-5. **Monitore custos** - Kubecost ou AWS Cost Explorer
-6. **Backup de recursos críticos** - Velero para backup de cluster
 
 ## Conclusão
 
 O Amazon EKS remove a complexidade de gerenciar o control plane do Kubernetes, mas ainda exige decisões arquiteturais importantes sobre rede, compute, segurança e observabilidade.
-
-Os principais pontos para lembrar:
-
-1. **Planeje a VPC**: CIDR adequado é crítico
-2. **Use Pod Identity**: Mais simples que IRSA
-3. **Adote Access Entries**: Substitua aws-auth
-4. **Monitore tudo**: Logs e métricas são essenciais
-5. **Automatize scaling**: Karpenter > Cluster Autoscaler
-6. **Considere Auto Mode**: Para novos clusters sem requisitos específicos
 
 A diferença entre clusters que escalam com sucesso e aqueles que acumulam problemas está nas decisões arquiteturais iniciais. Não há "desfazer" um CIDR muito pequeno ou uma arquitetura de rede mal planejada.
 
