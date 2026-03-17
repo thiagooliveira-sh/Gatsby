@@ -103,8 +103,9 @@ EKS Auto Mode é um modo de operação do Amazon EKS onde a AWS gerencia automat
 
 ### O que a AWS gerencia por você
 
-```
 Componentes gerenciados pelo Auto Mode:
+
+```
 
 Compute:
 ├── Karpenter (auto-scaling)
@@ -181,35 +182,38 @@ EKS Auto Mode:
 
 ## EKS Standard vs Karpenter Self-Managed vs Auto Mode
 
-| Aspecto | EKS Standard (CAS) | EKS + Karpenter | EKS Auto Mode |
-|---|---|---|---|
-| **Auto-scaling** | Cluster Autoscaler | Karpenter (self-managed) | Karpenter (managed) |
-| **Provisionamento** | Node Groups (ASG) | EC2 Fleet API | EC2 (managed) |
-| **Velocidade** | 3-6 min | 60-90s | 60-90s |
-| **AMI** | Você escolhe | Você escolhe | Bottlerocket (fixo) |
-| **Load Balancer** | Instalar LB Controller | Instalar LB Controller | Gerenciado |
-| **Storage** | Instalar EBS CSI | Instalar EBS CSI | Gerenciado |
-| **Patches de OS** | Manual | Manual | Automático |
-| **Ciclo de vida nodes** | Manual | expireAfter | Max 21 dias |
-| **Custo adicional** | Nenhum | Nenhum | Management fee |
-| **Visibilidade** | Total | Total | Limitada |
-| **Customização AMI** | Total | Total | Não suportado |
-| **Complexidade** | Alta | Média | Baixa |
+| Aspecto                 | EKS Standard (CAS)     | EKS + Karpenter          | EKS Auto Mode       |
+| ----------------------- | ---------------------- | ------------------------ | ------------------- |
+| **Auto-scaling**        | Cluster Autoscaler     | Karpenter (self-managed) | Karpenter (managed) |
+| **Provisionamento**     | Node Groups (ASG)      | EC2 Fleet API            | EC2 (managed)       |
+| **Velocidade**          | 3-6 min                | 60-90s                   | 60-90s              |
+| **AMI**                 | Você escolhe           | Você escolhe             | Bottlerocket (fixo) |
+| **Load Balancer**       | Instalar LB Controller | Instalar LB Controller   | Gerenciado          |
+| **Storage**             | Instalar EBS CSI       | Instalar EBS CSI         | Gerenciado          |
+| **Patches de OS**       | Manual                 | Manual                   | Automático          |
+| **Ciclo de vida nodes** | Manual                 | expireAfter              | Max 21 dias         |
+| **Custo adicional**     | Nenhum                 | Nenhum                   | Management fee      |
+| **Visibilidade**        | Total                  | Total                    | Limitada            |
+| **Customização AMI**    | Total                  | Total                    | Não suportado       |
+| **Complexidade**        | Alta                   | Média                    | Baixa               |
 
 ### Quando usar cada abordagem
 
 **EKS Standard (Cluster Autoscaler)**:
+
 * Clusters legados que ainda não migraram
 * Equipes com pouca experiência em Kubernetes
 * Workloads simples com poucos node groups
 
 **EKS + Karpenter (self-managed)**:
+
 * Máximo controle sobre infraestrutura
 * Necessidade de AMIs customizadas
 * Requisitos específicos de compliance
 * Equipe de plataforma experiente
 
 **EKS Auto Mode**:
+
 * Equipes que querem focar em aplicações
 * Clusters novos sem requisitos especiais de AMI
 * Reduzir carga operacional
@@ -280,6 +284,7 @@ spec:
 ```
 
 **Características**:
+
 * On-Demand apenas (sem Spot por padrão)
 * Instâncias C, M, R (geração 5+)
 * AMD64 e Linux
@@ -326,6 +331,7 @@ spec:
 ```
 
 **Características**:
+
 * Suporta AMD64 e ARM64 (Graviton)
 * Taint `CriticalAddonsOnly` (apenas add-ons do sistema)
 * Usado internamente pelo EKS para componentes críticos
@@ -378,18 +384,18 @@ spec:
 
 Diferente do Karpenter self-managed onde você cria EC2NodeClass com subnets, security groups e AMI, no Auto Mode a NodeClass `default` é gerenciada pela AWS:
 
-```
 Karpenter Self-Managed:
-- Você cria EC2NodeClass
-- Define subnets, SGs, AMI, blockDeviceMappings
-- Controle total
+
+* Você cria EC2NodeClass
+* Define subnets, SGs, AMI, blockDeviceMappings
+* Controle total
 
 Auto Mode:
-- NodeClass "default" gerenciada pela AWS
-- Bottlerocket como AMI (fixo)
-- Subnets e SGs configurados automaticamente
-- Você pode criar NodeClasses customizadas (limitado)
-```
+
+* NodeClass "default" gerenciada pela AWS
+* Bottlerocket como AMI (fixo)
+* Subnets e SGs configurados automaticamente
+* Você pode criar NodeClasses customizadas (limitado)
 
 ### Networking: Load Balancer gerenciado
 
@@ -514,6 +520,7 @@ Node antigo terminado
 ```
 
 **Benefícios**:
+
 * AMI sempre atualizada (patches de segurança)
 * Sem drift de configuração
 * Nodes "frescos" com menos fragmentação de memória
@@ -524,14 +531,13 @@ Node antigo terminado
 
 O Auto Mode cobra uma taxa de gerenciamento (management fee) sobre as instâncias EC2 que ele gerencia. Essa taxa é adicional ao preço normal da instância EC2.
 
-```
 Custo total = Preço EC2 da instância + Management fee do Auto Mode
 
 Exemplo com m5.xlarge (us-east-1):
-- EC2 On-Demand: $0.192/hora
-- Auto Mode fee: varia por tipo de instância
-- Total: EC2 price + Auto Mode fee
-```
+
+* EC2 On-Demand: $0.192/hora
+* Auto Mode fee: varia por tipo de instância
+* Total: EC2 price + Auto Mode fee
 
 **Pontos importantes sobre preços**:
 
@@ -542,24 +548,25 @@ Exemplo com m5.xlarge (us-east-1):
 
 **Comparação de custos**:
 
-```
 EKS Standard + Karpenter:
-- Control plane: $0.10/hora ($73/mês)
-- EC2 instances: preço normal
-- Karpenter: gratuito (open source)
-- Overhead: pods do Karpenter, LB Controller, EBS CSI consumindo recursos
-- Custo operacional: tempo da equipe gerenciando componentes
+
+* Control plane: $0.10/hora ($73/mês)
+* EC2 instances: preço normal
+* Karpenter: gratuito (open source)
+* Overhead: pods do Karpenter, LB Controller, EBS CSI consumindo recursos
+* Custo operacional: tempo da equipe gerenciando componentes
 
 EKS Auto Mode:
-- Control plane: $0.10/hora ($73/mês)
-- EC2 instances: preço normal + management fee
-- Componentes: gerenciados pela AWS (sem overhead no cluster)
-- Custo operacional: significativamente menor
-```
+
+* Control plane: $0.10/hora ($73/mês)
+* EC2 instances: preço normal + management fee
+* Componentes: gerenciados pela AWS (sem overhead no cluster)
+* Custo operacional: significativamente menor
 
 **Quando o Auto Mode compensa financeiramente**:
 
 O management fee adicional pode ser compensado por:
+
 1. Menos recursos consumidos por componentes no cluster
 2. Menos tempo da equipe gerenciando infraestrutura
 3. Melhor bin-packing e consolidação automática
@@ -774,17 +781,17 @@ parameters:
 
 Diferente do EKS padrão, onde você pode escolher a AMI e customizar o bootstrap dos nodes via User Data (scripts de inicialização, instalação de agentes, configurações de kernel), o Auto Mode remove completamente essa possibilidade.
 
-```
 EKS Padrão:
-- Escolha de AMI: AL2, AL2023, Ubuntu, customizada
-- User Data: scripts de bootstrap customizados
-- Exemplo: instalar agente de segurança, configurar sysctl, montar NFS
+
+* Escolha de AMI: AL2, AL2023, Ubuntu, customizada
+* User Data: scripts de bootstrap customizados
+* Exemplo: instalar agente de segurança, configurar sysctl, montar NFS
 
 EKS Auto Mode:
-- AMI: Bottlerocket (fixo, sem opção)
-- User Data: NÃO suportado
-- Customização de OS: NÃO suportado
-```
+
+* AMI: Bottlerocket (fixo, sem opção)
+* User Data: NÃO suportado
+* Customização de OS: NÃO suportado
 
 O Bottlerocket é um OS minimalista desenvolvido pela AWS especificamente para containers. Ele já vem com hardening de segurança aplicado por padrão:
 
@@ -834,16 +841,16 @@ spec:
 
 ### 2. Visibilidade limitada
 
-```
 Componentes off-cluster (sem acesso a logs):
-- Karpenter
-- AWS Load Balancer Controller
-- EBS CSI Driver
-- VPC CNI
+
+* Karpenter
+* AWS Load Balancer Controller
+* EBS CSI Driver
+* VPC CNI
 
 Para troubleshooting desses componentes:
-- Abrir ticket de suporte AWS
-```
+
+* Abrir ticket de suporte AWS
 
 **Impacto**: Se um Ingress não cria o ALB esperado, ou um PVC não provisiona o volume, você não consegue ver os logs do controller para debugar. Precisa confiar nos eventos do Kubernetes e, se necessário, abrir suporte.
 
@@ -860,17 +867,17 @@ kubectl describe pvc app-data -n production
 
 ### 3. Ciclo de vida fixo de 21 dias
 
-```
 Nodes são substituídos a cada 21 dias (máximo).
 
 Não configurável:
-- Não pode aumentar para 30 dias
-- Não pode desabilitar
+
+* Não pode aumentar para 30 dias
+* Não pode desabilitar
 
 Impacto:
-- Workloads stateful precisam de PDBs bem configurados
-- Jobs de longa duração (>21 dias) não são suportados
-```
+
+* Workloads stateful precisam de PDBs bem configurados
+* Jobs de longa duração (>21 dias) não são suportados
 
 ### 4. Sem privileged containers por padrão
 
@@ -878,13 +885,12 @@ Bottlerocket tem restrições de segurança mais rígidas. Containers privilegia
 
 ### 5. Nodes não podem ser acessados via SSH
 
-```
 Bottlerocket não tem SSH habilitado por padrão.
 
 Para debug de nodes:
-- Use SSM Session Manager
-- Use kubectl debug node/<node-name>
-```
+
+* Use SSM Session Manager
+* Use kubectl debug node/<node-name>
 
 ```bash
 # Debug de node via kubectl
@@ -898,17 +904,17 @@ aws ssm start-session --target i-1234567890abcdef0
 
 Diferente do EKS padrão, onde você pode terminar uma instância EC2 diretamente pelo console da AWS ou via `aws ec2 terminate-instances`, no Auto Mode os nodes são gerenciados exclusivamente pelo Karpenter. Tentar terminar pelo console não funciona como esperado, o Karpenter pode reprovisionar o node imediatamente ou o cluster pode entrar em estado inconsistente.
 
-```
 EKS Padrão:
-- Terminar via console EC2: Sim
-- Terminar via aws ec2 terminate-instances: Sim
-- Terminar via kubectl: Sim
+
+* Terminar via console EC2: Sim
+* Terminar via aws ec2 terminate-instances: Sim
+* Terminar via kubectl: Sim
 
 EKS Auto Mode:
-- Terminar via console EC2: Não (não recomendado)
-- Terminar via aws ec2 terminate-instances: Não (não recomendado)
-- Terminar via kubectl: Sim (forma correta)
-```
+
+* Terminar via console EC2: Não (não recomendado)
+* Terminar via aws ec2 terminate-instances: Não (não recomendado)
+* Terminar via kubectl: Sim (forma correta)
 
 Para remover ou substituir nodes no Auto Mode, use comandos kubectl:
 
@@ -1039,12 +1045,9 @@ parameters:
 
 Como não é possível customizar a AMI, qualquer software que precisa rodar no host deve ser um DaemonSet:
 
-```yaml
-# Exemplos comuns:
-# - Agentes de segurança (Falco, Sysdig)
-# - Monitoring agents (Datadog, New Relic)
-# - Log collectors (Fluent Bit)
-```
+* Agentes de segurança (Falco, Sysdig)
+* Monitoring agents (Datadog, New Relic)
+* Log collectors (Fluent Bit)
 
 ### 7. Monitore eventos do cluster
 
@@ -1273,12 +1276,14 @@ kubectl top nodes
 O EKS Auto Mode representa uma evolução natural na operação de Kubernetes na AWS. Ao mover componentes críticos como Karpenter, AWS Load Balancer Controller, EBS CSI Driver e VPC CNI para fora do cluster, ele reduz significativamente a carga operacional.
 
 É a escolha certa quando:
+
 * Você quer focar em aplicações, não em infraestrutura
 * Não precisa de AMIs customizadas
 * Aceita Bottlerocket como OS dos nodes
 * Quer patches automáticos e ciclo de vida gerenciado
 
 Não é a escolha certa quando:
+
 * Precisa de controle total sobre AMIs
 * Precisa de visibilidade completa nos logs dos componentes
 * Tem requisitos de compliance que exigem AMIs específicas
