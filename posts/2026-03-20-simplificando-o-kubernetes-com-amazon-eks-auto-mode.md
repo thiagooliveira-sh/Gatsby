@@ -6,7 +6,7 @@ description: Neste artigo exploramos o Amazon EKS Auto Mode, uma nova abordagem
   o recurso automatiza o provisionamento de infraestrutura, gerenciamento de nós
   e escalabilidade, permitindo que equipes foquem mais nas aplicações e menos na
   gestão do cluster.
-date: 2026-03-20
+date: 2026-03-19
 category: aws
 background: "#FF9900"
 tags:
