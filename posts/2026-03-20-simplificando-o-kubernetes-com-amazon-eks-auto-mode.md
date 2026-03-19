@@ -70,20 +70,17 @@ Neste artigo, você vai aprender:
 
 ## O problema que o Auto Mode resolve
 
-Operar um cluster EKS em produção exige gerenciar muitas peças:
+Operar um cluster EKS em produção exige gerenciar muitas peças, o que você precisa instalar e manter:
 
-```
-O que você precisa instalar e manter:
-├── Karpenter (ou Cluster Autoscaler)
-├── AWS Load Balancer Controller
-├── EBS CSI Driver
-├── VPC CNI Plugin
-├── CoreDNS
-├── kube-proxy
-├── Pod Identity Agent (ou IRSA)
-├── Metrics Server
-└── AMIs dos nodes (patches, updates)
-```
+* Karpenter (ou Cluster Autoscaler)
+* AWS Load Balancer Controller
+* EBS CSI Driver
+* VPC CNI Plugin
+* CoreDNS
+* kube-proxy
+* Pod Identity Agent (ou IRSA)
+* Metrics Server
+* AMIs dos nodes (patches, updates)
 
 Cada componente tem seu ciclo de vida, versão, configuração e possíveis breaking changes. Em um cenário com múltiplos clusters, a complexidade operacional escala rápido.
 
