@@ -52,8 +52,6 @@ categories:
   - EKSBESTPRACTICES
   - AWSCONTAINERS
 ---
-
-
 Nos artigos anteriores, exploramos a [arquitetura do Amazon EKS](https://thiagoalexandria.com.br/amazon-eks-arquitetura-e-primeiros-passos/) e como o [Karpenter revolucionou o auto scaling](https://thiagoalexandria.com.br/revolucionando-auto-scaling-no-eks-com-karpenter/) de workloads Kubernetes. Agora, a AWS dá mais um passo nessa evolução com o Amazon EKS Auto Mode, lançado no re:Invent 2024.
 
 A proposta é direta: ao invés de você gerenciar nodes, instalar add-ons, configurar Karpenter, AWS Load Balancer Controller, EBS CSI Driver, VPC CNI e Pod Identity Agent separadamente, o Auto Mode faz tudo isso por você. Você foca nas aplicações, a AWS cuida da infraestrutura.
@@ -107,42 +105,41 @@ EKS Auto Mode é um modo de operação do Amazon EKS onde a AWS gerencia automat
 
 Componentes gerenciados pelo Auto Mode:
 
-```
-Compute:
-├── Karpenter (auto-scaling)
-├── Provisionamento de nodes (EC2)
-├── AMI dos nodes (Bottlerocket)
-├── Patches e updates de OS
-└── Ciclo de vida dos nodes (max 21 dias)
+**Compute:**
 
-Networking:
-├── VPC CNI Plugin
-├── AWS Load Balancer Controller (ALB/NLB)
-└── Pod Identity Agent
+* Karpenter (auto-scaling)
+* Provisionamento de nodes (EC2)
+* AMI dos nodes (Bottlerocket)
+* Patches e updates de OS
+* Ciclo de vida dos nodes (max 21 dias)
 
-Storage:
-├── EBS CSI Driver
-└── Provisionamento de volumes
+**Networking:**
 
-Segurança:
-├── IMDSv2 obrigatório
-├── Bottlerocket (OS minimalista e seguro)
-└── Pod Identity integrado
-```
+* VPC CNI Plugin
+* AWS Load Balancer Controller (ALB/NLB)
+* Pod Identity Agent
+
+**Storage:**
+
+* EBS CSI Driver
+* Provisionamento de volumes
+
+**Segurança:**
+
+* IMDSv2 obrigatório
+* Bottlerocket (OS minimalista e seguro)
+* Pod Identity integrado
 
 ### O que continua sendo sua responsabilidade
 
-```
-Sua responsabilidade:
-├── Versão do cluster (upgrades de K8s)
-├── Configuração de NodePools customizados
-├── Definição de workloads (Deployments, Services)
-├── RBAC e Access Entries
-├── Network Policies
-├── Observabilidade (logs de aplicação, métricas)
-├── StorageClass (precisa criar manualmente)
-└── Configuração de VPC e subnets
-```
+* Versão do cluster (upgrades de K8s)
+* Configuração de NodePools customizados
+* Definição de workloads (Deployments, Services)
+* RBAC e Access Entries
+* Network Policies
+* Observabilidade (logs de aplicação, métricas)
+* StorageClass (precisa criar manualmente)
+* Configuração de VPC e subnets
 
 ### Onde os componentes rodam
 
@@ -150,7 +147,7 @@ Uma diferença fundamental do Auto Mode: os componentes gerenciados rodam **fora
 
 #### EKS Standard
 
-##### Seu Cluster:
+**Seu Cluster:**
 
 * Karpenter (pod)
 * aws-load-balancer (pod)
@@ -161,7 +158,7 @@ Uma diferença fundamental do Auto Mode: os componentes gerenciados rodam **fora
 
 #### EKS Auto Mode
 
-##### Gerenciado pela AWS:
+**Gerenciado pela AWS:**
 
 * Karpenter
 * AWS Load Balancer Controller
@@ -169,7 +166,7 @@ Uma diferença fundamental do Auto Mode: os componentes gerenciados rodam **fora
 * VPC CNI
 * Pod Identity Agent
 
-##### Seu Cluster:
+**Seu Cluster:**
 
 * metrics-server (pod)
 * coredns (pod)
