@@ -52,6 +52,8 @@ categories:
   - EKSBESTPRACTICES
   - AWSCONTAINERS
 ---
+
+
 Nos artigos anteriores, exploramos a [arquitetura do Amazon EKS](https://thiagoalexandria.com.br/amazon-eks-arquitetura-e-primeiros-passos/) e como o [Karpenter revolucionou o auto scaling](https://thiagoalexandria.com.br/revolucionando-auto-scaling-no-eks-com-karpenter/) de workloads Kubernetes. Agora, a AWS dá mais um passo nessa evolução com o Amazon EKS Auto Mode, lançado no re:Invent 2024.
 
 A proposta é direta: ao invés de você gerenciar nodes, instalar add-ons, configurar Karpenter, AWS Load Balancer Controller, EBS CSI Driver, VPC CNI e Pod Identity Agent separadamente, o Auto Mode faz tudo isso por você. Você foca nas aplicações, a AWS cuida da infraestrutura.
@@ -106,7 +108,6 @@ EKS Auto Mode é um modo de operação do Amazon EKS onde a AWS gerencia automat
 Componentes gerenciados pelo Auto Mode:
 
 ```
-
 Compute:
 ├── Karpenter (auto-scaling)
 ├── Provisionamento de nodes (EC2)
@@ -147,34 +148,32 @@ Sua responsabilidade:
 
 Uma diferença fundamental do Auto Mode: os componentes gerenciados rodam **fora do seu cluster**, na infraestrutura da AWS.
 
-```
-EKS Standard:
-┌─────────────────────────────────┐
-│ Seu Cluster                     │
-│ ├── karpenter (pod)             │
-│ ├── aws-load-balancer (pod)     │
-│ ├── ebs-csi-driver (pod)        │
-│ ├── vpc-cni (daemonset)         │
-│ ├── coredns (pod)               │
-│ └── seus workloads              │
-└─────────────────────────────────┘
+#### EKS Standard
 
-EKS Auto Mode:
-┌─────────────────────────────────┐
-│ Gerenciado pela AWS (off-cluster)│
-│ ├── Karpenter                   │
-│ ├── AWS Load Balancer Controller│
-│ ├── EBS CSI Driver              │
-│ ├── VPC CNI                     │
-│ └── Pod Identity Agent          │
-└─────────────────────────────────┘
-┌─────────────────────────────────┐
-│ Seu Cluster                     │
-│ ├── metrics-server (pod)        │
-│ ├── coredns (pod)               │
-│ └── seus workloads              │
-└─────────────────────────────────┘
-```
+##### Seu Cluster:
+
+* Karpenter (pod)
+* aws-load-balancer (pod)
+* ebs-csi-driver (pod)
+* vpc-cni (daemonset)
+* coredns (pod)
+* seus workloads
+
+#### EKS Auto Mode
+
+##### Gerenciado pela AWS:
+
+* Karpenter
+* AWS Load Balancer Controller
+* EBS CSI Driver
+* VPC CNI
+* Pod Identity Agent
+
+##### Seu Cluster:
+
+* metrics-server (pod)
+* coredns (pod)
+* seus workloads
 
 **Vantagem**: Menos pods consumindo recursos no cluster. Menos superfície de ataque. Menos coisas para debugar.
 
